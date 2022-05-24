@@ -3,10 +3,15 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 51;
 	objects = {
 
 /* Begin PBXBuildFile section */
+		05CD4714471DA7D77D1FB490 /* Pods_ReelyV1_ReelyV1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */; };
+		2E20D6CEE1CD1C8DCFE72311 /* Pods_ReelyV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */; };
+		473C69E8283C768700D4D15E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69E7283C768700D4D15E /* HomeView.swift */; };
+		473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69EF283C76F700D4D15E /* StaggeredGrid.swift */; };
+		473C69F6283C788200D4D15E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69F5283C788200D4D15E /* Post.swift */; };
 		4783445A283C63520022025E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834459283C63520022025E /* AppDelegate.swift */; };
 		4783445C283C63520022025E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783445B283C63520022025E /* SceneDelegate.swift */; };
 		4783445E283C63520022025E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783445D283C63520022025E /* ContentView.swift */; };
@@ -16,6 +21,8 @@
 		47834469283C63560022025E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47834467283C63560022025E /* LaunchScreen.storyboard */; };
 		47834474283C63560022025E /* ReelyV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834473283C63560022025E /* ReelyV1Tests.swift */; };
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
+		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
+		AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -36,6 +43,11 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1/Pods-ReelyV1.release.xcconfig"; sourceTree = "<group>"; };
+		30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1-ReelyV1UITests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		473C69E7283C768700D4D15E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
+		473C69EF283C76F700D4D15E /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
+		473C69F5283C788200D4D15E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		47834456283C63520022025E /* ReelyV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReelyV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47834459283C63520022025E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4783445B283C63520022025E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -51,6 +63,14 @@
 		4783447A283C63560022025E /* ReelyV1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReelyV1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		4783447E283C63560022025E /* ReelyV1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelyV1UITests.swift; sourceTree = "<group>"; };
 		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4783448F283C64660022025E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.release.xcconfig"; sourceTree = "<group>"; };
+		4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
+		5A12908D565E2FF1CDC8E316 /* Pods-ReelyV1-ReelyV1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1-ReelyV1UITests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests.release.xcconfig"; sourceTree = "<group>"; };
+		757C751D438D6992EEC636CC /* Pods-ReelyV1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1/Pods-ReelyV1.debug.xcconfig"; sourceTree = "<group>"; };
+		A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1_ReelyV1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -58,6 +78,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E20D6CEE1CD1C8DCFE72311 /* Pods_ReelyV1.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -65,6 +86,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,12 +94,30 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				05CD4714471DA7D77D1FB490 /* Pods_ReelyV1_ReelyV1UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		473C69E6283C766D00D4D15E /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				473C69E7283C768700D4D15E /* HomeView.swift */,
+				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		473C69F4283C787000D4D15E /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				473C69F5283C788200D4D15E /* Post.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 		4783444D283C63520022025E = {
 			isa = PBXGroup;
 			children = (
@@ -85,6 +125,8 @@
 				47834472283C63560022025E /* ReelyV1Tests */,
 				4783447D283C63560022025E /* ReelyV1UITests */,
 				47834457283C63520022025E /* Products */,
+				FC9B835811C0263B3EA0299F /* Pods */,
+				873806AA933CAD2D305AD3CE /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -101,6 +143,9 @@
 		47834458283C63520022025E /* ReelyV1 */ = {
 			isa = PBXGroup;
 			children = (
+				473C69F4283C787000D4D15E /* Models */,
+				473C69E6283C766D00D4D15E /* Views */,
+				4783448F283C64660022025E /* GoogleService-Info.plist */,
 				47834459283C63520022025E /* AppDelegate.swift */,
 				4783445B283C63520022025E /* SceneDelegate.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
@@ -139,6 +184,29 @@
 			path = ReelyV1UITests;
 			sourceTree = "<group>";
 		};
+		873806AA933CAD2D305AD3CE /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */,
+				A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */,
+				D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		FC9B835811C0263B3EA0299F /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				757C751D438D6992EEC636CC /* Pods-ReelyV1.debug.xcconfig */,
+				0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */,
+				30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */,
+				5A12908D565E2FF1CDC8E316 /* Pods-ReelyV1-ReelyV1UITests.release.xcconfig */,
+				55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */,
+				4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -146,9 +214,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1" */;
 			buildPhases = (
+				7EA766AB9B7E72FE2BBC26ED /* [CP] Check Pods Manifest.lock */,
 				47834452283C63520022025E /* Sources */,
 				47834453283C63520022025E /* Frameworks */,
 				47834454283C63520022025E /* Resources */,
+				3F3F6F3D75359369112116F2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -163,6 +233,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47834486283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1Tests" */;
 			buildPhases = (
+				0493489F822AF9627EFC458C /* [CP] Check Pods Manifest.lock */,
 				4783446B283C63560022025E /* Sources */,
 				4783446C283C63560022025E /* Frameworks */,
 				4783446D283C63560022025E /* Resources */,
@@ -181,9 +252,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47834489283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1UITests" */;
 			buildPhases = (
+				E47E157004496DCD6FCA7388 /* [CP] Check Pods Manifest.lock */,
 				47834476283C63560022025E /* Sources */,
 				47834477283C63560022025E /* Frameworks */,
 				47834478283C63560022025E /* Resources */,
+				6ED188E826162B76A8C2E9C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -243,6 +316,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				47834469283C63560022025E /* LaunchScreen.storyboard in Resources */,
+				47834490283C64660022025E /* GoogleService-Info.plist in Resources */,
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
 			);
@@ -264,6 +338,109 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
+/* Begin PBXShellScriptBuildPhase section */
+		0493489F822AF9627EFC458C /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReelyV1Tests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3F3F6F3D75359369112116F2 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1/Pods-ReelyV1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1/Pods-ReelyV1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReelyV1/Pods-ReelyV1-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		6ED188E826162B76A8C2E9C7 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		7EA766AB9B7E72FE2BBC26ED /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReelyV1-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		E47E157004496DCD6FCA7388 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-ReelyV1-ReelyV1UITests-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
 /* Begin PBXSourcesBuildPhase section */
 		47834452283C63520022025E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -272,6 +449,9 @@
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
+				473C69E8283C768700D4D15E /* HomeView.swift in Sources */,
+				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
+				473C69F6283C788200D4D15E /* Post.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +617,7 @@
 		};
 		47834484283C63560022025E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 757C751D438D6992EEC636CC /* Pods-ReelyV1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -458,6 +639,7 @@
 		};
 		47834485283C63560022025E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -479,6 +661,7 @@
 		};
 		47834487283C63560022025E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -501,6 +684,7 @@
 		};
 		47834488283C63560022025E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -523,6 +707,7 @@
 		};
 		4783448A283C63560022025E /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -543,6 +728,7 @@
 		};
 		4783448B283C63560022025E /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 5A12908D565E2FF1CDC8E316 /* Pods-ReelyV1-ReelyV1UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
