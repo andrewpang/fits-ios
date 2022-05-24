@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct HomeView: View {
     
@@ -16,16 +17,13 @@ struct HomeView: View {
     var body: some View {
         NavigationView {
             StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
-//                PostCardView(post: post)
-                Text(post.title)
+                PostCardView(post: post)
             })
             .padding(.horizontal)
             .navigationTitle("Home")
+            .foregroundColor(.gray)
         }
-        .onAppear{
-//            for index in 1...10 {
-//                posts.append(Post(imageUrl: "post\(index)"))
-//            }
+        .onAppear {
             self.homeViewModel.fetchPosts()
         }
     }
@@ -39,12 +37,19 @@ struct HomeView_Previews: PreviewProvider {
 
 struct PostCardView: View {
     
-    var post: Post
+    var post: PostModel
     
     var body: some View {
-        Image(post.imageUrl)
-            .resizable()
-            .aspectRatio(contentMode: .fit)
-            .cornerRadius(10)
+        VStack {
+            KFImage(URL(string: post.imageUrl))
+                .resizable()
+                .aspectRatio(contentMode: .fit)
+            Text(post.title)
+            HStack {
+                Text(post.author).font(Font.system(size: 12))
+                Image(systemName: "heart")
+            }
+        }.foregroundColor(.white)
+        .cornerRadius(10)
     }
 }

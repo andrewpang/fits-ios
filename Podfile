@@ -6,6 +6,7 @@ target 'ReelyV1' do
   use_frameworks!
 
   # Pods for ReelyV1
+  pod 'Kingfisher', '~> 7.0'
 
 	# Add the Firebase pod for Google Analytics
 	pod 'FirebaseAnalytics'
