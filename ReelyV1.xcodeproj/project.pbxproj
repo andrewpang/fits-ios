@@ -1,0 +1,619 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 50;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		4783445A283C63520022025E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834459283C63520022025E /* AppDelegate.swift */; };
+		4783445C283C63520022025E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783445B283C63520022025E /* SceneDelegate.swift */; };
+		4783445E283C63520022025E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783445D283C63520022025E /* ContentView.swift */; };
+		47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 4783445F283C63520022025E /* ReelyV1.xcdatamodeld */; };
+		47834463283C63560022025E /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47834462283C63560022025E /* Assets.xcassets */; };
+		47834466283C63560022025E /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 47834465283C63560022025E /* Preview Assets.xcassets */; };
+		47834469283C63560022025E /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 47834467283C63560022025E /* LaunchScreen.storyboard */; };
+		47834474283C63560022025E /* ReelyV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834473283C63560022025E /* ReelyV1Tests.swift */; };
+		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		47834470283C63560022025E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4783444E283C63520022025E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47834455283C63520022025E;
+			remoteInfo = ReelyV1;
+		};
+		4783447B283C63560022025E /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 4783444E283C63520022025E /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 47834455283C63520022025E;
+			remoteInfo = ReelyV1;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXFileReference section */
+		47834456283C63520022025E /* ReelyV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReelyV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		47834459283C63520022025E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		4783445B283C63520022025E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		4783445D283C63520022025E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		47834460283C63520022025E /* ReelyV1.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = ReelyV1.xcdatamodel; sourceTree = "<group>"; };
+		47834462283C63560022025E /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		47834465283C63560022025E /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		47834468283C63560022025E /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		4783446A283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4783446F283C63560022025E /* ReelyV1Tests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReelyV1Tests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		47834473283C63560022025E /* ReelyV1Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelyV1Tests.swift; sourceTree = "<group>"; };
+		47834475283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		4783447A283C63560022025E /* ReelyV1UITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = ReelyV1UITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		4783447E283C63560022025E /* ReelyV1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelyV1UITests.swift; sourceTree = "<group>"; };
+		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		47834453283C63520022025E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4783446C283C63560022025E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47834477283C63560022025E /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		4783444D283C63520022025E = {
+			isa = PBXGroup;
+			children = (
+				47834458283C63520022025E /* ReelyV1 */,
+				47834472283C63560022025E /* ReelyV1Tests */,
+				4783447D283C63560022025E /* ReelyV1UITests */,
+				47834457283C63520022025E /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		47834457283C63520022025E /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				47834456283C63520022025E /* ReelyV1.app */,
+				4783446F283C63560022025E /* ReelyV1Tests.xctest */,
+				4783447A283C63560022025E /* ReelyV1UITests.xctest */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		47834458283C63520022025E /* ReelyV1 */ = {
+			isa = PBXGroup;
+			children = (
+				47834459283C63520022025E /* AppDelegate.swift */,
+				4783445B283C63520022025E /* SceneDelegate.swift */,
+				4783445D283C63520022025E /* ContentView.swift */,
+				47834462283C63560022025E /* Assets.xcassets */,
+				47834467283C63560022025E /* LaunchScreen.storyboard */,
+				4783446A283C63560022025E /* Info.plist */,
+				4783445F283C63520022025E /* ReelyV1.xcdatamodeld */,
+				47834464283C63560022025E /* Preview Content */,
+			);
+			path = ReelyV1;
+			sourceTree = "<group>";
+		};
+		47834464283C63560022025E /* Preview Content */ = {
+			isa = PBXGroup;
+			children = (
+				47834465283C63560022025E /* Preview Assets.xcassets */,
+			);
+			path = "Preview Content";
+			sourceTree = "<group>";
+		};
+		47834472283C63560022025E /* ReelyV1Tests */ = {
+			isa = PBXGroup;
+			children = (
+				47834473283C63560022025E /* ReelyV1Tests.swift */,
+				47834475283C63560022025E /* Info.plist */,
+			);
+			path = ReelyV1Tests;
+			sourceTree = "<group>";
+		};
+		4783447D283C63560022025E /* ReelyV1UITests */ = {
+			isa = PBXGroup;
+			children = (
+				4783447E283C63560022025E /* ReelyV1UITests.swift */,
+				47834480283C63560022025E /* Info.plist */,
+			);
+			path = ReelyV1UITests;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		47834455283C63520022025E /* ReelyV1 */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1" */;
+			buildPhases = (
+				47834452283C63520022025E /* Sources */,
+				47834453283C63520022025E /* Frameworks */,
+				47834454283C63520022025E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ReelyV1;
+			productName = ReelyV1;
+			productReference = 47834456283C63520022025E /* ReelyV1.app */;
+			productType = "com.apple.product-type.application";
+		};
+		4783446E283C63560022025E /* ReelyV1Tests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47834486283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1Tests" */;
+			buildPhases = (
+				4783446B283C63560022025E /* Sources */,
+				4783446C283C63560022025E /* Frameworks */,
+				4783446D283C63560022025E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				47834471283C63560022025E /* PBXTargetDependency */,
+			);
+			name = ReelyV1Tests;
+			productName = ReelyV1Tests;
+			productReference = 4783446F283C63560022025E /* ReelyV1Tests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
+		47834479283C63560022025E /* ReelyV1UITests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 47834489283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1UITests" */;
+			buildPhases = (
+				47834476283C63560022025E /* Sources */,
+				47834477283C63560022025E /* Frameworks */,
+				47834478283C63560022025E /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				4783447C283C63560022025E /* PBXTargetDependency */,
+			);
+			name = ReelyV1UITests;
+			productName = ReelyV1UITests;
+			productReference = 4783447A283C63560022025E /* ReelyV1UITests.xctest */;
+			productType = "com.apple.product-type.bundle.ui-testing";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		4783444E283C63520022025E /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1240;
+				LastUpgradeCheck = 1240;
+				TargetAttributes = {
+					47834455283C63520022025E = {
+						CreatedOnToolsVersion = 12.4;
+					};
+					4783446E283C63560022025E = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 47834455283C63520022025E;
+					};
+					47834479283C63560022025E = {
+						CreatedOnToolsVersion = 12.4;
+						TestTargetID = 47834455283C63520022025E;
+					};
+				};
+			};
+			buildConfigurationList = 47834451283C63520022025E /* Build configuration list for PBXProject "ReelyV1" */;
+			compatibilityVersion = "Xcode 9.3";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 4783444D283C63520022025E;
+			productRefGroup = 47834457283C63520022025E /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47834455283C63520022025E /* ReelyV1 */,
+				4783446E283C63560022025E /* ReelyV1Tests */,
+				47834479283C63560022025E /* ReelyV1UITests */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		47834454283C63520022025E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47834469283C63560022025E /* LaunchScreen.storyboard in Resources */,
+				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
+				47834463283C63560022025E /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4783446D283C63560022025E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47834478283C63560022025E /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		47834452283C63520022025E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
+				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
+				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
+				4783445E283C63520022025E /* ContentView.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		4783446B283C63560022025E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				47834474283C63560022025E /* ReelyV1Tests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		47834476283C63560022025E /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		47834471283C63560022025E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47834455283C63520022025E /* ReelyV1 */;
+			targetProxy = 47834470283C63560022025E /* PBXContainerItemProxy */;
+		};
+		4783447C283C63560022025E /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 47834455283C63520022025E /* ReelyV1 */;
+			targetProxy = 4783447B283C63560022025E /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
+
+/* Begin PBXVariantGroup section */
+		47834467283C63560022025E /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				47834468283C63560022025E /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		47834481283C63560022025E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		47834482283C63560022025E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		47834484283C63560022025E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
+				DEVELOPMENT_TEAM = 2PEMTWNRBN;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ReelyV1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		47834485283C63560022025E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
+				DEVELOPMENT_TEAM = 2PEMTWNRBN;
+				ENABLE_PREVIEWS = YES;
+				INFOPLIST_FILE = ReelyV1/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		47834487283C63560022025E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2PEMTWNRBN;
+				INFOPLIST_FILE = ReelyV1Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReelyV1.app/ReelyV1";
+			};
+			name = Debug;
+		};
+		47834488283C63560022025E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2PEMTWNRBN;
+				INFOPLIST_FILE = ReelyV1Tests/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 14.4;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1Tests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/ReelyV1.app/ReelyV1";
+			};
+			name = Release;
+		};
+		4783448A283C63560022025E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2PEMTWNRBN;
+				INFOPLIST_FILE = ReelyV1UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ReelyV1;
+			};
+			name = Debug;
+		};
+		4783448B283C63560022025E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 2PEMTWNRBN;
+				INFOPLIST_FILE = ReelyV1UITests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1UITests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_TARGET_NAME = ReelyV1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		47834451283C63520022025E /* Build configuration list for PBXProject "ReelyV1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47834481283C63560022025E /* Debug */,
+				47834482283C63560022025E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47834484283C63560022025E /* Debug */,
+				47834485283C63560022025E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47834486283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1Tests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				47834487283C63560022025E /* Debug */,
+				47834488283C63560022025E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		47834489283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1UITests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4783448A283C63560022025E /* Debug */,
+				4783448B283C63560022025E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+
+/* Begin XCVersionGroup section */
+		4783445F283C63520022025E /* ReelyV1.xcdatamodeld */ = {
+			isa = XCVersionGroup;
+			children = (
+				47834460283C63520022025E /* ReelyV1.xcdatamodel */,
+			);
+			currentVersion = 47834460283C63520022025E /* ReelyV1.xcdatamodel */;
+			path = ReelyV1.xcdatamodeld;
+			sourceTree = "<group>";
+			versionGroupType = wrapper.xcdatamodel;
+		};
+/* End XCVersionGroup section */
+	};
+	rootObject = 4783444E283C63520022025E /* Project object */;
+}
