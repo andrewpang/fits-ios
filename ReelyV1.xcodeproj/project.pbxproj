@@ -12,6 +12,11 @@
 		473C69E8283C768700D4D15E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69E7283C768700D4D15E /* HomeView.swift */; };
 		473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69EF283C76F700D4D15E /* StaggeredGrid.swift */; };
 		473C69F6283C788200D4D15E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69F5283C788200D4D15E /* Post.swift */; };
+		473C69FE283C821400D4D15E /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69FD283C821400D4D15E /* AddPostView.swift */; };
+		473C6A42283C89A300D4D15E /* PhotoPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A41283C89A200D4D15E /* PhotoPicker.swift */; };
+		473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A46283C8EB800D4D15E /* PostsModel.swift */; };
+		473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A4B283C8ED800D4D15E /* PostModel.swift */; };
+		473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */; };
 		4783445A283C63520022025E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834459283C63520022025E /* AppDelegate.swift */; };
 		4783445C283C63520022025E /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783445B283C63520022025E /* SceneDelegate.swift */; };
 		4783445E283C63520022025E /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783445D283C63520022025E /* ContentView.swift */; };
@@ -48,6 +53,11 @@
 		473C69E7283C768700D4D15E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		473C69EF283C76F700D4D15E /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		473C69F5283C788200D4D15E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
+		473C69FD283C821400D4D15E /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
+		473C6A41283C89A200D4D15E /* PhotoPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPicker.swift; sourceTree = "<group>"; };
+		473C6A46283C8EB800D4D15E /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
+		473C6A4B283C8ED800D4D15E /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
+		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		47834456283C63520022025E /* ReelyV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReelyV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47834459283C63520022025E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4783445B283C63520022025E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -106,6 +116,8 @@
 			children = (
 				473C69E7283C768700D4D15E /* HomeView.swift */,
 				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
+				473C69FD283C821400D4D15E /* AddPostView.swift */,
+				473C6A41283C89A200D4D15E /* PhotoPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -114,8 +126,18 @@
 			isa = PBXGroup;
 			children = (
 				473C69F5283C788200D4D15E /* Post.swift */,
+				473C6A46283C8EB800D4D15E /* PostsModel.swift */,
+				473C6A4B283C8ED800D4D15E /* PostModel.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		473C6A50283C8F6400D4D15E /* View Models */ = {
+			isa = PBXGroup;
+			children = (
+				473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */,
+			);
+			path = "View Models";
 			sourceTree = "<group>";
 		};
 		4783444D283C63520022025E = {
@@ -144,6 +166,7 @@
 			isa = PBXGroup;
 			children = (
 				473C69F4283C787000D4D15E /* Models */,
+				473C6A50283C8F6400D4D15E /* View Models */,
 				473C69E6283C766D00D4D15E /* Views */,
 				4783448F283C64660022025E /* GoogleService-Info.plist */,
 				47834459283C63520022025E /* AppDelegate.swift */,
@@ -448,11 +471,16 @@
 			files = (
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
+				473C6A42283C89A300D4D15E /* PhotoPicker.swift in Sources */,
+				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
 				473C69E8283C768700D4D15E /* HomeView.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
+				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				473C69F6283C788200D4D15E /* Post.swift in Sources */,
+				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
+				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -15,10 +15,12 @@ struct HomeView: View {
         NavigationView {
             StaggeredGrid(columns: 2, list: posts, content: { post in
                 PostCardView(post: post)
-            }).navigationTitle("Home")
+            })
+            .padding(.horizontal)
+            .navigationTitle("Home")
         }
         .onAppear{
-            for index in 1...5 {
+            for index in 1...10 {
                 posts.append(Post(imageUrl: "post\(index)"))
             }
         }
