@@ -11,18 +11,22 @@ struct HomeView: View {
     
     @State var posts: [Post] = []
     
+    @ObservedObject var homeViewModel = HomeViewModel()
+    
     var body: some View {
         NavigationView {
-            StaggeredGrid(columns: 2, list: posts, content: { post in
-                PostCardView(post: post)
+            StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
+//                PostCardView(post: post)
+                Text(post.title)
             })
             .padding(.horizontal)
             .navigationTitle("Home")
         }
         .onAppear{
-            for index in 1...10 {
-                posts.append(Post(imageUrl: "post\(index)"))
-            }
+//            for index in 1...10 {
+//                posts.append(Post(imageUrl: "post\(index)"))
+//            }
+            self.homeViewModel.fetchPosts()
         }
     }
 }

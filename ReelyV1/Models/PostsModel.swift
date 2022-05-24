@@ -7,6 +7,7 @@
 
 import Foundation
 
-public struct PostsModel: Codable, Hashable {
+public struct PostsModel: Identifiable, Codable, Hashable {
+    public var id = UUID().uuidString
     var postModels: [PostModel]?
 }

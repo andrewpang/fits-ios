@@ -7,7 +7,8 @@
 
 import Foundation
 
-public struct PostModel: Codable, Hashable {
+public struct PostModel: Identifiable, Codable, Hashable {
+    public var id = UUID().uuidString
     let author: String
     let body: String
     let imageUrl: String
