@@ -16,15 +16,18 @@ struct HomeView: View {
     
     var body: some View {
         NavigationView {
-            StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
-                PostCardView(post: post)
-            })
-            .padding(.horizontal)
-            .navigationTitle("Home")
-            .foregroundColor(.gray)
-        }
-        .onAppear {
-            self.homeViewModel.fetchPosts()
+            ZStack {
+                Color.gray.opacity(0.15).ignoresSafeArea()
+                StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
+                    PostCardView(post: post)
+                        
+                })
+                .padding(.horizontal)
+                .navigationTitle("Home")
+            }
+            .onAppear {
+                self.homeViewModel.fetchPosts()
+            }
         }
     }
 }
@@ -40,16 +43,19 @@ struct PostCardView: View {
     var post: PostModel
     
     var body: some View {
-        VStack {
-            KFImage(URL(string: post.imageUrl))
-                .resizable()
-                .aspectRatio(contentMode: .fit)
-            Text(post.title)
-            HStack {
-                Text(post.author).font(Font.system(size: 12))
-                Image(systemName: "heart")
+        ZStack{
+            Color.white
+            VStack(alignment: .leading) {
+                KFImage(URL(string: post.imageUrl))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+                Text(post.title).foregroundColor(.black).padding(.horizontal)
+                HStack {
+                    Text(post.author).font(Font.system(size: 12)).foregroundColor(.black)
+                    Image(systemName: "heart").foregroundColor(.black)
+                }.padding(.horizontal)
+                .padding(.vertical, 8)
             }
-        }.foregroundColor(.white)
-        .cornerRadius(10)
+        }.cornerRadius(10)
     }
 }

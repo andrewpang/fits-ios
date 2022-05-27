@@ -9,13 +9,13 @@ import SwiftUI
 import PhotosUI
 
 struct PhotoPicker: UIViewControllerRepresentable {
-  @Binding var pickerResult: [UIImage]
+  @Binding var pickerResult: UIImage
   @Binding var isPresented: Bool
   
   func makeUIViewController(context: Context) -> some UIViewController {
     var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
     configuration.filter = .images // filter only to images
-    configuration.selectionLimit = 0 // ignore limit
+    configuration.selectionLimit = 1
     
     let photoPickerViewController = PHPickerViewController(configuration: configuration)
     photoPickerViewController.delegate = context.coordinator
@@ -36,7 +36,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-      parent.pickerResult.removeAll()
+      parent.pickerResult = UIImage()
       
       for image in results {
         if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
@@ -44,7 +44,7 @@ struct PhotoPicker: UIViewControllerRepresentable {
             if let error = error {
               print("Can't load image \(error.localizedDescription)")
             } else if let image = newImage as? UIImage {
-              self?.parent.pickerResult.append(image)
+              self?.parent.pickerResult = image
             }
           }
         } else {
