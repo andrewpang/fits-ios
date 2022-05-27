@@ -52,7 +52,11 @@
 		<string>UIInterfaceOrientationLandscapeRight</string>
 	</array>
 	<key>NSCameraUsageDescription</key>
-	<string>We need the camera permission</string>
+	<string>We need the camera permission to take pictures</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>We need the photo library permission to use your pictures</string>
+	<key>NSMicrophoneUsageDescription</key>
+	<string>We need the microphone permission to record audio in videos</string>
 	<key>UISupportedInterfaceOrientations~ipad</key>
 	<array>
 		<string>UIInterfaceOrientationPortrait</string>

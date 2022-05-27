@@ -27,6 +27,8 @@
 		47834474283C63560022025E /* ReelyV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834473283C63560022025E /* ReelyV1Tests.swift */; };
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
 		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
+		47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6972E28418EE4001102C1 /* MediaPicker.swift */; };
+		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -74,6 +76,8 @@
 		4783447E283C63560022025E /* ReelyV1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelyV1UITests.swift; sourceTree = "<group>"; };
 		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4783448F283C64660022025E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		47A6972E28418EE4001102C1 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
+		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -117,7 +121,9 @@
 				473C69E7283C768700D4D15E /* HomeView.swift */,
 				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
 				473C69FD283C821400D4D15E /* AddPostView.swift */,
+				47A697302841915D001102C1 /* PostParentView.swift */,
 				473C6A41283C89A200D4D15E /* PhotoPicker.swift */,
+				47A6972E28418EE4001102C1 /* MediaPicker.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -473,9 +479,11 @@
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoPicker.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
+				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
 				473C69E8283C768700D4D15E /* HomeView.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
+				47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				473C69F6283C788200D4D15E /* Post.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,

@@ -7,6 +7,7 @@ target 'ReelyV1' do
 
   # Pods for ReelyV1
   pod 'Kingfisher', '~> 7.0'
+  pod 'YPImagePicker'
 
 	# Add the Firebase pod for Google Analytics
 	pod 'FirebaseAnalytics'

@@ -17,7 +17,7 @@ struct ContentView: View {
                 Image(systemName: "house")
                 Text("Home")
               }
-            AddPostView()
+            PostParentView()
              .tabItem {
                 Image(systemName: "plus.circle")
                 Text("Add Post")
