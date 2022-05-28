@@ -18,12 +18,19 @@ struct PostCardView: View {
                 KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                Text(post.title).foregroundColor(.black).padding(.horizontal)
+                Text(post.title)
+                    .bold()
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                    .padding(.bottom, 4)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
                 HStack {
                     Text(post.author).font(Font.system(size: 12)).foregroundColor(.black)
+                    Spacer()
                     Image(systemName: "heart").foregroundColor(.black)
                 }.padding(.horizontal)
-                .padding(.vertical, 8)
+                .padding(.bottom)
             }
         }.cornerRadius(10)
     }

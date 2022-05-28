@@ -18,9 +18,13 @@ struct PostDetailView: View {
                     .resizable()
                     .scaledToFill()
                 VStack(alignment: .leading) {
-                    Text(post.title).bold()
-                    Text(post.body)
-                    Text("Posted by: " + post.author)
+                    HStack {
+                        Text(post.title).font(Font.system(size: 18)).bold().foregroundColor(.black)
+                        Spacer()
+                        Image(systemName: "heart").foregroundColor(.black)
+                    }
+                    Text("Posted by: " + post.author).foregroundColor(.gray)
+                    Text(post.body).padding(.top)
                 }.padding()
             }
         }
