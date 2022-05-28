@@ -8,20 +8,20 @@
 import SwiftUI
 
 struct ContentView: View {
+    @State private var tabSelection = 1
     
     var body: some View {
-
-        TabView {
+        TabView(selection: $tabSelection) {
             HomeView()
              .tabItem {
                 Image(systemName: "house")
                 Text("Home")
-              }
-            PostParentView()
+              }.tag(1)
+            PostParentView(tabSelection: $tabSelection)
              .tabItem {
                 Image(systemName: "plus.circle")
                 Text("Add Post")
-              }
+              }.tag(2)
         }
     }
 }

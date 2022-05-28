@@ -12,6 +12,7 @@ struct AddPostView: View {
     
     @Binding var pickerResult: UIImage
     @Binding var showYPImagePickerView: Bool
+    @Binding var tabSelection: Int
     
     @State var postTitle: String = ""
     @State var postBody: String = ""
@@ -39,13 +40,21 @@ struct AddPostView: View {
             Spacer()
             Button(action: {
                 homeViewModel.addPost(image: pickerResult, author: "andrew", body: postBody, title: postTitle, likes: 0)
+                homeViewModel.isLoading = true
+                resetPostView()
             }) {
                 HStack {
-                    Image(systemName: "plus")
-                        .font(.system(size: 20))
-                        
-                    Text("Submit")
-                        .font(.headline)
+                    if (homeViewModel.isLoading) {
+                        Image(systemName: "clock.arrow.2.circlepath")
+                            .font(.system(size: 20))
+                        Text("Loading...")
+                            .font(.headline)
+                    } else {
+                        Image(systemName: "plus")
+                            .font(.system(size: 20))
+                        Text("Submit")
+                            .font(.headline)
+                    }
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                 .background(Color.blue)
@@ -56,6 +65,15 @@ struct AddPostView: View {
         }.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         }.padding()
+    }
+    
+    func resetPostView() {
+        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+        self.tabSelection = 1
+        showYPImagePickerView = true
+        self.postTitle = ""
+        self.postBody = ""
+        homeViewModel.isLoading = false
     }
 }
 

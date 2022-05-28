@@ -13,6 +13,7 @@ import FirebaseStorage
 class HomeViewModel: ObservableObject {
     
     @Published var postsData = PostsModel()
+    @Published var isLoading = false
     
     private var db = Firestore.firestore()
     
