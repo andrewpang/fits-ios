@@ -9,6 +9,8 @@
 /* Begin PBXBuildFile section */
 		05CD4714471DA7D77D1FB490 /* Pods_ReelyV1_ReelyV1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */; };
 		2E20D6CEE1CD1C8DCFE72311 /* Pods_ReelyV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */; };
+		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
+		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		473C69E8283C768700D4D15E /* HomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69E7283C768700D4D15E /* HomeView.swift */; };
 		473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69EF283C76F700D4D15E /* StaggeredGrid.swift */; };
 		473C69F6283C788200D4D15E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69F5283C788200D4D15E /* Post.swift */; };
@@ -52,6 +54,8 @@
 /* Begin PBXFileReference section */
 		0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1/Pods-ReelyV1.release.xcconfig"; sourceTree = "<group>"; };
 		30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1-ReelyV1UITests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests.debug.xcconfig"; sourceTree = "<group>"; };
+		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
+		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		473C69E7283C768700D4D15E /* HomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeView.swift; sourceTree = "<group>"; };
 		473C69EF283C76F700D4D15E /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		473C69F5283C788200D4D15E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -119,6 +123,8 @@
 			isa = PBXGroup;
 			children = (
 				473C69E7283C768700D4D15E /* HomeView.swift */,
+				47283BB72842C65F0016D124 /* PostCardView.swift */,
+				47283BB92842C7690016D124 /* PostDetailView.swift */,
 				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
 				473C69FD283C821400D4D15E /* AddPostView.swift */,
 				47A697302841915D001102C1 /* PostParentView.swift */,
@@ -478,6 +484,7 @@
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoPicker.swift in Sources */,
+				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
@@ -487,6 +494,7 @@
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				473C69F6283C788200D4D15E /* Post.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
+				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
 			);
