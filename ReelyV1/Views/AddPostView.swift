@@ -8,10 +8,11 @@
 import SwiftUI
 
 struct AddPostView: View {
+    @ObservedObject var homeViewModel = HomeViewModel()
+    
     @Binding var pickerResult: UIImage
     @Binding var showYPImagePickerView: Bool
     
-    @State private var isShowPhotoLibrary = false
     @State var postTitle: String = ""
     @State var postBody: String = ""
     
@@ -37,7 +38,7 @@ struct AddPostView: View {
                         .stroke(Color.gray).opacity(0.5))
             Spacer()
             Button(action: {
-                self.showYPImagePickerView = true
+                homeViewModel.addPost(image: pickerResult, author: "andrew", body: postBody, title: postTitle, likes: 0)
             }) {
                 HStack {
                     Image(systemName: "plus")

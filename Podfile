@@ -15,7 +15,8 @@ target 'ReelyV1' do
 	# Add the pods for any other Firebase products you want to use in your app
 	# For example, to use Firebase Authentication and Cloud Firestore
 	pod 'FirebaseAuth'
-	pod 'FirebaseFirestore'	
+	pod 'FirebaseFirestore'
+  pod 'FirebaseStorage'
   
   target 'ReelyV1Tests' do
     inherit! :search_paths
