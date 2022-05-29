@@ -17,6 +17,7 @@ target 'ReelyV1' do
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
   pod 'FirebaseStorage'
+  pod 'GoogleSignIn'
   
   target 'ReelyV1Tests' do
     inherit! :search_paths

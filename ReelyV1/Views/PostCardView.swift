@@ -26,7 +26,7 @@ struct PostCardView: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                 HStack {
-                    Text(post.author).font(Font.system(size: 12)).foregroundColor(.black)
+                    Text(post.author).font(Font.system(size: 12)).foregroundColor(.gray)
                     Spacer()
                     Image(systemName: "heart").foregroundColor(.black)
                 }.padding(.horizontal)

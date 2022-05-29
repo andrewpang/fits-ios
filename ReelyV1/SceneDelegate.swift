@@ -32,6 +32,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
             self.window = window
             window.makeKeyAndVisible()
         }
+        
+//        https://stackoverflow.com/questions/57832139/making-tabview-not-translucent-on-swiftui-produces-a-new-view-on-top
+        UITabBar.appearance().shadowImage = UIImage()
+        UITabBar.appearance().backgroundImage = UIImage()
+        UITabBar.appearance().isTranslucent = true
+        UITabBar.appearance().backgroundColor = .white
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

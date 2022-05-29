@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import FirebaseAuth
 
 struct AddPostView: View {
     @ObservedObject var homeViewModel = HomeViewModel()
@@ -39,7 +40,7 @@ struct AddPostView: View {
                         .stroke(Color.gray).opacity(0.5))
             Spacer()
             Button(action: {
-                homeViewModel.addPost(image: pickerResult, author: "andrew", body: postBody, title: postTitle, likes: 0)
+                homeViewModel.addPost(image: pickerResult, author: Auth.auth().currentUser?.email ?? "nil", body: postBody, title: postTitle, likes: 0)
                 homeViewModel.isLoading = true
                 resetPostView()
             }) {
@@ -65,6 +66,7 @@ struct AddPostView: View {
         }.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         }.padding()
+            .navigationBarHidden(true)
     }
     
     func resetPostView() {
