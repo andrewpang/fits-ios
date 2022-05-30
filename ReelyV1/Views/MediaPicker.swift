@@ -9,8 +9,8 @@ import SwiftUI
 import YPImagePicker
 
 struct MediaPicker: UIViewControllerRepresentable {
+    @ObservedObject var homeViewModel: HomeViewModel
     @Binding var pickerResult: UIImage
-    @Binding var showYPImagePickerView: Bool
     
     func makeUIViewController(context: Context) -> YPImagePicker {
         let config = YPImagePickerConfiguration()
@@ -24,7 +24,7 @@ struct MediaPicker: UIViewControllerRepresentable {
                 print(photo.modifiedImage ?? "not modified !") // Transformed image, can be nil
                 print(photo.exifMeta ?? "no exif metadata") // Print exif meta data of original image."
                 pickerResult = photo.image
-                showYPImagePickerView = false
+                homeViewModel.showYPImagePickerView = false
             }
             picker.dismiss(animated: true, completion: nil)
         }

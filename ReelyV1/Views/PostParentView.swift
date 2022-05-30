@@ -8,18 +8,17 @@
 import SwiftUI
 
 struct PostParentView: View {
-    @Binding var tabSelection: Int
+    @ObservedObject var homeViewModel: HomeViewModel
     
     @State var pickerResult: UIImage = UIImage(named: "placeHolder")!
-    @State private var showYPImagePickerView = true
-    
+   
     var body: some View {
         ZStack {
-            AddPostView(pickerResult: $pickerResult, showYPImagePickerView: $showYPImagePickerView, tabSelection: self.$tabSelection)
-            if (showYPImagePickerView) {
-                MediaPicker(pickerResult: $pickerResult, showYPImagePickerView: $showYPImagePickerView)
+            AddPostView(homeViewModel: homeViewModel, pickerResult: $pickerResult)
+            if (homeViewModel.showYPImagePickerView) {
+                MediaPicker(homeViewModel: homeViewModel, pickerResult: $pickerResult)
             }
-        }
+        }.navigationTitle("Add Post")
         
     }
 }

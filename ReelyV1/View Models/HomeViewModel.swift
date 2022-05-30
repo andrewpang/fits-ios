@@ -14,13 +14,20 @@ class HomeViewModel: ObservableObject {
     
     @Published var postsData = PostsModel()
     @Published var isLoading = false
+    @Published var isPostSubmitted = false
+    @Published var tabSelection = 1
+    @Published var showYPImagePickerView = true
+    
+    
+    @Published var postTitle: String = ""
+    @Published var postBody: String = ""
     
     private var db = Firestore.firestore()
     
     func fetchPosts() {
         DispatchQueue.main.async {
             let postsCollection = self.db.collection("posts")
-            postsCollection.getDocuments() { (querySnapshot, err) in
+            postsCollection.order(by: "timestamp", descending: true).getDocuments() { (querySnapshot, err) in
                 if let err = err {
                     print("Error getting documents: \(err)")
                 } else {
@@ -66,11 +73,17 @@ class HomeViewModel: ObservableObject {
             "imageUrl": postModel.imageUrl,
             "body": postModel.body,
             "likes": postModel.likes,
+            "timestamp": Timestamp()
         ], merge: true) { err in
             if let err = err {
                 print("Error writing document: \(err)")
             } else {
                 print("Document successfully updated!")
+                self.isLoading = false
+                DispatchQueue.main.async {
+                    self.tabSelection = 1
+                    self.showYPImagePickerView = true
+                }
             }
         }
     }

@@ -9,19 +9,14 @@ import SwiftUI
 import FirebaseAuth
 
 struct AddPostView: View {
-    @ObservedObject var homeViewModel = HomeViewModel()
+    @ObservedObject var homeViewModel: HomeViewModel
     
     @Binding var pickerResult: UIImage
-    @Binding var showYPImagePickerView: Bool
-    @Binding var tabSelection: Int
-    
-    @State var postTitle: String = ""
-    @State var postBody: String = ""
     
     var body: some View {
         VStack(alignment: .leading) {
             Button(action: {
-                self.showYPImagePickerView = true
+                self.homeViewModel.showYPImagePickerView = true
             }) {
                 Image(systemName: "xmark")
                         .font(.system(size: 24))
@@ -31,18 +26,18 @@ struct AddPostView: View {
                     .resizable()
                     .scaledToFit()
             Text("Title: (limit 20 characters)")
-            TextField("Title", text: $postTitle)
+            TextField("Title", text: $homeViewModel.postTitle)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Text("Body: (minimum 50 characters)")
-            TextEditor(text: $postBody)
+            TextEditor(text: $homeViewModel.postBody)
                 .padding(4)
                     .overlay(RoundedRectangle(cornerRadius: 8)
                         .stroke(Color.gray).opacity(0.5))
             Spacer()
             Button(action: {
-                homeViewModel.addPost(image: pickerResult, author: Auth.auth().currentUser?.email ?? "nil", body: postBody, title: postTitle, likes: 0)
+                homeViewModel.addPost(image: pickerResult, author: Auth.auth().currentUser?.email ?? "nil", body: homeViewModel.postBody, title: homeViewModel.postTitle, likes: 0)
                 homeViewModel.isLoading = true
-                resetPostView()
+                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
             }) {
                 HStack {
                     if (homeViewModel.isLoading) {
@@ -63,19 +58,11 @@ struct AddPostView: View {
                 .cornerRadius(20)
                 .padding(.horizontal)
             }.padding(.top, 40)
+            .disabled(self.homeViewModel.isLoading)
         }.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         }.padding()
             .navigationBarHidden(true)
-    }
-    
-    func resetPostView() {
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-        self.tabSelection = 1
-        showYPImagePickerView = true
-        self.postTitle = ""
-        self.postBody = ""
-        homeViewModel.isLoading = false
     }
 }
 

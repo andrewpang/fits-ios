@@ -22,7 +22,7 @@ struct SignUpView: View {
             SecureField("Password", text: $password)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Spacer()
-            NavigationLink(destination: SignedInView(),
+            NavigationLink(destination: TabsParentView().navigationBarBackButtonHidden(true),
                                label: {
                 Text("Sign Up")
                     .font(.headline)

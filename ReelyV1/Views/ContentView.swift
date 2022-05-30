@@ -11,13 +11,11 @@ import FirebaseAuth
 struct ContentView: View {
     
     var body: some View {
-        NavigationView {
-            if (Auth.auth().currentUser == nil) {
-                SignUpView()
-            } else {
-                SignedInView()
-            }
-        }
+//        if (Auth.auth().currentUser == nil) {
+//            SignUpView()
+//        } else {
+            TabsParentView()
+//        }
     }
 }
 
