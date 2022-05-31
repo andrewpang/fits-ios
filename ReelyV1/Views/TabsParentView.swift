@@ -9,6 +9,7 @@ import SwiftUI
 
 struct TabsParentView: View {
     @ObservedObject var homeViewModel = HomeViewModel()
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
         TabView(selection: $homeViewModel.tabSelection) {
@@ -17,7 +18,7 @@ struct TabsParentView: View {
                 Image(systemName: "house")
                 Text("Home")
               }.tag(1)
-            PostParentView(homeViewModel: homeViewModel)
+            PostParentView(homeViewModel: homeViewModel, authenticationViewModel: authenticationViewModel)
              .tabItem {
                 Image(systemName: "plus.circle")
                 Text("Add Post")
@@ -31,6 +32,6 @@ struct TabsParentView: View {
 
 struct SignedInView_Previews: PreviewProvider {
     static var previews: some View {
-        TabsParentView()
+        TabsParentView(authenticationViewModel: AuthenticationViewModel())
     }
 }

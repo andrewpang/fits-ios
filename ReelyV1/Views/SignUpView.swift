@@ -10,22 +10,20 @@ import SwiftUI
 struct SignUpView: View {
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     
-    @State var email: String = ""
-    @State var password: String = ""
-    
     var body: some View {
         NavigationView {
             VStack(alignment: .leading){
-                Text("Email:")
-                TextField("Email", text: $email)
+                Text("Email:").bold().padding(.top, 32)
+                Text("This is what you will use to login (required)").font(Font.system(size: 14)).foregroundColor(.gray)
+                TextField("Email", text: $authenticationViewModel.email)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Password:")
-                SecureField("Password", text: $password)
+                Text("Password:").bold()
+                SecureField("Password", text: $authenticationViewModel.password)
                     .textFieldStyle(RoundedBorderTextFieldStyle())
                 Spacer()
                 NavigationLink(destination: SetupUserView(authenticationViewModel: authenticationViewModel),
                                    label: {
-                    Text("Sign Up")
+                    Text("Continue")
                         .font(.headline)
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                     .background(Color.blue)

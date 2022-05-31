@@ -6,23 +6,51 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct SetupUserView: View {
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     
-    @State var username: String = ""
+    @State var profilePic: UIImage? = nil
     
     var body: some View {
-        VStack {
-            Text("Upload a profile picture (optional)")
-            Text("Select a username (required):")
-            TextField("Username", text: $username)
+        VStack (alignment: .leading) {
+            Text("Add profile photo").bold().padding(.top, 32)
+            Text("Add a profile photo so that people can recognize you (optional)").font(Font.system(size: 14)).foregroundColor(.gray)
+            HStack (alignment: .center) {
+                Spacer()
+                Button(action: {
+                    
+                }, label: {
+                    if let pic = profilePic {
+                        Image(uiImage: pic)
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: 175, height: 175, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                            .clipShape(Circle())
+                            .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    } else {
+                        KFImage(URL(string: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg"))
+                                .resizable()
+                                .aspectRatio(contentMode: .fill)
+                                .frame(width: 175, height: 175, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                                .clipShape(Circle())
+                                .overlay(Circle().stroke(Color.gray, lineWidth: 1))
+                    }
+                })
+                Spacer()
+            }
+            
+            Text("Choose a display name:").bold().padding(.top, 40)
+            Text("Choose a name to display on our app, it doesn't have to be a real name").font(Font.system(size: 14)).foregroundColor(.gray)
+            TextField("Display Name", text: $authenticationViewModel.displayName)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
             Spacer()
             Button(action: {
 //                authenticationViewModel.state = .signedIn
+                authenticationViewModel.signUp()
             }, label: {
-                Text("Continue")
+                Text("Sign Up")
                     .font(.headline)
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
                 .background(Color.blue)
@@ -31,7 +59,7 @@ struct SetupUserView: View {
                 .padding(.horizontal)
             }).padding(.top, 40)
         }.padding()
-        .navigationTitle("Profile")
+        .navigationTitle("Profile Setup")
     }
 }
 

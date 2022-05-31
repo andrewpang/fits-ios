@@ -14,10 +14,13 @@ struct ContentView: View {
     var body: some View {
         ZStack {
             if (authenticationViewModel.state == .signedIn) {
-                TabsParentView()
+                TabsParentView(authenticationViewModel: authenticationViewModel)
             }
-            if (authenticationViewModel.state != .signedIn) {
+            if (authenticationViewModel.state == .signedOut) {
                 SignUpView(authenticationViewModel: authenticationViewModel)
+            }
+            if (authenticationViewModel.state == .loading) {
+                LoadingSplashScreenView()
             }
         }.onAppear {
             authenticationViewModel.checkIfSignedIn()
