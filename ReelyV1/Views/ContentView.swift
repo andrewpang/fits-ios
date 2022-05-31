@@ -9,13 +9,20 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
-//        if (Auth.auth().currentUser == nil) {
-//            SignUpView()
-//        } else {
-            TabsParentView()
-//        }
+        ZStack {
+            if (authenticationViewModel.state == .signedIn) {
+                TabsParentView()
+            }
+            if (authenticationViewModel.state != .signedIn) {
+                SignUpView(authenticationViewModel: authenticationViewModel)
+            }
+        }.onAppear {
+            authenticationViewModel.checkIfSignedIn()
+        }
+        
     }
 }
 

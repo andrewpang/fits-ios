@@ -12,11 +12,19 @@ import FirebaseAuth
 class AuthenticationViewModel: ObservableObject {
 
     enum SignInState {
-    case signedIn
-    case signedOut
+        case signedIn
+        case signedOut
     }
 
     @Published var state: SignInState = .signedOut
+    
+    func checkIfSignedIn() {
+        if (Auth.auth().currentUser != nil) {
+            state = .signedIn
+        } else {
+            state = .signedOut
+        }
+    }
 
     func createUser(withEmail: String, password: String) {
         Auth.auth().createUser(withEmail: withEmail, password: password) { authResult, error in

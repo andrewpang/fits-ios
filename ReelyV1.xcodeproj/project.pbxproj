@@ -33,6 +33,7 @@
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
 		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
 		47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E9528458F7B00D18F00 /* LoadingView.swift */; };
+		47866E98284597F300D18F00 /* SetupUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E97284597F300D18F00 /* SetupUserView.swift */; };
 		47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6972E28418EE4001102C1 /* MediaPicker.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */; };
@@ -88,6 +89,7 @@
 		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4783448F283C64660022025E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47866E9528458F7B00D18F00 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
+		47866E97284597F300D18F00 /* SetupUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUserView.swift; sourceTree = "<group>"; };
 		47A6972E28418EE4001102C1 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.release.xcconfig"; sourceTree = "<group>"; };
@@ -140,6 +142,7 @@
 				473C6A41283C89A200D4D15E /* PhotoPicker.swift */,
 				47A6972E28418EE4001102C1 /* MediaPicker.swift */,
 				47283BBD2843E7DC0016D124 /* SignUpView.swift */,
+				47866E97284597F300D18F00 /* SetupUserView.swift */,
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
 			);
@@ -507,6 +510,7 @@
 				47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */,
+				47866E98284597F300D18F00 /* SetupUserView.swift in Sources */,
 				473C69F6283C788200D4D15E /* Post.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
