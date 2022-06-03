@@ -22,21 +22,57 @@ struct AddPostView: View {
                 Image(systemName: "xmark")
                         .font(.system(size: 24))
             }.padding(.bottom)
-            Group {
-                Text("Photo:").bold()
-                Image(uiImage: pickerResult)
-                        .resizable()
-                        .scaledToFit()
-                Text("Title:").bold()
-                Text("Choose a title for your post (maximum 20 characters)").font(Font.system(size: 14)).foregroundColor(.gray)
-                TextField("Title", text: $homeViewModel.postTitle)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                Text("Post:").bold()
-                Text("Give a review of your product...").font(Font.system(size: 14)).foregroundColor(.gray)
-                TextEditor(text: $homeViewModel.postBody)
-                    .padding(4)
-                        .overlay(RoundedRectangle(cornerRadius: 8)
-                            .stroke(Color.gray).opacity(0.5))
+            ScrollView {
+                VStack (alignment: .leading) {
+                    Group {
+                        Text("Photo:").font(Font.system(size: 24)).bold()
+                        Image(uiImage: pickerResult)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 200)
+//                        Text("Title:").bold()
+//                        Text("Choose a title for your post (maximum 20 characters)").font(Font.system(size: 14)).foregroundColor(.gray)
+//                        TextField("Title", text: $homeViewModel.postTitle)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    Text("Review Questions:").font(Font.system(size: 24)).bold().padding(.bottom)
+                    Group {
+                        Text("What brand is it from?")
+                        TextField("Brand name", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Text("What is the product name?")
+                        TextField("Product name", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Text("How much did it cost?")
+                        TextField("Price", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Text("What do I love about it?")
+                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                    Group {
+                        Text("What do I not like about it?")
+                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Text("Who is this product for?")
+                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                        
+                        Text("Who should avoid this product?")
+                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
+                            .textFieldStyle(RoundedBorderTextFieldStyle())
+                    }
+                }
+//                Text("Post:").bold()
+//                Text("Give a review of your product...").font(Font.system(size: 14)).foregroundColor(.gray)
+//                TextEditor(text: $homeViewModel.postBody)
+//                    .padding(4)
+//                        .overlay(RoundedRectangle(cornerRadius: 8)
+//                            .stroke(Color.gray).opacity(0.5))
             }
             Spacer()
             Button(action: {
@@ -73,6 +109,6 @@ struct AddPostView: View {
 
 //struct AddPostView_Previews: PreviewProvider {
 //    static var previews: some View {
-//        AddPostView()
+//        AddPostView(homeViewModel: <#T##HomeViewModel#>, authenticationViewModel: <#T##AuthenticationViewModel#>, pickerResult: <#T##Binding<UIImage>#>)
 //    }
 //}
