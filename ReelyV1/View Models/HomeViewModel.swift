@@ -75,13 +75,13 @@ class HomeViewModel: ObservableObject {
         let postsCollection = self.db.collection("posts")
         let postDocument = postsCollection.document(postModel.id)
         postDocument.setData([
-            "author": postModel.author,
-            "imageUrl": postModel.imageUrl,
+            "author": postModel.author.trimmingCharacters(in: .whitespacesAndNewlines),
+            "imageUrl": postModel.imageUrl.trimmingCharacters(in: .whitespacesAndNewlines),
             "likes": postModel.likes,
             "timestamp": Timestamp(),
-            "brandName": postModel.brandName,
-            "productName": postModel.productName,
-            "price": postModel.price,
+            "brandName": postModel.brandName.trimmingCharacters(in: .whitespacesAndNewlines),
+            "productName": postModel.productName.trimmingCharacters(in: .whitespacesAndNewlines),
+            "price": postModel.price.trimmingCharacters(in: .whitespacesAndNewlines),
             "body": postModel.body
         ], merge: true) { err in
             if let err = err {
