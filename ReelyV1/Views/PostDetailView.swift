@@ -19,7 +19,7 @@ struct PostDetailView: View {
                     .scaledToFill()
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(post.productName + " by " + post.brandName).font(Font.system(size: 20)).bold().foregroundColor(.black)
+                        Text(post.productName + " by " + post.brandName).font(Font.system(size: 20)).bold()
                         Spacer()
                         Image(systemName: "heart").foregroundColor(.black)
                     }

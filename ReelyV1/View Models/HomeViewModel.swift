@@ -92,6 +92,10 @@ class HomeViewModel: ObservableObject {
                 DispatchQueue.main.async {
                     self.tabSelection = 1
                     self.showYPImagePickerView = true
+                    self.postBrandName = ""
+                    self.postProductName = ""
+                    self.postPrice = ""
+                    self.postBody = ""
                 }
             }
         }
