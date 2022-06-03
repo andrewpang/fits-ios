@@ -18,7 +18,7 @@ struct PostCardView: View {
                 KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                Text(post.title)
+                Text(post.productName + " by " + post.brandName)
                     .bold()
                     .foregroundColor(.black)
                     .padding(.horizontal)
@@ -35,9 +35,9 @@ struct PostCardView: View {
         }.cornerRadius(10)
     }
 }
-
-struct PostCardView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostCardView(post: PostModel(author: "Author", body: "Body Text", imageUrl: "", title: "Title", likes: 0))
-    }
-}
+//
+//struct PostCardView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostCardView(post: PostModel(author: "Author", body: "Body Text", imageUrl: "", title: "Title", likes: 0))
+//    }
+//}

@@ -37,69 +37,72 @@ struct AddPostView: View {
                     }
                     Text("Review Questions:").font(Font.system(size: 24)).bold().padding(.bottom)
                     Group {
-                        Text("What brand is it from?")
-                        TextField("Brand name", text: $homeViewModel.postTitle)
+                        Text("💄 What brand is it from?")
+                        TextField("Brand name", text: $homeViewModel.postBrandName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        Text("What is the product name?")
-                        TextField("Product name", text: $homeViewModel.postTitle)
+                        Text("🧴 What is the product name?")
+                        TextField("Product name", text: $homeViewModel.postProductName)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        Text("How much did it cost?")
-                        TextField("Price", text: $homeViewModel.postTitle)
+                        Text("🏷 How much did it cost?")
+                        TextField("Price", text: $homeViewModel.postPrice)
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                         
-                        Text("What do I love about it?")
-                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                        Text("What do I love about it?")
+//                        TextField("(Optional Answer)", text: $homeViewModel.postLoveAboutIt)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
                     }
-                    Group {
-                        Text("What do I not like about it?")
-                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        Text("Who is this product for?")
-                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                        
-                        Text("Who should avoid this product?")
-                        TextField("(Optional Answer)", text: $homeViewModel.postTitle)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
+//                    Group {
+//                        Text("What don't I like about it?")
+//                        TextField("(Optional Answer)", text: $homeViewModel.postDislikeAbout)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//
+//                        Text("Who is this product for?")
+//                        TextField("(Optional Answer)", text: $homeViewModel.postWhoFor)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//
+//                        Text("Who should avoid this product?")
+//                        TextField("(Optional Answer)", text: $homeViewModel.postWhoNotFor)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    }
+                    Text("✍️ Your Review:")
+                    Text("Tell us what you think! What do you like/dislike about the product? Who is this product for/not for?").font(Font.system(size: 14)).foregroundColor(.gray)
+                    TextEditor(text: $homeViewModel.postBody)
+                            .overlay(RoundedRectangle(cornerRadius: 8)
+                                .stroke(Color.gray).opacity(0.3))
+                            .frame(minHeight: 150)
+                    
                 }
-//                Text("Post:").bold()
-//                Text("Give a review of your product...").font(Font.system(size: 14)).foregroundColor(.gray)
-//                TextEditor(text: $homeViewModel.postBody)
-//                    .padding(4)
-//                        .overlay(RoundedRectangle(cornerRadius: 8)
-//                            .stroke(Color.gray).opacity(0.5))
+                Spacer()
+                Button(action: {
+                    homeViewModel.addPost(image: pickerResult, author: authenticationViewModel.displayName, likes: 0, brandName: homeViewModel.postBrandName, productName: homeViewModel.postProductName, price: homeViewModel.postPrice, body: homeViewModel.postBody)
+                    
+                    homeViewModel.isLoading = true
+                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                }) {
+                    HStack {
+                        if (homeViewModel.isLoading) {
+                            Image(systemName: "clock.arrow.2.circlepath")
+                                .font(.system(size: 20))
+                            Text("Loading...")
+                                .font(.headline)
+                        } else {
+                            Image(systemName: "plus")
+                                .font(.system(size: 20))
+                            Text("Submit Post")
+                                .font(.headline)
+                        }
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                    .background(Color.blue)
+                    .foregroundColor(.white)
+                    .cornerRadius(20)
+                    .padding(.horizontal)
+                }.padding(.top, 40)
+                .disabled(self.homeViewModel.isLoading)
             }
-            Spacer()
-            Button(action: {
-                homeViewModel.addPost(image: pickerResult, author: authenticationViewModel.displayName, body: homeViewModel.postBody, title: homeViewModel.postTitle, likes: 0)
-                homeViewModel.isLoading = true
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-            }) {
-                HStack {
-                    if (homeViewModel.isLoading) {
-                        Image(systemName: "clock.arrow.2.circlepath")
-                            .font(.system(size: 20))
-                        Text("Loading...")
-                            .font(.headline)
-                    } else {
-                        Image(systemName: "plus")
-                            .font(.system(size: 20))
-                        Text("Submit Post")
-                            .font(.headline)
-                    }
-                }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                .background(Color.blue)
-                .foregroundColor(.white)
-                .cornerRadius(20)
-                .padding(.horizontal)
-            }.padding(.top, 40)
-            .disabled(self.homeViewModel.isLoading)
+            
         }.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         }.padding()

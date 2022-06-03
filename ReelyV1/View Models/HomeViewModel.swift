@@ -18,9 +18,16 @@ class HomeViewModel: ObservableObject {
     @Published var tabSelection = 1
     @Published var showYPImagePickerView = true
     
-    
     @Published var postTitle: String = ""
     @Published var postBody: String = ""
+    
+    @Published var postBrandName: String = ""
+    @Published var postProductName: String = ""
+    @Published var postPrice: String = ""
+    @Published var postLoveAboutIt: String = ""
+    @Published var postDislikeAbout: String = ""
+    @Published var postWhoFor: String = ""
+    @Published var postWhoNotFor: String = ""
     
     private var db = Firestore.firestore()
     
@@ -44,7 +51,7 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func addPost(image: UIImage, author: String, body: String, title: String, likes: Int) {
+    func addPost(image: UIImage, author: String, likes: Int, brandName: String, productName: String, price: String, body: String) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         let storage = Storage.storage()
         let imagesRef = storage.reference().child("images")
@@ -58,7 +65,7 @@ class HomeViewModel: ObservableObject {
                     // Uh-oh, an error occurred!
                     return
                 }
-                let postModel = PostModel(author: author, body: body, imageUrl: downloadURL.absoluteString, title: title, likes: 0)
+                let postModel = PostModel(author: author, imageUrl: downloadURL.absoluteString, likes: 0, brandName: brandName, productName: productName, price: price, body: body)
                 self.uploadPostModel(postModel: postModel)
             }
         }
@@ -69,11 +76,13 @@ class HomeViewModel: ObservableObject {
         let postDocument = postsCollection.document(postModel.id)
         postDocument.setData([
             "author": postModel.author,
-            "title": postModel.title,
             "imageUrl": postModel.imageUrl,
-            "body": postModel.body,
             "likes": postModel.likes,
-            "timestamp": Timestamp()
+            "timestamp": Timestamp(),
+            "brandName": postModel.brandName,
+            "productName": postModel.productName,
+            "price": postModel.price,
+            "body": postModel.body
         ], merge: true) { err in
             if let err = err {
                 print("Error writing document: \(err)")

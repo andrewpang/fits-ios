@@ -19,11 +19,12 @@ struct PostDetailView: View {
                     .scaledToFill()
                 VStack(alignment: .leading) {
                     HStack {
-                        Text(post.title).font(Font.system(size: 18)).bold().foregroundColor(.black)
+                        Text(post.productName + " by " + post.brandName).font(Font.system(size: 20)).bold().foregroundColor(.black)
                         Spacer()
                         Image(systemName: "heart").foregroundColor(.black)
                     }
-                    Text("Posted by: " + post.author).foregroundColor(.gray)
+                    Text("📸 Posted by: " + post.author).foregroundColor(.gray)
+                    Text("🏷 Price: " + post.price).foregroundColor(.gray)
                     Text(post.body).padding(.top)
                 }.padding()
             }
@@ -31,8 +32,8 @@ struct PostDetailView: View {
     }
 }
 
-struct PostDetailView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostDetailView(post: PostModel(author: "Author", body: "Body Text", imageUrl: "", title: "Title", likes: 0))
-    }
-}
+//struct PostDetailView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        PostDetailView(post: PostModel(author: "Author", body: "Body Text", imageUrl: "", title: "Title", likes: 0))
+//    }
+//}
