@@ -13,7 +13,7 @@ struct SignUpControllerWrapper : UIViewControllerRepresentable {
     
     @Environment(\.presentationMode) var presentationMode
     
-//    @ObservedObject var authenticationViewModel: AuthenticationViewModel?
+    @ObservedObject var authenticationViewModel: AuthenticationViewModel
     
     var popToPrevious : Bool = false {
         didSet {
@@ -30,7 +30,7 @@ struct SignUpControllerWrapper : UIViewControllerRepresentable {
     func makeUIViewController(context: UIViewControllerRepresentableContext<SignUpControllerWrapper>) -> SignUpControllerWrapper.UIViewControllerType {
         let signUpViewController = SignupSMSViewController()
         signUpViewController.delegate = context.coordinator
-//        signUpViewController.authenticationViewModel = authenticationViewModel
+        signUpViewController.authenticationViewModel = authenticationViewModel
         return signUpViewController
     }
 

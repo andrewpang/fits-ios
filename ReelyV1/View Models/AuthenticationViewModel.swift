@@ -35,6 +35,13 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
+        }
+    }
+    
     func getCurrentUserData() {
         if let uid = Auth.auth().currentUser?.uid {
             db.collection("users").document(uid).getDocument(completion: { (documentSnapshot, err) in
@@ -69,26 +76,23 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
-    func signUpWithMagicLink() {
-        
-    }
     
-    private var verificationId: String?
-    
-    public func startSMSAuth(phoneNumber:String, completion: @escaping (Bool) -> Void) {
-        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { [weak self] verificationId, error in
-            guard let verificationId = verificationId, error == nil else {
-                completion(false)
-                return
+    func createUserInDatabase(withUid: String) {
+        let userDoc = self.db.collection("users").document(withUid)
+        userDoc.setData(
+            [
+                "displayName" : self.displayName,
+                "phoneNumber": self.email
+            ], merge: true) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully updated!")
+                self.state = .signedIn
             }
-            self?.verificationId = verificationId
-            completion(true)
         }
     }
-    
-    public func verifySMSCode(smsCode:String, completion: @escaping (Bool) -> Void) {
-       
-    }
+
     
     func uploadProfilePicture() {
         //            let storage = Storage.storage()
@@ -108,10 +112,5 @@ class AuthenticationViewModel: ObservableObject {
         //                }
         //            }
     }
-    
-    func signOut() {
-        
-    }
-    
     
 }

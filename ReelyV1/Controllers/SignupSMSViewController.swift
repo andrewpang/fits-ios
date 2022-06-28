@@ -129,6 +129,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
             UserDefaults.standard.set(phoneNumberText, forKey: Constants.phoneNumberKey)
             let checkSMSVC = CheckSMSViewController()
             checkSMSVC.delegate = self.delegate
+            checkSMSVC.authenticationViewModel = self.authenticationViewModel
             self.present(checkSMSVC, animated: true, completion: nil)
             confirmNumberButton.isUserInteractionEnabled = true
         }
@@ -142,14 +143,14 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         confirmNumberButton.isUserInteractionEnabled = true
     }
     
-    private func sentPhoneNumberToFirebase(to phoneNumber: String) {
-        PhoneAuthProvider.provider()
-          .verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
+    private func sentPhoneNumberToFirebase(to phoneNumber: String) {    
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { verificationID, error in
               guard let verificationId = verificationID, error == nil else {
                   //show error
                   self.displayError()
                   return
               }
+              UserDefaults.standard.set(verificationID, forKey: "authVerificationID")
           }
     }
     
@@ -173,8 +174,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         super.prepare(for: segue, sender: sender)
         
         if segue.identifier == Constants.showCheckEmailSegue {
-            let destinationVC = segue.destination as! CheckEmailViewController
-            destinationVC.email = phoneNumberTextField.text
+            let destinationVC = segue.destination as! CheckSMSViewController
             destinationVC.authenticationViewModel = authenticationViewModel
         }
     }

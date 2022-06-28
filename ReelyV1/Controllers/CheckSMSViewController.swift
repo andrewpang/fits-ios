@@ -15,6 +15,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     var authenticationViewModel: AuthenticationViewModel?
     
     var confirmNumberButton: UILabel!
+    var SMSCodeTextField: UITextField!
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -89,7 +90,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func setupSMSCodeTextField() {
-        let SMSCodeTextField = UITextField(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - Constants.onboardingHorizontalPadding, height: 50))
+        SMSCodeTextField = UITextField(frame: CGRect(x: 0, y: 0, width: self.view.frame.size.width - Constants.onboardingHorizontalPadding, height: 50))
 
         SMSCodeTextField.center = CGPoint(x: self.view.frame.size.width/2, y: 280)
         SMSCodeTextField.placeholder = "Enter code"
@@ -125,7 +126,22 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     @objc func confirmNumberClicked(_ sender: Any) {
-//        .endEditing(true)
+        confirmNumberButton.isUserInteractionEnabled = false
+        SMSCodeTextField.endEditing(true)
+        guard let verificationID = UserDefaults.standard.string(forKey: "authVerificationID") else { return }
+        guard let smsCode = SMSCodeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), !smsCode.isEmpty else { return }
+        let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: smsCode)
+               
+        Auth.auth().signIn(with: credential) { result, error in
+            guard result != nil, error == nil else {
+                self.displayError()
+                self.confirmNumberButton.isUserInteractionEnabled = true
+                return
+            }
+            self.authenticationViewModel?.state = .signedIn
+            self.dismiss(animated: true)
+       }
+               
         
     }
     
