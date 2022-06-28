@@ -8,10 +8,12 @@
 import Foundation
 import SwiftUI
 
-struct EmailSignUpControllerWrapper : UIViewControllerRepresentable {
-    typealias UIViewControllerType = SignUpViewController
+struct SignUpControllerWrapper : UIViewControllerRepresentable {
+    typealias UIViewControllerType = SignupSMSViewController
     
     @Environment(\.presentationMode) var presentationMode
+    
+//    @ObservedObject var authenticationViewModel: AuthenticationViewModel?
     
     var popToPrevious : Bool = false {
         didSet {
@@ -25,21 +27,22 @@ struct EmailSignUpControllerWrapper : UIViewControllerRepresentable {
         Coordinator(self)
     }
     
-    func makeUIViewController(context: UIViewControllerRepresentableContext<EmailSignUpControllerWrapper>) -> EmailSignUpControllerWrapper.UIViewControllerType {
-        let signUpViewController = SignUpViewController()
+    func makeUIViewController(context: UIViewControllerRepresentableContext<SignUpControllerWrapper>) -> SignUpControllerWrapper.UIViewControllerType {
+        let signUpViewController = SignupSMSViewController()
         signUpViewController.delegate = context.coordinator
+//        signUpViewController.authenticationViewModel = authenticationViewModel
         return signUpViewController
     }
 
-    func updateUIViewController(_ uiViewController: EmailSignUpControllerWrapper.UIViewControllerType, context: UIViewControllerRepresentableContext<EmailSignUpControllerWrapper>) {
+    func updateUIViewController(_ uiViewController: SignUpControllerWrapper.UIViewControllerType, context: UIViewControllerRepresentableContext<SignUpControllerWrapper>) {
         //
     }
 }
 
 class EmailSignUpCoordinator: NSObject, UINavigationControllerDelegate {
-    var parent: EmailSignUpControllerWrapper
+    var parent: SignUpControllerWrapper
     
-    init(_ viewController : EmailSignUpControllerWrapper) {
+    init(_ viewController : SignUpControllerWrapper) {
         self.parent = viewController
     }
     

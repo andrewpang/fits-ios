@@ -14,7 +14,7 @@ struct Constants {
     static let largeTextSize: CGFloat = 32
     static let extraLargeTextSize: CGFloat = 40
     
-    static let emailKey = "Email"
+    static let phoneNumberKey = "Phone Number"
     
     static let onboardingTextSize: CGFloat = 32
     static let onboardingLineSpacing: CGFloat = 6
