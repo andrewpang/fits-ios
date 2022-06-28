@@ -8,6 +8,7 @@ target 'ReelyV1' do
   # Pods for ReelyV1
   pod 'Kingfisher', '~> 7.0'
   pod 'YPImagePicker'
+  pod 'PhoneNumberKit', :git => 'https://github.com/marmelroy/PhoneNumberKit'
 
 	# Add the Firebase pod for Google Analytics
 	pod 'FirebaseAnalytics'

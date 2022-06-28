@@ -25,11 +25,20 @@ class AuthenticationViewModel: ObservableObject {
     
     let db = Firestore.firestore()
     
+    private let auth = Auth.auth()
+    
     func checkIfSignedIn() {
         if (Auth.auth().currentUser != nil) {
             getCurrentUserData()
         } else {
             state = .signedOut
+        }
+    }
+    
+    func signOut() {
+        do {
+            try Auth.auth().signOut()
+        } catch {
         }
     }
     
@@ -67,6 +76,24 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
+    
+    func createUserInDatabase(withUid: String) {
+        let userDoc = self.db.collection("users").document(withUid)
+        userDoc.setData(
+            [
+                "displayName" : self.displayName,
+                "phoneNumber": self.email
+            ], merge: true) { err in
+            if let err = err {
+                print("Error writing document: \(err)")
+            } else {
+                print("Document successfully updated!")
+                self.state = .signedIn
+            }
+        }
+    }
+
+    
     func uploadProfilePicture() {
         //            let storage = Storage.storage()
         //            let imagesRef = storage.reference().child("images")
@@ -85,10 +112,5 @@ class AuthenticationViewModel: ObservableObject {
         //                }
         //            }
     }
-    
-    func signOut() {
-        
-    }
-    
     
 }

@@ -17,7 +17,7 @@ struct ContentView: View {
                 TabsParentView(authenticationViewModel: authenticationViewModel)
             }
             if (authenticationViewModel.state == .signedOut) {
-                SignUpView(authenticationViewModel: authenticationViewModel)
+                SignUpControllerWrapper(authenticationViewModel: authenticationViewModel)
             }
             if (authenticationViewModel.state == .loading) {
                 LoadingSplashScreenView()

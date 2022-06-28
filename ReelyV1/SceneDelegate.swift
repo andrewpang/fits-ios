@@ -7,6 +7,7 @@
 
 import UIKit
 import SwiftUI
+import FirebaseAuth
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -28,6 +29,15 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // Use a UIHostingController as window root view controller.
         if let windowScene = scene as? UIWindowScene {
             let window = UIWindow(windowScene: windowScene)
+            
+//            if Auth.auth().currentUser == nil {
+//                let vc = SignUpControllerWrapper()
+////                let signupView = SMSSignUpView().environment(\.managedObjectContext, context)
+//                window.rootViewController = UIHostingController(rootView: vc)
+//            } else {
+//                window.rootViewController = UIHostingController(rootView: contentView)
+//            }
+            
             window.rootViewController = UIHostingController(rootView: contentView)
             self.window = window
             window.makeKeyAndVisible()
