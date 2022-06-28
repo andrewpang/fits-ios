@@ -13,15 +13,18 @@ struct ContentView: View {
     
     var body: some View {
         ZStack {
-            if (authenticationViewModel.state == .signedIn) {
-                TabsParentView(authenticationViewModel: authenticationViewModel)
-            }
-            if (authenticationViewModel.state == .signedOut) {
-                SignUpView(authenticationViewModel: authenticationViewModel)
-            }
-            if (authenticationViewModel.state == .loading) {
-                LoadingSplashScreenView()
-            }
+            TabsParentView(authenticationViewModel: authenticationViewModel)
+//            EmailSignUpControllerWrapper(authenticationViewModel: authenticationViewModel)
+//            if (authenticationViewModel.state == .signedIn) {
+//                TabsParentView(authenticationViewModel: authenticationViewModel)
+//            }
+//            if (authenticationViewModel.state == .signedOut) {
+////                SignUpView(authenticationViewModel: authenticationViewModel)
+//                EmailSignUpControllerWrapper()
+//            }
+//            if (authenticationViewModel.state == .loading) {
+//                LoadingSplashScreenView()
+//            }
         }.onAppear {
             authenticationViewModel.checkIfSignedIn()
         }

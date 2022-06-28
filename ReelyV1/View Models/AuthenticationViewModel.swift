@@ -25,6 +25,8 @@ class AuthenticationViewModel: ObservableObject {
     
     let db = Firestore.firestore()
     
+    private let auth = Auth.auth()
+    
     func checkIfSignedIn() {
         if (Auth.auth().currentUser != nil) {
             getCurrentUserData()
@@ -65,6 +67,27 @@ class AuthenticationViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func signUpWithMagicLink() {
+        
+    }
+    
+    private var verificationId: String?
+    
+    public func startSMSAuth(phoneNumber:String, completion: @escaping (Bool) -> Void) {
+        PhoneAuthProvider.provider().verifyPhoneNumber(phoneNumber, uiDelegate: nil) { [weak self] verificationId, error in
+            guard let verificationId = verificationId, error == nil else {
+                completion(false)
+                return
+            }
+            self?.verificationId = verificationId
+            completion(true)
+        }
+    }
+    
+    public func verifySMSCode(smsCode:String, completion: @escaping (Bool) -> Void) {
+       
     }
     
     func uploadProfilePicture() {

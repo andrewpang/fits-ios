@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 51;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -14,6 +14,9 @@
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
 		47283BBE2843E7DC0016D124 /* SignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBD2843E7DC0016D124 /* SignUpView.swift */; };
 		47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBF2843EFA40016D124 /* TabsParentView.swift */; };
+		4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */; };
+		4736EEFB2867A9310033C49E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFA2867A9310033C49E /* Constants.swift */; };
+		4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */; };
 		473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69E7283C768700D4D15E /* GalleryFeedView.swift */; };
 		473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69EF283C76F700D4D15E /* StaggeredGrid.swift */; };
 		473C69F6283C788200D4D15E /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69F5283C788200D4D15E /* Post.swift */; };
@@ -37,6 +40,9 @@
 		47866E98284597F300D18F00 /* SetupUserView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E97284597F300D18F00 /* SetupUserView.swift */; };
 		47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6972E28418EE4001102C1 /* MediaPicker.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
+		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
+		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
+		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */; };
 /* End PBXBuildFile section */
 
@@ -65,6 +71,9 @@
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		47283BBD2843E7DC0016D124 /* SignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpView.swift; sourceTree = "<group>"; };
 		47283BBF2843EFA40016D124 /* TabsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsParentView.swift; sourceTree = "<group>"; };
+		4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSMSViewController.swift; sourceTree = "<group>"; };
+		4736EEFA2867A9310033C49E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerWrapper.swift; sourceTree = "<group>"; };
 		473C69E7283C768700D4D15E /* GalleryFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryFeedView.swift; sourceTree = "<group>"; };
 		473C69EF283C76F700D4D15E /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		473C69F5283C788200D4D15E /* Post.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
@@ -94,6 +103,10 @@
 		47866E97284597F300D18F00 /* SetupUserView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupUserView.swift; sourceTree = "<group>"; };
 		47A6972E28418EE4001102C1 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
+		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
+		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
+		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
+		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.release.xcconfig"; sourceTree = "<group>"; };
 		4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
@@ -131,6 +144,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4736EEF72867A84D0033C49E /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */,
+				47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
 		473C69E6283C766D00D4D15E /* Views */ = {
 			isa = PBXGroup;
 			children = (
@@ -148,6 +170,9 @@
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
 				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
+				4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */,
+				47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */,
+				47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -196,6 +221,8 @@
 		47834458283C63520022025E /* ReelyV1 */ = {
 			isa = PBXGroup;
 			children = (
+				47A9DE87286A808200DF76CE /* ReelyV1.entitlements */,
+				4736EEF72867A84D0033C49E /* Controllers */,
 				473C69F4283C787000D4D15E /* Models */,
 				473C6A50283C8F6400D4D15E /* View Models */,
 				473C69E6283C766D00D4D15E /* Views */,
@@ -207,6 +234,7 @@
 				4783446A283C63560022025E /* Info.plist */,
 				4783445F283C63520022025E /* ReelyV1.xcdatamodeld */,
 				47834464283C63560022025E /* Preview Content */,
+				4736EEFA2867A9310033C49E /* Constants.swift */,
 			);
 			path = ReelyV1;
 			sourceTree = "<group>";
@@ -278,6 +306,8 @@
 			dependencies = (
 			);
 			name = ReelyV1;
+			packageProductDependencies = (
+			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* ReelyV1.app */;
 			productType = "com.apple.product-type.application";
@@ -352,6 +382,10 @@
 				Base,
 			);
 			mainGroup = 4783444D283C63520022025E;
+			packageReferences = (
+				47A9DE8A286A853600DF76CE /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
+				47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -500,18 +534,23 @@
 			buildActionMask = 2147483647;
 			files = (
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
+				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoPicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
+				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */,
+				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
+				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
+				47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */,
 				47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */,
 				47866E98284597F300D18F00 /* SetupUserView.swift in Sources */,
 				473C69F6283C788200D4D15E /* Post.swift in Sources */,
@@ -521,6 +560,7 @@
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				47283BBE2843E7DC0016D124 /* SignUpView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
+				4736EEFB2867A9310033C49E /* Constants.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -689,8 +729,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
@@ -712,8 +753,9 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 2;
+				CURRENT_PROJECT_VERSION = 3;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
@@ -857,6 +899,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		47A9DE8A286A853600DF76CE /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 0.6.1;
+			};
+		};
+		47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCVersionGroup section */
 		4783445F283C63520022025E /* ReelyV1.xcdatamodeld */ = {

@@ -16,7 +16,8 @@ struct PostDetailView: View {
             VStack(alignment: .leading) {
                 KFImage(URL(string: post.imageUrl))
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
+                    .frame(maxHeight: 400)
                 VStack(alignment: .leading) {
                     HStack {
                         Text(post.productName + " by " + post.brandName).font(Font.system(size: 20)).bold()
