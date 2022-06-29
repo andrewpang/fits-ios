@@ -11,13 +11,12 @@ import struct Kingfisher.KFImage
 struct EditProfileView: View {
     
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
-    @State var name: String = ""
-    @State var bio: String = ""
+    @ObservedObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
         NavigationView {
             VStack {
-                KFImage(URL(string: "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg"))
+                KFImage(URL(string: profileViewModel.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
@@ -39,7 +38,7 @@ struct EditProfileView: View {
                         Text("What should others call you?").bold()
                         Spacer()
                     }
-                    TextField("Your name", text: $name)
+                    TextField("Your name", text: $profileViewModel.name)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
             
                     HStack {
@@ -50,7 +49,7 @@ struct EditProfileView: View {
                         Text("Tell us a bit about yourself, what you’re studying, what year you are, etc.").font(Font.system(size: 14)).foregroundColor(.gray)
                         Spacer()
                     }
-                    TextField("Your bio", text: $bio)
+                    TextField("Your bio", text: $profileViewModel.bio)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
 //                    TextEditor(text: $bio)
 //                            .overlay(RoundedRectangle(cornerRadius: 8)
