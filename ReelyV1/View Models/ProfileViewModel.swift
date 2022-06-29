@@ -18,6 +18,7 @@ class ProfileViewModel: ObservableObject {
     @Published var name: String = ""
     @Published var bio: String = ""
     @Published var showSheet: Bool = false
+    @Published var image: UIImage? = nil
     
     private var db = Firestore.firestore()
     

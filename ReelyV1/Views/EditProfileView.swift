@@ -13,21 +13,33 @@ struct EditProfileView: View {
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     @ObservedObject var profileViewModel = ProfileViewModel()
     
-    @State var image: UIImage = UIImage()
-    
     var body: some View {
         NavigationView {
             VStack {
-                KFImage(URL(string: profileViewModel.imageUrl))
-                    .resizable()
-                    .aspectRatio(contentMode: .fill)
-                    .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
-                    .clipShape(Circle())
-                    .overlay(Circle().stroke(Color.gray, lineWidth: 3))
-                    .padding()
-                    .onTapGesture {
-                        profileViewModel.showSheet = true
-                    }
+                if (profileViewModel.image != nil) {
+                    Image(uiImage: profileViewModel.image!)
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.gray, lineWidth: 3))
+                        .padding()
+                        .onTapGesture {
+                            profileViewModel.showSheet = true
+                        }
+                } else {
+                    Image("portraitPlaceHolder")
+                        .resizable()
+                        .aspectRatio(contentMode: .fill)
+                        .frame(width: 100, height: 100, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+                        .clipShape(Circle())
+                        .overlay(Circle().stroke(Color.gray, lineWidth: 3))
+                        .padding()
+                        .onTapGesture {
+                            profileViewModel.showSheet = true
+                        }
+                }
+                
                 Button(action: {
                     profileViewModel.showSheet = true
                 }, label: {
@@ -82,7 +94,7 @@ struct EditProfileView: View {
             }.padding(24)
             .navigationTitle("Profile")
             .sheet(isPresented: $profileViewModel.showSheet) {
-                PhotoGalleryPicker(pickerResult: $image, isPresented: $profileViewModel.showSheet)
+                PhotoGalleryPicker(pickerResult: $profileViewModel.image, isPresented: $profileViewModel.showSheet)
             }
         }
     }

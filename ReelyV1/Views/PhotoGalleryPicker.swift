@@ -9,7 +9,7 @@ import SwiftUI
 import PhotosUI
 
 struct PhotoGalleryPicker: UIViewControllerRepresentable {
-  @Binding var pickerResult: UIImage
+  @Binding var pickerResult: UIImage?
   @Binding var isPresented: Bool
   
   func makeUIViewController(context: Context) -> some UIViewController {
@@ -36,23 +36,26 @@ struct PhotoGalleryPicker: UIViewControllerRepresentable {
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-      parent.pickerResult = UIImage()
+        parent.pickerResult = UIImage()
       
-      for image in results {
-        if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
-          image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
-            if let error = error {
-              print("Can't load image \(error.localizedDescription)")
-            } else if let image = newImage as? UIImage {
-              self?.parent.pickerResult = image
+        for image in results {
+            if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
+              image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
+                if let error = error {
+                  print("Can't load image \(error.localizedDescription)")
+                } else if let image = newImage as? UIImage {
+                    DispatchQueue.main.async {
+                        self?.parent.pickerResult = image
+                    }
+                }
+              }
+            } else {
+              print("Can't load asset")
             }
-          }
-        } else {
-          print("Can't load asset")
         }
-      }
-      
-      parent.isPresented = false
+        DispatchQueue.main.async {
+            self.parent.isPresented = false
+        }
     }
   }
 }
