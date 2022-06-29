@@ -13,6 +13,8 @@ struct EditProfileView: View {
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     @ObservedObject var profileViewModel = ProfileViewModel()
     
+    @State var image: UIImage = UIImage()
+    
     var body: some View {
         NavigationView {
             VStack {
@@ -24,10 +26,10 @@ struct EditProfileView: View {
                     .overlay(Circle().stroke(Color.gray, lineWidth: 3))
                     .padding()
                     .onTapGesture {
-                        print("Clicked")
+                        profileViewModel.showSheet = true
                     }
                 Button(action: {
-                    print("Clicked")
+                    profileViewModel.showSheet = true
                 }, label: {
                     Text("Update Profile Photo")
                 })
@@ -79,6 +81,9 @@ struct EditProfileView: View {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
             }.padding(24)
             .navigationTitle("Profile")
+            .sheet(isPresented: $profileViewModel.showSheet) {
+                PhotoGalleryPicker(pickerResult: $image, isPresented: $profileViewModel.showSheet)
+            }
         }
     }
 }

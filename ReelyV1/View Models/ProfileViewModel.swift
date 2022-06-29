@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth
 
 class ProfileViewModel: ObservableObject {
     
@@ -16,13 +17,14 @@ class ProfileViewModel: ObservableObject {
     
     @Published var name: String = ""
     @Published var bio: String = ""
+    @Published var showSheet: Bool = false
     
     private var db = Firestore.firestore()
     
     func addProfilePhoto(image: UIImage) {
         guard let imageData = image.jpegData(compressionQuality: 0.5) else { return }
         let storage = Storage.storage()
-        let imagesRef = storage.reference().child("profilePhotos")
+        let imagesRef = storage.reference().child("profilePhotos").child(Auth.auth().currentUser?.uid ?? "noUserId")
         
         let imageRef = imagesRef.child(UUID().uuidString)
         
@@ -39,7 +41,7 @@ class ProfileViewModel: ObservableObject {
     }
     
     //TODO: Change to ProfileModel
-    func uploadPostModel(postModel: PostModel) {
+//    func uploadPostModel(postModel: PostModel) {
 //        let postsCollection = self.db.collection("posts")
 //        let postDocument = postsCollection.document(postModel.id)
 //        postDocument.setData([
@@ -64,8 +66,8 @@ class ProfileViewModel: ObservableObject {
 //                    self.postProductName = ""
 //                    self.postPrice = ""
 //                    self.postBody = ""
-                }
-            }
-        }
+//                }
+//            }
+//        }
     
 }
