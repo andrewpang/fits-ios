@@ -16,6 +16,9 @@ struct ContentView: View {
             if (authenticationViewModel.state == .signedIn) {
                 TabsParentView(authenticationViewModel: authenticationViewModel)
             }
+            if (authenticationViewModel.state == .emptyProfile) {
+                EditProfileView(authenticationViewModel: authenticationViewModel)
+            }
             if (authenticationViewModel.state == .signedOut) {
                 SignUpControllerWrapper(authenticationViewModel: authenticationViewModel)
             }

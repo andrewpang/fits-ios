@@ -138,7 +138,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
                 self.confirmNumberButton.isUserInteractionEnabled = true
                 return
             }
-            self.authenticationViewModel?.state = .signedIn
+            self.authenticationViewModel?.state = .emptyProfile
             self.dismiss(animated: true)
        }
                
