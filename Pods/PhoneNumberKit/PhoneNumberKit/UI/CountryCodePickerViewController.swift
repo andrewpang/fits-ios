@@ -33,15 +33,15 @@ public class CountryCodePickerViewController: UITableViewController {
     lazy var allCountries = phoneNumberKit
         .allCountries()
         .compactMap({ Country(for: $0, with: self.phoneNumberKit) })
-        .sorted(by: { $0.name.localizedCaseInsensitiveCompare($1.name) == .orderedAscending })
+        .sorted(by: { $0.displayName.localizedCaseInsensitiveCompare($1.displayName) == .orderedAscending })
 
     lazy var countries: [[Country]] = {
         let countries = allCountries
             .reduce([[Country]]()) { collection, country in
                 var collection = collection
                 guard var lastGroup = collection.last else { return [[country]] }
-                let lhs = lastGroup.first?.name.folding(options: .diacriticInsensitive, locale: nil)
-                let rhs = country.name.folding(options: .diacriticInsensitive, locale: nil)
+                let lhs = lastGroup.first?.displayName.folding(options: .diacriticInsensitive, locale: nil)
+                let rhs = country.displayName.folding(options: .diacriticInsensitive, locale: nil)
                 if lhs?.first == rhs.first {
                     lastGroup.append(country)
                     collection[collection.count - 1] = lastGroup
@@ -146,7 +146,7 @@ public class CountryCodePickerViewController: UITableViewController {
         let country = self.country(for: indexPath)
 
         cell.textLabel?.text = country.prefix + " " + country.flag
-        cell.detailTextLabel?.text = country.name
+        cell.detailTextLabel?.text = country.displayName
 
         cell.textLabel?.font = .preferredFont(forTextStyle: .callout)
         cell.detailTextLabel?.font = .preferredFont(forTextStyle: .body)
@@ -164,7 +164,7 @@ public class CountryCodePickerViewController: UITableViewController {
         } else if section == 1, hasCurrent, hasCommon {
             return NSLocalizedString("PhoneNumberKit.CountryCodePicker.Common", value: "Common", comment: "Name of \"Common\" section")
         }
-        return countries[section].first?.name.first.map(String.init)
+        return countries[section].first?.displayName.first.map(String.init)
     }
 
     public override func sectionIndexTitles(for tableView: UITableView) -> [String]? {
@@ -179,7 +179,7 @@ public class CountryCodePickerViewController: UITableViewController {
             titles.append("★") // This is a classic unicode star
         }
         return titles + countries.suffix(countries.count - titles.count).map { group in
-            group.first?.name.first
+            group.first?.displayName.first
                 .map(String.init)?
                 .folding(options: .diacriticInsensitive, locale: nil) ?? ""
         }
@@ -206,7 +206,7 @@ extension CountryCodePickerViewController: UISearchResultsUpdating {
     public func updateSearchResults(for searchController: UISearchController) {
         let searchText = searchController.searchBar.text ?? ""
         filteredCountries = allCountries.filter { country in
-            country.name.lowercased().contains(searchText.lowercased()) ||
+            country.displayName.lowercased().contains(searchText.lowercased()) ||
                 country.code.lowercased().contains(searchText.lowercased()) ||
                 country.prefix.lowercased().contains(searchText.lowercased())
         }
@@ -223,20 +223,20 @@ public extension CountryCodePickerViewController {
     struct Country {
         public var code: String
         public var flag: String
-        public var name: String
+        public var displayName: String
         public var prefix: String
 
         public init?(for countryCode: String, with phoneNumberKit: PhoneNumberKit) {
             let flagBase = UnicodeScalar("🇦").value - UnicodeScalar("A").value
             guard
-                let name = (Locale.current as NSLocale).localizedString(forCountryCode: countryCode),
+                let displayName = (Locale.current as NSLocale).localizedString(forCountryCode: countryCode),
                 let prefix = phoneNumberKit.countryCode(for: countryCode)?.description
             else {
                 return nil
             }
 
             self.code = countryCode
-            self.name = name
+            self.displayName = displayName
             self.prefix = "+" + prefix
             self.flag = ""
             countryCode.uppercased().unicodeScalars.forEach {
