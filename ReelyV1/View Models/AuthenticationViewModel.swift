@@ -18,6 +18,7 @@ class AuthenticationViewModel: ObservableObject {
     enum SignInState {
         case signedIn
         case signedOut
+        case emptyProfile
         case loading
     }
 
@@ -45,13 +46,23 @@ class AuthenticationViewModel: ObservableObject {
     func getCurrentUserData() {
         if let uid = Auth.auth().currentUser?.uid {
             db.collection("users").document(uid).getDocument(completion: { (documentSnapshot, err) in
-                if let displayName = documentSnapshot?.get("displayName") as? String {
-                    self.displayName = displayName
+                if let error = err {
+                    self.state = .signedOut
+                    print (error)
+                    return
                 }
-                if let email = documentSnapshot?.get("email") as? String {
-                    self.email = email
+                if let document = documentSnapshot, document.exists {
+                    if let displayName = document.get("displayName") as? String {
+                        self.displayName = displayName
+                    }
+                    if let email = document.get("email") as? String {
+                        self.email = email
+                    }
+                    self.state = .signedIn
+                } else {
+                    print("Auth: Empty Profile")
+                    self.state = .emptyProfile
                 }
-                self.state = .signedIn
             })
         }
     }
