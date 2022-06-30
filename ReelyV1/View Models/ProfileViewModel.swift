@@ -13,7 +13,7 @@ import FirebaseAuth
 
 class ProfileViewModel: ObservableObject {
     
-    @Published var imageUrl: String = "https://www.nacdnet.org/wp-content/uploads/2016/06/person-placeholder.jpg"
+    @Published var imageUrl: String = ""
     
     @Published var displayName: String = ""
     @Published var bio: String = ""
@@ -26,7 +26,10 @@ class ProfileViewModel: ObservableObject {
     private var db = Firestore.firestore()
     
     func uploadProfilePhotoAndModel() {
-        guard let imageData = image?.jpegData(compressionQuality: 0.5) else { return }
+        guard let imageData = image?.jpegData(compressionQuality: 0.5) else {
+            self.uploadProfileModel()
+            return
+        }
         let storage = Storage.storage()
         let imagesRef = storage.reference().child("profilePhotos").child(Auth.auth().currentUser?.uid ?? "noUserId")
         let imageRef = imagesRef.child(UUID().uuidString)
@@ -63,7 +66,5 @@ class ProfileViewModel: ObservableObject {
                 }
             }
         }
-        
     }
-    
 }
