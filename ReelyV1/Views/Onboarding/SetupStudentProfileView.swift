@@ -49,8 +49,33 @@ struct SetupStudentProfileView: View {
 //                                .stroke(Color.gray).opacity(0.3))
 //                            .frame(minHeight: 60)
             }
+            
+            NavigationLink(destination: SignUpControllerWrapper(authenticationViewModel: AuthenticationViewModel()).onAppear{
+                profileViewModel.uploadProfilePhotoAndModel()
+            }) {
+                HStack {
+                    Image(systemName: "plus")
+                        .font(.system(size: 20))
+                    Text("Confirm")
+                        .font(.headline)
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+                .background(Color.blue)
+                .foregroundColor(.white)
+                .cornerRadius(20)
+                .padding(.horizontal)
+            }
         }.padding(24)
         .navigationTitle("FIT Profile")
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                Button("Skip for now") {
+                    profileViewModel.uploadProfilePhotoAndModel()
+                    //Setup show navigation link
+                    print("About tapped!")
+                }
+            }
+        }
     }
 }
 

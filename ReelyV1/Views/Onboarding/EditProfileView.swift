@@ -14,7 +14,7 @@ struct EditProfileView: View {
     @ObservedObject var profileViewModel = ProfileViewModel()
     
     var body: some View {
-        NavigationView {
+//        NavigationView {
             VStack {
                 ScrollView {
                     if (profileViewModel.image != nil) {
@@ -56,44 +56,44 @@ struct EditProfileView: View {
                             .textFieldStyle(RoundedBorderTextFieldStyle())
                     }.padding(.vertical, 4)
                     
-                    Group {
-                        HStack {
-                            Text("What's your graduation year?")
-                            Spacer()
-                        }
-                        Picker("", selection: $profileViewModel.graduationYear) {
-                            ForEach(2022...2026, id: \.self) {
-                                Text(String($0))
-                            }
-                        }
-                        .pickerStyle(SegmentedPickerStyle())
-                    }.padding(.vertical, 4)
-                    
-                    Group {
-                        HStack {
-                            Text("What's your major?")
-                            Spacer()
-                        }
-                        TextField("Your major", text: $profileViewModel.major)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }.padding(.vertical, 4)
-                    
-                    Group {
-                        HStack {
-                            Text("Describe yourself")
-                            Spacer()
-                        }
+//                    Group {
 //                        HStack {
-//                            Text("Tell us a bit about yourself, what you’re studying, what year you are, etc.").font(Font.system(size: 14)).foregroundColor(.gray)
+//                            Text("What's your graduation year?")
 //                            Spacer()
 //                        }
-                    TextField("Your bio", text: $profileViewModel.bio)
-                        .textFieldStyle(RoundedBorderTextFieldStyle())
-//                    TextEditor(text: $profileViewModel.bio)
-//                                .overlay(RoundedRectangle(cornerRadius: 8)
-//                                    .stroke(Color.gray).opacity(0.3))
-//                                .frame(minHeight: 60)
-                    }.padding(.vertical, 4)
+//                        Picker("", selection: $profileViewModel.graduationYear) {
+//                            ForEach(2022...2026, id: \.self) {
+//                                Text(String($0))
+//                            }
+//                        }
+//                        .pickerStyle(SegmentedPickerStyle())
+//                    }.padding(.vertical, 4)
+//
+//                    Group {
+//                        HStack {
+//                            Text("What's your major?")
+//                            Spacer()
+//                        }
+//                        TextField("Your major", text: $profileViewModel.major)
+//                            .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    }.padding(.vertical, 4)
+//
+//                    Group {
+//                        HStack {
+//                            Text("Describe yourself")
+//                            Spacer()
+//                        }
+////                        HStack {
+////                            Text("Tell us a bit about yourself, what you’re studying, what year you are, etc.").font(Font.system(size: 14)).foregroundColor(.gray)
+////                            Spacer()
+////                        }
+//                    TextField("Your bio", text: $profileViewModel.bio)
+//                        .textFieldStyle(RoundedBorderTextFieldStyle())
+////                    TextEditor(text: $profileViewModel.bio)
+////                                .overlay(RoundedRectangle(cornerRadius: 8)
+////                                    .stroke(Color.gray).opacity(0.3))
+////                                .frame(minHeight: 60)
+//                    }.padding(.vertical, 4)
                 }
                 NavigationLink(destination: SetupStudentProfileView(profileViewModel: profileViewModel).onAppear{
                     profileViewModel.uploadProfilePhotoAndModel()
@@ -110,15 +110,12 @@ struct EditProfileView: View {
                     .cornerRadius(20)
                     .padding(.horizontal)
                 }
-            }.onTapGesture {
-                UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
             }.padding(24)
-            .navigationTitle("Profile")
+            .navigationTitle("About You")
             .sheet(isPresented: $profileViewModel.showSheet) {
                 PhotoGalleryPicker(pickerResult: $profileViewModel.image, isPresented: $profileViewModel.showSheet)
             }
-
-        }
+//        }
     }
 }
 
