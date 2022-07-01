@@ -12,24 +12,24 @@ struct ContentView: View {
     @ObservedObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
-        WelcomeView()
-//        ZStack {
-//            if (authenticationViewModel.state == .signedIn) {
-//                TabsParentView(authenticationViewModel: authenticationViewModel)
-//            }
+
+        ZStack {
+            if (authenticationViewModel.state == .signedIn) {
+                TabsParentView(authenticationViewModel: authenticationViewModel)
+            }
 //            if (authenticationViewModel.state == .emptyProfile) {
 //                EditProfileView(authenticationViewModel: authenticationViewModel)
 //            }
-//            if (authenticationViewModel.state == .signedOut) {
+            if (authenticationViewModel.state == .signedOut) {
+                WelcomeView()
 //                SignUpControllerWrapper(authenticationViewModel: authenticationViewModel)
-//            }
-//            if (authenticationViewModel.state == .loading) {
-//                LoadingSplashScreenView()
-//            }
-//        }.onAppear {
-//            authenticationViewModel.checkIfSignedIn()
-//        }
-        
+            }
+            if (authenticationViewModel.state == .loading) {
+                LoadingSplashScreenView()
+            }
+        }.onAppear {
+            authenticationViewModel.checkIfSignedIn()
+        }
     }
 }
 
