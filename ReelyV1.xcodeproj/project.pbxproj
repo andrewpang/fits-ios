@@ -28,6 +28,7 @@
 		4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */; };
 		4761CBFD286E7323008ED1BF /* ValuePropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFC286E7323008ED1BF /* ValuePropView.swift */; };
 		4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */; };
+		4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */; };
 		476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FD8286C18E00060589F /* EditProfileView.swift */; };
 		476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FDA286C21720060589F /* ProfileViewModel.swift */; };
 		478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478131682846C95700106B57 /* LoadingSplashScreenView.swift */; };
@@ -89,6 +90,7 @@
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4761CBFC286E7323008ED1BF /* ValuePropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePropView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
+		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
 		476B6FD8286C18E00060589F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		476B6FDA286C21720060589F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		478131682846C95700106B57 /* LoadingSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreenView.swift; sourceTree = "<group>"; };
@@ -171,6 +173,7 @@
 			isa = PBXGroup;
 			children = (
 				473C69FD283C821400D4D15E /* AddPostView.swift */,
+				4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */,
 				47A697302841915D001102C1 /* PostParentView.swift */,
 			);
 			path = Posting;
@@ -571,6 +574,7 @@
 			files = (
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,
+				4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */,

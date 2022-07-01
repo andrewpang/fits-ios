@@ -14,13 +14,15 @@ struct PostParentView: View {
     @State var pickerResult: UIImage = UIImage(named: "placeHolder")!
    
     var body: some View {
-        ZStack {
-            AddPostView(homeViewModel: homeViewModel, authenticationViewModel: authenticationViewModel, pickerResult: $pickerResult)
-            if (homeViewModel.showYPImagePickerView) {
-                MediaPicker(homeViewModel: homeViewModel, pickerResult: $pickerResult)
+        NavigationView {
+            ZStack {
+//                AddPostView(homeViewModel: homeViewModel, authenticationViewModel: authenticationViewModel, pickerResult: $pickerResult)
+    //            if (homeViewModel.showYPImagePickerView) {
+    //                MediaPicker(homeViewModel: homeViewModel, pickerResult: $pickerResult)
+    //            }
+                PostCategoriesView()
             }
-        }.navigationTitle("Add Post")
-        
+        }
     }
 }
 
