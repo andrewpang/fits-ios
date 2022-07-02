@@ -12,7 +12,7 @@ struct AddPostView: View {
     @ObservedObject var homeViewModel: HomeViewModel
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     
-    @Binding var pickerResult: UIImage
+    @Binding var pickerResult: UIImage?
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -26,7 +26,7 @@ struct AddPostView: View {
                 VStack (alignment: .leading) {
                     Group {
                         Text("Photo:").font(Font.system(size: 24)).bold()
-                        Image(uiImage: pickerResult)
+                        Image(uiImage: pickerResult!)
                                 .resizable()
                                 .scaledToFit()
                                 .frame(maxHeight: 200)
@@ -76,7 +76,7 @@ struct AddPostView: View {
                 }
                 Spacer()
                 Button(action: {
-                    homeViewModel.addPost(image: pickerResult, author: authenticationViewModel.displayName, likes: 0, brandName: homeViewModel.postBrandName, productName: homeViewModel.postProductName, price: homeViewModel.postPrice, body: homeViewModel.postBody)
+                    homeViewModel.addPost(image: pickerResult!, author: authenticationViewModel.displayName, likes: 0, brandName: homeViewModel.postBrandName, productName: homeViewModel.postProductName, price: homeViewModel.postPrice, body: homeViewModel.postBody)
                     
                     homeViewModel.isLoading = true
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
