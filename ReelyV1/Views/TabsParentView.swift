@@ -8,23 +8,24 @@
 import SwiftUI
 
 struct TabsParentView: View {
-    @ObservedObject var homeViewModel = HomeViewModel()
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
+    @StateObject var tabViewModel: TabViewModel = TabViewModel()
     
     var body: some View {
-        TabView(selection: $homeViewModel.tabSelection) {
+        TabView(selection: $tabViewModel.tabSelection) {
             GalleryFeedView(homeViewModel: homeViewModel)
              .tabItem {
                 Image(systemName: "house")
                 Text("Home")
               }.tag(1)
-            PostParentView(homeViewModel: homeViewModel, authenticationViewModel: authenticationViewModel)
+            PostParentView()
              .tabItem {
                 Image(systemName: "plus.circle")
                 Text("Add Post")
               }.tag(2)
         }
-        .onChange(of: homeViewModel.tabSelection, perform: { index in
+        .environmentObject(tabViewModel)
+        .onChange(of: tabViewModel.tabSelection, perform: { index in
             homeViewModel.fetchPosts()
         })
     }

@@ -13,7 +13,6 @@ import FirebaseStorage
 class HomeViewModel: ObservableObject {
     
     @Published var postsData = PostsModel()
-    @Published var tabSelection = 1
 //    @Published var isLoading = false
 //    @Published var isPostSubmitted = false
 //    @Published var showYPImagePickerView = true
