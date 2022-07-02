@@ -29,6 +29,7 @@
 		4761CBFD286E7323008ED1BF /* ValuePropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFC286E7323008ED1BF /* ValuePropView.swift */; };
 		4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */; };
 		4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */; };
+		4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC02286FBE68008ED1BF /* ImagePicker.swift */; };
 		476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FD8286C18E00060589F /* EditProfileView.swift */; };
 		476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FDA286C21720060589F /* ProfileViewModel.swift */; };
 		478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478131682846C95700106B57 /* LoadingSplashScreenView.swift */; };
@@ -91,6 +92,7 @@
 		4761CBFC286E7323008ED1BF /* ValuePropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePropView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
 		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
+		4761CC02286FBE68008ED1BF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 		476B6FD8286C18E00060589F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		476B6FDA286C21720060589F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		478131682846C95700106B57 /* LoadingSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreenView.swift; sourceTree = "<group>"; };
@@ -207,6 +209,7 @@
 				472D809C286D6C6E008D1BB5 /* Onboarding */,
 				47866E9528458F7B00D18F00 /* LoadingView.swift */,
 				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
+				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
 				47A6972E28418EE4001102C1 /* MediaPicker.swift */,
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
@@ -590,6 +593,7 @@
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */,
 				476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */,
+				4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
