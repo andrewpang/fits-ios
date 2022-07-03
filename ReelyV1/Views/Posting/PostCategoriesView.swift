@@ -8,22 +8,25 @@
 import SwiftUI
 
 struct PostCategoriesView: View {
-    @State var pickerResult: UIImage?
+    @ObservedObject var postViewModel = PostViewModel()
+    
     @State var showPicker = false
     @State var showSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .camera
-    @State var navigateToNextPage = false
+    @State var postType = ""
     
     var body: some View {
         ScrollView {
             VStack {
-                NavigationLink(destination: AddPostView(homeViewModel: HomeViewModel(), authenticationViewModel: AuthenticationViewModel(), pickerResult: $pickerResult), isActive: $navigateToNextPage) {
+                NavigationLink(destination: AddPostView(postViewModel: postViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
+                .isDetailLink(false)
                 Text("What do you want to share with the FIT(s) Community?").font(Font.system(size: 24)).foregroundColor(.black).bold()
                 
                 Button(action: {
                     showSheet = true
+                    postType = "OOTD"
                 }, label: {
                     VStack {
                         Text("Fit Pic (OOTD)").font(Font.system(size: 24)).foregroundColor(.black).bold()
@@ -39,7 +42,7 @@ struct PostCategoriesView: View {
                             .stroke(.black, lineWidth: Constants.buttonBorderWidth)
                     )
                 }).actionSheet(isPresented: $showSheet) {
-                    ActionSheet(title: Text("Select Photo"), message: Text("Choose"), buttons: [
+                    ActionSheet(title: Text("Select Photo"), message: Text("Choose a fit pic from your photo library, or take one now!"), buttons: [
                         .default(Text("Photo Library")) {
                             self.showPicker = true
                             self.sourceType = .photoLibrary
@@ -102,9 +105,10 @@ struct PostCategoriesView: View {
                 
             }.padding(24)
             .sheet(isPresented: $showPicker) {
-                ImagePicker(selectedImage: $pickerResult, isPresented: $showPicker, sourceType: sourceType).onDisappear {
-                    if (pickerResult != nil) {
-                        self.navigateToNextPage = true
+                ImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
+                    if (postViewModel.postImage != nil) {
+                        self.postViewModel.postTags = [postType]
+                        self.postViewModel.shouldPopToRootViewIfFalse = true
                     }
                 }
             }

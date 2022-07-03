@@ -660,6 +660,8 @@ PODS:
     - "gRPC-C++ (~> 1.44.0)"
     - leveldb-library (~> 1.22)
     - nanopb (< 2.30910.0, >= 2.30908.0)
+  - FirebaseFirestoreSwift (9.2.0):
+    - FirebaseFirestore (~> 9.0)
   - FirebaseInstallations (9.2.0):
     - FirebaseCore (~> 9.0)
     - GoogleUtilities/Environment (~> 7.7)
@@ -806,6 +808,7 @@ DEPENDENCIES:
   - FirebaseAnalytics
   - FirebaseAuth
   - FirebaseFirestore
+  - FirebaseFirestoreSwift
   - FirebaseStorage
   - GoogleSignIn
   - Kingfisher (~> 7.0)
@@ -826,6 +829,7 @@ SPEC REPOS:
     - FirebaseCoreExtension
     - FirebaseCoreInternal
     - FirebaseFirestore
+    - FirebaseFirestoreSwift
     - FirebaseInstallations
     - FirebaseStorage
     - FirebaseStorageInternal
@@ -868,6 +872,7 @@ SPEC CHECKSUMS:
   FirebaseCoreExtension: 20a42c79703ec89f0dd578c28659eaf9fe62eade
   FirebaseCoreInternal: cb966328b6985dbd6f535e1461291063e1c4a00f
   FirebaseFirestore: de27d96de10596ebc114adf25c6aa7d36dd91f2f
+  FirebaseFirestoreSwift: d7e3e7b587a7b8118b97ddb038852750026ee861
   FirebaseInstallations: 21186f0ca7849f90f4a3219fa31a5eca2e30f113
   FirebaseStorage: b47b4a04062ab07911063571241c103a8a2a2332
   FirebaseStorageInternal: 50c963664bc73739b68eb2d8427c91de5168dbcf
@@ -889,6 +894,6 @@ SPEC CHECKSUMS:
   SteviaLayout: c2ecdcff57d44e38fd2f65e54ad52aeae28ca0c4
   YPImagePicker: f36043210c10b0783034eb1947d6e06e31c461e4
 
-PODFILE CHECKSUM: 927b47bd46f154fd327fa2583878a75b3f33b601
+PODFILE CHECKSUM: 547af1c452e72cb26e3bac7af85bf60bc3cd78e0
 
 COCOAPODS: 1.11.3

@@ -18,6 +18,7 @@ target 'ReelyV1' do
 	pod 'FirebaseAuth'
 	pod 'FirebaseFirestore'
   pod 'FirebaseStorage'
+  pod 'FirebaseFirestoreSwift'
   pod 'GoogleSignIn'
   
   target 'ReelyV1Tests' do
