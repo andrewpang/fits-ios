@@ -34,11 +34,11 @@
 	<key>LSRequiresIPhoneOS</key>
 	<true/>
 	<key>NSCameraUsageDescription</key>
-	<string>We need the camera permission to take pictures</string>
+	<string>We need the camera permission to take a photo</string>
 	<key>NSMicrophoneUsageDescription</key>
 	<string>We need the microphone permission to record audio in videos</string>
 	<key>NSPhotoLibraryUsageDescription</key>
-	<string>We need the photo library permission to use your pictures</string>
+	<string>We need the photo library permission to access your photos</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
