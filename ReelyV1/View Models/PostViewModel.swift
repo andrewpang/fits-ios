@@ -14,10 +14,11 @@ import FirebaseAuth
 class PostViewModel: ObservableObject {
     @Published var postsData = PostsModel()
     @Published var isSubmitting = false
+    @Published var shouldPopToRootViewIfFalse = false
     
     @Published var postTitle: String = ""
     @Published var postBody: String = ""
-    @Published var postType: String = "OOTD"
+    @Published var postTags: [String]?
     @Published var postImage: UIImage?
     
     private var db = Firestore.firestore()
@@ -37,7 +38,7 @@ class PostViewModel: ObservableObject {
                     // Uh-oh, an error occurred!
                     return
                 }
-                let postModel = PostModel(author: PostAuthorMap(displayName: "displayName", profilePicImageUrl: "imageUrl", userId: "userId"), imageUrl: downloadURL.absoluteString, title: self.postTitle, body: self.postBody,  likes: 0)
+                let postModel = PostModel(author: PostAuthorMap(displayName: "displayName", profilePicImageUrl: "imageUrl", userId: "userId"), imageUrl: downloadURL.absoluteString, title: self.postTitle, body: self.postBody,  likes: 0, tags: self.postTags)
                 self.uploadPostModel(postModel: postModel)
             }
         }
@@ -51,11 +52,19 @@ class PostViewModel: ObservableObject {
                     print("Error adding post: \(error)")
                 } else {
                     self.isSubmitting = false
+                    self.resetData()
                 }
             }
         }
         catch {
             print (error)
         }
+    }
+    
+    func resetData() {
+        postTitle = ""
+        postBody = ""
+        postTags = nil
+        postImage = nil
     }
 }

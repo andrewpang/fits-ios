@@ -8,6 +8,7 @@
 import SwiftUI
 
 struct TabsParentView: View {
+    @ObservedObject var homeViewModel = HomeViewModel()
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     @StateObject var tabViewModel: TabViewModel = TabViewModel()
     

@@ -17,4 +17,5 @@ public struct PostModel: Identifiable, Codable, Hashable {
     let title: String
     let body: String
     let likes: Int
+    let tags: [String]?
 }

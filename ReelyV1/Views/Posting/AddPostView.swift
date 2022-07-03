@@ -40,6 +40,7 @@ struct AddPostView: View {
                 Spacer()
                 Button(action: {
                     postViewModel.submitPost()
+                    postViewModel.shouldPopToRootViewIfFalse = false
                     tabViewModel.tabSelection = 1
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
@@ -64,7 +65,6 @@ struct AddPostView: View {
                 }.padding(.top, 40)
                 .disabled(self.postViewModel.isSubmitting)
             }
-            
         }.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
         }.padding()
