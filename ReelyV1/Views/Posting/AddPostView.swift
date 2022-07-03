@@ -40,8 +40,10 @@ struct AddPostView: View {
                 Spacer()
                 Button(action: {
                     postViewModel.submitPost()
-                    postViewModel.shouldPopToRootViewIfFalse = false
-                    tabViewModel.tabSelection = 1
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                        postViewModel.shouldPopToRootViewIfFalse = false
+                        tabViewModel.tabSelection = 1
+                    }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
                     HStack {

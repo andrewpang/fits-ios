@@ -22,9 +22,11 @@ struct PostCategoriesView: View {
                     EmptyView()
                 }
                 .isDetailLink(false)
+                
                 Text("What do you want to share with the FIT(s) Community?").font(Font.system(size: 24)).foregroundColor(.black).bold()
                 
                 Button(action: {
+                    postViewModel.resetData()
                     showSheet = true
                     postType = "OOTD"
                 }, label: {
