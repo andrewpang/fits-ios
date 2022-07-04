@@ -11,6 +11,7 @@ import FirebaseAuth
 struct AddPostView: View {
     @ObservedObject var postViewModel: PostViewModel
     @EnvironmentObject var tabViewModel: TabViewModel
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
         VStack(alignment: .leading) {
@@ -39,7 +40,8 @@ struct AddPostView: View {
                 }
                 Spacer()
                 Button(action: {
-                    postViewModel.submitPost()
+                    let postAuthorMap = PostAuthorMap(displayName: authenticationViewModel.userModel?.displayName, profilePicImageUrl: authenticationViewModel.userModel?.profilePicImageUrl, userId: authenticationViewModel.userModel?.id)
+                    postViewModel.submitPost(postAuthorMap: postAuthorMap)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         postViewModel.shouldPopToRootViewIfFalse = false
                         tabViewModel.tabSelection = 1

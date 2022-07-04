@@ -18,19 +18,24 @@ struct PostCardView: View {
                 KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-//                Text(post.productName + " by " + post.brandName)
-//                    .bold()
-//                    .foregroundColor(.black)
-//                    .padding(.horizontal)
-//                    .padding(.bottom, 4)
-//                    .multilineTextAlignment(.leading)
-//                    .lineLimit(2)
-//                HStack {
-//                    Text(post.author).font(Font.system(size: 12)).foregroundColor(.gray)
-//                    Spacer()
-//                    Image(systemName: "heart").foregroundColor(.black)
-//                }.padding(.horizontal)
-//                .padding(.bottom)
+                Text(post.title)
+                    .bold()
+                    .foregroundColor(.black)
+                    .padding(.horizontal)
+                    .multilineTextAlignment(.leading)
+                    .lineLimit(2)
+                HStack {
+                    if let profilePicImageUrl = post.author.profilePicImageUrl {
+                        KFImage(URL(string: profilePicImageUrl))
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxHeight: 16)
+                    }
+                    Text(post.author.displayName ?? "Name").font(Font.system(size: 12)).foregroundColor(.gray)
+                    Spacer()
+                    Image(systemName: "heart").font(Font.system(size: 12)).foregroundColor(.gray)
+                }.padding(.horizontal)
+                .padding(.bottom, 8)
             }
         }.cornerRadius(10)
     }
