@@ -53,7 +53,16 @@ class ProfileViewModel: ObservableObject {
     
     func uploadUserModel() {
         if let uid = Auth.auth().currentUser?.uid {
-            let userModel = UserModel(id: uid, displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines), bio: (bio ?? "").isEmpty ? nil : bio, profilePicImageUrl: (imageUrl ?? "").isEmpty ? nil : imageUrl, groups: [FITGroupId], school: (school ?? "").isEmpty ? nil : school, major: (major ?? "").isEmpty ? nil : major, graduationYear: (graduationYear == nil) ? nil : graduationYear)
+            let userModel = UserModel(
+                id: uid,
+                displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines),
+                bio: bio.isEmpty ? nil : bio.trimmingCharacters(in: .whitespacesAndNewlines),
+                profilePicImageUrl: imageUrl.isEmpty ? nil : imageUrl,
+                groups: [FITGroupId],
+                school: school.isEmpty ? nil : school.trimmingCharacters(in: .whitespacesAndNewlines),
+                major: major.isEmpty ? nil : major.trimmingCharacters(in: .whitespacesAndNewlines),
+                graduationYear: graduationYear
+            )
             let usersCollection = self.db.collection("users")
             do {
                 let _ = try usersCollection.document(uid).setData(from: userModel, merge: true) { error in
