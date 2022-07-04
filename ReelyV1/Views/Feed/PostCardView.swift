@@ -25,11 +25,18 @@ struct PostCardView: View {
                     .multilineTextAlignment(.leading)
                     .lineLimit(2)
                 HStack {
-                    if let profilePicImageUrl = post.author.profilePicImageUrl {
+                    if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                         KFImage(URL(string: profilePicImageUrl))
                             .resizable()
                             .scaledToFit()
                             .frame(maxHeight: 16)
+                            .clipShape(Circle())
+                    } else {
+                        Image("portraitPlaceHolder")
+                            .resizable()
+                            .scaledToFit()
+                            .frame(maxHeight: 16)
+                            .clipShape(Circle())
                     }
                     Text(post.author.displayName ?? "Name").font(Font.system(size: 12)).foregroundColor(.gray)
                     Spacer()
