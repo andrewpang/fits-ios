@@ -9,7 +9,7 @@ import SwiftUI
 import FirebaseAuth
 
 struct ContentView: View {
-    @ObservedObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
+    @StateObject var authenticationViewModel: AuthenticationViewModel = AuthenticationViewModel()
     
     var body: some View {
 
@@ -27,7 +27,8 @@ struct ContentView: View {
             if (authenticationViewModel.state == .loading) {
                 LoadingSplashScreenView()
             }
-        }.onAppear {
+        }.environmentObject(authenticationViewModel)
+        .onAppear {
             authenticationViewModel.checkIfSignedIn()
         }
     }

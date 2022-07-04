@@ -9,8 +9,6 @@ import SwiftUI
 
 struct GalleryFeedView: View {
     
-    @State var posts: [Post] = []
-    
     @ObservedObject var homeViewModel: HomeViewModel
     
     var body: some View {
