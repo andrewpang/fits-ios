@@ -14,6 +14,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
     
     var delegate: EmailSignUpCoordinator?
     var authenticationViewModel: AuthenticationViewModel?
+    var profileViewModel: ProfileViewModel?
     
     var phoneNumberTextField: PhoneNumberTextField!
     var confirmNumberButton: UILabel!
@@ -130,6 +131,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
             let checkSMSVC = CheckSMSViewController()
             checkSMSVC.delegate = self.delegate
             checkSMSVC.authenticationViewModel = self.authenticationViewModel
+            checkSMSVC.profileViewModel = self.profileViewModel
             self.present(checkSMSVC, animated: true, completion: nil)
             confirmNumberButton.isUserInteractionEnabled = true
         }
@@ -168,15 +170,6 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         errorLabel.font = UIFont.systemFont(ofSize: 18)
         errorLabel.textColor = UIColor.red
         self.view.addSubview(errorLabel)
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        super.prepare(for: segue, sender: sender)
-        
-        if segue.identifier == Constants.showCheckEmailSegue {
-            let destinationVC = segue.destination as! CheckSMSViewController
-            destinationVC.authenticationViewModel = authenticationViewModel
-        }
     }
     
 //    func textFieldShouldReturn(_ textField: UITextField) -> Bool {

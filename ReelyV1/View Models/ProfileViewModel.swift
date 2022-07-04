@@ -23,11 +23,15 @@ class ProfileViewModel: ObservableObject {
     @Published var major: String = ""
     @Published var graduationYear: Int = 2022
     
+    //HARDCODED FOR FIT
+    let school: String = "Fashion Institute of Technology"
+    let FITGroupId = "caSMxvTTCAZtARFCH6xK"
+    
     private var db = Firestore.firestore()
     
     func uploadProfilePhotoAndModel() {
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else {
-            self.uploadProfileModel()
+            self.uploadUserModel()
             return
         }
         let storage = Storage.storage()
@@ -42,28 +46,26 @@ class ProfileViewModel: ObservableObject {
                     return
                 }
                 self.imageUrl = downloadURL.absoluteString
-                self.uploadProfileModel()
+                self.uploadUserModel()
             }
         }
     }
     
-    func uploadProfileModel() {
+    func uploadUserModel() {
         if let uid = Auth.auth().currentUser?.uid {
+            let userModel = UserModel(id: uid, displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines), bio: (bio ?? "").isEmpty ? nil : bio, profilePicImageUrl: (imageUrl ?? "").isEmpty ? nil : imageUrl, groups: [FITGroupId], school: (school ?? "").isEmpty ? nil : school, major: (major ?? "").isEmpty ? nil : major, graduationYear: (graduationYear == nil) ? nil : graduationYear)
             let usersCollection = self.db.collection("users")
-            let userDocument = usersCollection.document(uid)
-            userDocument.setData([
-                "displayName": self.displayName.trimmingCharacters(in: .whitespacesAndNewlines),
-                "school": "FIT",
-                "major": self.major.trimmingCharacters(in: .whitespacesAndNewlines),
-                "graduationYear": self.graduationYear,
-                "bio": self.bio.trimmingCharacters(in: .whitespacesAndNewlines),
-                "profilePicImageUrl": self.imageUrl.trimmingCharacters(in: .whitespacesAndNewlines),
-            ], merge: true) { err in
-                if let err = err {
-                    print("Error writing document: \(err)")
-                } else {
-                    print("Document successfully updated!")
+            do {
+                let _ = try usersCollection.document(uid).setData(from: userModel, merge: true) { error in
+                    if let error = error {
+                        print("Error adding post: \(error)")
+                    } else {
+                        print("Added userModel")
+                    }
                 }
+            }
+            catch {
+                print(error)
             }
         }
     }

@@ -12,10 +12,10 @@ import FirebaseFirestore
 public struct PostModel: Identifiable, Codable, Hashable {
     @DocumentID public var id: String? = UUID().uuidString
     @ServerTimestamp var createdAt: Timestamp?
-    let author: PostAuthorMap
+    var author: PostAuthorMap
     var imageUrl: String
-    let title: String
-    let body: String
-    let likes: Int
-    let tags: [String]?
+    var title: String
+    var body: String
+    var likes: Int
+    var tags: [String]?
 }

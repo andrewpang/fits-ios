@@ -10,6 +10,7 @@ import SwiftUI
 struct SetupStudentProfileView: View {
     
     @ObservedObject var profileViewModel: ProfileViewModel
+    @State var navigateToNextView = false
     
     var body: some View {
         VStack {
@@ -50,9 +51,7 @@ struct SetupStudentProfileView: View {
 //                            .frame(minHeight: 60)
             }
             
-            NavigationLink(destination: SignUpControllerWrapper(authenticationViewModel: AuthenticationViewModel()).onAppear{
-                profileViewModel.uploadProfilePhotoAndModel()
-            }) {
+            NavigationLink(destination: SignUpControllerWrapper(profileViewModel: profileViewModel), isActive: $navigateToNextView) {
                 HStack {
                     Image(systemName: "plus")
                         .font(.system(size: 20))
@@ -70,9 +69,7 @@ struct SetupStudentProfileView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Skip for now") {
-                    profileViewModel.uploadProfilePhotoAndModel()
-                    //Setup show navigation link
-                    print("About tapped!")
+                    self.navigateToNextView = true
                 }
             }
         }

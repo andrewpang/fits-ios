@@ -95,9 +95,7 @@ struct EditProfileView: View {
 ////                                .frame(minHeight: 60)
 //                    }.padding(.vertical, 4)
                 }
-                NavigationLink(destination: SetupStudentProfileView(profileViewModel: profileViewModel).onAppear{
-                    profileViewModel.uploadProfilePhotoAndModel()
-                }) {
+                NavigationLink(destination: SetupStudentProfileView(profileViewModel: profileViewModel)) {
                     HStack {
                         Image(systemName: "plus")
                             .font(.system(size: 20))

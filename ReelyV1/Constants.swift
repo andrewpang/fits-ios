@@ -20,8 +20,6 @@ struct Constants {
     static let onboardingLineSpacing: CGFloat = 6
     static let onboardingHorizontalPadding: CGFloat = 80
     
-    static let showCheckEmailSegue = "showCheckEmailSegue"
-    
     static let buttonBorderWidth: CGFloat = 3
     static let buttonCornerRadius: CGFloat = 10
 }

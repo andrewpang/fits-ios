@@ -13,6 +13,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     
     var delegate: EmailSignUpCoordinator?
     var authenticationViewModel: AuthenticationViewModel?
+    var profileViewModel: ProfileViewModel?
     
     var confirmNumberButton: UILabel!
     var SMSCodeTextField: UITextField!
@@ -138,7 +139,8 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
                 self.confirmNumberButton.isUserInteractionEnabled = true
                 return
             }
-            self.authenticationViewModel?.state = .emptyProfile
+            self.authenticationViewModel?.state = .signedIn
+            self.profileViewModel?.uploadProfilePhotoAndModel()
             self.dismiss(animated: true)
        }
                

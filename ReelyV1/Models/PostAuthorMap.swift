@@ -8,7 +8,7 @@
 import Foundation
 
 public struct PostAuthorMap: Codable, Hashable {
-    let displayName: String?
-    let profilePicImageUrl: String?
-    let userId: String?
+    var displayName: String?
+    var profilePicImageUrl: String?
+    var userId: String?
 }
