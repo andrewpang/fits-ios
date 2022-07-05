@@ -15,7 +15,7 @@
             <BuildableReference
                BuildableIdentifier = "primary"
                BlueprintIdentifier = "47834455283C63520022025E"
-               BuildableName = "ReelyV1.app"
+               BuildableName = "FIT(s).app"
                BlueprintName = "FIT(s)"
                ReferencedContainer = "container:ReelyV1.xcodeproj">
             </BuildableReference>
@@ -65,7 +65,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47834455283C63520022025E"
-            BuildableName = "ReelyV1.app"
+            BuildableName = "FIT(s).app"
             BlueprintName = "FIT(s)"
             ReferencedContainer = "container:ReelyV1.xcodeproj">
          </BuildableReference>
@@ -82,7 +82,7 @@
          <BuildableReference
             BuildableIdentifier = "primary"
             BlueprintIdentifier = "47834455283C63520022025E"
-            BuildableName = "ReelyV1.app"
+            BuildableName = "FIT(s).app"
             BlueprintName = "FIT(s)"
             ReferencedContainer = "container:ReelyV1.xcodeproj">
          </BuildableReference>

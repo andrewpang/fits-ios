@@ -7,8 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		05CD4714471DA7D77D1FB490 /* Pods_ReelyV1_ReelyV1UITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */; };
-		2E20D6CEE1CD1C8DCFE72311 /* Pods_ReelyV1.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
@@ -24,6 +22,18 @@
 		473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A46283C8EB800D4D15E /* PostsModel.swift */; };
 		473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A4B283C8ED800D4D15E /* PostModel.swift */; };
 		473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */; };
+		47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47498EC62874F3FE00F45B7D /* PhoneNumberKit */; };
+		4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A42874CED9006DA042 /* FirebaseAnalytics */; };
+		4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */; };
+		4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A82874CED9006DA042 /* FirebaseAuth */; };
+		4756A8AB2874CED9006DA042 /* FirebaseCrashlytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8AA2874CED9006DA042 /* FirebaseCrashlytics */; };
+		4756A8AD2874CED9006DA042 /* FirebaseDynamicLinks in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8AC2874CED9006DA042 /* FirebaseDynamicLinks */; };
+		4756A8AF2874CED9006DA042 /* FirebaseFirestore in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8AE2874CED9006DA042 /* FirebaseFirestore */; };
+		4756A8B12874CED9006DA042 /* FirebaseFirestoreSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B02874CED9006DA042 /* FirebaseFirestoreSwift */; };
+		4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B22874CED9006DA042 /* FirebaseFunctions */; };
+		4756A8B52874CED9006DA042 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B42874CED9006DA042 /* FirebaseMessaging */; };
+		4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B62874CED9006DA042 /* FirebaseStorage */; };
+		4756A8BA2874DBA6006DA042 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B92874DBA6006DA042 /* Kingfisher */; };
 		4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */; };
 		4761CBFD286E7323008ED1BF /* ValuePropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFC286E7323008ED1BF /* ValuePropView.swift */; };
 		4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */; };
@@ -47,12 +57,10 @@
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
 		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
 		47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E9528458F7B00D18F00 /* LoadingView.swift */; };
-		47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A6972E28418EE4001102C1 /* MediaPicker.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
-		AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,8 +81,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1/Pods-ReelyV1.release.xcconfig"; sourceTree = "<group>"; };
-		30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1-ReelyV1UITests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests.debug.xcconfig"; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -119,19 +125,11 @@
 		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4783448F283C64660022025E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		47866E9528458F7B00D18F00 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
-		47A6972E28418EE4001102C1 /* MediaPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPicker.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
 		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
-		4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.release.xcconfig"; sourceTree = "<group>"; };
-		4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1Tests.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1Tests/Pods-ReelyV1Tests.debug.xcconfig"; sourceTree = "<group>"; };
-		5A12908D565E2FF1CDC8E316 /* Pods-ReelyV1-ReelyV1UITests.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1-ReelyV1UITests.release.xcconfig"; path = "Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests.release.xcconfig"; sourceTree = "<group>"; };
-		757C751D438D6992EEC636CC /* Pods-ReelyV1.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ReelyV1.debug.xcconfig"; path = "Target Support Files/Pods-ReelyV1/Pods-ReelyV1.debug.xcconfig"; sourceTree = "<group>"; };
-		A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1_ReelyV1UITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
-		D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ReelyV1Tests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -139,7 +137,18 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				2E20D6CEE1CD1C8DCFE72311 /* Pods_ReelyV1.framework in Frameworks */,
+				4756A8B52874CED9006DA042 /* FirebaseMessaging in Frameworks */,
+				4756A8BA2874DBA6006DA042 /* Kingfisher in Frameworks */,
+				4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */,
+				4756A8AD2874CED9006DA042 /* FirebaseDynamicLinks in Frameworks */,
+				4756A8AB2874CED9006DA042 /* FirebaseCrashlytics in Frameworks */,
+				4756A8B12874CED9006DA042 /* FirebaseFirestoreSwift in Frameworks */,
+				4756A8AF2874CED9006DA042 /* FirebaseFirestore in Frameworks */,
+				4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */,
+				4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */,
+				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
+				4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */,
+				4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -147,7 +156,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				AB3CCB0692E6940BE3450E78 /* Pods_ReelyV1Tests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -155,7 +163,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				05CD4714471DA7D77D1FB490 /* Pods_ReelyV1_ReelyV1UITests.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -216,7 +223,6 @@
 				47866E9528458F7B00D18F00 /* LoadingView.swift */,
 				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
 				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
-				47A6972E28418EE4001102C1 /* MediaPicker.swift */,
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
 				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
@@ -247,6 +253,13 @@
 			path = "View Models";
 			sourceTree = "<group>";
 		};
+		47498EC52874F3FE00F45B7D /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		4783444D283C63520022025E = {
 			isa = PBXGroup;
 			children = (
@@ -254,8 +267,7 @@
 				47834472283C63560022025E /* ReelyV1Tests */,
 				4783447D283C63560022025E /* ReelyV1UITests */,
 				47834457283C63520022025E /* Products */,
-				FC9B835811C0263B3EA0299F /* Pods */,
-				873806AA933CAD2D305AD3CE /* Frameworks */,
+				47498EC52874F3FE00F45B7D /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -316,29 +328,6 @@
 			path = ReelyV1UITests;
 			sourceTree = "<group>";
 		};
-		873806AA933CAD2D305AD3CE /* Frameworks */ = {
-			isa = PBXGroup;
-			children = (
-				4DBAC3C5E0D744A7CE2AA18E /* Pods_ReelyV1.framework */,
-				A6A842CA17742B6EFDA163A2 /* Pods_ReelyV1_ReelyV1UITests.framework */,
-				D39C359A1766E329C682BF27 /* Pods_ReelyV1Tests.framework */,
-			);
-			name = Frameworks;
-			sourceTree = "<group>";
-		};
-		FC9B835811C0263B3EA0299F /* Pods */ = {
-			isa = PBXGroup;
-			children = (
-				757C751D438D6992EEC636CC /* Pods-ReelyV1.debug.xcconfig */,
-				0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */,
-				30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */,
-				5A12908D565E2FF1CDC8E316 /* Pods-ReelyV1-ReelyV1UITests.release.xcconfig */,
-				55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */,
-				4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */,
-			);
-			path = Pods;
-			sourceTree = "<group>";
-		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -346,11 +335,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */;
 			buildPhases = (
-				7EA766AB9B7E72FE2BBC26ED /* [CP] Check Pods Manifest.lock */,
 				47834452283C63520022025E /* Sources */,
 				47834453283C63520022025E /* Frameworks */,
 				47834454283C63520022025E /* Resources */,
-				3F3F6F3D75359369112116F2 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -358,6 +345,18 @@
 			);
 			name = "FIT(s)";
 			packageProductDependencies = (
+				4756A8A42874CED9006DA042 /* FirebaseAnalytics */,
+				4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */,
+				4756A8A82874CED9006DA042 /* FirebaseAuth */,
+				4756A8AA2874CED9006DA042 /* FirebaseCrashlytics */,
+				4756A8AC2874CED9006DA042 /* FirebaseDynamicLinks */,
+				4756A8AE2874CED9006DA042 /* FirebaseFirestore */,
+				4756A8B02874CED9006DA042 /* FirebaseFirestoreSwift */,
+				4756A8B22874CED9006DA042 /* FirebaseFunctions */,
+				4756A8B42874CED9006DA042 /* FirebaseMessaging */,
+				4756A8B62874CED9006DA042 /* FirebaseStorage */,
+				4756A8B92874DBA6006DA042 /* Kingfisher */,
+				47498EC62874F3FE00F45B7D /* PhoneNumberKit */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FIT(s).app */;
@@ -367,7 +366,6 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47834486283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1Tests" */;
 			buildPhases = (
-				0493489F822AF9627EFC458C /* [CP] Check Pods Manifest.lock */,
 				4783446B283C63560022025E /* Sources */,
 				4783446C283C63560022025E /* Frameworks */,
 				4783446D283C63560022025E /* Resources */,
@@ -386,11 +384,9 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 47834489283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1UITests" */;
 			buildPhases = (
-				E47E157004496DCD6FCA7388 /* [CP] Check Pods Manifest.lock */,
 				47834476283C63560022025E /* Sources */,
 				47834477283C63560022025E /* Frameworks */,
 				47834478283C63560022025E /* Resources */,
-				6ED188E826162B76A8C2E9C7 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -436,6 +432,8 @@
 			packageReferences = (
 				47A9DE8A286A853600DF76CE /* XCRemoteSwiftPackageReference "iPhoneNumberField" */,
 				47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
+				4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
+				4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -476,109 +474,6 @@
 		};
 /* End PBXResourcesBuildPhase section */
 
-/* Begin PBXShellScriptBuildPhase section */
-		0493489F822AF9627EFC458C /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReelyV1Tests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		3F3F6F3D75359369112116F2 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1/Pods-ReelyV1-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1/Pods-ReelyV1-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReelyV1/Pods-ReelyV1-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		6ED188E826162B76A8C2E9C7 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-ReelyV1-ReelyV1UITests/Pods-ReelyV1-ReelyV1UITests-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
-		7EA766AB9B7E72FE2BBC26ED /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReelyV1-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-		E47E157004496DCD6FCA7388 /* [CP] Check Pods Manifest.lock */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-			);
-			inputPaths = (
-				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
-				"${PODS_ROOT}/Manifest.lock",
-			);
-			name = "[CP] Check Pods Manifest.lock";
-			outputFileListPaths = (
-			);
-			outputPaths = (
-				"$(DERIVED_FILE_DIR)/Pods-ReelyV1-ReelyV1UITests-checkManifestLockResult.txt",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
-			showEnvVarsInLog = 0;
-		};
-/* End PBXShellScriptBuildPhase section */
-
 /* Begin PBXSourcesBuildPhase section */
 		47834452283C63520022025E /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
@@ -603,7 +498,6 @@
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
-				47A6972F28418EE4001102C1 /* MediaPicker.swift in Sources */,
 				476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
@@ -785,7 +679,6 @@
 		};
 		47834484283C63560022025E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 757C751D438D6992EEC636CC /* Pods-ReelyV1.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -809,7 +702,6 @@
 		};
 		47834485283C63560022025E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 0AC4812D8073661B894E58AB /* Pods-ReelyV1.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
@@ -833,7 +725,6 @@
 		};
 		47834487283C63560022025E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 55A15D912757AED8E01A60AB /* Pods-ReelyV1Tests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -856,7 +747,6 @@
 		};
 		47834488283C63560022025E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 4AFA8BA9E4C98CE86F786D1A /* Pods-ReelyV1Tests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
@@ -879,7 +769,6 @@
 		};
 		4783448A283C63560022025E /* Debug */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 30E7DF55C88FCB8E103A79D9 /* Pods-ReelyV1-ReelyV1UITests.debug.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -900,7 +789,6 @@
 		};
 		4783448B283C63560022025E /* Release */ = {
 			isa = XCBuildConfiguration;
-			baseConfigurationReference = 5A12908D565E2FF1CDC8E316 /* Pods-ReelyV1-ReelyV1UITests.release.xcconfig */;
 			buildSettings = {
 				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
@@ -961,6 +849,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 9.0.0;
+			};
+		};
+		4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/onevcat/Kingfisher.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		47A9DE8A286A853600DF76CE /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
@@ -974,10 +878,73 @@
 			repositoryURL = "https://github.com/marmelroy/PhoneNumberKit.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 3.0.0;
+				minimumVersion = 3.4.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		47498EC62874F3FE00F45B7D /* PhoneNumberKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
+			productName = PhoneNumberKit;
+		};
+		4756A8A42874CED9006DA042 /* FirebaseAnalytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalytics;
+		};
+		4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAnalyticsSwift;
+		};
+		4756A8A82874CED9006DA042 /* FirebaseAuth */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseAuth;
+		};
+		4756A8AA2874CED9006DA042 /* FirebaseCrashlytics */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseCrashlytics;
+		};
+		4756A8AC2874CED9006DA042 /* FirebaseDynamicLinks */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseDynamicLinks;
+		};
+		4756A8AE2874CED9006DA042 /* FirebaseFirestore */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestore;
+		};
+		4756A8B02874CED9006DA042 /* FirebaseFirestoreSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFirestoreSwift;
+		};
+		4756A8B22874CED9006DA042 /* FirebaseFunctions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseFunctions;
+		};
+		4756A8B42874CED9006DA042 /* FirebaseMessaging */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseMessaging;
+		};
+		4756A8B62874CED9006DA042 /* FirebaseStorage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */;
+			productName = FirebaseStorage;
+		};
+		4756A8B92874DBA6006DA042 /* Kingfisher */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */;
+			productName = Kingfisher;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		4783445F283C63520022025E /* ReelyV1.xcdatamodeld */ = {
