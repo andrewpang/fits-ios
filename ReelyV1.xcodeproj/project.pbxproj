@@ -102,7 +102,7 @@
 		476B6FD8286C18E00060589F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		476B6FDA286C21720060589F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		478131682846C95700106B57 /* LoadingSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreenView.swift; sourceTree = "<group>"; };
-		47834456283C63520022025E /* ReelyV1.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ReelyV1.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		47834456283C63520022025E /* FIT(s).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FIT(s).app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		47834459283C63520022025E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4783445B283C63520022025E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4783445D283C63520022025E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -262,7 +262,7 @@
 		47834457283C63520022025E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				47834456283C63520022025E /* ReelyV1.app */,
+				47834456283C63520022025E /* FIT(s).app */,
 				4783446F283C63560022025E /* ReelyV1Tests.xctest */,
 				4783447A283C63560022025E /* ReelyV1UITests.xctest */,
 			);
@@ -342,9 +342,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		47834455283C63520022025E /* ReelyV1 */ = {
+		47834455283C63520022025E /* FIT(s) */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1" */;
+			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */;
 			buildPhases = (
 				7EA766AB9B7E72FE2BBC26ED /* [CP] Check Pods Manifest.lock */,
 				47834452283C63520022025E /* Sources */,
@@ -356,11 +356,11 @@
 			);
 			dependencies = (
 			);
-			name = ReelyV1;
+			name = "FIT(s)";
 			packageProductDependencies = (
 			);
 			productName = ReelyV1;
-			productReference = 47834456283C63520022025E /* ReelyV1.app */;
+			productReference = 47834456283C63520022025E /* FIT(s).app */;
 			productType = "com.apple.product-type.application";
 		};
 		4783446E283C63560022025E /* ReelyV1Tests */ = {
@@ -441,7 +441,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				47834455283C63520022025E /* ReelyV1 */,
+				47834455283C63520022025E /* FIT(s) */,
 				4783446E283C63560022025E /* ReelyV1Tests */,
 				47834479283C63560022025E /* ReelyV1UITests */,
 			);
@@ -645,12 +645,12 @@
 /* Begin PBXTargetDependency section */
 		47834471283C63560022025E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 47834455283C63520022025E /* ReelyV1 */;
+			target = 47834455283C63520022025E /* FIT(s) */;
 			targetProxy = 47834470283C63560022025E /* PBXContainerItemProxy */;
 		};
 		4783447C283C63560022025E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 47834455283C63520022025E /* ReelyV1 */;
+			target = 47834455283C63520022025E /* FIT(s) */;
 			targetProxy = 4783447B283C63560022025E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -931,7 +931,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "ReelyV1" */ = {
+		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				47834484283C63560022025E /* Debug */,
