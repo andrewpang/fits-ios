@@ -11,4 +11,5 @@ public struct PostAuthorMap: Codable, Hashable {
     var displayName: String?
     var profilePicImageUrl: String?
     var userId: String?
+    var pushNotificationToken: String?
 }
