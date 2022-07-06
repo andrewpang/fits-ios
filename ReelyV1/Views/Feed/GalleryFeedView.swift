@@ -24,7 +24,7 @@ struct GalleryFeedView: View {
                         })
                 }).padding(.horizontal)
             }.navigationTitle("Home")
-            .JMModal(showModal: $showNotificationPermissionModal, for: [.notification])
+                .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)
         }
         .onAppear {
             self.homeViewModel.fetchPosts()

@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import PermissionsSwiftUIPhoto
+import PermissionsSwiftUICamera
 
 struct PostCategoriesView: View {
     @ObservedObject var postViewModel = PostViewModel()
@@ -14,6 +16,7 @@ struct PostCategoriesView: View {
     @State var showSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .camera
     @State var postType = ""
+    @State var showPermissionsAlert = true
     
     var body: some View {
         ScrollView {
@@ -113,7 +116,7 @@ struct PostCategoriesView: View {
                         self.postViewModel.shouldPopToRootViewIfFalse = true
                     }
                 }
-            }
+            }.JMModal(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
         }
     }
 }
