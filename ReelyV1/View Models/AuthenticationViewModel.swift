@@ -60,4 +60,8 @@ class AuthenticationViewModel: ObservableObject {
             })
         }
     }
+    
+    func getPostAuthorMap() -> PostAuthorMap {
+        return PostAuthorMap(displayName: userModel?.displayName, profilePicImageUrl: userModel?.profilePicImageUrl, userId: userModel?.id)
+    }
 }

@@ -17,7 +17,7 @@ class HomeViewModel: ObservableObject {
     private var db = Firestore.firestore()
     
     func fetchPosts() {
-        db.collection("posts").addSnapshotListener { (querySnapshot, error) in
+        db.collection("posts").order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
