@@ -40,8 +40,7 @@ struct AddPostView: View {
                 }
                 Spacer()
                 Button(action: {
-                    let postAuthorMap = PostAuthorMap(displayName: authenticationViewModel.userModel?.displayName, profilePicImageUrl: authenticationViewModel.userModel?.profilePicImageUrl, userId: authenticationViewModel.userModel?.id)
-                    postViewModel.submitPost(postAuthorMap: postAuthorMap)
+                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         postViewModel.shouldPopToRootViewIfFalse = false
                         tabViewModel.tabSelection = 1
