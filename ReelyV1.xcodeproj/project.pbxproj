@@ -65,6 +65,7 @@
 		479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99728755A1A0030EE4D /* CommentsModel.swift */; };
 		479FE99A28755B930030EE4D /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99928755B930030EE4D /* CommentsView.swift */; };
 		479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99B28755C1F0030EE4D /* CommentRowView.swift */; };
+		479FE99E287625F90030EE4D /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99D287625F90030EE4D /* TokenModel.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -138,6 +139,7 @@
 		479FE99728755A1A0030EE4D /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
 		479FE99928755B930030EE4D /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		479FE99B28755C1F0030EE4D /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
+		479FE99D287625F90030EE4D /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
@@ -257,6 +259,7 @@
 				4761CC062870C642008ED1BF /* PostAuthorMap.swift */,
 				4761CC0A28724E62008ED1BF /* UserModel.swift */,
 				479FE995287554E10030EE4D /* CommentModel.swift */,
+				479FE99D287625F90030EE4D /* TokenModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -541,6 +544,7 @@
 				476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */,
 				4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
+				479FE99E287625F90030EE4D /* TokenModel.swift in Sources */,
 				4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,

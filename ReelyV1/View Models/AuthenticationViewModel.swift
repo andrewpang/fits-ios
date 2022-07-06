@@ -8,6 +8,7 @@
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseMessaging
 
 class AuthenticationViewModel: ObservableObject {
     
@@ -53,11 +54,35 @@ class AuthenticationViewModel: ObservableObject {
                 if let document = documentSnapshot, document.exists {
                     self.userModel = try? document.data(as: UserModel.self)
                     self.state = .signedIn
+                    self.saveFCMDeviceToken()
                 } else {
                     print("Auth: Empty Profile")
                     self.state = .signedIn //TODO: might have to bring up part of onboarding flow again
+                    self.saveFCMDeviceToken()
                 }
             })
+        }
+    }
+    
+    func saveFCMDeviceToken() {
+        if let uid = Auth.auth().currentUser?.uid {
+            if let fcmToken = Messaging.messaging().fcmToken {
+                let tokenModel = TokenModel(id: fcmToken, token: fcmToken)
+                let usersCollection = self.db.collection("users")
+                do {
+                    let _ = try usersCollection.document(uid).collection("tokens")
+                        .document(fcmToken).setData(from: tokenModel) { error in
+                        if let error = error {
+                            print("Error adding token: \(error)")
+                        } else {
+                            print("Added TokenModel")
+                        }
+                    }
+                }
+                catch {
+                    print(error)
+                }
+            }
         }
     }
     
