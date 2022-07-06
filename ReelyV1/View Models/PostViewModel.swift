@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
+import SwiftUI
 
 class PostViewModel: ObservableObject {
     @Published var postsData = PostsModel()

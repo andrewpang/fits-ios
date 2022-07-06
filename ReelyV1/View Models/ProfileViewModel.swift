@@ -10,6 +10,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
+import SwiftUI
 
 class ProfileViewModel: ObservableObject {
     
