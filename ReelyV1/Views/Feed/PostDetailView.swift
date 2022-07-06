@@ -21,19 +21,19 @@ struct PostDetailView: View {
     var body: some View {
         VStack(spacing: 0) {
             ScrollView {
-                VStack(alignment: .leading) {
+                VStack(alignment: .leading, spacing: 0) {
                     KFImage(URL(string: postDetailViewModel.postModel.imageUrl))
                         .resizable()
                         .scaledToFill()
-                    VStack(alignment: .leading) {
-                        HStack {
-                            Text(postDetailViewModel.postModel.title).font(Font.system(size: 20)).bold()
-                            Spacer()
-                            Image(systemName: "heart").foregroundColor(.black)
-                        }
-                        Text("📸 Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name")).foregroundColor(.gray)
-                        Text(postDetailViewModel.postModel.body).padding(.top)
-                    }.padding()
+                    HStack {
+                        Text(postDetailViewModel.postModel.title).font(Font.system(size: 20)).bold()
+                        Spacer()
+                        Image(systemName: "heart").foregroundColor(.black)
+                    }.padding(.top, 16)
+                    .padding(.horizontal, 24)
+                    Text("📸 Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name")).foregroundColor(.gray).padding(.horizontal, 24)
+                    Text(postDetailViewModel.postModel.body).padding(.top).padding(.horizontal, 24).padding(.vertical, 8)
+                    CommentsView(postDetailViewModel: postDetailViewModel).padding(.horizontal, 24)
                 }
             }.onTapGesture {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -82,9 +82,9 @@ struct PostDetailView: View {
                     }
                 }
             }.background(Color.white)
+        }.onAppear {
+            self.postDetailViewModel.fetchComments()
         }
-        
-        
     }
 }
 

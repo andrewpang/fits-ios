@@ -63,6 +63,8 @@
 		479FE9942875524B0030EE4D /* PostDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE9932875524B0030EE4D /* PostDetailViewModel.swift */; };
 		479FE996287554E10030EE4D /* CommentModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE995287554E10030EE4D /* CommentModel.swift */; };
 		479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99728755A1A0030EE4D /* CommentsModel.swift */; };
+		479FE99A28755B930030EE4D /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99928755B930030EE4D /* CommentsView.swift */; };
+		479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99B28755C1F0030EE4D /* CommentRowView.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -134,6 +136,8 @@
 		479FE9932875524B0030EE4D /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		479FE995287554E10030EE4D /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		479FE99728755A1A0030EE4D /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
+		479FE99928755B930030EE4D /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
+		479FE99B28755C1F0030EE4D /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
@@ -212,6 +216,8 @@
 				473C69E7283C768700D4D15E /* GalleryFeedView.swift */,
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
 				47283BB92842C7690016D124 /* PostDetailView.swift */,
+				479FE99928755B930030EE4D /* CommentsView.swift */,
+				479FE99B28755C1F0030EE4D /* CommentRowView.swift */,
 				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
 			);
 			path = Feed;
@@ -520,12 +526,14 @@
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */,
+				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* SetupStudentProfileView.swift in Sources */,
 				47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */,
+				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
 				47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
 				479FE996287554E10030EE4D /* CommentModel.swift in Sources */,

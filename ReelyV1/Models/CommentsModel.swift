@@ -7,6 +7,7 @@
 
 import Foundation
 
-public struct CommentsModel: Codable, Hashable {
+public struct CommentsModel: Identifiable, Codable, Hashable {
+    public var id: String = UUID().uuidString
     var commentModels: [CommentModel]?
 }

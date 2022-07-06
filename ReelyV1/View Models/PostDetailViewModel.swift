@@ -13,6 +13,7 @@ import FirebaseAuth
 class PostDetailViewModel: ObservableObject {
     
     @Published var postModel: PostModel
+    @Published var commentsData = CommentsModel()
     @Published var commentText = ""
     
     private var db = Firestore.firestore()
@@ -35,6 +36,25 @@ class PostDetailViewModel: ObservableObject {
             }
             catch {
                 print (error)
+            }
+        }
+    }
+    
+    func fetchComments() {
+        if let postId = postModel.id {
+            db.collection("posts").document(postId).collection("comments").order(by: "createdAt", descending: false).addSnapshotListener { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+
+                var commentsList = [CommentModel]()
+                commentsList = querySnapshot!.documents.compactMap { querySnapshot -> CommentModel? in
+                    return try? querySnapshot.data(as: CommentModel.self)
+                }
+                DispatchQueue.main.async {
+                    self.commentsData = CommentsModel(commentModels: commentsList)
+                }
             }
         }
     }
