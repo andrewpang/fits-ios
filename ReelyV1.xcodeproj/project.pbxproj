@@ -57,6 +57,9 @@
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
 		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
 		47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E9528458F7B00D18F00 /* LoadingView.swift */; };
+		479FE98E28750FEF0030EE4D /* PermissionsSwiftUICamera in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE98D28750FEF0030EE4D /* PermissionsSwiftUICamera */; };
+		479FE99028750FEF0030EE4D /* PermissionsSwiftUINotification in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */; };
+		479FE99228750FEF0030EE4D /* PermissionsSwiftUIPhoto in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -139,11 +142,14 @@
 			files = (
 				4756A8B52874CED9006DA042 /* FirebaseMessaging in Frameworks */,
 				4756A8BA2874DBA6006DA042 /* Kingfisher in Frameworks */,
+				479FE99228750FEF0030EE4D /* PermissionsSwiftUIPhoto in Frameworks */,
 				4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */,
 				4756A8AD2874CED9006DA042 /* FirebaseDynamicLinks in Frameworks */,
 				4756A8AB2874CED9006DA042 /* FirebaseCrashlytics in Frameworks */,
 				4756A8B12874CED9006DA042 /* FirebaseFirestoreSwift in Frameworks */,
 				4756A8AF2874CED9006DA042 /* FirebaseFirestore in Frameworks */,
+				479FE98E28750FEF0030EE4D /* PermissionsSwiftUICamera in Frameworks */,
+				479FE99028750FEF0030EE4D /* PermissionsSwiftUINotification in Frameworks */,
 				4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */,
 				4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */,
 				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
@@ -357,6 +363,9 @@
 				4756A8B62874CED9006DA042 /* FirebaseStorage */,
 				4756A8B92874DBA6006DA042 /* Kingfisher */,
 				47498EC62874F3FE00F45B7D /* PhoneNumberKit */,
+				479FE98D28750FEF0030EE4D /* PermissionsSwiftUICamera */,
+				479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */,
+				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FIT(s).app */;
@@ -434,6 +443,7 @@
 				47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */,
 				4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -865,6 +875,14 @@
 				kind = branch;
 			};
 		};
+		479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/jevonmao/PermissionsSwiftUI";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		47A9DE8A286A853600DF76CE /* XCRemoteSwiftPackageReference "iPhoneNumberField" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/MojtabaHs/iPhoneNumberField.git";
@@ -943,6 +961,21 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */;
 			productName = Kingfisher;
+		};
+		479FE98D28750FEF0030EE4D /* PermissionsSwiftUICamera */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */;
+			productName = PermissionsSwiftUICamera;
+		};
+		479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */;
+			productName = PermissionsSwiftUINotification;
+		};
+		479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */;
+			productName = PermissionsSwiftUIPhoto;
 		};
 /* End XCSwiftPackageProductDependency section */
 
