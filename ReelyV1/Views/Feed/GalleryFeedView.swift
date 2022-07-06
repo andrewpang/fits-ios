@@ -6,10 +6,12 @@
 //
 
 import SwiftUI
+import PermissionsSwiftUINotification
 
 struct GalleryFeedView: View {
     
     @ObservedObject var homeViewModel: HomeViewModel
+    @State var showNotificationPermissionModal = true
     
     var body: some View {
         NavigationView {
@@ -22,6 +24,7 @@ struct GalleryFeedView: View {
                         })
                 }).padding(.horizontal)
             }.navigationTitle("Home")
+            .JMModal(showModal: $showNotificationPermissionModal, for: [.notification])
         }
         .onAppear {
             self.homeViewModel.fetchPosts()
