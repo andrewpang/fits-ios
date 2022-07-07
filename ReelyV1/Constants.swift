@@ -28,6 +28,7 @@ struct Constants {
     static let buttonColor = Color("LightGray")
     
     static let titleFont = "Didot"
+    static let titleFontBold = "Didot-Bold"
     static let bodyFont = "Kinfolk-Sans"
     static let buttonFont = "Kinfolk-Sans"
 }
