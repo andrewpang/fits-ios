@@ -22,7 +22,7 @@ class ProfileViewModel: ObservableObject {
     @Published var image: UIImage? = nil
     
     @Published var major: String = ""
-    @Published var graduationYear: Int = 2022
+    @Published var graduationYear: Int = -1
     
     //HARDCODED FOR FIT
     let school: String = "Fashion Institute of Technology"

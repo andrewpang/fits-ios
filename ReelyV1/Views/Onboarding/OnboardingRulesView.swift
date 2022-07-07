@@ -10,8 +10,8 @@ import SwiftUI
 struct OnboardingRulesView: View {
     var body: some View {
         ZStack {
-            Color.black
-                .ignoresSafeArea()
+//            Color.black
+//                .ignoresSafeArea()
         
             VStack {
                 Image("RulesFIT")
