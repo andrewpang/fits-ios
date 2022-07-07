@@ -9,7 +9,7 @@ import SwiftUI
 
 struct LoadingSplashScreenView: View {
     var body: some View {
-        Text("Reely V1").font(Font.system(size: 60))
+        Text("FIT(s)").font(Font.system(size: 60))
     }
 }
 

@@ -35,7 +35,6 @@
 		4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B62874CED9006DA042 /* FirebaseStorage */; };
 		4756A8BA2874DBA6006DA042 /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8B92874DBA6006DA042 /* Kingfisher */; };
 		4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */; };
-		4761CBFD286E7323008ED1BF /* ValuePropView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFC286E7323008ED1BF /* ValuePropView.swift */; };
 		4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */; };
 		4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */; };
 		4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC02286FBE68008ED1BF /* ImagePicker.swift */; };
@@ -43,7 +42,7 @@
 		4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC062870C642008ED1BF /* PostAuthorMap.swift */; };
 		4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC082870E09B008ED1BF /* TabViewModel.swift */; };
 		4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC0A28724E62008ED1BF /* UserModel.swift */; };
-		476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FD8286C18E00060589F /* EditProfileView.swift */; };
+		476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */; };
 		476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FDA286C21720060589F /* ProfileViewModel.swift */; };
 		478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478131682846C95700106B57 /* LoadingSplashScreenView.swift */; };
 		4783445A283C63520022025E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834459283C63520022025E /* AppDelegate.swift */; };
@@ -56,7 +55,6 @@
 		47834474283C63560022025E /* ReelyV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834473283C63560022025E /* ReelyV1Tests.swift */; };
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
 		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
-		47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E9528458F7B00D18F00 /* LoadingView.swift */; };
 		479FE98E28750FEF0030EE4D /* PermissionsSwiftUICamera in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE98D28750FEF0030EE4D /* PermissionsSwiftUICamera */; };
 		479FE99028750FEF0030EE4D /* PermissionsSwiftUINotification in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */; };
 		479FE99228750FEF0030EE4D /* PermissionsSwiftUIPhoto in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */; };
@@ -66,6 +64,12 @@
 		479FE99A28755B930030EE4D /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99928755B930030EE4D /* CommentsView.swift */; };
 		479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99B28755C1F0030EE4D /* CommentRowView.swift */; };
 		479FE99E287625F90030EE4D /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99D287625F90030EE4D /* TokenModel.swift */; };
+		479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99F287746180030EE4D /* MyProfileView.swift */; };
+		479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */; };
+		479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */; };
+		479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */; };
+		479FE9AD287789F30030EE4D /* Kinfolk-SerifText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */; };
+		479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -106,7 +110,6 @@
 		473C6A4B283C8ED800D4D15E /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
-		4761CBFC286E7323008ED1BF /* ValuePropView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ValuePropView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
 		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
 		4761CC02286FBE68008ED1BF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
@@ -114,10 +117,10 @@
 		4761CC062870C642008ED1BF /* PostAuthorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAuthorMap.swift; sourceTree = "<group>"; };
 		4761CC082870E09B008ED1BF /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		4761CC0A28724E62008ED1BF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		476B6FD8286C18E00060589F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameOnboardingView.swift; sourceTree = "<group>"; };
 		476B6FDA286C21720060589F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		478131682846C95700106B57 /* LoadingSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreenView.swift; sourceTree = "<group>"; };
-		47834456283C63520022025E /* FIT(s).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FIT(s).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47834456283C63520022025E /* FITs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FITs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47834459283C63520022025E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4783445B283C63520022025E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4783445D283C63520022025E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,13 +136,18 @@
 		4783447E283C63560022025E /* ReelyV1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelyV1UITests.swift; sourceTree = "<group>"; };
 		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4783448F283C64660022025E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		47866E9528458F7B00D18F00 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		479FE9932875524B0030EE4D /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		479FE995287554E10030EE4D /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		479FE99728755A1A0030EE4D /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
 		479FE99928755B930030EE4D /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		479FE99B28755C1F0030EE4D /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		479FE99D287625F90030EE4D /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		479FE99F287746180030EE4D /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
+		479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureOnboardingView.swift; sourceTree = "<group>"; };
+		479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-Sans.ttf"; sourceTree = "<group>"; };
+		479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifTextItalic.ttf"; sourceTree = "<group>"; };
+		479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifText.ttf"; sourceTree = "<group>"; };
+		479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifDeck.ttf"; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
@@ -193,11 +201,11 @@
 				4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */,
 				47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */,
 				47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */,
-				476B6FD8286C18E00060589F /* EditProfileView.swift */,
+				476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */,
 				472D809F286D6D74008D1BB5 /* SetupStudentProfileView.swift */,
 				4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */,
-				4761CBFC286E7323008ED1BF /* ValuePropView.swift */,
 				4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */,
+				479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -240,10 +248,10 @@
 				472D809E286D6CD7008D1BB5 /* Feed */,
 				472D809D286D6C94008D1BB5 /* Posting */,
 				472D809C286D6C6E008D1BB5 /* Onboarding */,
-				47866E9528458F7B00D18F00 /* LoadingView.swift */,
 				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
 				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
+				479FE99F287746180030EE4D /* MyProfileView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
 				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
 			);
@@ -298,7 +306,7 @@
 		47834457283C63520022025E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				47834456283C63520022025E /* FIT(s).app */,
+				47834456283C63520022025E /* FITs.app */,
 				4783446F283C63560022025E /* ReelyV1Tests.xctest */,
 				4783447A283C63560022025E /* ReelyV1UITests.xctest */,
 			);
@@ -308,6 +316,7 @@
 		47834458283C63520022025E /* ReelyV1 */ = {
 			isa = PBXGroup;
 			children = (
+				479FE9A32877881E0030EE4D /* Fonts */,
 				47A9DE87286A808200DF76CE /* ReelyV1.entitlements */,
 				4736EEF72867A84D0033C49E /* Controllers */,
 				473C69F4283C787000D4D15E /* Models */,
@@ -352,12 +361,31 @@
 			path = ReelyV1UITests;
 			sourceTree = "<group>";
 		};
+		479FE9A32877881E0030EE4D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				479FE9A6287789CB0030EE4D /* Kinfolk Fonts */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		479FE9A6287789CB0030EE4D /* Kinfolk Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */,
+				479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */,
+				479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */,
+				479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */,
+			);
+			path = "Kinfolk Fonts";
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		47834455283C63520022025E /* FIT(s) */ = {
+		47834455283C63520022025E /* FITs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */;
+			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FITs" */;
 			buildPhases = (
 				47834452283C63520022025E /* Sources */,
 				47834453283C63520022025E /* Frameworks */,
@@ -367,7 +395,7 @@
 			);
 			dependencies = (
 			);
-			name = "FIT(s)";
+			name = FITs;
 			packageProductDependencies = (
 				4756A8A42874CED9006DA042 /* FirebaseAnalytics */,
 				4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */,
@@ -386,7 +414,7 @@
 				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
 			);
 			productName = ReelyV1;
-			productReference = 47834456283C63520022025E /* FIT(s).app */;
+			productReference = 47834456283C63520022025E /* FITs.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4783446E283C63560022025E /* ReelyV1Tests */ = {
@@ -467,7 +495,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				47834455283C63520022025E /* FIT(s) */,
+				47834455283C63520022025E /* FITs */,
 				4783446E283C63560022025E /* ReelyV1Tests */,
 				47834479283C63560022025E /* ReelyV1UITests */,
 			);
@@ -481,8 +509,12 @@
 			files = (
 				47834469283C63560022025E /* LaunchScreen.storyboard in Resources */,
 				47834490283C64660022025E /* GoogleService-Info.plist in Resources */,
+				479FE9AD287789F30030EE4D /* Kinfolk-SerifText.ttf in Resources */,
+				479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */,
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
+				479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
+				479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -511,7 +543,9 @@
 				4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */,
 				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,
 				4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */,
+				479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
+				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
@@ -519,7 +553,6 @@
 				4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
-				4761CBFD286E7323008ED1BF /* ValuePropView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
 				4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
@@ -528,7 +561,7 @@
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
-				476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */,
+				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
 				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
@@ -537,7 +570,6 @@
 				472D80A0286D6D74008D1BB5 /* SetupStudentProfileView.swift in Sources */,
 				47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
-				47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
 				479FE996287554E10030EE4D /* CommentModel.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
@@ -573,12 +605,12 @@
 /* Begin PBXTargetDependency section */
 		47834471283C63560022025E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 47834455283C63520022025E /* FIT(s) */;
+			target = 47834455283C63520022025E /* FITs */;
 			targetProxy = 47834470283C63560022025E /* PBXContainerItemProxy */;
 		};
 		4783447C283C63560022025E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 47834455283C63520022025E /* FIT(s) */;
+			target = 47834455283C63520022025E /* FITs */;
 			targetProxy = 4783447B283C63560022025E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -718,15 +750,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ReelyV1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -741,15 +775,17 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
 				INFOPLIST_FILE = ReelyV1/Info.plist;
+				IPHONEOS_DEPLOYMENT_TARGET = 15.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -853,7 +889,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */ = {
+		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FITs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				47834484283C63560022025E /* Debug */,

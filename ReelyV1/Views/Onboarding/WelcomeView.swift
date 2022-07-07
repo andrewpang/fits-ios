@@ -15,29 +15,42 @@ struct WelcomeView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
-                Color.gray.opacity(0.75)
+                Color.gray.opacity(0.25)
                     .ignoresSafeArea()
-                VStack {
-                    Text("FIT(s)").font(Font.system(size: 60)).foregroundColor(.white)
+                VStack(alignment:.center) {
+                    Text("FIT(s)")
+                        .font(Font.custom(Constants.titleFont, size: 80))
+                        .foregroundColor(.white)
                     Spacer()
-                    Text("Subtitle").font(Font.system(size: 24)).foregroundColor(.white)
-                    Text("Subtitle").font(Font.system(size: 24)).foregroundColor(.white)
-                    Text("Subtitle").font(Font.system(size: 24)).foregroundColor(.white)
-                    Spacer()
-                    NavigationLink(destination: ValuePropView()) {
+                    Text("Share & Discover the Latest Fashion at the Fashion Institute of Technology")
+                        .font(Font.custom(Constants.bodyFont, size: 18))
+                        .bold()
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
+                    NavigationLink(destination: OnboardingRulesView()) {
                         HStack {
                             Text("Get Started")
-                                .font(.headline)
-                            Image(systemName: "chevron.right.circle")
-                                .font(.system(size: 20))
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(.black)
                         }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                        .background(Color.blue)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+                        .background(Constants.buttonColor)
                         .foregroundColor(.white)
-                        .cornerRadius(20)
-                        .padding(.horizontal)
+                        .cornerRadius(Constants.buttonCornerRadius)
+                        .padding(.horizontal, 40)
+                        .padding(.top, 40)
                     }
-                }.padding(24)
+                }
+                .padding(.horizontal, 40)
+                .padding(.vertical, 120)
+            }
+        }.onAppear {
+            for family in UIFont.familyNames {
+                 print(family)
+
+                 for names in UIFont.fontNames(forFamilyName: family){
+                 print("== \(names)")
+                 }
             }
         }
     }

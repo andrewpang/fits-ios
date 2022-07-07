@@ -16,18 +16,14 @@ struct SetupStudentProfileView: View {
         VStack {
             Group {
                 HStack {
-                    Text("What's your major?").bold()
-                    Spacer()
-                }
-                TextField("Your major", text: $profileViewModel.major)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
-                
-                HStack {
-                    Text("What's your graduation year?").bold()
+                    Text("What class are you?")
+                        .font(Font.custom(Constants.titleFont, size: 24))
+                        .foregroundColor(.black)
+                        .bold()
                     Spacer()
                 }
                 Picker("", selection: $profileViewModel.graduationYear) {
-                    ForEach(2022...2026, id: \.self) {
+                    ForEach(2023...2026, id: \.self) {
                         Text(String($0))
                     }
                 }
@@ -36,36 +32,54 @@ struct SetupStudentProfileView: View {
             
             Group {
                 HStack {
-                    Text("Describe yourself").bold()
+                    Text("What's your major?")
+                        .font(Font.custom(Constants.titleFont, size: 24))
+                        .foregroundColor(.black)
+                        .bold()
                     Spacer()
                 }
+                TextField("Your major", text: $profileViewModel.major)
+                    .font(Font.custom(Constants.titleFont, size: 24))
+            }
+            
+            Group {
                 HStack {
-                    Text("Tell us a bit about yourself, what you’re studying, what year you are, etc.").font(Font.system(size: 14)).foregroundColor(.gray)
+                    Text("Describe yourself")
+                        .font(Font.custom(Constants.titleFont, size: 24))
+                        .foregroundColor(.black)
+                        .bold()
                     Spacer()
                 }
+//                HStack {
+//                    Text("Tell us a bit about yourself, what you’re studying, what year you are, etc.")
+//                        .font(Font.custom(Constants.bodyFont, size: 16))
+//                        .foregroundColor(.gray)
+//                    Spacer()
+//                }
                 TextField("Your bio", text: $profileViewModel.bio)
-                    .textFieldStyle(RoundedBorderTextFieldStyle())
+                    .font(Font.custom(Constants.titleFont, size: 24))
 //                    TextEditor(text: $bio)
 //                            .overlay(RoundedRectangle(cornerRadius: 8)
 //                                .stroke(Color.gray).opacity(0.3))
 //                            .frame(minHeight: 60)
             }
+
+            Spacer()
             
             NavigationLink(destination: SignUpControllerWrapper(profileViewModel: profileViewModel), isActive: $navigateToNextView) {
                 HStack {
-                    Image(systemName: "plus")
-                        .font(.system(size: 20))
-                    Text("Confirm")
-                        .font(.headline)
+                    Text("Continue")
+                        .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                        .foregroundColor(.black)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                .background(Color.blue)
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+                .background(Constants.buttonColor)
                 .foregroundColor(.white)
-                .cornerRadius(20)
-                .padding(.horizontal)
+                .cornerRadius(Constants.buttonCornerRadius)
+                .padding(.horizontal, 40)
+                .padding(.vertical, 24)
             }
         }.padding(24)
-        .navigationTitle("FIT Profile")
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Skip for now") {

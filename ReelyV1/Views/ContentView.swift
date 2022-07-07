@@ -15,7 +15,7 @@ struct ContentView: View {
 
         ZStack {
             if (authenticationViewModel.state == .signedIn) {
-                TabsParentView(authenticationViewModel: authenticationViewModel)
+                TabsParentView()
             }
 //            if (authenticationViewModel.state == .emptyProfile) {
 //                EditProfileView(authenticationViewModel: authenticationViewModel)

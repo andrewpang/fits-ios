@@ -58,7 +58,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         questionLabel.textAlignment = .center
         questionLabel.numberOfLines = 0
         questionLabel.attributedText = attributedString
-        questionLabel.font = UIFont.boldSystemFont(ofSize: Constants.onboardingTextSize)
+        questionLabel.font = UIFont(name: Constants.titleFontBold, size: Constants.onboardingTextSize)
         questionLabel.textColor = UIColor.black
         self.view.addSubview(questionLabel)
     }
@@ -74,7 +74,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         explanationLabel.textAlignment = .center
         explanationLabel.numberOfLines = 0
         explanationLabel.attributedText = attributedString
-        explanationLabel.font = UIFont.systemFont(ofSize: 18)
+        explanationLabel.font = UIFont(name: Constants.bodyFont, size: 18)
         explanationLabel.textColor = UIColor.black
         self.view.addSubview(explanationLabel)
     }
@@ -86,7 +86,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         phoneNumberTextField.withPrefix = true
         
         phoneNumberTextField.center = CGPoint(x: self.view.frame.size.width/2, y: 260)
-        phoneNumberTextField.font = .systemFont(ofSize: 24)
+        phoneNumberTextField.font = UIFont(name: Constants.bodyFont, size: 24)
         phoneNumberTextField.textContentType = .telephoneNumber
         phoneNumberTextField.borderStyle = UITextField.BorderStyle.roundedRect
         phoneNumberTextField.layer.borderColor = UIColor.black.cgColor
@@ -100,19 +100,17 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func setupConfirmNumberButton() {
-        confirmNumberButton = UILabel(frame: CGRect(x: 0, y: 0, width: 160, height: 60))
+        confirmNumberButton = UILabel(frame: CGRect(x: 0, y: 0, width: 200, height: 60))
         confirmNumberButton.center = CGPoint(x: self.view.frame.size.width/2, y: self.view.frame.size.height/2 - 20)
         confirmNumberButton.text = "Next"
-        confirmNumberButton.font = UIFont.systemFont(ofSize: 20)
-        confirmNumberButton.textColor = UIColor.white
+        confirmNumberButton.font = UIFont(name: Constants.buttonFont, size: Constants.buttonFontSize)
+        confirmNumberButton.textColor = UIColor.black
         confirmNumberButton.textAlignment = .center
         confirmNumberButton.isUserInteractionEnabled = true
         let labelTapGesture = UITapGestureRecognizer(target:self, action: #selector(confirmNumberClicked))
         confirmNumberButton.addGestureRecognizer(labelTapGesture)
-        confirmNumberButton.layer.cornerRadius = 5.0
-        confirmNumberButton.layer.borderWidth = 1.0
-        confirmNumberButton.layer.borderColor = UIColor.black.cgColor
-        confirmNumberButton.layer.backgroundColor = UIColor.black.cgColor
+        confirmNumberButton.layer.cornerRadius = Constants.buttonCornerRadius
+        confirmNumberButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
         confirmNumberButton.clipsToBounds = true
         self.view.addSubview(confirmNumberButton)
     }

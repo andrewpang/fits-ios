@@ -18,11 +18,11 @@ class ProfileViewModel: ObservableObject {
     
     @Published var displayName: String = ""
     @Published var bio: String = ""
-    @Published var showSheet: Bool = false
+    @Published var showPhotoSelectorSheet: Bool = false
     @Published var image: UIImage? = nil
     
     @Published var major: String = ""
-    @Published var graduationYear: Int = 2022
+    @Published var graduationYear: Int = -1
     
     //HARDCODED FOR FIT
     let school: String = "Fashion Institute of Technology"
