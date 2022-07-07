@@ -19,11 +19,11 @@ struct WelcomeView: View {
                     .ignoresSafeArea()
                 VStack(alignment:.center) {
                     Text("FIT(s)")
-                        .font(Font.system(size: 80))
+                        .font(Font.custom(Constants.titleFont, size: 80))
                         .foregroundColor(.white)
                     Spacer()
                     Text("Share & Discover the Latest Fashion at the Fashion Institute of Technology")
-                        .font(Font.system(size: 18))
+                        .font(Font.custom(Constants.bodyFont, size: 18))
                         .bold()
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
@@ -43,6 +43,14 @@ struct WelcomeView: View {
                 }
                 .padding(.horizontal, 40)
                 .padding(.vertical, 120)
+            }
+        }.onAppear {
+            for family in UIFont.familyNames {
+                 print(family)
+
+                 for names in UIFont.fontNames(forFamilyName: family){
+                 print("== \(names)")
+                 }
             }
         }
     }

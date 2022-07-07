@@ -66,6 +66,10 @@
 		479FE99E287625F90030EE4D /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99D287625F90030EE4D /* TokenModel.swift */; };
 		479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99F287746180030EE4D /* MyProfileView.swift */; };
 		479FE9A2287776D70030EE4D /* OnboardingProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE9A1287776D70030EE4D /* OnboardingProfilePictureView.swift */; };
+		479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */; };
+		479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */; };
+		479FE9AD287789F30030EE4D /* Kinfolk-SerifText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */; };
+		479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -140,6 +144,10 @@
 		479FE99D287625F90030EE4D /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		479FE99F287746180030EE4D /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		479FE9A1287776D70030EE4D /* OnboardingProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProfilePictureView.swift; sourceTree = "<group>"; };
+		479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-Sans.ttf"; sourceTree = "<group>"; };
+		479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifTextItalic.ttf"; sourceTree = "<group>"; };
+		479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifText.ttf"; sourceTree = "<group>"; };
+		479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifDeck.ttf"; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
@@ -308,6 +316,7 @@
 		47834458283C63520022025E /* ReelyV1 */ = {
 			isa = PBXGroup;
 			children = (
+				479FE9A32877881E0030EE4D /* Fonts */,
 				47A9DE87286A808200DF76CE /* ReelyV1.entitlements */,
 				4736EEF72867A84D0033C49E /* Controllers */,
 				473C69F4283C787000D4D15E /* Models */,
@@ -350,6 +359,25 @@
 				47834480283C63560022025E /* Info.plist */,
 			);
 			path = ReelyV1UITests;
+			sourceTree = "<group>";
+		};
+		479FE9A32877881E0030EE4D /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				479FE9A6287789CB0030EE4D /* Kinfolk Fonts */,
+			);
+			path = Fonts;
+			sourceTree = "<group>";
+		};
+		479FE9A6287789CB0030EE4D /* Kinfolk Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */,
+				479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */,
+				479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */,
+				479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */,
+			);
+			path = "Kinfolk Fonts";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -481,8 +509,12 @@
 			files = (
 				47834469283C63560022025E /* LaunchScreen.storyboard in Resources */,
 				47834490283C64660022025E /* GoogleService-Info.plist in Resources */,
+				479FE9AD287789F30030EE4D /* Kinfolk-SerifText.ttf in Resources */,
+				479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */,
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
+				479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
+				479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

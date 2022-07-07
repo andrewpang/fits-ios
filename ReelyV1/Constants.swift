@@ -22,4 +22,8 @@ struct Constants {
     
     static let buttonBorderWidth: CGFloat = 3
     static let buttonCornerRadius: CGFloat = 10
+    
+    static let titleFont = "Didot"
+    static let bodyFont = "Kinfolk-Sans"
+    static let buttonFont = "Kinfolk-Sans"
 }
