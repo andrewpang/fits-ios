@@ -15,29 +15,34 @@ struct WelcomeView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
-                Color.gray.opacity(0.75)
+                Color.gray.opacity(0.95)
                     .ignoresSafeArea()
-                VStack {
-                    Text("FIT(s)").font(Font.system(size: 60)).foregroundColor(.white)
+                VStack(alignment:.center) {
+                    Text("FIT(s)")
+                        .font(Font.system(size: 80))
+                        .foregroundColor(.white)
                     Spacer()
-                    Text("Subtitle").font(Font.system(size: 24)).foregroundColor(.white)
-                    Text("Subtitle").font(Font.system(size: 24)).foregroundColor(.white)
-                    Text("Subtitle").font(Font.system(size: 24)).foregroundColor(.white)
-                    Spacer()
+                    Text("Share & Discover the Latest Fashion at the Fashion Institute of Technology")
+                        .font(Font.system(size: 18))
+                        .bold()
+                        .foregroundColor(.white)
+                        .multilineTextAlignment(.center)
                     NavigationLink(destination: ValuePropView()) {
                         HStack {
                             Text("Get Started")
-                                .font(.headline)
-                            Image(systemName: "chevron.right.circle")
-                                .font(.system(size: 20))
+                                .font(.system(size: 18))
+                                .foregroundColor(.black)
                         }
-                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                        .background(Color.blue)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+                        .background(Color("LightGray"))
                         .foregroundColor(.white)
-                        .cornerRadius(20)
-                        .padding(.horizontal)
+                        .cornerRadius(8)
+                        .padding(.horizontal, 40)
+                        .padding(.top, 40)
                     }
-                }.padding(24)
+                }
+                .padding(.horizontal, 40)
+                .padding(.vertical, 120)
             }
         }
     }
