@@ -56,7 +56,6 @@
 		47834474283C63560022025E /* ReelyV1Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834473283C63560022025E /* ReelyV1Tests.swift */; };
 		4783447F283C63560022025E /* ReelyV1UITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4783447E283C63560022025E /* ReelyV1UITests.swift */; };
 		47834490283C64660022025E /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4783448F283C64660022025E /* GoogleService-Info.plist */; };
-		47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47866E9528458F7B00D18F00 /* LoadingView.swift */; };
 		479FE98E28750FEF0030EE4D /* PermissionsSwiftUICamera in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE98D28750FEF0030EE4D /* PermissionsSwiftUICamera */; };
 		479FE99028750FEF0030EE4D /* PermissionsSwiftUINotification in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */; };
 		479FE99228750FEF0030EE4D /* PermissionsSwiftUIPhoto in Frameworks */ = {isa = PBXBuildFile; productRef = 479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */; };
@@ -66,6 +65,7 @@
 		479FE99A28755B930030EE4D /* CommentsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99928755B930030EE4D /* CommentsView.swift */; };
 		479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99B28755C1F0030EE4D /* CommentRowView.swift */; };
 		479FE99E287625F90030EE4D /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99D287625F90030EE4D /* TokenModel.swift */; };
+		479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99F287746180030EE4D /* MyProfileView.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -117,7 +117,7 @@
 		476B6FD8286C18E00060589F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		476B6FDA286C21720060589F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		478131682846C95700106B57 /* LoadingSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreenView.swift; sourceTree = "<group>"; };
-		47834456283C63520022025E /* FIT(s).app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "FIT(s).app"; sourceTree = BUILT_PRODUCTS_DIR; };
+		47834456283C63520022025E /* FITs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FITs.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		47834459283C63520022025E /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		4783445B283C63520022025E /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
 		4783445D283C63520022025E /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
@@ -133,13 +133,13 @@
 		4783447E283C63560022025E /* ReelyV1UITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReelyV1UITests.swift; sourceTree = "<group>"; };
 		47834480283C63560022025E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4783448F283C64660022025E /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
-		47866E9528458F7B00D18F00 /* LoadingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingView.swift; sourceTree = "<group>"; };
 		479FE9932875524B0030EE4D /* PostDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailViewModel.swift; sourceTree = "<group>"; };
 		479FE995287554E10030EE4D /* CommentModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentModel.swift; sourceTree = "<group>"; };
 		479FE99728755A1A0030EE4D /* CommentsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsModel.swift; sourceTree = "<group>"; };
 		479FE99928755B930030EE4D /* CommentsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentsView.swift; sourceTree = "<group>"; };
 		479FE99B28755C1F0030EE4D /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		479FE99D287625F90030EE4D /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
+		479FE99F287746180030EE4D /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
@@ -240,10 +240,10 @@
 				472D809E286D6CD7008D1BB5 /* Feed */,
 				472D809D286D6C94008D1BB5 /* Posting */,
 				472D809C286D6C6E008D1BB5 /* Onboarding */,
-				47866E9528458F7B00D18F00 /* LoadingView.swift */,
 				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
 				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
+				479FE99F287746180030EE4D /* MyProfileView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
 				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
 			);
@@ -298,7 +298,7 @@
 		47834457283C63520022025E /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				47834456283C63520022025E /* FIT(s).app */,
+				47834456283C63520022025E /* FITs.app */,
 				4783446F283C63560022025E /* ReelyV1Tests.xctest */,
 				4783447A283C63560022025E /* ReelyV1UITests.xctest */,
 			);
@@ -355,9 +355,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		47834455283C63520022025E /* FIT(s) */ = {
+		47834455283C63520022025E /* FITs */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */;
+			buildConfigurationList = 47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FITs" */;
 			buildPhases = (
 				47834452283C63520022025E /* Sources */,
 				47834453283C63520022025E /* Frameworks */,
@@ -367,7 +367,7 @@
 			);
 			dependencies = (
 			);
-			name = "FIT(s)";
+			name = FITs;
 			packageProductDependencies = (
 				4756A8A42874CED9006DA042 /* FirebaseAnalytics */,
 				4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */,
@@ -386,7 +386,7 @@
 				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
 			);
 			productName = ReelyV1;
-			productReference = 47834456283C63520022025E /* FIT(s).app */;
+			productReference = 47834456283C63520022025E /* FITs.app */;
 			productType = "com.apple.product-type.application";
 		};
 		4783446E283C63560022025E /* ReelyV1Tests */ = {
@@ -467,7 +467,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				47834455283C63520022025E /* FIT(s) */,
+				47834455283C63520022025E /* FITs */,
 				4783446E283C63560022025E /* ReelyV1Tests */,
 				47834479283C63560022025E /* ReelyV1UITests */,
 			);
@@ -511,6 +511,7 @@
 				4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */,
 				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,
 				4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */,
+				479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */,
@@ -537,7 +538,6 @@
 				472D80A0286D6D74008D1BB5 /* SetupStudentProfileView.swift in Sources */,
 				47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
-				47866E9628458F7B00D18F00 /* LoadingView.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
 				479FE996287554E10030EE4D /* CommentModel.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
@@ -573,12 +573,12 @@
 /* Begin PBXTargetDependency section */
 		47834471283C63560022025E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 47834455283C63520022025E /* FIT(s) */;
+			target = 47834455283C63520022025E /* FITs */;
 			targetProxy = 47834470283C63560022025E /* PBXContainerItemProxy */;
 		};
 		4783447C283C63560022025E /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
-			target = 47834455283C63520022025E /* FIT(s) */;
+			target = 47834455283C63520022025E /* FITs */;
 			targetProxy = 4783447B283C63560022025E /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
@@ -718,7 +718,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
@@ -727,6 +727,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -741,7 +742,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 2;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
@@ -750,6 +751,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
+				MARKETING_VERSION = 1.1;
 				PRODUCT_BUNDLE_IDENTIFIER = com.pangstudios.ReelyV1;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
@@ -853,7 +855,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FIT(s)" */ = {
+		47834483283C63560022025E /* Build configuration list for PBXNativeTarget "FITs" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				47834484283C63560022025E /* Debug */,
