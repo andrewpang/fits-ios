@@ -29,8 +29,11 @@ struct CommentRowView: View {
                     .clipShape(Circle())
             }
             VStack(alignment: .leading) {
-                Text(commentModel.author.displayName ?? "Commentor").font(Font.system(size: 16)).bold()
-                Text(commentModel.commentText).font(Font.system(size: 16))
+                Text(commentModel.author.displayName ?? "Commentor")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .bold()
+                Text(commentModel.commentText)
+                    .font(Font.custom(Constants.bodyFont, size: 16))
             }
         }
     }

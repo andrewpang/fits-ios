@@ -11,7 +11,10 @@ struct CommentsView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     
     var body: some View {
-        Text("Comments").font(Font.system(size: 20)).bold().padding(.vertical, 0)
+        Text("Comments")
+            .font(Font.custom(Constants.titleFontBold, size: 20))
+            .bold()
+            .padding(.vertical, 0)
         if let commentModels = postDetailViewModel.commentsData.commentModels, !commentModels.isEmpty {
             VStack(spacing: 0) {
                 ForEach(commentModels, id: \.id) { comment in
@@ -19,7 +22,10 @@ struct CommentsView: View {
                 }
             }
         } else {
-            Text("Be the first to add a comment").font(Font.system(size: 16)).foregroundColor(.gray).padding(.bottom, 16)
+            Text("Be the first to add a comment")
+                .font(Font.custom(Constants.bodyFont, size: 16))
+                .foregroundColor(.gray)
+                .padding(.bottom, 16)
         }
     }
 }

@@ -25,14 +25,64 @@ struct PostDetailView: View {
                     KFImage(URL(string: postDetailViewModel.postModel.imageUrl))
                         .resizable()
                         .scaledToFill()
+//                    HStack {
+//
+//                        Text("Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name"))
+//                            .font(Font.custom(Constants.bodyFont, size: 16))
+//                            .foregroundColor(.gray)
+//                        Spacer()
+//                    }.padding(.horizontal, 24)
+//
                     HStack {
-                        Text(postDetailViewModel.postModel.title).font(Font.system(size: 20)).bold()
                         Spacer()
-                        Image(systemName: "heart").foregroundColor(.black)
+                        Text(postDetailViewModel.postModel.title)
+                            .font(Font.custom(Constants.titleFontBold, size: 20))
+                            .multilineTextAlignment(.center)
+                        Spacer()
+                        
                     }.padding(.top, 16)
                     .padding(.horizontal, 24)
-                    Text("📸 Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name")).foregroundColor(.gray).padding(.horizontal, 24)
-                    Text(postDetailViewModel.postModel.body).padding(.top).padding(.horizontal, 24).padding(.vertical, 8)
+                    
+                    HStack {
+                        Spacer()
+                        Text("Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name"))
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .foregroundColor(.gray)
+                        Spacer()
+                    }
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 8)
+                    
+                    HStack {
+                        Spacer()
+                        if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                            KFImage(URL(string: profilePicImageUrl))
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 40)
+                                .clipShape(Circle())
+                        } else {
+                            Image("portraitPlaceHolder")
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 40)
+                                .clipShape(Circle())
+                        }
+                        Spacer()
+                        
+                    }
+                    .padding(.horizontal, 24)
+                    
+                    Text(postDetailViewModel.postModel.body)
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                        .padding(.top)
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 8)
+                    
+                    Divider()
+                        .padding(.horizontal, 24)
+                        .padding(.vertical, 8)
+                    
                     CommentsView(postDetailViewModel: postDetailViewModel).padding(.horizontal, 24)
                 }
             }.onTapGesture {
@@ -57,6 +107,7 @@ struct PostDetailView: View {
                 }
                 if #available(iOS 15.0, *) {
                     TextField("Add Comment", text: $postDetailViewModel.commentText)
+                        .font(Font.custom(Constants.bodyFont, size: 16))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 16)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -67,6 +118,7 @@ struct PostDetailView: View {
                 } else {
                     // Fallback on earlier versions
                     TextField("Add Comment", text: $postDetailViewModel.commentText)
+                        .font(Font.custom(Constants.bodyFont, size: 16))
                         .padding(.horizontal, 8)
                         .padding(.vertical, 16)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -82,7 +134,8 @@ struct PostDetailView: View {
                     }
                 }
             }.background(Color.white)
-        }.onAppear {
+        }.navigationBarTitle("", displayMode: .inline)
+        .onAppear {
             self.postDetailViewModel.fetchComments()
         }
     }

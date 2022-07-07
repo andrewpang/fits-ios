@@ -14,37 +14,42 @@ struct PostCardView: View {
     var body: some View {
         ZStack {
             Color.white
-            VStack(alignment: .leading) {
+            VStack(alignment: .leading, spacing: 0) {
                 KFImage(URL(string: post.imageUrl))
                     .resizable()
                     .aspectRatio(contentMode: .fit)
-                Text(post.title)
-                    .bold()
-                    .foregroundColor(.black)
-                    .padding(.horizontal)
-                    .multilineTextAlignment(.leading)
-                    .lineLimit(2)
+                HStack {
+                    Spacer()
+                    Text(post.title)
+                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                        .foregroundColor(.black)
+                        .multilineTextAlignment(.center)
+                        .lineLimit(2)
+                    Spacer()
+                }.padding(.vertical, 8)
                 HStack {
                     if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                         KFImage(URL(string: profilePicImageUrl))
                             .resizable()
                             .scaledToFit()
-                            .frame(maxHeight: 16)
+                            .frame(maxHeight: 20)
                             .clipShape(Circle())
                     } else {
                         Image("portraitPlaceHolder")
                             .resizable()
                             .scaledToFit()
-                            .frame(maxHeight: 16)
+                            .frame(maxHeight: 20)
                             .clipShape(Circle())
                     }
-                    Text(post.author.displayName ?? "Name").font(Font.system(size: 12)).foregroundColor(.gray)
+                    Text(post.author.displayName ?? "Name")
+                        .font(Font.custom(Constants.bodyFont, size: 12))
+                        .foregroundColor(.gray)
                     Spacer()
-                    Image(systemName: "heart").font(Font.system(size: 12)).foregroundColor(.gray)
+//                    Image(systemName: "heart").font(Font.system(size: 12)).foregroundColor(.gray)
                 }.padding(.horizontal)
                 .padding(.bottom, 8)
             }
-        }.cornerRadius(10)
+        }.cornerRadius(Constants.buttonCornerRadius)
     }
 }
 //
