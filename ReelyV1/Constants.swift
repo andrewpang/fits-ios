@@ -6,6 +6,7 @@
 //
 
 import CoreGraphics
+import SwiftUI
 
 struct Constants {
     static let smallTextSize: CGFloat = 10
@@ -22,6 +23,9 @@ struct Constants {
     
     static let buttonBorderWidth: CGFloat = 3
     static let buttonCornerRadius: CGFloat = 10
+    static let buttonFontSize: CGFloat = 18
+    
+    static let buttonColor = Color("LightGray")
     
     static let titleFont = "Didot"
     static let bodyFont = "Kinfolk-Sans"

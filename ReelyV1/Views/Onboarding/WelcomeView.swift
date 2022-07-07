@@ -15,7 +15,7 @@ struct WelcomeView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
-                Color.gray.opacity(0.5)
+                Color.gray.opacity(0.25)
                     .ignoresSafeArea()
                 VStack(alignment:.center) {
                     Text("FIT(s)")
@@ -30,13 +30,13 @@ struct WelcomeView: View {
                     NavigationLink(destination: OnboardingRulesView()) {
                         HStack {
                             Text("Get Started")
-                                .font(.system(size: 18))
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                                 .foregroundColor(.black)
                         }
                         .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                        .background(Color("LightGray"))
+                        .background(Constants.buttonColor)
                         .foregroundColor(.white)
-                        .cornerRadius(8)
+                        .cornerRadius(Constants.buttonCornerRadius)
                         .padding(.horizontal, 40)
                         .padding(.top, 40)
                     }

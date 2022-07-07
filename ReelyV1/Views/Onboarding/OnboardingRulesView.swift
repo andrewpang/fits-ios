@@ -9,26 +9,31 @@ import SwiftUI
 
 struct OnboardingRulesView: View {
     var body: some View {
-        VStack {
-            Image("RulesFIT")
-                .resizable()
-                .scaledToFill()
-                .frame(height: 400)
-            Spacer()
-            NavigationLink(destination: EditProfileView(authenticationViewModel: AuthenticationViewModel())) {
-                HStack {
-                    Text("Accept")
-                        .font(.system(size: 18))
-                        .foregroundColor(.black)
+        ZStack {
+            Color.black
+                .ignoresSafeArea()
+        
+            VStack {
+                Image("RulesFIT")
+                    .resizable()
+                    .scaledToFill()
+                    .frame(height: 400)
+                Spacer()
+                NavigationLink(destination: SetNameOnboardingView(authenticationViewModel: AuthenticationViewModel())) {
+                    HStack {
+                        Text("Accept")
+                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                            .foregroundColor(.black)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+                    .background(Constants.buttonColor)
+                    .foregroundColor(.white)
+                    .cornerRadius(Constants.buttonCornerRadius)
+                    .padding(.horizontal, 40)
+                    .padding(.top, 24)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                .background(Color("LightGray"))
-                .foregroundColor(.white)
-                .cornerRadius(8)
-                .padding(.horizontal, 40)
-                .padding(.top, 24)
-            }
-        }.padding(24)
+            }.padding(24)
+        }
     }
 }
 

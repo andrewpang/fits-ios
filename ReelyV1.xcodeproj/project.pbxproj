@@ -42,7 +42,7 @@
 		4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC062870C642008ED1BF /* PostAuthorMap.swift */; };
 		4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC082870E09B008ED1BF /* TabViewModel.swift */; };
 		4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC0A28724E62008ED1BF /* UserModel.swift */; };
-		476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FD8286C18E00060589F /* EditProfileView.swift */; };
+		476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */; };
 		476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 476B6FDA286C21720060589F /* ProfileViewModel.swift */; };
 		478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 478131682846C95700106B57 /* LoadingSplashScreenView.swift */; };
 		4783445A283C63520022025E /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47834459283C63520022025E /* AppDelegate.swift */; };
@@ -65,7 +65,7 @@
 		479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99B28755C1F0030EE4D /* CommentRowView.swift */; };
 		479FE99E287625F90030EE4D /* TokenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99D287625F90030EE4D /* TokenModel.swift */; };
 		479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE99F287746180030EE4D /* MyProfileView.swift */; };
-		479FE9A2287776D70030EE4D /* OnboardingProfilePictureView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE9A1287776D70030EE4D /* OnboardingProfilePictureView.swift */; };
+		479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */; };
 		479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */; };
 		479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */; };
 		479FE9AD287789F30030EE4D /* Kinfolk-SerifText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */; };
@@ -117,7 +117,7 @@
 		4761CC062870C642008ED1BF /* PostAuthorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAuthorMap.swift; sourceTree = "<group>"; };
 		4761CC082870E09B008ED1BF /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
 		4761CC0A28724E62008ED1BF /* UserModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserModel.swift; sourceTree = "<group>"; };
-		476B6FD8286C18E00060589F /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetNameOnboardingView.swift; sourceTree = "<group>"; };
 		476B6FDA286C21720060589F /* ProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewModel.swift; sourceTree = "<group>"; };
 		478131682846C95700106B57 /* LoadingSplashScreenView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoadingSplashScreenView.swift; sourceTree = "<group>"; };
 		47834456283C63520022025E /* FITs.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FITs.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -143,7 +143,7 @@
 		479FE99B28755C1F0030EE4D /* CommentRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentRowView.swift; sourceTree = "<group>"; };
 		479FE99D287625F90030EE4D /* TokenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TokenModel.swift; sourceTree = "<group>"; };
 		479FE99F287746180030EE4D /* MyProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyProfileView.swift; sourceTree = "<group>"; };
-		479FE9A1287776D70030EE4D /* OnboardingProfilePictureView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingProfilePictureView.swift; sourceTree = "<group>"; };
+		479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePictureOnboardingView.swift; sourceTree = "<group>"; };
 		479FE9A7287789F30030EE4D /* Kinfolk-Sans.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-Sans.ttf"; sourceTree = "<group>"; };
 		479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifTextItalic.ttf"; sourceTree = "<group>"; };
 		479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifText.ttf"; sourceTree = "<group>"; };
@@ -201,11 +201,11 @@
 				4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */,
 				47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */,
 				47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */,
-				476B6FD8286C18E00060589F /* EditProfileView.swift */,
+				476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */,
 				472D809F286D6D74008D1BB5 /* SetupStudentProfileView.swift */,
 				4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */,
 				4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */,
-				479FE9A1287776D70030EE4D /* OnboardingProfilePictureView.swift */,
+				479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";
@@ -545,7 +545,7 @@
 				4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */,
 				479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
-				479FE9A2287776D70030EE4D /* OnboardingProfilePictureView.swift in Sources */,
+				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
@@ -561,7 +561,7 @@
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
-				476B6FD9286C18E00060589F /* EditProfileView.swift in Sources */,
+				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
 				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,

@@ -18,7 +18,7 @@ class ProfileViewModel: ObservableObject {
     
     @Published var displayName: String = ""
     @Published var bio: String = ""
-    @Published var showSheet: Bool = false
+    @Published var showPhotoSelectorSheet: Bool = false
     @Published var image: UIImage? = nil
     
     @Published var major: String = ""
