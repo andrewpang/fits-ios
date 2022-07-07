@@ -49,8 +49,9 @@ struct GalleryFeedView: View {
                             PostCardView(post: post)
                         })
                 }).padding(.horizontal)
-            }.navigationTitle("Home")
-                .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)
+            }.navigationBarTitle("")
+            .navigationBarHidden(true)
+            .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)
         }
         .onAppear {
             requestNotificationPermissions()
