@@ -15,7 +15,7 @@ struct WelcomeView: View {
                     .resizable()
                     .aspectRatio(contentMode: .fill)
                     .ignoresSafeArea()
-                Color.gray.opacity(0.95)
+                Color.gray.opacity(0.5)
                     .ignoresSafeArea()
                 VStack(alignment:.center) {
                     Text("FIT(s)")
@@ -27,7 +27,7 @@ struct WelcomeView: View {
                         .bold()
                         .foregroundColor(.white)
                         .multilineTextAlignment(.center)
-                    NavigationLink(destination: ValuePropView()) {
+                    NavigationLink(destination: OnboardingRulesView()) {
                         HStack {
                             Text("Get Started")
                                 .font(.system(size: 18))
