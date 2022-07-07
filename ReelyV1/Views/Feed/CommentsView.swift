@@ -19,7 +19,7 @@ struct CommentsView: View {
                 }
             }
         } else {
-            Text("Be the first to add a comment").font(Font.system(size: 16)).foregroundColor(.gray)
+            Text("Be the first to add a comment").font(Font.system(size: 16)).foregroundColor(.gray).padding(.bottom, 16)
         }
     }
 }

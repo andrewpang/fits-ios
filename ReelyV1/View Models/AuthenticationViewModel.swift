@@ -87,6 +87,6 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func getPostAuthorMap() -> PostAuthorMap {
-        return PostAuthorMap(displayName: userModel?.displayName, profilePicImageUrl: userModel?.profilePicImageUrl, userId: userModel?.id)
+        return PostAuthorMap(displayName: userModel?.displayName, profilePicImageUrl: userModel?.profilePicImageUrl, userId: userModel?.id, pushNotificationToken: Messaging.messaging().fcmToken)
     }
 }
