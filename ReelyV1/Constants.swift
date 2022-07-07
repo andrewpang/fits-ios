@@ -19,7 +19,7 @@ struct Constants {
     
     static let onboardingTextSize: CGFloat = 32
     static let onboardingLineSpacing: CGFloat = 6
-    static let onboardingHorizontalPadding: CGFloat = 80
+    static let onboardingHorizontalPadding: CGFloat = 48
     
     static let buttonBorderWidth: CGFloat = 3
     static let buttonCornerRadius: CGFloat = 10

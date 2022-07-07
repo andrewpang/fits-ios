@@ -16,7 +16,7 @@ struct OnboardingRulesView: View {
             VStack {
                 Image("RulesFIT")
                     .resizable()
-                    .scaledToFill()
+                    .scaledToFit()
                     .frame(height: 400)
                 Spacer()
                 NavigationLink(destination: SetNameOnboardingView(authenticationViewModel: AuthenticationViewModel())) {
