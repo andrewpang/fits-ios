@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 import SwiftUI
+import Amplitude
 
 class ProfileViewModel: ObservableObject {
     
@@ -54,6 +55,7 @@ class ProfileViewModel: ObservableObject {
     
     func uploadNewUserModel() {
         if let uid = Auth.auth().currentUser?.uid {
+            Amplitude.instance().setUserId(uid)
             let userModel = UserModel(
                 id: uid,
                 displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines),

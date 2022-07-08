@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
@@ -178,6 +179,7 @@
 				4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */,
 				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
 				4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */,
+				471035092878C01A00D41E71 /* Amplitude in Frameworks */,
 				4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -426,6 +428,7 @@
 				479FE98D28750FEF0030EE4D /* PermissionsSwiftUICamera */,
 				479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */,
 				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
+				471035082878C01A00D41E71 /* Amplitude */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FITs.app */;
@@ -504,6 +507,7 @@
 				4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */,
+				471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -935,6 +939,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/amplitude/Amplitude-iOS";
+			requirement = {
+				branch = main;
+				kind = branch;
+			};
+		};
 		4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -978,6 +990,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		471035082878C01A00D41E71 /* Amplitude */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */;
+			productName = Amplitude;
+		};
 		47498EC62874F3FE00F45B7D /* PhoneNumberKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;

@@ -9,6 +9,7 @@ import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
 import FirebaseMessaging
+import Amplitude
 
 class AuthenticationViewModel: ObservableObject {
     
@@ -55,12 +56,13 @@ class AuthenticationViewModel: ObservableObject {
                 if let document = documentSnapshot, document.exists {
                     self.userModel = try? document.data(as: UserModel.self)
                     self.state = .signedIn
-                    self.saveFCMDeviceToken()
                 } else {
                     print("Auth: Empty Profile")
-                    self.state = .signedIn //TODO: might have to bring up part of onboarding flow again
-                    self.saveFCMDeviceToken()
+                    self.state = .signedOut //TODO: might have to bring up part of onboarding flow again
+                  
                 }
+                self.saveFCMDeviceToken()
+                Amplitude.instance().setUserId(uid)
             })
         }
     }
