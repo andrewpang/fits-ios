@@ -13,6 +13,9 @@ struct AddPostView: View {
     @EnvironmentObject var tabViewModel: TabViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    
+    let postTitleCharacterLimit = 30
+    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
@@ -31,6 +34,12 @@ struct AddPostView: View {
                     TextField("Max. 30 Characters", text: $postViewModel.postTitle)
                         .font(Font.custom(Constants.titleFont, size: 16))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .onReceive(postViewModel.postTitle.publisher.collect()) {
+                            let s = String($0.prefix(postTitleCharacterLimit))
+                            if postViewModel.postTitle != s {
+                                postViewModel.postTitle = s
+                            }
+                          }
                 }
                 Text("Note:")
                     .font(Font.custom(Constants.titleFontBold, size: 16))
@@ -84,7 +93,7 @@ struct AddPostView: View {
                     .foregroundColor(.white)
                     .cornerRadius(10)
                 }
-                .disabled(self.postViewModel.isSubmitting)
+                .disabled(self.postViewModel.isSubmitting || self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty)
             }
         }
     }
