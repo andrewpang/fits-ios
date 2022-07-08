@@ -32,7 +32,7 @@ class ProfileViewModel: ObservableObject {
     
     func uploadProfilePhotoAndModel() {
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else {
-            self.uploadUserModel()
+            self.uploadNewUserModel()
             return
         }
         let storage = Storage.storage()
@@ -47,12 +47,12 @@ class ProfileViewModel: ObservableObject {
                     return
                 }
                 self.imageUrl = downloadURL.absoluteString
-                self.uploadUserModel()
+                self.uploadNewUserModel()
             }
         }
     }
     
-    func uploadUserModel() {
+    func uploadNewUserModel() {
         if let uid = Auth.auth().currentUser?.uid {
             let userModel = UserModel(
                 id: uid,
@@ -66,7 +66,7 @@ class ProfileViewModel: ObservableObject {
             )
             let usersCollection = self.db.collection("users")
             do {
-                let _ = try usersCollection.document(uid).setData(from: userModel, merge: true) { error in
+                let _ = try usersCollection.document(uid).setData(from: userModel, merge: false) { error in
                     if let error = error {
                         print("Error adding post: \(error)")
                     } else {

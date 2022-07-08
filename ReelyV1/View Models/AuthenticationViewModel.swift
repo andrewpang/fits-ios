@@ -39,6 +39,7 @@ class AuthenticationViewModel: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
+            state = .signedOut
         } catch {
         }
     }

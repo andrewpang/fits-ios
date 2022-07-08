@@ -23,7 +23,7 @@ struct ProfilePictureOnboardingView: View {
                     Spacer()
                 }
                 HStack {
-                    Text("You can do this later")
+                    Text("You can also add a photo later")
                         .font(Font.custom(Constants.bodyFont, size: 16))
                         .foregroundColor(.gray)
                     Spacer()
@@ -62,7 +62,7 @@ struct ProfilePictureOnboardingView: View {
                     
             Spacer()
             
-            NavigationLink(destination: SetupStudentProfileView(profileViewModel: profileViewModel), isActive: $navigateToNextView) {
+            NavigationLink(destination: SignUpControllerWrapper(profileViewModel: profileViewModel), isActive: $navigateToNextView) {
                 HStack {
                     Text("Continue")
                         .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
@@ -73,7 +73,7 @@ struct ProfilePictureOnboardingView: View {
                 .foregroundColor(.white)
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)
-                .padding(.vertical, 24)
+                .padding(.bottom, Constants.onboardingButtonBottomPadding)
             }
         }.padding(.horizontal, 24)
         .sheet(isPresented: $profileViewModel.showPhotoSelectorSheet) {
