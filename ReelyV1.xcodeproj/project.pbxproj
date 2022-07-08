@@ -70,6 +70,8 @@
 		479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */; };
 		479FE9AD287789F30030EE4D /* Kinfolk-SerifText.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */; };
 		479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */; };
+		479FE9B12877F41B0030EE4D /* pexels-runway.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 479FE9B02877F41B0030EE4D /* pexels-runway.mp4 */; };
+		479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 479FE9B22877F7E40030EE4D /* WelcomeVideoPlayerView.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
@@ -148,6 +150,8 @@
 		479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifTextItalic.ttf"; sourceTree = "<group>"; };
 		479FE9A9287789F30030EE4D /* Kinfolk-SerifText.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifText.ttf"; sourceTree = "<group>"; };
 		479FE9AA287789F30030EE4D /* Kinfolk-SerifDeck.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Kinfolk-SerifDeck.ttf"; sourceTree = "<group>"; };
+		479FE9B02877F41B0030EE4D /* pexels-runway.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pexels-runway.mp4"; sourceTree = "<group>"; };
+		479FE9B22877F7E40030EE4D /* WelcomeVideoPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeVideoPlayerView.swift; sourceTree = "<group>"; };
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */,
 				472D809F286D6D74008D1BB5 /* SetupStudentProfileView.swift */,
 				4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */,
+				479FE9B22877F7E40030EE4D /* WelcomeVideoPlayerView.swift */,
 				4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */,
 				479FE9A1287776D70030EE4D /* ProfilePictureOnboardingView.swift */,
 			);
@@ -316,6 +321,7 @@
 		47834458283C63520022025E /* ReelyV1 */ = {
 			isa = PBXGroup;
 			children = (
+				479FE9AF2877F40C0030EE4D /* Videos */,
 				479FE9A32877881E0030EE4D /* Fonts */,
 				47A9DE87286A808200DF76CE /* ReelyV1.entitlements */,
 				4736EEF72867A84D0033C49E /* Controllers */,
@@ -378,6 +384,14 @@
 				479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */,
 			);
 			path = "Kinfolk Fonts";
+			sourceTree = "<group>";
+		};
+		479FE9AF2877F40C0030EE4D /* Videos */ = {
+			isa = PBXGroup;
+			children = (
+				479FE9B02877F41B0030EE4D /* pexels-runway.mp4 */,
+			);
+			path = Videos;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -514,6 +528,7 @@
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
 				479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
+				479FE9B12877F41B0030EE4D /* pexels-runway.mp4 in Resources */,
 				479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -560,6 +575,7 @@
 				479FE9942875524B0030EE4D /* PostDetailViewModel.swift in Sources */,
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
+				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
 				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
@@ -750,7 +766,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
@@ -775,7 +791,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 3;
+				CURRENT_PROJECT_VERSION = 4;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;
