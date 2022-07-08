@@ -14,63 +14,79 @@ struct AddPostView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
-        VStack(alignment: .leading) {
-            ScrollView {
-                VStack (alignment: .leading) {
-                    Group {
-                        Text("Photo:").font(Font.system(size: 24)).bold()
-                        if let postImage = postViewModel.postImage  {
-                            Image(uiImage: postImage)
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxHeight: 200)
-                        }
-                        
-                        Text("Title:").bold()
-                        Text("Choose a title for your post (maximum 20 characters)").font(Font.system(size: 14)).foregroundColor(.gray)
-                        TextField("Title", text: $postViewModel.postTitle)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
+        ScrollView {
+            VStack (alignment: .leading) {
+                Group {
+                    Text("Photo:")
+                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                    if let postImage = postViewModel.postImage  {
+                        Image(uiImage: postImage)
+                                .resizable()
+                                .scaledToFit()
+                                .frame(maxHeight: 200)
                     }
-                    Text("✍️ Post:")
-                    Text("Tell us what you think! What do you like/dislike about the product? Who is this product for/not for?").font(Font.system(size: 14)).foregroundColor(.gray)
-                    TextEditor(text: $postViewModel.postBody)
-                            .overlay(RoundedRectangle(cornerRadius: 8)
-                                .stroke(Color.gray).opacity(0.3))
-                            .frame(minHeight: 150)
+                    
+                    Text("Post Title:")
+                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                    TextField("Max. 30 Characters", text: $postViewModel.postTitle)
+                        .font(Font.custom(Constants.titleFont, size: 16))
+                        .textFieldStyle(RoundedBorderTextFieldStyle())
                 }
-                Spacer()
+                Text("Note:")
+                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                TextEditor(text: $postViewModel.postBody)
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .overlay(RoundedRectangle(cornerRadius: 8)
+                        .stroke(Color.gray).opacity(0.3))
+                    .frame(minHeight: 150)
+                Text("Recommended Details:")
+                    .font(Font.custom(Constants.bodyFont, size: 18))
+                Text("- Name the products in the photo\n- Where did you buy the items?\n- How much did the outfit cost?\n- Share the story behind the photo/outfit\n- Other details")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+            }
+        }
+        .padding()
+        .navigationBarTitle("", displayMode: .inline)
+        .onTapGesture {
+            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
+        }
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+//                Button("Post") {
+//                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap())
+//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                        postViewModel.shouldPopToRootViewIfFalse = false
+//                        tabViewModel.tabSelection = 1
+//                    }
+//                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//                }
+                
                 Button(action: {
                     postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         postViewModel.shouldPopToRootViewIfFalse = false
+//                    TODO: pop Home to root view also
                         tabViewModel.tabSelection = 1
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
                     HStack {
                         if (postViewModel.isSubmitting) {
-                            Image(systemName: "clock.arrow.2.circlepath")
-                                .font(.system(size: 20))
                             Text("Loading...")
-                                .font(.headline)
+                                .font(Font.custom(Constants.bodyFont, size: 16))
                         } else {
-                            Image(systemName: "plus")
-                                .font(.system(size: 20))
-                            Text("Submit Post")
-                                .font(.headline)
+                            Text("Post")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
                         }
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-                    .background(Color.blue)
+                    }.padding(.vertical, 4)
+                    .padding(.horizontal, 16)
+                    .background(Color.red)
                     .foregroundColor(.white)
-                    .cornerRadius(20)
-                    .padding(.horizontal)
-                }.padding(.top, 40)
+                    .cornerRadius(10)
+                }
                 .disabled(self.postViewModel.isSubmitting)
             }
-        }.onTapGesture {
-            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
-        }.padding()
+        }
     }
 }
 
