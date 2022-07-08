@@ -60,7 +60,7 @@ struct SetNameOnboardingView: View {
                 .foregroundColor(.white)
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)
-                .padding(.vertical, 24)
+                .padding(.bottom, Constants.onboardingButtonBottomPadding)
             }.disabled(profileViewModel.displayName.isEmpty)
         }.onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)

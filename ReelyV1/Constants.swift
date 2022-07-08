@@ -20,10 +20,12 @@ struct Constants {
     static let onboardingTextSize: CGFloat = 32
     static let onboardingLineSpacing: CGFloat = 6
     static let onboardingHorizontalPadding: CGFloat = 48
+    static let onboardingButtonBottomPadding: CGFloat = 60
     
     static let buttonBorderWidth: CGFloat = 3
     static let buttonCornerRadius: CGFloat = 10
     static let buttonFontSize: CGFloat = 18
+    
     
     static let buttonColor = Color("LightGray")
     
