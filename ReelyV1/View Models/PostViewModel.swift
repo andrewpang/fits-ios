@@ -13,6 +13,10 @@ import FirebaseAuth
 import SwiftUI
 
 class PostViewModel: ObservableObject {
+//    enum PostType: String {
+//        case OOTD = "ootd"
+//    }
+    
     @Published var postsData = PostsModel()
     @Published var isSubmitting = false
     @Published var shouldPopToRootViewIfFalse = false
