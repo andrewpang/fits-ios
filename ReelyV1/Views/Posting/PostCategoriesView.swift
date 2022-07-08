@@ -15,7 +15,6 @@ struct PostCategoriesView: View {
     @State var showPicker = false
     @State var showSheet = false
     @State var sourceType: UIImagePickerController.SourceType = .camera
-    @State var postType = ""
     @State var showPermissionsAlert = true
     
     var body: some View {
@@ -36,7 +35,7 @@ struct PostCategoriesView: View {
                     Button(action: {
                         postViewModel.resetData()
                         showSheet = true
-                        postType = "ootd"
+                        postViewModel.postType = "ootd"
                     }, label: {
                         VStack {
                             Text("Fit Pic (OOTD)")
@@ -69,7 +68,7 @@ struct PostCategoriesView: View {
                     Button(action: {
                         postViewModel.resetData()
                         showSheet = true
-                        postType = "productReview"
+                        postViewModel.postType = "productReview"
                     }, label: {
                         VStack {
                             Text("Product Review")
@@ -191,7 +190,7 @@ struct PostCategoriesView: View {
             .sheet(isPresented: $showPicker) {
                 ImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
                     if (postViewModel.postImage != nil) {
-                        self.postViewModel.postTags = [postType]
+                        self.postViewModel.postTags = [postViewModel.postType]
                         self.postViewModel.shouldPopToRootViewIfFalse = true
                     }
                 }

@@ -43,14 +43,23 @@ struct AddPostView: View {
                 }
                 Text("Note:")
                     .font(Font.custom(Constants.titleFontBold, size: 16))
-                TextEditor(text: $postViewModel.postBody)
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-                    .overlay(RoundedRectangle(cornerRadius: 8)
-                        .stroke(Color.gray).opacity(0.3))
-                    .frame(minHeight: 150)
+                ZStack {
+                    TextEditor(text: $postViewModel.postBody)
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                    Text(postViewModel.postBody).opacity(0).padding(.all, 8)
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                }
+                .overlay(RoundedRectangle(cornerRadius: 8)
+                .stroke(Color.gray).opacity(0.3))
+                .frame(minHeight: 100)
+//                TextEditor(text: $postViewModel.postBody)
+//                    .font(Font.custom(Constants.bodyFont, size: 16))
+//                    .overlay(RoundedRectangle(cornerRadius: 8)
+//                        .stroke(Color.gray).opacity(0.3))
+//                    .frame(minHeight: 150)
                 Text("Recommended Details:")
                     .font(Font.custom(Constants.bodyFont, size: 18))
-                Text("- Name the products in the photo\n- Where did you buy the items?\n- How much did the outfit cost?\n- Share the story behind the photo/outfit\n- Other details")
+                Text(postViewModel.recommendedDetails)
                     .font(Font.custom(Constants.bodyFont, size: 16))
             }
         }

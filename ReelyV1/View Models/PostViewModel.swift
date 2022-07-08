@@ -26,6 +26,19 @@ class PostViewModel: ObservableObject {
     @Published var postTags: [String]?
     @Published var postImage: UIImage?
     
+    @Published var postType: String = "ootd"
+    var recommendedDetails: String {
+        get {
+            if (postType == "ootd") {
+                return Constants.ootdRecommendedDetails
+            } else if (postType == "productReview") {
+                return Constants.productReviewRecommendedDetails
+            } else {
+                return ""
+            }
+        }
+    }
+    
     private var db = Firestore.firestore()
     
     func submitPost(postAuthorMap: PostAuthorMap) {
