@@ -13,6 +13,10 @@ import FirebaseAuth
 import SwiftUI
 
 class PostViewModel: ObservableObject {
+//    enum PostType: String {
+//        case OOTD = "ootd"
+//    }
+    
     @Published var postsData = PostsModel()
     @Published var isSubmitting = false
     @Published var shouldPopToRootViewIfFalse = false
@@ -21,6 +25,19 @@ class PostViewModel: ObservableObject {
     @Published var postBody: String = ""
     @Published var postTags: [String]?
     @Published var postImage: UIImage?
+    
+    @Published var postType: String = "ootd"
+    var recommendedDetails: String {
+        get {
+            if (postType == "ootd") {
+                return Constants.ootdRecommendedDetails
+            } else if (postType == "productReview") {
+                return Constants.productReviewRecommendedDetails
+            } else {
+                return ""
+            }
+        }
+    }
     
     private var db = Firestore.firestore()
     
