@@ -6,8 +6,13 @@
 //
 
 import SwiftUI
+import AVKit
 
 struct WelcomeView: View {
+    let videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
+    var player = AVPlayer()
+    let videoName = "pexels-runway"
+    
     var body: some View {
         NavigationView {
             VStack(alignment:.center) {
@@ -37,9 +42,7 @@ struct WelcomeView: View {
                 }
             }
             .background(
-                Image("FITBackground")
-                    .resizable()
-                    .scaledToFill()
+                WelcomeVideoPlayerView()
                     .edgesIgnoringSafeArea(.all)
             )
         }.onAppear {
