@@ -12,6 +12,9 @@ struct ProfilePictureOnboardingView: View {
     
     @ObservedObject var profileViewModel: ProfileViewModel
     @State var navigateToNextView = false
+    @State var showConfirmationDialog = false
+    @State var showPicker = false
+    @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
     
     var body: some View {
         VStack() {
@@ -39,7 +42,7 @@ struct ProfilePictureOnboardingView: View {
                       .overlay(Circle().stroke(Color(Constants.onBoardingButtonColor), lineWidth: 3))
                       .padding()
                       .onTapGesture {
-                          profileViewModel.showPhotoSelectorSheet = true
+                          self.showConfirmationDialog = true
                       }
               } else {
                   Image("portraitPlaceHolder")
@@ -50,11 +53,11 @@ struct ProfilePictureOnboardingView: View {
                       .overlay(Circle().stroke(Color(Constants.onBoardingButtonColor), lineWidth: 3))
                       .padding()
                       .onTapGesture {
-                          profileViewModel.showPhotoSelectorSheet = true
+                          self.showConfirmationDialog = true
                       }
               }
               Button(action: {
-                  profileViewModel.showPhotoSelectorSheet = true
+                  self.showConfirmationDialog = true
               }, label: {
                   Text("Update Profile Photo")
                       .font(Font.custom(Constants.buttonFont, size: 16))
@@ -76,8 +79,20 @@ struct ProfilePictureOnboardingView: View {
                 .padding(.bottom, Constants.onboardingButtonBottomPadding)
             }
         }.padding(.horizontal, 24)
-        .sheet(isPresented: $profileViewModel.showPhotoSelectorSheet) {
-            PhotoGalleryPicker(pickerResult: $profileViewModel.image, isPresented: $profileViewModel.showPhotoSelectorSheet)
+        .sheet(isPresented: $showPicker) {
+            ImagePicker(selectedImage: $profileViewModel.image, isPresented: $showPicker, sourceType: sourceType)
+        }.confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
+            Button ("Photo Library") {
+                self.showPicker = true
+                self.sourceType = .photoLibrary
+            }
+            Button ("Camera") {
+                self.showPicker = true
+                self.sourceType = .camera
+            }
+            Button ("Cancel", role: ButtonRole.cancel) {}
+        } message: {
+            Text ("Choose a picture from your photo library, or take one now!")
         }.toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button("Skip for now") {

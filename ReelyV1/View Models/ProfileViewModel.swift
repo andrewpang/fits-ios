@@ -18,7 +18,6 @@ class ProfileViewModel: ObservableObject {
     @Published var imageUrl: String = ""
     @Published var displayName: String = ""
     @Published var bio: String = ""
-    @Published var showPhotoSelectorSheet: Bool = false
     @Published var image: UIImage? = nil
     @Published var phoneNumber: String = ""
     

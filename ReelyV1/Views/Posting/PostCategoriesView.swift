@@ -14,9 +14,9 @@ struct PostCategoriesView: View {
     @ObservedObject var postViewModel = PostViewModel()
     
     @State var showPicker = false
-    @State var showSheet = false
+    @State var showConfirmationDialog = false
     @State var sourceType: UIImagePickerController.SourceType = .camera
-    @State var showPermissionsAlert = true
+    @State var showPermissionsAlert = false
     
     var body: some View {
         ZStack {
@@ -33,8 +33,9 @@ struct PostCategoriesView: View {
                         .padding(.vertical, 32)
                     
                     Button(action: {
+                        showPermissionsAlert = true
                         postViewModel.resetData()
-                        showSheet = true
+                        showConfirmationDialog = true
                         postViewModel.postType = "ootd"
                     }, label: {
                         VStack {
@@ -54,8 +55,9 @@ struct PostCategoriesView: View {
                     })
                     
                     Button(action: {
+                        showPermissionsAlert = true
                         postViewModel.resetData()
-                        showSheet = true
+                        showConfirmationDialog = true
                         postViewModel.postType = "productReview"
                     }, label: {
                         VStack {
@@ -159,7 +161,7 @@ struct PostCategoriesView: View {
 //                        .background(Color.white)
 //                        .cornerRadius(Constants.buttonCornerRadius)
 //                        .opacity(0.5)
-                    }.confirmationDialog("Select a Photo", isPresented: $showSheet) {
+                    }.confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
                         Button ("Photo Library") {
                             self.showPicker = true
                             self.sourceType = .photoLibrary
@@ -189,7 +191,7 @@ struct PostCategoriesView: View {
                         self.postViewModel.shouldPopToRootViewIfFalse = true
                     }
                 }
-            }.JMModal(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
+            }.JMAlert(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
             .onAppear {
                 Amplitude.instance().logEvent("Post Categories Screen - View")
             }
