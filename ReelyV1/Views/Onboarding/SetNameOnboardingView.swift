@@ -55,7 +55,7 @@ struct SetNameOnboardingView: View {
                         .foregroundColor(.black)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                .background(Constants.buttonColor)
+                .background(Color(Constants.onBoardingButtonColor))
                 .opacity(buttonOpacity)
                 .foregroundColor(.white)
                 .cornerRadius(Constants.buttonCornerRadius)

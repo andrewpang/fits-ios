@@ -73,7 +73,7 @@ struct SetupStudentProfileView: View {
                         .foregroundColor(.black)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                .background(Constants.buttonColor)
+                .background(Color(Constants.onBoardingButtonColor))
                 .foregroundColor(.white)
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)
