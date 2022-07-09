@@ -16,11 +16,11 @@ import Amplitude
 class ProfileViewModel: ObservableObject {
     
     @Published var imageUrl: String = ""
-    
     @Published var displayName: String = ""
     @Published var bio: String = ""
     @Published var showPhotoSelectorSheet: Bool = false
     @Published var image: UIImage? = nil
+    @Published var phoneNumber: String = ""
     
     @Published var major: String = ""
     @Published var graduationYear: Int = -1
@@ -62,6 +62,7 @@ class ProfileViewModel: ObservableObject {
                 bio: bio.isEmpty ? nil : bio.trimmingCharacters(in: .whitespacesAndNewlines),
                 profilePicImageUrl: imageUrl.isEmpty ? nil : imageUrl,
                 groups: [FITGroupId],
+                phoneNumber: phoneNumber,
                 school: school.isEmpty ? nil : school.trimmingCharacters(in: .whitespacesAndNewlines),
                 major: major.isEmpty ? nil : major.trimmingCharacters(in: .whitespacesAndNewlines),
                 graduationYear: graduationYear
