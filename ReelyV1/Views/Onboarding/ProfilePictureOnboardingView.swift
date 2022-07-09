@@ -19,7 +19,6 @@ struct ProfilePictureOnboardingView: View {
                 HStack {
                     Text("Would you like to upload a profile photo?")
                         .font(Font.custom(Constants.titleFont, size: 40))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }

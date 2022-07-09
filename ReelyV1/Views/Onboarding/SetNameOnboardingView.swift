@@ -26,7 +26,6 @@ struct SetNameOnboardingView: View {
                 HStack {
                     Text("What should others call you?")
                         .font(Font.custom(Constants.titleFont, size: 40))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }

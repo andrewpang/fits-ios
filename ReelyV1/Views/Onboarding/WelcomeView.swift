@@ -31,11 +31,9 @@ struct WelcomeView: View {
                     HStack {
                         Text("Get Started")
                             .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                            .foregroundColor(.black)
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
                     .background(Constants.buttonColor)
-                    .foregroundColor(.white)
                     .cornerRadius(Constants.buttonCornerRadius)
                     .padding(.horizontal, 40)
                     .padding(.top, 40)
