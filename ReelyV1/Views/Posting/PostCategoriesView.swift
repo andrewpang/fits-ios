@@ -30,7 +30,6 @@ struct PostCategoriesView: View {
                     
                     Text("What do you want to share with the FIT(s) Community?")
                         .font(Font.custom(Constants.titleFontBold, size: 24))
-                        .foregroundColor(.black)
                         .padding(.vertical, 32)
                     
                     Button(action: {
@@ -95,7 +94,7 @@ struct PostCategoriesView: View {
                         .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
                         .background(Color.white)
                         .cornerRadius(Constants.buttonCornerRadius)
-                        .opacity(0.5)
+                        .opacity(0.75)
                         
                         VStack {
                             Text("Spotted")
@@ -111,7 +110,7 @@ struct PostCategoriesView: View {
                         .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
                         .background(Color.white)
                         .cornerRadius(Constants.buttonCornerRadius)
-                        .opacity(0.5)
+                        .opacity(0.75)
                         
                         VStack {
                             Text("Help Me Get Ready")
@@ -127,7 +126,7 @@ struct PostCategoriesView: View {
                         .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
                         .background(Color.white)
                         .cornerRadius(Constants.buttonCornerRadius)
-                        .opacity(0.5)
+                        .opacity(0.75)
                         
 //                        VStack {
 //                            Text("Thrifting")

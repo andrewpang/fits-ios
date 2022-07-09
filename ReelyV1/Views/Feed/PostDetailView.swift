@@ -138,7 +138,7 @@ struct PostDetailView: View {
                             .padding(.trailing, 8)
                     }
                 }
-            }.background(Color.white)
+            }
         }.navigationBarTitle("", displayMode: .inline)
         .onAppear {
             let propertiesDict = ["postId": postDetailViewModel.postModel.id as Any,

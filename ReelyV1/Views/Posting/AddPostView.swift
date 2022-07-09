@@ -32,7 +32,9 @@ struct AddPostView: View {
                     
                     Text("Post Title:")
                         .font(Font.custom(Constants.titleFontBold, size: 16))
-                    TextField("Max. 30 Characters", text: $postViewModel.postTitle)
+                    Text("Required (Max. 30 Characters)")
+                        .font(Font.custom(Constants.bodyFont, size: 12))
+                    TextField("Title", text: $postViewModel.postTitle)
                         .font(Font.custom(Constants.titleFont, size: 16))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onReceive(postViewModel.postTitle.publisher.collect()) {
@@ -44,6 +46,9 @@ struct AddPostView: View {
                 }
                 Text("Note:")
                     .font(Font.custom(Constants.titleFontBold, size: 16))
+                Text("Required (Max. 500 Characters)")
+                    .font(Font.custom(Constants.bodyFont, size: 12))
+                    .foregroundColor(.gray)
                 ZStack {
                     TextEditor(text: $postViewModel.postBody)
                         .font(Font.custom(Constants.bodyFont, size: 16))
@@ -82,19 +87,31 @@ struct AddPostView: View {
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
-                    HStack {
-                        if (postViewModel.isSubmitting) {
-                            Text("Loading...")
+                    if (self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty) {
+                        HStack {
+                           Text("Post")
                                 .font(Font.custom(Constants.bodyFont, size: 16))
-                        } else {
-                            Text("Post")
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                        }
-                    }.padding(.vertical, 4)
-                    .padding(.horizontal, 16)
-                    .background(Color.red)
-                    .foregroundColor(.white)
-                    .cornerRadius(10)
+                        }.padding(.vertical, 4)
+                        .padding(.horizontal, 16)
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                        .opacity(0.75)
+                    } else {
+                        HStack {
+                            if (postViewModel.isSubmitting) {
+                                Text("Loading...")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                            } else {
+                                Text("Post")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                            }
+                        }.padding(.vertical, 4)
+                        .padding(.horizontal, 16)
+                        .background(Color.red)
+                        .foregroundColor(.white)
+                        .cornerRadius(10)
+                    }
                 }
                 .disabled(self.postViewModel.isSubmitting || self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty)
             }
