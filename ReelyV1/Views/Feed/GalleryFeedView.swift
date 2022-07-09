@@ -47,7 +47,7 @@ struct GalleryFeedView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                Color.gray.opacity(0.15).ignoresSafeArea()
+                Color(Constants.backgroundColor).ignoresSafeArea()
                 StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
                     NavigationLink(destination: PostDetailView(postDetailViewModel: PostDetailViewModel(postModel: post)),
                                        label: {

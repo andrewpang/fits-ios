@@ -27,6 +27,7 @@ struct Constants {
     static let buttonFontSize: CGFloat = 18
     
     static let buttonColor = Color("LightGray")
+    static let backgroundColor = "OffWhite"
     
     static let postCardProfilePicSize: CGFloat = 20
     static let commentsProfilePicSize: CGFloat = 32

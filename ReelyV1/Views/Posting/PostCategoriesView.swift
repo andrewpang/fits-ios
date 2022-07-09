@@ -20,7 +20,7 @@ struct PostCategoriesView: View {
     
     var body: some View {
         ZStack {
-            Color.gray.opacity(0.15).ignoresSafeArea()
+            Color(Constants.backgroundColor).ignoresSafeArea()
             ScrollView {
                 VStack {
                     NavigationLink(destination: AddPostView(postViewModel: postViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
@@ -31,7 +31,7 @@ struct PostCategoriesView: View {
                     Text("What do you want to share with the FIT(s) Community?")
                         .font(Font.custom(Constants.titleFontBold, size: 24))
                         .foregroundColor(.black)
-                        .padding(.bottom, 16)
+                        .padding(.vertical, 32)
                     
                     Button(action: {
                         postViewModel.resetData()
@@ -129,37 +129,37 @@ struct PostCategoriesView: View {
                         .cornerRadius(Constants.buttonCornerRadius)
                         .opacity(0.5)
                         
-                        VStack {
-                            Text("Thrifting")
-                                .font(Font.custom(Constants.titleFontBold, size: 16))
-                                .foregroundColor(.black)
-                            Text("What are you buying and where?")
-                                .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                        .background(Color.white)
-                        .cornerRadius(Constants.buttonCornerRadius)
-                        .opacity(0.5)
-                        
-                        VStack {
-                            Text("Share Your Work")
-                                .font(Font.custom(Constants.titleFontBold, size: 16))
-                                .foregroundColor(.black)
-                            Text("Post things you’ve made or worked on")
-                                .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
-                        .background(Color.white)
-                        .cornerRadius(Constants.buttonCornerRadius)
-                        .opacity(0.5)
+//                        VStack {
+//                            Text("Thrifting")
+//                                .font(Font.custom(Constants.titleFontBold, size: 16))
+//                                .foregroundColor(.black)
+//                            Text("What are you buying and where?")
+//                                .multilineTextAlignment(.center)
+//                                .font(Font.custom(Constants.bodyFont, size: 16))
+//                                .foregroundColor(.gray)
+//                        }
+//                        .padding(.vertical, 8)
+//                        .padding(.horizontal, 24)
+//                        .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+//                        .background(Color.white)
+//                        .cornerRadius(Constants.buttonCornerRadius)
+//                        .opacity(0.5)
+//
+//                        VStack {
+//                            Text("Share Your Work")
+//                                .font(Font.custom(Constants.titleFontBold, size: 16))
+//                                .foregroundColor(.black)
+//                            Text("Post things you’ve made or worked on")
+//                                .multilineTextAlignment(.center)
+//                                .font(Font.custom(Constants.bodyFont, size: 16))
+//                                .foregroundColor(.gray)
+//                        }
+//                        .padding(.vertical, 8)
+//                        .padding(.horizontal, 24)
+//                        .frame(maxWidth: .infinity, minHeight: 60, maxHeight: 60)
+//                        .background(Color.white)
+//                        .cornerRadius(Constants.buttonCornerRadius)
+//                        .opacity(0.5)
                     }.confirmationDialog("Select a Photo", isPresented: $showSheet) {
                         Button ("Photo Library") {
                             self.showPicker = true

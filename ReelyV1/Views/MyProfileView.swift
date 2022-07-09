@@ -12,11 +12,13 @@ struct MyProfileView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
-        Button(action: {
-            authenticationViewModel.signOut()
-        }, label: {
-            Text("Sign Out")
-        })
+        VStack {
+            Button(action: {
+                authenticationViewModel.signOut()
+            }, label: {
+                Text("Sign Out")
+            })
+        }
     }
 }
 
