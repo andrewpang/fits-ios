@@ -16,6 +16,7 @@ public struct UserModel: Codable {
     var bio: String?
     var profilePicImageUrl: String?
     var groups: [String]?
+    var phoneNumber: String?
     
     //College-Specific
     var school: String?

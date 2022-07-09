@@ -130,6 +130,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
             sentPhoneNumberToFirebase(to: phoneNumberText)
 //            Amplitude.instance()?.logEvent("Send Magic Link")
             UserDefaults.standard.set(phoneNumberText, forKey: Constants.phoneNumberKey)
+            profileViewModel?.phoneNumber = phoneNumberText
             let checkSMSVC = CheckSMSViewController()
             checkSMSVC.delegate = self.delegate
             checkSMSVC.authenticationViewModel = self.authenticationViewModel
