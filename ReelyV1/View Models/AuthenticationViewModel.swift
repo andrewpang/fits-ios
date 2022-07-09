@@ -33,6 +33,7 @@ class AuthenticationViewModel: ObservableObject {
         if (Auth.auth().currentUser != nil) {
             getCurrentUserData()
         } else {
+            Amplitude.instance().setUserId(nil)
             state = .signedOut
         }
     }
