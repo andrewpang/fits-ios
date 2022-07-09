@@ -35,6 +35,7 @@ struct Constants {
     
     static let titleFont = "Didot"
     static let titleFontBold = "Didot-Bold"
+    static let titleFontItalicized = "Didot-Italic"
     static let bodyFont = "Kinfolk-Sans"
     static let buttonFont = "Kinfolk-Sans"
     
