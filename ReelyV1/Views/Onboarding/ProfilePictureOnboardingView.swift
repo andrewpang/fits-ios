@@ -19,7 +19,6 @@ struct ProfilePictureOnboardingView: View {
                 HStack {
                     Text("Would you like to upload a profile photo?")
                         .font(Font.custom(Constants.titleFont, size: 40))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }
@@ -37,7 +36,7 @@ struct ProfilePictureOnboardingView: View {
                       .aspectRatio(contentMode: .fill)
                       .frame(width: 150, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                       .clipShape(Circle())
-                      .overlay(Circle().stroke(Constants.buttonColor, lineWidth: 3))
+                      .overlay(Circle().stroke(Color(Constants.onBoardingButtonColor), lineWidth: 3))
                       .padding()
                       .onTapGesture {
                           profileViewModel.showPhotoSelectorSheet = true
@@ -48,7 +47,7 @@ struct ProfilePictureOnboardingView: View {
                       .aspectRatio(contentMode: .fill)
                       .frame(width: 150, height: 150, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                       .clipShape(Circle())
-                      .overlay(Circle().stroke(Constants.buttonColor, lineWidth: 3))
+                      .overlay(Circle().stroke(Color(Constants.onBoardingButtonColor), lineWidth: 3))
                       .padding()
                       .onTapGesture {
                           profileViewModel.showPhotoSelectorSheet = true
@@ -70,7 +69,7 @@ struct ProfilePictureOnboardingView: View {
                         .foregroundColor(.black)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                .background(Constants.buttonColor)
+                .background(Color(Constants.onBoardingButtonColor))
                 .foregroundColor(.white)
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)

@@ -34,8 +34,7 @@ struct WelcomeView: View {
                             .foregroundColor(.black)
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                    .background(Constants.buttonColor)
-                    .foregroundColor(.white)
+                    .background(Color(Constants.onBoardingButtonColor))
                     .cornerRadius(Constants.buttonCornerRadius)
                     .padding(.horizontal, 40)
                     .padding(.top, 40)

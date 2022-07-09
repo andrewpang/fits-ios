@@ -48,7 +48,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func setupBackgroundView() {
-        self.view.backgroundColor = .white
+//        self.view.backgroundColor = .white
     }
     
     fileprivate func setupQuestionLabel() {
@@ -63,7 +63,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         questionLabel.numberOfLines = 0
         questionLabel.attributedText = attributedString
         questionLabel.font = UIFont(name: Constants.titleFontBold, size: Constants.onboardingTextSize)
-        questionLabel.textColor = UIColor.black
+//        questionLabel.textColor = UIColor.black
         self.view.addSubview(questionLabel)
     }
     
@@ -79,7 +79,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         explanationLabel.numberOfLines = 0
         explanationLabel.attributedText = attributedString
         explanationLabel.font = UIFont(name: Constants.bodyFont, size: 18)
-        explanationLabel.textColor = UIColor.black
+//        explanationLabel.textColor = UIColor.black
         self.view.addSubview(explanationLabel)
     }
     
@@ -114,7 +114,7 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         let labelTapGesture = UITapGestureRecognizer(target:self, action: #selector(confirmNumberClicked))
         confirmNumberButton.addGestureRecognizer(labelTapGesture)
         confirmNumberButton.layer.cornerRadius = Constants.buttonCornerRadius
-        confirmNumberButton.layer.backgroundColor = UIColor(named: "LightGray")?.cgColor
+        confirmNumberButton.layer.backgroundColor = UIColor(named: Constants.onBoardingButtonColor)?.cgColor
         confirmNumberButton.clipsToBounds = true
         self.view.addSubview(confirmNumberButton)
     }

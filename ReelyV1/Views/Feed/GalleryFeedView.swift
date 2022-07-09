@@ -53,7 +53,7 @@ struct GalleryFeedView: View {
                                        label: {
                             PostCardView(post: post)
                         })
-                }).padding(.horizontal)
+                }).padding(.horizontal, 8)
             }.navigationBarTitle("")
             .navigationBarHidden(true)
             .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)
