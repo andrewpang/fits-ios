@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Amplitude
 
 struct ProfilePictureOnboardingView: View {
     
@@ -85,6 +86,9 @@ struct ProfilePictureOnboardingView: View {
                     self.navigateToNextView = true
                 }
             }
+        }
+        .onAppear {
+            Amplitude.instance().logEvent("Set Profile Picture Screen - View")
         }
     }
 }

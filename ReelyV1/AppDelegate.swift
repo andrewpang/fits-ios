@@ -9,6 +9,7 @@ import UIKit
 import CoreData
 import FirebaseCore
 import FirebaseMessaging
+import Amplitude
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,6 +19,12 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         FirebaseApp.configure()
         Messaging.messaging().delegate = self
+        
+        // Amplitude
+        Amplitude.instance().trackingSessionEvents = true
+        Amplitude.instance().initializeApiKey(Secrets.AmplitudeAPIKey)
+        Amplitude.instance().logEvent("app_start")
+
         return true
     }
     

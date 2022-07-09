@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Amplitude
 
 struct OnboardingRulesView: View {
     var body: some View {
@@ -29,7 +30,9 @@ struct OnboardingRulesView: View {
                 .resizable()
                 .scaledToFill()
                 .edgesIgnoringSafeArea(.all)
-        )
+        ).onAppear {
+            Amplitude.instance().logEvent("Rules Screen - View")
+        }
     }
 }
 

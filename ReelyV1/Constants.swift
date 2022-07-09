@@ -26,8 +26,10 @@ struct Constants {
     static let buttonCornerRadius: CGFloat = 10
     static let buttonFontSize: CGFloat = 18
     
-    
     static let buttonColor = Color("LightGray")
+    
+    static let commentsProfilePicSize: CGFloat = 32
+    static let postAuthorProfilePicSize: CGFloat = 40
     
     static let titleFont = "Didot"
     static let titleFontBold = "Didot-Bold"

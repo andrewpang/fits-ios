@@ -18,23 +18,23 @@ struct CommentRowView: View {
             if let profilePicImageUrl = commentModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                 KFImage(URL(string: profilePicImageUrl))
                     .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 32)
+                    .scaledToFill()
+                    .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
                     .clipShape(Circle())
             } else {
                 Image("portraitPlaceHolder")
                     .resizable()
-                    .scaledToFit()
-                    .frame(maxHeight: 32)
+                    .scaledToFill()
+                    .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
                     .clipShape(Circle())
             }
             VStack(alignment: .leading) {
                 Text(commentModel.author.displayName ?? "Commentor")
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-                    .bold()
+                    .font(Font.system(size: 16, weight: .bold, design: .default))
                 Text(commentModel.commentText)
                     .font(Font.custom(Constants.bodyFont, size: 16))
             }
+            Spacer()
         }
     }
 }

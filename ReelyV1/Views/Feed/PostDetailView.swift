@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Amplitude
 
 struct PostDetailView: View {    
     @ObservedObject var postDetailViewModel: PostDetailViewModel
@@ -58,14 +59,14 @@ struct PostDetailView: View {
                         if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                             KFImage(URL(string: profilePicImageUrl))
                                 .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 40)
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
                                 .clipShape(Circle())
                         } else {
                             Image("portraitPlaceHolder")
                                 .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 40)
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
                                 .clipShape(Circle())
                         }
                         Spacer()
@@ -113,6 +114,8 @@ struct PostDetailView: View {
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .submitLabel(.send)
                         .onSubmit {
+                            let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as [String : Any]
+                            Amplitude.instance().logEvent("Submit Comment - Clicked", withEventProperties: propertiesDict)
                             postCommentAndDismissKeyboard()
                         }
                 } else {
@@ -125,6 +128,8 @@ struct PostDetailView: View {
                 }
                 if (!postDetailViewModel.commentText.isEmpty) {
                     Button(action: {
+                        let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as [String : Any]
+                        Amplitude.instance().logEvent("Submit Comment - Clicked", withEventProperties: propertiesDict)
                         postCommentAndDismissKeyboard()
                     }) {
                         Image(systemName: "arrow.up.circle")
@@ -136,6 +141,10 @@ struct PostDetailView: View {
             }.background(Color.white)
         }.navigationBarTitle("", displayMode: .inline)
         .onAppear {
+            let propertiesDict = ["postId": postDetailViewModel.postModel.id as Any,
+                                  "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                ] as [String : Any]
+            Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)
             self.postDetailViewModel.fetchComments()
         }
     }
