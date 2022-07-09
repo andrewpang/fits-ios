@@ -191,7 +191,8 @@ struct PostCategoriesView: View {
                         self.postViewModel.shouldPopToRootViewIfFalse = true
                     }
                 }
-            }.JMAlert(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
+            }
+//            .JMAlert(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
             .onAppear {
                 Amplitude.instance().logEvent("Post Categories Screen - View")
             }
