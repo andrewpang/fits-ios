@@ -12,7 +12,7 @@ import FirebaseFirestore
 public struct UserModel: Codable {
     @DocumentID public var id: String? = UUID().uuidString
     @ServerTimestamp var createdAt: Timestamp?
-    var displayName: String
+    var displayName: String?
     var bio: String?
     var profilePicImageUrl: String?
     var groups: [String]?

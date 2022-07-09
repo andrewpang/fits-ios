@@ -45,6 +45,7 @@ class ProfileViewModel: ObservableObject {
             imageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
                     // Uh-oh, an error occurred!
+                    self.uploadNewUserModel()
                     return
                 }
                 self.imageUrl = downloadURL.absoluteString

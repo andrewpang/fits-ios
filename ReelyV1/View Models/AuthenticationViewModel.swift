@@ -29,7 +29,6 @@ class AuthenticationViewModel: ObservableObject {
     private let auth = Auth.auth()
     
     func checkIfSignedIn() {
-//        signOut()
         if (Auth.auth().currentUser != nil) {
             getCurrentUserData()
         } else {
@@ -41,6 +40,7 @@ class AuthenticationViewModel: ObservableObject {
     func signOut() {
         do {
             try Auth.auth().signOut()
+            Amplitude.instance().setUserId(nil)
             state = .signedOut
         } catch {
         }
@@ -60,7 +60,6 @@ class AuthenticationViewModel: ObservableObject {
                 } else {
                     print("Auth: Empty Profile")
                     self.state = .signedOut //TODO: might have to bring up part of onboarding flow again
-                  
                 }
                 self.saveFCMDeviceToken()
                 Amplitude.instance().setUserId(uid)
