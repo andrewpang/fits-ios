@@ -100,7 +100,8 @@ struct AddPostView: View {
             }
         }
         .onAppear {
-            Amplitude.instance().logEvent("Add Post Screen - View")
+            let propertiesDict = ["postType": postViewModel.postType as Any] as [String : Any]
+            Amplitude.instance().logEvent("Add Post Screen - View", withEventProperties: propertiesDict)
         }
     }
 }

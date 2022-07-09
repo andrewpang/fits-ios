@@ -52,19 +52,7 @@ struct PostCategoriesView: View {
                         .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
                         .background(Color.white)
                         .cornerRadius(Constants.buttonCornerRadius)
-                    }).actionSheet(isPresented: $showSheet) {
-                        ActionSheet(title: Text("Select Photo"), message: Text("Choose a fit pic from your photo library, or take one now!"), buttons: [
-                            .default(Text("Photo Library")) {
-                                self.showPicker = true
-                                self.sourceType = .photoLibrary
-                            },
-                            .default(Text("Camera")) {
-                                self.showPicker = true
-                                self.sourceType = .camera
-                            },
-                            .cancel()
-                        ])
-                    }
+                    })
                     
                     Button(action: {
                         postViewModel.resetData()
@@ -85,19 +73,7 @@ struct PostCategoriesView: View {
                         .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
                         .background(Color.white)
                         .cornerRadius(Constants.buttonCornerRadius)
-                    }).actionSheet(isPresented: $showSheet) {
-                        ActionSheet(title: Text("Select Photo"), message: Text("Choose a product pic from your photo library, or take one now!"), buttons: [
-                            .default(Text("Photo Library")) {
-                                self.showPicker = true
-                                self.sourceType = .photoLibrary
-                            },
-                            .default(Text("Camera")) {
-                                self.showPicker = true
-                                self.sourceType = .camera
-                            },
-                            .cancel()
-                        ])
-                    }
+                    })
                     
                     Text("Coming Soon...")
                         .font(Font.custom(Constants.bodyFont, size: 16))
@@ -184,6 +160,25 @@ struct PostCategoriesView: View {
                         .background(Color.white)
                         .cornerRadius(Constants.buttonCornerRadius)
                         .opacity(0.5)
+                    }.confirmationDialog("Select a Photo", isPresented: $showSheet) {
+                        Button ("Photo Library") {
+                            self.showPicker = true
+                            self.sourceType = .photoLibrary
+                            let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as [String : Any]
+                            Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                        }
+                        Button ("Camera") {
+                            self.showPicker = true
+                            self.sourceType = .camera
+                            let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as [String : Any]
+                            Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                        }
+                        Button ("Cancel", role: ButtonRole.cancel) {
+                            let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as [String : Any]
+                            Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                        }
+                    } message: {
+                        Text ("Choose a picture from your photo library, or take one now!")
                     }
                 }.padding(.horizontal, 24)
                 .padding(.vertical, 8)

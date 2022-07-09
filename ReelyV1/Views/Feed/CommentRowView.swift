@@ -19,13 +19,13 @@ struct CommentRowView: View {
                 KFImage(URL(string: profilePicImageUrl))
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 32)
+                    .frame(height: 32)
                     .clipShape(Circle())
             } else {
                 Image("portraitPlaceHolder")
                     .resizable()
                     .scaledToFit()
-                    .frame(maxHeight: 32)
+                    .frame(height: 32)
                     .clipShape(Circle())
             }
             VStack(alignment: .leading) {

@@ -24,7 +24,9 @@ struct GalleryFeedView: View {
             if success {
                 print("Notification permission success!")
                 DispatchQueue.main.async {
-                  UIApplication.shared.registerForRemoteNotifications()
+//                    let propertiesDict = ["permissionType": "notification", "permissionAllowed": true] as [String : Any]
+//                    Amplitude.instance().logEvent("User Permission Requested", withEventProperties: propertiesDict)
+                    UIApplication.shared.registerForRemoteNotifications()
                 }
                 Messaging.messaging().token { token, error in
                   if let error = error {
@@ -35,6 +37,8 @@ struct GalleryFeedView: View {
                   }
                 }
             } else if let error = error {
+//                let propertiesDict = ["permissionType": "notification", "permissionAllowed": false] as [String : Any]
+//                Amplitude.instance().logEvent("User Permission Requested", withEventProperties: propertiesDict)
                 print(error.localizedDescription)
             }
         }
