@@ -94,15 +94,15 @@ struct PostDetailView: View {
                 if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     KFImage(URL(string: profilePicImageUrl))
                         .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 32)
+                        .scaledToFill()
+                        .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
                         .clipShape(Circle())
                         .padding(.leading, 8)
                 } else {
                     Image("portraitPlaceHolder")
                         .resizable()
-                        .scaledToFit()
-                        .frame(maxHeight: 32)
+                        .scaledToFill()
+                        .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
                         .clipShape(Circle())
                         .padding(.leading, 8)
                 }

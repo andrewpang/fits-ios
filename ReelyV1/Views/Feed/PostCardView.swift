@@ -31,14 +31,14 @@ struct PostCardView: View {
                     if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                         KFImage(URL(string: profilePicImageUrl))
                             .resizable()
-                            .scaledToFit()
-                            .frame(maxHeight: 20)
+                            .scaledToFill()
+                            .frame(width: Constants.postCardProfilePicSize, height:  Constants.postCardProfilePicSize)
                             .clipShape(Circle())
                     } else {
                         Image("portraitPlaceHolder")
                             .resizable()
-                            .scaledToFit()
-                            .frame(maxHeight: 20)
+                            .scaledToFill()
+                            .frame(width: Constants.postCardProfilePicSize, height:  Constants.postCardProfilePicSize)
                             .clipShape(Circle())
                     }
                     Text(post.author.displayName ?? "Name")
