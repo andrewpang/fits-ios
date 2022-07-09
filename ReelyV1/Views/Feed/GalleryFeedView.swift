@@ -8,6 +8,7 @@
 import SwiftUI
 import PermissionsSwiftUINotification
 import FirebaseMessaging
+import Amplitude
 
 struct GalleryFeedView: View {
     
@@ -56,6 +57,7 @@ struct GalleryFeedView: View {
         .onAppear {
             requestNotificationPermissions()
             self.homeViewModel.fetchPosts()
+            Amplitude.instance().logEvent("Home Feed Screen - View")
         }
     }
 }

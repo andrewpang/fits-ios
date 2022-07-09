@@ -8,6 +8,7 @@
 import UIKit
 import Foundation
 import FirebaseAuth
+import Amplitude
 
 class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     
@@ -32,6 +33,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
+        Amplitude.instance().logEvent("SMS Confirmation Screen - View")
     }
     
     fileprivate func setupNavBarView() {

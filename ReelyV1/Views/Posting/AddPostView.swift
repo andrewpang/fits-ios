@@ -7,6 +7,7 @@
 
 import SwiftUI
 import FirebaseAuth
+import Amplitude
 
 struct AddPostView: View {
     @ObservedObject var postViewModel: PostViewModel
@@ -70,16 +71,9 @@ struct AddPostView: View {
         }
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
-//                Button("Post") {
-//                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap())
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//                        postViewModel.shouldPopToRootViewIfFalse = false
-//                        tabViewModel.tabSelection = 1
-//                    }
-//                    UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-//                }
-                
                 Button(action: {
+                    let propertiesDict = ["postType": postViewModel.postType as Any, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as [String : Any]
+                    Amplitude.instance().logEvent("Submit Post - Clicked", withEventProperties: propertiesDict)
                     postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap())
                     DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                         postViewModel.shouldPopToRootViewIfFalse = false
@@ -104,6 +98,9 @@ struct AddPostView: View {
                 }
                 .disabled(self.postViewModel.isSubmitting || self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty)
             }
+        }
+        .onAppear {
+            Amplitude.instance().logEvent("Add Post Screen - View")
         }
     }
 }

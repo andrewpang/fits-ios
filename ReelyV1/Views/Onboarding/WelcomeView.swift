@@ -7,6 +7,7 @@
 
 import SwiftUI
 import AVKit
+import Amplitude
 
 struct WelcomeView: View {
     let videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
@@ -46,13 +47,14 @@ struct WelcomeView: View {
                     .edgesIgnoringSafeArea(.all)
             )
         }.onAppear {
-            for family in UIFont.familyNames {
-                 print(family)
-
-                 for names in UIFont.fontNames(forFamilyName: family){
-                 print("== \(names)")
-                 }
-            }
+            Amplitude.instance().logEvent("Welcome Screen - View")
+//            for family in UIFont.familyNames {
+//                 print(family)
+//
+//                 for names in UIFont.fontNames(forFamilyName: family){
+//                 print("== \(names)")
+//                 }
+//            }
         }
     }
 }

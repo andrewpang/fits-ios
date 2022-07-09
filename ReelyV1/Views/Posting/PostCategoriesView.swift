@@ -8,6 +8,7 @@
 import SwiftUI
 import PermissionsSwiftUIPhoto
 import PermissionsSwiftUICamera
+import Amplitude
 
 struct PostCategoriesView: View {
     @ObservedObject var postViewModel = PostViewModel()
@@ -195,6 +196,9 @@ struct PostCategoriesView: View {
                     }
                 }
             }.JMModal(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
+            .onAppear {
+                Amplitude.instance().logEvent("Post Categories Screen - View")
+            }
         }
     }
 }
