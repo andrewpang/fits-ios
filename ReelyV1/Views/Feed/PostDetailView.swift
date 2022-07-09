@@ -59,14 +59,14 @@ struct PostDetailView: View {
                         if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                             KFImage(URL(string: profilePicImageUrl))
                                 .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 40)
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
                                 .clipShape(Circle())
                         } else {
                             Image("portraitPlaceHolder")
                                 .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 40)
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
                                 .clipShape(Circle())
                         }
                         Spacer()
