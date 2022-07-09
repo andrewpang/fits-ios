@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
+		4710350D287A071400D41E71 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710350C287A071400D41E71 /* Secrets.swift */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
@@ -97,6 +98,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4710350C287A071400D41E71 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -339,6 +341,7 @@
 				4783445F283C63520022025E /* ReelyV1.xcdatamodeld */,
 				47834464283C63560022025E /* Preview Content */,
 				4736EEFA2867A9310033C49E /* Constants.swift */,
+				4710350C287A071400D41E71 /* Secrets.swift */,
 			);
 			path = ReelyV1;
 			sourceTree = "<group>";
@@ -579,6 +582,7 @@
 				479FE9942875524B0030EE4D /* PostDetailViewModel.swift in Sources */,
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
+				4710350D287A071400D41E71 /* Secrets.swift in Sources */,
 				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
 				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,

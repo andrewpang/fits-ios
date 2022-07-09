@@ -22,7 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Amplitude
         Amplitude.instance().trackingSessionEvents = true
-        Amplitude.instance().initializeApiKey("ab29af04e6c21d726d031d9606cabdfe")
+        Amplitude.instance().initializeApiKey(Secrets.AmplitudeAPIKey)
         Amplitude.instance().logEvent("app_start")
 
         return true
