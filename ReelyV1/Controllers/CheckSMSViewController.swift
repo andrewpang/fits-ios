@@ -135,12 +135,18 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
                
         Auth.auth().signIn(with: credential) { result, error in
             guard result != nil, error == nil else {
+                let propertiesDict = ["wasSignupSuccessful": false,
+                    ] as [String : Any]
+                Amplitude.instance().logEvent("Confirm SMS Code - Clicked", withEventProperties: propertiesDict)
                 self.displayError()
                 self.confirmNumberButton.isUserInteractionEnabled = true
                 return
             }
-            self.authenticationViewModel?.state = .signedIn
+            let propertiesDict = ["wasSignupSuccessful": true,
+                ] as [String : Any]
+            Amplitude.instance().logEvent("Confirm SMS Code - Clicked", withEventProperties: propertiesDict)
             self.profileViewModel?.uploadProfilePhotoAndModel()
+            self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)
        }
                
