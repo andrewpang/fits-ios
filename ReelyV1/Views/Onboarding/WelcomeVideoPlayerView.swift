@@ -35,6 +35,7 @@ class LoopingPlayerUIView: UIView {
         let item = AVPlayerItem(asset: asset)
         // Setup the player
         let player = AVQueuePlayer()
+        player.isMuted = true
         let audioSession = AVAudioSession.sharedInstance()
         if audioSession.isOtherAudioPlaying {
             _ = try? audioSession.setCategory(AVAudioSession.Category.ambient, options: AVAudioSession.CategoryOptions.mixWithOthers)
