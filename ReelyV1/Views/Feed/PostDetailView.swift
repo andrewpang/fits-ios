@@ -13,6 +13,13 @@ struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    
+    enum PostDetailFocusField: Hashable {
+       case commentField
+    }
+   
+    @FocusState var focusedField: PostDetailFocusField?
+
     func postCommentAndDismissKeyboard() {
         let commentModel = CommentModel(author: authenticationViewModel.getPostAuthorMap(), commentText: postDetailViewModel.commentText.trimmingCharacters(in: .whitespacesAndNewlines))
         postDetailViewModel.postComment(commentModel: commentModel)
@@ -84,7 +91,7 @@ struct PostDetailView: View {
                         .padding(.horizontal, 24)
                         .padding(.vertical, 8)
                     
-                    CommentsView(postDetailViewModel: postDetailViewModel).padding(.horizontal, 24)
+                    CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField).padding(.horizontal, 24)
                 }
             }.onTapGesture {
                 UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -112,6 +119,7 @@ struct PostDetailView: View {
                         .padding(.horizontal, 8)
                         .padding(.vertical, 16)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
+                        .focused($focusedField, equals: .commentField)
                         .submitLabel(.send)
                         .onSubmit {
                             let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as [String : Any]
@@ -122,6 +130,7 @@ struct PostDetailView: View {
                     // Fallback on earlier versions
                     TextField("Add Comment", text: $postDetailViewModel.commentText)
                         .font(Font.custom(Constants.bodyFont, size: 16))
+                        .focused($focusedField, equals: .commentField)
                         .padding(.horizontal, 8)
                         .padding(.vertical, 16)
                         .textFieldStyle(RoundedBorderTextFieldStyle())

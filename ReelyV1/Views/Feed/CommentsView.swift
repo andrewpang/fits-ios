@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CommentsView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
+    @FocusState var focusedField: PostDetailView.PostDetailFocusField?
     
     var body: some View {
         Text("Comments")
@@ -26,6 +27,9 @@ struct CommentsView: View {
                 .font(Font.custom(Constants.bodyFont, size: 16))
                 .foregroundColor(.gray)
                 .padding(.bottom, 16)
+                .onTapGesture {
+                    self.focusedField = PostDetailView.PostDetailFocusField.commentField
+                }
         }
     }
 }
