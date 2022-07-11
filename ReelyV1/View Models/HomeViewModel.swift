@@ -28,11 +28,7 @@ class HomeViewModel: ObservableObject {
                 return try? querySnapshot.data(as: PostModel.self)
             }
             DispatchQueue.main.async {
-                if (self.postsData.postModels != nil) {
-                    self.postsData.postModels = postList
-                } else {
-                    self.postsData = PostsModel(postModels: postList)
-                }
+                self.postsData = PostsModel(postModels: postList)
             }
         }
     }
