@@ -11,7 +11,7 @@ import PermissionsSwiftUICamera
 import Amplitude
 
 struct PostCategoriesView: View {
-    @ObservedObject var postViewModel = PostViewModel()
+    @StateObject var postViewModel = PostViewModel()
     
     @State var showPicker = false
     @State var showConfirmationDialog = false

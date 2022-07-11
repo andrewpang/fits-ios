@@ -30,9 +30,9 @@ class ProfileViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
-    func uploadProfilePhotoAndModel(authenticationModel: AuthenticationViewModel) {
+    func uploadProfilePhotoAndModel() {
         guard let imageData = image?.jpegData(compressionQuality: 0.5) else {
-            self.uploadNewUserModel(authenticationModel: authenticationModel)
+            self.uploadNewUserModel()
             return
         }
         let storage = Storage.storage()
@@ -44,16 +44,16 @@ class ProfileViewModel: ObservableObject {
             imageRef.downloadURL { (url, error) in
                 guard let downloadURL = url else {
                     // Uh-oh, an error occurred!
-                    self.uploadNewUserModel(authenticationModel: authenticationModel)
+                    self.uploadNewUserModel()
                     return
                 }
                 self.imageUrl = downloadURL.absoluteString
-                self.uploadNewUserModel(authenticationModel: authenticationModel)
+                self.uploadNewUserModel()
             }
         }
     }
     
-    func uploadNewUserModel(authenticationModel: AuthenticationViewModel) {
+    func uploadNewUserModel() {
         if let uid = Auth.auth().currentUser?.uid {
             Amplitude.instance().setUserId(uid)
             let userModel = UserModel(
@@ -67,7 +67,6 @@ class ProfileViewModel: ObservableObject {
                 major: major.isEmpty ? nil : major.trimmingCharacters(in: .whitespacesAndNewlines),
                 graduationYear: graduationYear
             )
-            authenticationModel.userModel = userModel
             let usersCollection = self.db.collection("users")
             do {
                 let _ = try usersCollection.document(uid).setData(from: userModel, merge: false) { error in
