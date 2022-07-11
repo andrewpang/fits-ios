@@ -25,7 +25,7 @@ struct TabsParentView: View {
                 Image(systemName: "plus.circle")
                 Text("Add Post")
               }.tag(2)
-            MyProfileView()
+            ProfileParentView()
              .tabItem {
                 Image(systemName: "person")
                 Text("Profile")

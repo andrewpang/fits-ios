@@ -77,7 +77,6 @@ struct PostDetailView: View {
                                 .clipShape(Circle())
                         }
                         Spacer()
-                        
                     }
                     .padding(.horizontal, 24)
                     

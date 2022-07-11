@@ -14,7 +14,7 @@
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
 		47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBF2843EFA40016D124 /* TabsParentView.swift */; };
-		472D80A0286D6D74008D1BB5 /* SetupStudentProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D809F286D6D74008D1BB5 /* SetupStudentProfileView.swift */; };
+		472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D809F286D6D74008D1BB5 /* EditProfileView.swift */; };
 		4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */; };
 		4736EEFB2867A9310033C49E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFA2867A9310033C49E /* Constants.swift */; };
 		4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */; };
@@ -77,6 +77,7 @@
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
+		47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E4287CD8BC005E424F /* ProfileParentView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -104,7 +105,7 @@
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		47283BBF2843EFA40016D124 /* TabsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsParentView.swift; sourceTree = "<group>"; };
-		472D809F286D6D74008D1BB5 /* SetupStudentProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SetupStudentProfileView.swift; sourceTree = "<group>"; };
+		472D809F286D6D74008D1BB5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
 		4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSMSViewController.swift; sourceTree = "<group>"; };
 		4736EEFA2867A9310033C49E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerWrapper.swift; sourceTree = "<group>"; };
@@ -159,6 +160,7 @@
 		47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSSignUpView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
 		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
+		47D112E4287CD8BC005E424F /* ProfileParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -210,7 +212,6 @@
 				47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */,
 				47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */,
 				476B6FD8286C18E00060589F /* SetNameOnboardingView.swift */,
-				472D809F286D6D74008D1BB5 /* SetupStudentProfileView.swift */,
 				4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */,
 				479FE9B22877F7E40030EE4D /* WelcomeVideoPlayerView.swift */,
 				4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */,
@@ -256,11 +257,11 @@
 			children = (
 				472D809E286D6CD7008D1BB5 /* Feed */,
 				472D809D286D6C94008D1BB5 /* Posting */,
+				47D112E3287CD88B005E424F /* Profile */,
 				472D809C286D6C6E008D1BB5 /* Onboarding */,
 				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
 				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
 				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
-				479FE99F287746180030EE4D /* MyProfileView.swift */,
 				4783445D283C63520022025E /* ContentView.swift */,
 				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
 			);
@@ -397,6 +398,16 @@
 				4710350E287A154E00D41E71 /* pexels-runway.mp4 */,
 			);
 			path = Videos;
+			sourceTree = "<group>";
+		};
+		47D112E3287CD88B005E424F /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				479FE99F287746180030EE4D /* MyProfileView.swift */,
+				47D112E4287CD8BC005E424F /* ProfileParentView.swift */,
+				472D809F286D6D74008D1BB5 /* EditProfileView.swift */,
+			);
+			path = Profile;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -573,6 +584,7 @@
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
 				4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */,
+				47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
@@ -591,7 +603,7 @@
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
-				472D80A0286D6D74008D1BB5 /* SetupStudentProfileView.swift in Sources */,
+				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,
 				47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
