@@ -145,7 +145,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
             let propertiesDict = ["wasSignupSuccessful": true,
                 ] as [String : Any]
             Amplitude.instance().logEvent("Confirm SMS Code - Clicked", withEventProperties: propertiesDict)
-            self.profileViewModel?.uploadProfilePhotoAndModel(authenticationModel: self.authenticationViewModel!)
+            self.profileViewModel?.uploadProfilePhotoAndModel()
             self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)
        }

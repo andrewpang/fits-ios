@@ -12,7 +12,8 @@ import Amplitude
 
 struct GalleryFeedView: View {
     
-    @ObservedObject var homeViewModel: HomeViewModel
+    @StateObject var homeViewModel = HomeViewModel()
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     
@@ -59,6 +60,7 @@ struct GalleryFeedView: View {
             .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)
         }
         .onAppear {
+            self.authenticationViewModel.checkIfSignedIn()
             requestNotificationPermissions()
             self.homeViewModel.fetchPosts()
             Amplitude.instance().logEvent("Home Feed Screen - View")

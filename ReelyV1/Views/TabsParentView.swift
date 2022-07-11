@@ -7,17 +7,18 @@
 
 import SwiftUI
 
+let homeIndex = 1
+
 struct TabsParentView: View {
-    @ObservedObject var homeViewModel = HomeViewModel()
     @StateObject var tabViewModel: TabViewModel = TabViewModel()
     
     var body: some View {
         TabView(selection: $tabViewModel.tabSelection) {
-            GalleryFeedView(homeViewModel: homeViewModel)
+            GalleryFeedView()
              .tabItem {
                 Image(systemName: "house")
                 Text("Home")
-              }.tag(1)
+              }.tag(homeIndex)
             PostParentView()
              .tabItem {
                 Image(systemName: "plus.circle")
@@ -31,7 +32,9 @@ struct TabsParentView: View {
         }
         .environmentObject(tabViewModel)
         .onChange(of: tabViewModel.tabSelection, perform: { index in
-            homeViewModel.fetchPosts()
+//            if (index == homeIndex) {
+//                homeViewModel.fetchPosts()
+//            }
         })
     }
 }

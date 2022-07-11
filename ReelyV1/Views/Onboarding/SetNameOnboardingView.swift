@@ -12,7 +12,7 @@ import Amplitude
 struct SetNameOnboardingView: View {
     
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
-    @ObservedObject var profileViewModel = ProfileViewModel()
+    @StateObject var profileViewModel = ProfileViewModel()
     
     enum FocusField: Hashable {
       case field
