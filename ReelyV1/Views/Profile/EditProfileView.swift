@@ -29,7 +29,21 @@ struct EditProfileView: View {
                     Spacer()
                 }
                 TextField("Your name", text: $displayNameTextField)
-                    .font(Font.custom(Constants.bodyFont, size: 24))
+                    .font(Font.custom(Constants.bodyFont, size: 18))
+                Divider()
+            }
+            
+            Group {
+                HStack {
+                    Text("What's your major?")
+                        .font(Font.custom(Constants.titleFont, size: 24))
+                        .foregroundColor(.black)
+                        .bold()
+                    Spacer()
+                }
+                TextField("Your major", text: $majorTextField)
+                    .font(Font.custom(Constants.bodyFont, size: 18))
+                Divider()
             }
             
             Group {
@@ -50,18 +64,6 @@ struct EditProfileView: View {
             
             Group {
                 HStack {
-                    Text("What's your major?")
-                        .font(Font.custom(Constants.titleFont, size: 24))
-                        .foregroundColor(.black)
-                        .bold()
-                    Spacer()
-                }
-                TextField("Your major", text: $majorTextField)
-                    .font(Font.custom(Constants.bodyFont, size: 24))
-            }
-            
-            Group {
-                HStack {
                     Text("Describe yourself")
                         .font(Font.custom(Constants.titleFont, size: 24))
                         .foregroundColor(.black)
@@ -69,11 +71,12 @@ struct EditProfileView: View {
                     Spacer()
                 }
                 TextField("Your bio", text: $bioTextField)
-                    .font(Font.custom(Constants.bodyFont, size: 24))
+                    .font(Font.custom(Constants.bodyFont, size: 18))
 //                    TextEditor(text: $bio)
 //                            .overlay(RoundedRectangle(cornerRadius: 8)
 //                                .stroke(Color.gray).opacity(0.3))
 //                            .frame(minHeight: 60)
+                Divider()
             }
 
             Spacer()
@@ -84,16 +87,20 @@ struct EditProfileView: View {
                 HStack {
                     Text("Update Profile")
                         .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                        .foregroundColor(.black)
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                .background(Color(Constants.onBoardingButtonColor))
-                .foregroundColor(.white)
+                .background(.blue)
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 24)
             })
         }.padding(24)
+            .onAppear {
+                self.displayNameTextField = authenticationViewModel.userModel?.displayName ?? ""
+                self.majorTextField = authenticationViewModel.userModel?.major ?? ""
+                self.graduationYearPicker = authenticationViewModel.userModel?.graduationYear ?? -1
+                self.bioTextField = authenticationViewModel.userModel?.bio ?? ""
+            }
     }
 }
 
