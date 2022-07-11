@@ -8,9 +8,11 @@
 import SwiftUI
 
 struct PostParentView: View {
+    @ObservedObject var homeViewModel: HomeViewModel
+    
     var body: some View {
         NavigationView {
-            PostCategoriesView()
+            PostCategoriesView(homeViewModel: homeViewModel)
         }
     }
 }

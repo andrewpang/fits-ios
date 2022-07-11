@@ -16,6 +16,7 @@ public struct PostModel: Identifiable, Codable, Hashable {
     var imageUrl: String
     var title: String
     var body: String
-    var likes: Int
+    var likes: Int?
     var tags: [String]?
+    var groupId: String?
 }

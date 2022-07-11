@@ -9,6 +9,7 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseFirestoreSwift
 
 class HomeViewModel: ObservableObject {
     
@@ -16,8 +17,17 @@ class HomeViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
-    func fetchPosts() {
-        db.collection("posts").order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+    //Hardcoded for FIT
+    let FITGroupId = "caSMxvTTCAZtARFCH6xK"
+
+    func fetchPosts(isAdmin: Bool) {
+        var fetchPostQuery: Query
+        if (isAdmin) {
+            fetchPostQuery = db.collection("posts").order(by: "createdAt", descending: true)
+        } else {
+            fetchPostQuery = db.collection("posts").whereField("groupId", isEqualTo: FITGroupId).order(by: "createdAt", descending: true)
+        }
+        fetchPostQuery.addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return

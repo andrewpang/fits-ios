@@ -14,9 +14,9 @@
             filePath = "ReelyV1/View Models/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "31"
-            endingLineNumber = "31"
-            landmarkName = "fetchPosts()"
+            startingLineNumber = "41"
+            endingLineNumber = "41"
+            landmarkName = "fetchPosts(isAdmin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -30,9 +30,9 @@
             filePath = "ReelyV1/View Models/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "23"
-            endingLineNumber = "23"
-            landmarkName = "fetchPosts()"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "fetchPosts(isAdmin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -46,9 +46,9 @@
             filePath = "ReelyV1/View Models/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "27"
-            endingLineNumber = "27"
-            landmarkName = "fetchPosts()"
+            startingLineNumber = "37"
+            endingLineNumber = "37"
+            landmarkName = "fetchPosts(isAdmin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
@@ -62,9 +62,9 @@
             filePath = "ReelyV1/View Models/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "28"
-            endingLineNumber = "28"
-            landmarkName = "fetchPosts()"
+            startingLineNumber = "38"
+            endingLineNumber = "38"
+            landmarkName = "fetchPosts(isAdmin:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
