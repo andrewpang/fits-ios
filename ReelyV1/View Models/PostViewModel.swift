@@ -41,7 +41,7 @@ class PostViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
-    func submitPost(postAuthorMap: PostAuthorMap) {
+    func submitPost(postAuthorMap: PostAuthorMap, groupId: String?, completion: @escaping () -> Void) {
         self.isSubmitting = true
         guard let imageData = postImage?.jpegData(compressionQuality: 0.5) else { return }
         let storage = Storage.storage()
@@ -56,13 +56,13 @@ class PostViewModel: ObservableObject {
                     // Uh-oh, an error occurred!
                     return
                 }
-                let postModel = PostModel(author: postAuthorMap, imageUrl: downloadURL.absoluteString, title: self.postTitle, body: self.postBody,  likes: 0, tags: self.postTags)
-                self.uploadPostModel(postModel: postModel)
+                let postModel = PostModel(author: postAuthorMap, imageUrl: downloadURL.absoluteString, title: self.postTitle, body: self.postBody,  likes: 0, tags: self.postTags, groupId: groupId)
+                self.uploadPostModel(postModel: postModel, completion: completion)
             }
         }
     }
     
-    func uploadPostModel(postModel: PostModel) {
+    func uploadPostModel(postModel: PostModel, completion: @escaping () -> Void) {
         let postsCollection = self.db.collection("posts")
         do {
             let _ = try postsCollection.addDocument(from: postModel) { error in
@@ -71,6 +71,7 @@ class PostViewModel: ObservableObject {
                 } else {
                     self.isSubmitting = false
                     self.resetData()
+                    completion()
                 }
             }
         }

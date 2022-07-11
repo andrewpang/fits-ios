@@ -13,7 +13,7 @@ struct AddPostView: View {
     @ObservedObject var postViewModel: PostViewModel
     @EnvironmentObject var tabViewModel: TabViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    
+    @ObservedObject var homeViewModel: HomeViewModel
     
     let postTitleCharacterLimit = 30
     
@@ -79,11 +79,12 @@ struct AddPostView: View {
                 Button(action: {
                     let propertiesDict = ["postType": postViewModel.postType as Any, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as [String : Any]
                     Amplitude.instance().logEvent("Submit Post - Clicked", withEventProperties: propertiesDict)
-                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap())
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+//                TODO: Change this logic once there are more non-FIT groups
+                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: authenticationViewModel.userModel?.groups?[0]) {
                         postViewModel.shouldPopToRootViewIfFalse = false
 //                    TODO: pop Home to root view also
                         tabViewModel.tabSelection = 1
+                        homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {

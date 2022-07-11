@@ -12,7 +12,7 @@ import Amplitude
 
 struct GalleryFeedView: View {
     
-    @StateObject var homeViewModel = HomeViewModel()
+    @ObservedObject var homeViewModel: HomeViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
@@ -62,7 +62,7 @@ struct GalleryFeedView: View {
         .onAppear {
             self.authenticationViewModel.checkIfSignedIn()
             requestNotificationPermissions()
-            self.homeViewModel.fetchPosts()
+            self.homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
             Amplitude.instance().logEvent("Home Feed Screen - View")
         }
     }

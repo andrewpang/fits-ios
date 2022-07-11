@@ -12,6 +12,7 @@ import Amplitude
 
 struct PostCategoriesView: View {
     @StateObject var postViewModel = PostViewModel()
+    @ObservedObject var homeViewModel: HomeViewModel
     
     @State var showPicker = false
     @State var showConfirmationDialog = false
@@ -23,7 +24,7 @@ struct PostCategoriesView: View {
             Color(Constants.backgroundColor).ignoresSafeArea()
             ScrollView {
                 VStack {
-                    NavigationLink(destination: AddPostView(postViewModel: postViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
+                    NavigationLink(destination: AddPostView(postViewModel: postViewModel, homeViewModel: homeViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                         EmptyView()
                     }
                     .isDetailLink(false)
@@ -197,11 +198,5 @@ struct PostCategoriesView: View {
                 Amplitude.instance().logEvent("Post Categories Screen - View")
             }
         }
-    }
-}
-
-struct PostCategoriesView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostCategoriesView()
     }
 }
