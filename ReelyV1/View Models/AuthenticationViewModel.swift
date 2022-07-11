@@ -8,8 +8,10 @@
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import FirebaseStorage
 import FirebaseMessaging
 import Amplitude
+import SwiftUI
 
 class AuthenticationViewModel: ObservableObject {
     
@@ -108,6 +110,38 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
+    func updateUserProfilePhoto(image: UIImage) {
+        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+            return
+        }
+        let storage = Storage.storage()
+        let imagesRef = storage.reference().child("profilePhotos").child(Auth.auth().currentUser?.uid ?? "noUserId")
+        let imageRef = imagesRef.child(UUID().uuidString)
+        
+        let uploadTask = imageRef.putData(imageData, metadata: nil) { metadata, error in
+            // You can also access to download URL after upload.
+            imageRef.downloadURL { (url, error) in
+                guard let downloadURL = url else {
+                    // Uh-oh, an error occurred!
+                    return
+                }
+                let imageUrl = downloadURL.absoluteString
+                if let uid = Auth.auth().currentUser?.uid {
+                    let profileRef = self.db.collection("users").document(uid)
+                    profileRef.updateData([
+                        "profilePicImageUrl": imageUrl as Any,
+                    ]) { err in
+                        if let err = err {
+                            print("Error updating profile pic: \(err)")
+                        } else {
+                            print("Profile pic successfully updated")
+                            self.getCurrentUserData()
+                        }
+                    }
+                }
+            }
+        }
+    }
     func getPostAuthorMap() -> PostAuthorMap {
         return PostAuthorMap(displayName: self.userModel?.displayName, profilePicImageUrl: self.userModel?.profilePicImageUrl, userId: self.userModel?.id, pushNotificationToken: Messaging.messaging().fcmToken)
     }

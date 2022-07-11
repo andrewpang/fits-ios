@@ -16,6 +16,7 @@ struct MyProfileView: View {
     @State var showPicker = false
     @State var sourceType: UIImagePickerController.SourceType = .photoLibrary
     @State var isEditMode = false
+    @State var selectedImage: UIImage? = nil
     
     var body: some View {
         VStack(spacing: 0) {
@@ -88,6 +89,8 @@ struct MyProfileView: View {
             Divider().padding(.vertical, 8)
             
             Spacer()
+            }.sheet(isPresented: $showPicker) {
+                ImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
             }.confirmationDialog("Sign Out", isPresented: $showSignOutConfirmationDialog) {
                 Button ("Sign Out") {
                     authenticationViewModel.signOut()
