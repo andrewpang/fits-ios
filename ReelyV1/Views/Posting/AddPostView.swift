@@ -86,9 +86,6 @@ struct AddPostView: View {
                         tabViewModel.tabSelection = 1
                         homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                     }
-//                    DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-//
-//                    }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
                     if (self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty) {
