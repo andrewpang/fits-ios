@@ -91,7 +91,12 @@ struct MyProfileView: View {
             Spacer()
             }.sheet(isPresented: $showPicker) {
                 ImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
-            }.confirmationDialog("Sign Out", isPresented: $showSignOutConfirmationDialog) {
+            }.onChange(of: selectedImage) { _ in
+                if let image = selectedImage {
+                    authenticationViewModel.updateUserProfilePhoto(image: image)
+                }
+            }
+            .confirmationDialog("Sign Out", isPresented: $showSignOutConfirmationDialog) {
                 Button ("Sign Out") {
                     authenticationViewModel.signOut()
                 }
