@@ -111,7 +111,7 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func updateUserProfilePhoto(image: UIImage) {
-        guard let imageData = image.jpegData(compressionQuality: 0.5) else {
+        guard let imageData = image.jpegData(compressionQuality: 0.25) else {
             return
         }
         let storage = Storage.storage()

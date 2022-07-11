@@ -31,7 +31,7 @@ class ProfileViewModel: ObservableObject {
     private var db = Firestore.firestore()
     
     func uploadProfilePhotoAndModel() {
-        guard let imageData = image?.jpegData(compressionQuality: 0.5) else {
+        guard let imageData = image?.jpegData(compressionQuality: 0.25) else {
             self.uploadNewUserModel()
             return
         }
