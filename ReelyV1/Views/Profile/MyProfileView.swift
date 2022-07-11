@@ -60,18 +60,29 @@ struct MyProfileView: View {
 //            Text(self.authenticationViewModel.userModel?.school ?? "Fashion Institute of Technology")
 //                .font(Font.custom(Constants.bodyFont, size: 16))
             Group {
-                Text(self.authenticationViewModel.userModel?.major ?? "No Major Set")
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-                if (self.authenticationViewModel.userModel?.graduationYear ?? -1 > 2000) {
-                    Text(String(self.authenticationViewModel.userModel?.graduationYear ?? -1))
+                if ((self.authenticationViewModel.userModel?.major ?? "").isEmpty) {
+                    Text("No Major Set")
                         .font(Font.custom(Constants.bodyFont, size: 16))
                 } else {
-                    Text("No Graduation Year Set")
+                    Text((self.authenticationViewModel.userModel?.major)!)
                         .font(Font.custom(Constants.bodyFont, size: 16))
                 }
-                Text(self.authenticationViewModel.userModel?.bio ?? "No Bio Set")
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-                    .multilineTextAlignment(.center)
+                
+                if (self.authenticationViewModel.userModel?.graduationYear ?? -1 == -1) {
+                    Text("No Graduation Year Set")
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                } else {
+                    Text(String((self.authenticationViewModel.userModel?.graduationYear)!))
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                }
+                
+                if ((self.authenticationViewModel.userModel?.bio ?? "").isEmpty) {
+                    Text("No Bio Set")
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                } else {
+                    Text((self.authenticationViewModel.userModel?.bio)!)
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                }
             }.padding(.vertical, 4)
             
             Divider().padding(.vertical, 8)

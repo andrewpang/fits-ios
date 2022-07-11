@@ -10,12 +10,12 @@ import SwiftUI
 struct EditProfileView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @Environment(\.presentationMode) var presentationMode
     
     @State var displayNameTextField = ""
     @State var graduationYearPicker = -1
     @State var majorTextField = ""
     @State var bioTextField = ""
-    
     
     var body: some View {
         VStack {
@@ -82,7 +82,8 @@ struct EditProfileView: View {
             Spacer()
             
             Button(action: {
-                //Update and dismiss
+                authenticationViewModel.updateUserModel(displayName: displayNameTextField, major: majorTextField, graduationYear: graduationYearPicker, bio: bioTextField)
+                self.presentationMode.wrappedValue.dismiss()
             }, label: {
                 HStack {
                     Text("Update Profile")

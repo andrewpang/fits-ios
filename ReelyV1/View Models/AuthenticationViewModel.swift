@@ -89,6 +89,25 @@ class AuthenticationViewModel: ObservableObject {
         }
     }
     
+    func updateUserModel(displayName: String?, major: String?, graduationYear: Int?, bio: String?) {
+        if let uid = Auth.auth().currentUser?.uid {
+            let profileRef = self.db.collection("users").document(uid)
+            profileRef.updateData([
+                "displayName": displayName as Any,
+                "major": major as Any,
+                "graduationYear": graduationYear as Any,
+                "bio": bio as Any
+            ]) { err in
+                if let err = err {
+                    print("Error updating profile: \(err)")
+                } else {
+                    print("Profile successfully updated")
+                    self.getCurrentUserData()
+                }
+            }
+        }
+    }
+    
     func getPostAuthorMap() -> PostAuthorMap {
         return PostAuthorMap(displayName: self.userModel?.displayName, profilePicImageUrl: self.userModel?.profilePicImageUrl, userId: self.userModel?.id, pushNotificationToken: Messaging.messaging().fcmToken)
     }
