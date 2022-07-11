@@ -7,13 +7,31 @@
 
 import SwiftUI
 
-struct SetupStudentProfileView: View {
+struct EditProfileView: View {
     
-    @ObservedObject var profileViewModel: ProfileViewModel
-    @State var navigateToNextView = false
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    
+    @State var displayNameTextField = ""
+    @State var graduationYearPicker = -1
+    @State var majorTextField = ""
+    @State var bioTextField = ""
+    
     
     var body: some View {
         VStack {
+            Spacer()
+            Group {
+                HStack {
+                    Text("What do you want to be called?")
+                        .font(Font.custom(Constants.titleFont, size: 24))
+                        .foregroundColor(.black)
+                        .bold()
+                    Spacer()
+                }
+                TextField("Your name", text: $displayNameTextField)
+                    .font(Font.custom(Constants.bodyFont, size: 24))
+            }
+            
             Group {
                 HStack {
                     Text("What class are you?")
@@ -22,7 +40,7 @@ struct SetupStudentProfileView: View {
                         .bold()
                     Spacer()
                 }
-                Picker("", selection: $profileViewModel.graduationYear) {
+                Picker("", selection: $graduationYearPicker) {
                     ForEach(2023...2026, id: \.self) {
                         Text(String($0))
                     }
@@ -38,8 +56,8 @@ struct SetupStudentProfileView: View {
                         .bold()
                     Spacer()
                 }
-                TextField("Your major", text: $profileViewModel.major)
-                    .font(Font.custom(Constants.titleFont, size: 24))
+                TextField("Your major", text: $majorTextField)
+                    .font(Font.custom(Constants.bodyFont, size: 24))
             }
             
             Group {
@@ -50,14 +68,8 @@ struct SetupStudentProfileView: View {
                         .bold()
                     Spacer()
                 }
-//                HStack {
-//                    Text("Tell us a bit about yourself, what you’re studying, what year you are, etc.")
-//                        .font(Font.custom(Constants.bodyFont, size: 16))
-//                        .foregroundColor(.gray)
-//                    Spacer()
-//                }
-                TextField("Your bio", text: $profileViewModel.bio)
-                    .font(Font.custom(Constants.titleFont, size: 24))
+                TextField("Your bio", text: $bioTextField)
+                    .font(Font.custom(Constants.bodyFont, size: 24))
 //                    TextEditor(text: $bio)
 //                            .overlay(RoundedRectangle(cornerRadius: 8)
 //                                .stroke(Color.gray).opacity(0.3))
@@ -66,9 +78,11 @@ struct SetupStudentProfileView: View {
 
             Spacer()
             
-            NavigationLink(destination: SignUpControllerWrapper(profileViewModel: profileViewModel), isActive: $navigateToNextView) {
+            Button(action: {
+                //Update and dismiss
+            }, label: {
                 HStack {
-                    Text("Continue")
+                    Text("Update Profile")
                         .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                         .foregroundColor(.black)
                 }
@@ -78,20 +92,13 @@ struct SetupStudentProfileView: View {
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 24)
-            }
+            })
         }.padding(24)
-        .toolbar {
-            ToolbarItemGroup(placement: .navigationBarTrailing) {
-                Button("Skip for now") {
-                    self.navigateToNextView = true
-                }
-            }
-        }
     }
 }
 
-struct SetupStudentProfileView_Previews: PreviewProvider {
-    static var previews: some View {
-        SetupStudentProfileView(profileViewModel: ProfileViewModel())
-    }
-}
+//struct SetupStudentProfileView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        EditProfileView(profileViewModel: ProfileViewModel())
+//    }
+//}
