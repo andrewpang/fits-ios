@@ -17,6 +17,7 @@ struct Constants {
     
     static let phoneNumberKey = "Phone Number"
     static let adminGroupId = "fQTfqOQPsDDikn4DK4CB"
+    static let FITGroupId = "caSMxvTTCAZtARFCH6xK"
     
     static let onboardingTextSize: CGFloat = 32
     static let onboardingLineSpacing: CGFloat = 6
