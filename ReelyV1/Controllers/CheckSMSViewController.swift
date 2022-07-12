@@ -149,8 +149,6 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
             self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)
        }
-               
-        
     }
     
     override func viewWillDisappear(_ animated: Bool) {
