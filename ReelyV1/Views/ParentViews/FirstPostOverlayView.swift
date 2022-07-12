@@ -107,6 +107,9 @@ struct FirstPostOverlayView: View {
                 } message: {
                     Text ("Choose a picture from your photo library, or take one now!")
                 }
+                .onAppear {
+                    Amplitude.instance().logEvent("First Post Overlay - View")
+                }
                 .sheet(isPresented: $showPicker) {
                     ImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
                         if (postViewModel.postImage != nil) {
