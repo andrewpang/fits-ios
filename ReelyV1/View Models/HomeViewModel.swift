@@ -14,8 +14,11 @@ import FirebaseFirestoreSwift
 class HomeViewModel: ObservableObject {
     
     @Published var postsData = PostsModel()
+    @Published var showIntroPostOverlay = false
     
     private var db = Firestore.firestore()
+    
+    let limitTimesToSeeIntroPostOverlay = 5
 
     func fetchPosts(isAdmin: Bool) {
         var fetchPostQuery: Query
@@ -42,5 +45,19 @@ class HomeViewModel: ObservableObject {
                 self.postsData = PostsModel(postModels: postList)
             }
         }
+    }
+    
+    func checkIfShouldShowIntroPostOverlay() {
+        let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay") + 1
+        UserDefaults.standard.set(numberOfTimesSeenIntroPostOverlay, forKey: "numberOfTimesSeenIntroPostOverlay")
+        guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay) else {
+            self.showIntroPostOverlay = true
+            return
+        }
+    }
+    
+    func setIntroPostMade() {
+        showIntroPostOverlay = false
+        UserDefaults.standard.set(true, forKey: "hasPostedIntroPost")
     }
 }

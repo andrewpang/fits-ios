@@ -78,6 +78,7 @@
 		47A9DE86286A30F900DF76CE /* SMSSignUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE85286A30F900DF76CE /* SMSSignUpView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
 		47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E4287CD8BC005E424F /* ProfileParentView.swift */; };
+		47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E6287E1714005E424F /* FirstPostOverlayView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 /* End PBXBuildFile section */
 
@@ -161,6 +162,7 @@
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
 		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
 		47D112E4287CD8BC005E424F /* ProfileParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentView.swift; sourceTree = "<group>"; };
+		47D112E6287E1714005E424F /* FirstPostOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPostOverlayView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -255,15 +257,12 @@
 		473C69E6283C766D00D4D15E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				47D112E8287E1E30005E424F /* ParentViews */,
 				472D809E286D6CD7008D1BB5 /* Feed */,
 				472D809D286D6C94008D1BB5 /* Posting */,
 				47D112E3287CD88B005E424F /* Profile */,
+				47D112E9287E1E4D005E424F /* Utilities */,
 				472D809C286D6C6E008D1BB5 /* Onboarding */,
-				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
-				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
-				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
-				4783445D283C63520022025E /* ContentView.swift */,
-				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -408,6 +407,26 @@
 				472D809F286D6D74008D1BB5 /* EditProfileView.swift */,
 			);
 			path = Profile;
+			sourceTree = "<group>";
+		};
+		47D112E8287E1E30005E424F /* ParentViews */ = {
+			isa = PBXGroup;
+			children = (
+				47283BBF2843EFA40016D124 /* TabsParentView.swift */,
+				4783445D283C63520022025E /* ContentView.swift */,
+				478131682846C95700106B57 /* LoadingSplashScreenView.swift */,
+				47D112E6287E1714005E424F /* FirstPostOverlayView.swift */,
+			);
+			path = ParentViews;
+			sourceTree = "<group>";
+		};
+		47D112E9287E1E4D005E424F /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
+				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
+			);
+			path = Utilities;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -584,6 +603,7 @@
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
 				4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */,
+				47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */,
 				47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,

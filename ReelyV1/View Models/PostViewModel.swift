@@ -13,10 +13,6 @@ import FirebaseAuth
 import SwiftUI
 
 class PostViewModel: ObservableObject {
-//    enum PostType: String {
-//        case OOTD = "ootd"
-//    }
-    
     @Published var postsData = PostsModel()
     @Published var isSubmitting = false
     @Published var shouldPopToRootViewIfFalse = false
@@ -33,6 +29,8 @@ class PostViewModel: ObservableObject {
                 return Constants.ootdRecommendedDetails
             } else if (postType == "productReview") {
                 return Constants.productReviewRecommendedDetails
+            } else if (postType == "intro") {
+                return Constants.introRecommendedDetails
             } else {
                 return ""
             }

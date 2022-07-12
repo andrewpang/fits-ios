@@ -44,4 +44,5 @@ struct Constants {
     
     static let ootdRecommendedDetails = "- Name the products in the photo\n- Where did you buy the items?\n- How much did the outfit cost?\n- Share the story behind the photo/outfit\n- Other details"
     static let productReviewRecommendedDetails = "- How much did it cost?\n- Describe the quality and material\n- Describe the sizing\n- Provide brand details (e.g. sustainable, minority-owned business, etc.)"
+    static let introRecommendedDetails = "- Tell us a bit about yourself, you can keep it simple and fun!\n- Where are you from?\n- What are you studying?\n- Who are some of your favorite designers/brands?"
 }
