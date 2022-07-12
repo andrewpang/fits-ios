@@ -61,7 +61,7 @@ class AuthenticationViewModel: ObservableObject {
                     self.state = .signedIn
                 } else {
                     print("Auth: Empty Profile")
-                    self.state = .signedOut //TODO: might have to bring up part of onboarding flow again
+                    self.state = .signedIn //TODO: might have to bring up part of onboarding flow again
                 }
                 self.saveFCMDeviceToken()
                 Amplitude.instance().setUserId(uid)
