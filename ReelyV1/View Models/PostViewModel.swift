@@ -30,7 +30,7 @@ class PostViewModel: ObservableObject {
             } else if (postType == "productReview") {
                 return Constants.productReviewRecommendedDetails
             } else if (postType == "intro") {
-                return Constants.productReviewRecommendedDetails
+                return Constants.introRecommendedDetails
             } else {
                 return ""
             }

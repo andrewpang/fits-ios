@@ -34,6 +34,7 @@ struct AddPostView: View {
                         .font(Font.custom(Constants.titleFontBold, size: 16))
                     Text("Required (Max. 30 Characters)")
                         .font(Font.custom(Constants.bodyFont, size: 12))
+                        .foregroundColor(.gray)
                     TextField("Title", text: $postViewModel.postTitle)
                         .font(Font.custom(Constants.titleFont, size: 16))
                         .textFieldStyle(RoundedBorderTextFieldStyle())
@@ -83,6 +84,7 @@ struct AddPostView: View {
                     postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
                         postViewModel.shouldPopToRootViewIfFalse = false
 //                    TODO: pop Home to root view also
+                        homeViewModel.setIntroPostMade()
                         tabViewModel.tabSelection = 1
                         homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                     }

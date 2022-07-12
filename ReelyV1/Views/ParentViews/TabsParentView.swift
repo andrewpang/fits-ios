@@ -33,7 +33,7 @@ struct TabsParentView: View {
                   }.tag(3)
             }
             if (homeViewModel.showIntroPostOverlay) {
-                FirstPostOverlayView()
+                FirstPostOverlayView(homeViewModel: homeViewModel)
             }
         }
         .environmentObject(tabViewModel)
