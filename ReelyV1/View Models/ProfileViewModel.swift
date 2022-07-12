@@ -26,7 +26,6 @@ class ProfileViewModel: ObservableObject {
     
     //HARDCODED FOR FIT
     let school: String = "Fashion Institute of Technology"
-    let FITGroupId = "caSMxvTTCAZtARFCH6xK"
     
     private var db = Firestore.firestore()
     
@@ -61,7 +60,7 @@ class ProfileViewModel: ObservableObject {
                 displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines),
                 bio: bio.isEmpty ? nil : bio.trimmingCharacters(in: .whitespacesAndNewlines),
                 profilePicImageUrl: imageUrl.isEmpty ? nil : imageUrl,
-                groups: [FITGroupId],
+                groups: [Constants.FITGroupId],
                 phoneNumber: phoneNumber,
                 school: school.isEmpty ? nil : school.trimmingCharacters(in: .whitespacesAndNewlines),
                 major: major.isEmpty ? nil : major.trimmingCharacters(in: .whitespacesAndNewlines),

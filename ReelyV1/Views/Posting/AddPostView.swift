@@ -80,7 +80,7 @@ struct AddPostView: View {
                     let propertiesDict = ["postType": postViewModel.postType as Any, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as [String : Any]
                     Amplitude.instance().logEvent("Submit Post - Clicked", withEventProperties: propertiesDict)
 //                TODO: Change this logic once there are more non-FIT groups
-                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: authenticationViewModel.userModel?.groups?[0]) {
+                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
                         postViewModel.shouldPopToRootViewIfFalse = false
 //                    TODO: pop Home to root view also
                         tabViewModel.tabSelection = 1

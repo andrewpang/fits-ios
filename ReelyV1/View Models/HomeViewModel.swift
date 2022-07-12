@@ -20,10 +20,14 @@ class HomeViewModel: ObservableObject {
     func fetchPosts(isAdmin: Bool) {
         var fetchPostQuery: Query
         if (isAdmin) {
-            fetchPostQuery = db.collection("posts").order(by: "createdAt", descending: true)
+            fetchPostQuery = db.collection("posts")
+                .order(by: "createdAt", descending: true)
         } else {
-            fetchPostQuery = db.collection("posts").whereField("groupId", isEqualTo: Constants.FITGroupId).order(by: "createdAt", descending: true)
+            fetchPostQuery = db.collection("posts")
+                .whereField("groupId", isEqualTo: Constants.FITGroupId)
+                .order(by: "createdAt", descending: true)
         }
+        
         fetchPostQuery.addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
