@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Amplitude
 
 struct MyProfileView: View {
     
@@ -137,7 +138,7 @@ struct MyProfileView: View {
             }.navigationBarTitle("", displayMode: .inline)
             .padding(.horizontal, 24)
             .onAppear {
-                //TODO: Add Amplitude
+                Amplitude.instance().logEvent("My Profile Screen - View")
             }.sheet(isPresented: $isEditMode, content: {
                 EditProfileView()
             })
