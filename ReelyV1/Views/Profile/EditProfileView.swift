@@ -103,7 +103,7 @@ struct EditProfileView: View {
                 self.majorTextField = authenticationViewModel.userModel?.major ?? ""
                 self.graduationYearPicker = authenticationViewModel.userModel?.graduationYear ?? -1
                 self.bioTextField = authenticationViewModel.userModel?.bio ?? ""
-                Amplitude.instance().logEvent("Edit Profile Screen - View", withEventProperties: propertiesDict)
+                Amplitude.instance().logEvent("Edit Profile Screen - View")
             }
     }
 }
