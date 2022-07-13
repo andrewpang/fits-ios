@@ -89,10 +89,10 @@ struct EditProfileView: View {
                 HStack {
                     Text("Update Profile")
                         .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                        .foregroundColor(.white)
+                        .foregroundColor(Color(Constants.backgroundColor))
                 }
                 .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-                .background(.blue)
+                .background(Color(Constants.darkBackgroundColor))
                 .cornerRadius(Constants.buttonCornerRadius)
                 .padding(.horizontal, 40)
                 .padding(.vertical, 24)
