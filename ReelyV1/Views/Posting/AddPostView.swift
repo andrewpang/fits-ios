@@ -30,10 +30,11 @@ struct AddPostView: View {
                                 .frame(maxHeight: 200)
                     }
                     if (postViewModel.postType == "intro") {
-                        Text("Post Title")
+                        Text("Post Title:")
                             .font(Font.custom(Constants.titleFontBold, size: 16)) +
-                        Text(" (think of this as a headline):")
+                        Text(" (think of this as a headline)")
                             .font(Font.custom(Constants.bodyFont, size: 16))
+                            .foregroundColor(.gray)
                     } else {
                         Text("Post Title:")
                             .font(Font.custom(Constants.titleFontBold, size: 16))
@@ -55,8 +56,9 @@ struct AddPostView: View {
                 if (postViewModel.postType == "intro") {
                     Text("Note:")
                         .font(Font.custom(Constants.titleFontBold, size: 16)) +
-                    Text(" (see recommended details below):")
+                    Text(" (see recommended details below)")
                         .font(Font.custom(Constants.bodyFont, size: 16))
+                        .foregroundColor(.gray)
                 } else {
                     Text("Note:")
                         .font(Font.custom(Constants.titleFontBold, size: 16))
