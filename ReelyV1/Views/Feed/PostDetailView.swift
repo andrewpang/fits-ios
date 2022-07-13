@@ -13,6 +13,7 @@ struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    let generator = UINotificationFeedbackGenerator()
     
     enum PostDetailFocusField: Hashable {
        case commentField
@@ -85,6 +86,41 @@ struct PostDetailView: View {
                         .padding(.top)
                         .padding(.horizontal, 24)
                         .padding(.vertical, 8)
+                    
+                    HStack {
+//                        Spacer()
+                        if (postDetailViewModel.isLiked) {
+                            Button(action: {
+                                generator.notificationOccurred(.error)
+                                postDetailViewModel.isLiked.toggle()
+                            }, label: {
+                                Image(systemName: "hands.clap.fill")
+                                    .font(.system(size: 28.0, weight: .light))
+                                    .padding(.vertical, 8)
+                                    .foregroundColor(.gray)
+                            })
+                            Text("Liked by others + you")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 4)
+                        } else {
+                            Button(action: {
+                                generator.notificationOccurred(.success)
+                                postDetailViewModel.isLiked.toggle()
+                            }, label: {
+                                Image(systemName: "hands.clap")
+                                    .font(.system(size: 28.0, weight: .light))
+                                    .padding(.vertical, 8)
+                                    .foregroundColor(.gray)
+                            })
+                            Text("Liked by others")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 4)
+                        }
+                        
+                        Spacer()
+                    }.padding(.horizontal, 24)
                     
                     Divider()
                         .padding(.horizontal, 24)
