@@ -31,7 +31,7 @@ struct TabsParentView: View {
                     Image(systemName: "person")
                     Text("Profile")
                   }.tag(3)
-            }
+            }.accentColor(Color(Constants.darkBackgroundColor))
             if (homeViewModel.showIntroPostOverlay) {
                 FirstPostOverlayView(homeViewModel: homeViewModel)
             }
