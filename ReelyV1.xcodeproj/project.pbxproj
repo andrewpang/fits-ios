@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		4705BEEA287E40BE00CB6A58 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705BEE9287E40BE00CB6A58 /* MailView.swift */; };
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		4710350D287A071400D41E71 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710350C287A071400D41E71 /* Secrets.swift */; };
 		4710350F287A154E00D41E71 /* pexels-runway.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4710350E287A154E00D41E71 /* pexels-runway.mp4 */; };
@@ -100,6 +101,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		4705BEE9287E40BE00CB6A58 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		4710350C287A071400D41E71 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		4710350E287A154E00D41E71 /* pexels-runway.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pexels-runway.mp4"; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
@@ -425,6 +427,7 @@
 			children = (
 				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
 				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
+				4705BEE9287E40BE00CB6A58 /* MailView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -602,6 +605,7 @@
 				473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
+				4705BEEA287E40BE00CB6A58 /* MailView.swift in Sources */,
 				4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */,
 				47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */,
 				47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */,
