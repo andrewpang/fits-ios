@@ -30,13 +30,15 @@ class LoopingPlayerUIView: UIView {
     override init(frame: CGRect) {
         super.init(frame: frame)
         // Load the resource -> h
-        let fileUrl = Bundle.main.url(forResource: videoName, withExtension: "mp4")!
-        let asset = AVAsset(url: fileUrl)
+//        let fileUrl = Bundle.main.url(forResource: videoName, withExtension: "mp4")!
+        let videoUrl = URL(string: Constants.welcomeScreenVideoUrl)!
+        let asset = AVAsset(url: videoUrl)
         let item = AVPlayerItem(asset: asset)
         // Setup the player
         let player = AVQueuePlayer()
         player.isMuted = true
         let audioSession = AVAudioSession.sharedInstance()
+        // Don't kill audio in other apps
         if audioSession.isOtherAudioPlaying {
             _ = try? audioSession.setCategory(AVAudioSession.Category.ambient, options: AVAudioSession.CategoryOptions.mixWithOthers)
         }
@@ -46,7 +48,7 @@ class LoopingPlayerUIView: UIView {
         // Create a new player looper with the queue player and template item
         playerLooper = AVPlayerLooper(player: player, templateItem: item)
         // Start the movie
-        player.play()
+        player.playImmediately(atRate: 1.0)
     }
     override func layoutSubviews() {
         super.layoutSubviews()

@@ -42,8 +42,12 @@ struct WelcomeView: View {
                 }
             }
             .background(
-                WelcomeVideoPlayerView()
-                    .edgesIgnoringSafeArea(.all)
+                ZStack {
+                    Image("WelcomeFirstFrame")
+                        .edgesIgnoringSafeArea(.all)
+                    WelcomeVideoPlayerView()
+                        .edgesIgnoringSafeArea(.all)
+                }
             )
         }.onAppear {
             Amplitude.instance().logEvent("Welcome Screen - View")
