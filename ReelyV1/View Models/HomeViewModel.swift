@@ -48,13 +48,12 @@ class HomeViewModel: ObservableObject {
     }
     
     func checkIfShouldShowIntroPostOverlay() {
-        self.showIntroPostOverlay = true
-//        let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay") + 1
-//        UserDefaults.standard.set(numberOfTimesSeenIntroPostOverlay, forKey: "numberOfTimesSeenIntroPostOverlay")
-//        guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay) else {
-//            self.showIntroPostOverlay = true
-//            return
-//        }
+        let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay") + 1
+        UserDefaults.standard.set(numberOfTimesSeenIntroPostOverlay, forKey: "numberOfTimesSeenIntroPostOverlay")
+        guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay) else {
+            self.showIntroPostOverlay = true
+            return
+        }
     }
     
     func setIntroPostMade() {
