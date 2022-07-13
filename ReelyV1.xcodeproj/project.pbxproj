@@ -10,7 +10,6 @@
 		4705BEEA287E40BE00CB6A58 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705BEE9287E40BE00CB6A58 /* MailView.swift */; };
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		4710350D287A071400D41E71 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4710350C287A071400D41E71 /* Secrets.swift */; };
-		4710350F287A154E00D41E71 /* pexels-runway.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = 4710350E287A154E00D41E71 /* pexels-runway.mp4 */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
@@ -103,7 +102,6 @@
 /* Begin PBXFileReference section */
 		4705BEE9287E40BE00CB6A58 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		4710350C287A071400D41E71 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
-		4710350E287A154E00D41E71 /* pexels-runway.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = "pexels-runway.mp4"; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -396,7 +394,6 @@
 		479FE9AF2877F40C0030EE4D /* Videos */ = {
 			isa = PBXGroup;
 			children = (
-				4710350E287A154E00D41E71 /* pexels-runway.mp4 */,
 			);
 			path = Videos;
 			sourceTree = "<group>";
@@ -568,7 +565,6 @@
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
 				479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
-				4710350F287A154E00D41E71 /* pexels-runway.mp4 in Resources */,
 				479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

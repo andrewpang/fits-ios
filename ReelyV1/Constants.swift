@@ -47,5 +47,6 @@ struct Constants {
     static let productReviewRecommendedDetails = "- How much did it cost?\n- Describe the quality and material\n- Describe the sizing\n- Provide brand details (e.g. sustainable, minority-owned business, etc.)"
     static let introRecommendedDetails = "- Tell us about yourself and why you joined this community\n- Share details about the outfit in the pic (brand, where'd you buy it, quality, meaning, etc.)\n- Share a story about the look"
     
+    static let welcomeScreenVideoUrl = "https://firebasestorage.googleapis.com/v0/b/reelyv1.appspot.com/o/appImages%2FFITs_Welcome_Compressed.mp4?alt=media&token=48a0987d-95c9-4bf4-b3d2-cc9e46ef3367"
     static let firstPostGifUrl = "https://firebasestorage.googleapis.com/v0/b/reelyv1.appspot.com/o/appImages%2FFITs_Onboarding_Compressed.gif?alt=media&token=ecd17086-3c70-4726-910d-3e79371b7893"
 }
