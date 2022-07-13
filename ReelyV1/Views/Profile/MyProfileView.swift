@@ -19,6 +19,12 @@ struct MyProfileView: View {
     @State var isEditMode = false
     @State var selectedImage: UIImage? = nil
     
+    @State private var mailData = ComposeMailData(subject: "Feedback for FIT(s)",
+                                                    recipients: ["feedback@fitsatfit.com"],
+                                                    message: "Email us feedback/questions/comments and we'll get back to you soon!",
+                                                    attachments: nil)
+    @State private var showMailView = false
+    
     var body: some View {
         VStack(spacing: 0) {
             Text(self.authenticationViewModel.userModel?.displayName ?? "Name")
@@ -55,6 +61,7 @@ struct MyProfileView: View {
             }, label: {
                 Text("Update Profile Photo")
                     .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(Color.gray)
             }).padding(.bottom, 16)
             
             Divider().padding(.vertical, 8)
@@ -90,6 +97,27 @@ struct MyProfileView: View {
             Divider().padding(.vertical, 8)
             
             Spacer()
+            
+            Button(action: {
+                showMailView.toggle()
+            }) {
+                HStack {
+                    Text("Contact/Give Feedback")
+                        .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                        .foregroundColor(Color(Constants.backgroundColor))
+                }
+                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+                .background(Color(Constants.darkBackgroundColor))
+                .cornerRadius(Constants.buttonCornerRadius)
+                .padding(.horizontal, 40)
+                .padding(.bottom, 24)
+            }
+            .disabled(!MailView.canSendMail)
+            .sheet(isPresented: $showMailView) {
+                MailView(data: $mailData) { result in
+                    print(result)
+                }
+            }
             }.sheet(isPresented: $showPicker) {
                 ImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
             }.onChange(of: selectedImage) { _ in
@@ -121,6 +149,7 @@ struct MyProfileView: View {
                     Button("Sign Out") {
                         self.showSignOutConfirmationDialog = true
                     }
+                    .foregroundColor(Color.gray)
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     HStack {
@@ -128,8 +157,8 @@ struct MyProfileView: View {
                             .font(Font.custom(Constants.bodyFont, size: 16))
                     }.padding(.vertical, 4)
                     .padding(.horizontal, 16)
-                    .background(Color.blue)
-                    .foregroundColor(.white)
+                    .background(Color(Constants.darkBackgroundColor))
+                    .foregroundColor(Color(Constants.backgroundColor))
                     .cornerRadius(10)
                     .onTapGesture {
                         self.isEditMode = true
