@@ -15,6 +15,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var postModel: PostModel
     @Published var commentsData = CommentsModel()
     @Published var commentText = ""
+    @Published var isLiked = false
     
     private var db = Firestore.firestore()
     
