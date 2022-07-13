@@ -46,4 +46,6 @@ struct Constants {
     static let ootdRecommendedDetails = "- Name the products in the photo\n- Where did you buy the items?\n- How much did the outfit cost?\n- Share the story behind the photo/outfit\n- Other details"
     static let productReviewRecommendedDetails = "- How much did it cost?\n- Describe the quality and material\n- Describe the sizing\n- Provide brand details (e.g. sustainable, minority-owned business, etc.)"
     static let introRecommendedDetails = "- Tell us about yourself and why you joined this community\n- Share details about the outfit in the pic (brand, where'd you buy it, quality, meaning, etc.)\n- Share a story about the look"
+    
+    static let firstPostGifUrl = "https://firebasestorage.googleapis.com/v0/b/reelyv1.appspot.com/o/appImages%2FFITs_Onboarding_Compressed.gif?alt=media&token=ecd17086-3c70-4726-910d-3e79371b7893"
 }
