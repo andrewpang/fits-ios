@@ -29,9 +29,17 @@ struct AddPostView: View {
                                 .scaledToFit()
                                 .frame(maxHeight: 200)
                     }
+                    if (postViewModel.postType == "intro") {
+                        Text("Post Title:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16)) +
+                        Text(" (think of this as a headline)")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .foregroundColor(.gray)
+                    } else {
+                        Text("Post Title:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                    }
                     
-                    Text("Post Title:")
-                        .font(Font.custom(Constants.titleFontBold, size: 16))
                     Text("Required (Max. 30 Characters)")
                         .font(Font.custom(Constants.bodyFont, size: 12))
                         .foregroundColor(.gray)
@@ -45,8 +53,17 @@ struct AddPostView: View {
                             }
                           }
                 }
-                Text("Note:")
-                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                if (postViewModel.postType == "intro") {
+                    Text("Note:")
+                        .font(Font.custom(Constants.titleFontBold, size: 16)) +
+                    Text(" (see recommended details below)")
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                        .foregroundColor(.gray)
+                } else {
+                    Text("Note:")
+                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                }
+                
                 Text("Required (Max. 500 Characters)")
                     .font(Font.custom(Constants.bodyFont, size: 12))
                     .foregroundColor(.gray)
