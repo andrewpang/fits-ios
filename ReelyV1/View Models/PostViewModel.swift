@@ -54,7 +54,7 @@ class PostViewModel: ObservableObject {
                     // Uh-oh, an error occurred!
                     return
                 }
-                let postModel = PostModel(author: postAuthorMap, imageUrl: downloadURL.absoluteString, title: self.postTitle, body: self.postBody,  likes: 0, tags: self.postTags, groupId: groupId)
+                let postModel = PostModel(author: postAuthorMap, imageUrl: downloadURL.absoluteString, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId)
                 self.uploadPostModel(postModel: postModel, completion: completion)
             }
         }

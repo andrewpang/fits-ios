@@ -92,7 +92,7 @@ struct PostDetailView: View {
                         if (postDetailViewModel.isLiked) {
                             Button(action: {
                                 generator.notificationOccurred(.error)
-                                postDetailViewModel.isLiked.toggle()
+                                postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
                             }, label: {
                                 Image(systemName: "hands.clap.fill")
                                     .font(.system(size: 28.0, weight: .light))
@@ -106,7 +106,7 @@ struct PostDetailView: View {
                         } else {
                             Button(action: {
                                 generator.notificationOccurred(.success)
-                                postDetailViewModel.isLiked.toggle()
+                                postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
                             }, label: {
                                 Image(systemName: "hands.clap")
                                     .font(.system(size: 28.0, weight: .light))

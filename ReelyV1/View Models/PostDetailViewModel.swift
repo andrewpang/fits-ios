@@ -29,7 +29,7 @@ class PostDetailViewModel: ObservableObject {
             do {
                 let _ = try commentsCollection.addDocument(from: commentModel) { error in
                     if let error = error {
-                        print("Error adding comment: \(error)")
+                        print("Error adding CommentModel: \(error)")
                     } else {
                         self.commentText = ""
                     }
@@ -55,6 +55,42 @@ class PostDetailViewModel: ObservableObject {
                 }
                 DispatchQueue.main.async {
                     self.commentsData = CommentsModel(commentModels: commentsList)
+                }
+            }
+        }
+    }
+    
+    func likePost(likeModel: LikeModel) {
+        if let postId = postModel.id {
+            if let userId = likeModel.author.userId {
+                let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                do {
+                    let _ = try likeDocument.setData(from: likeModel) { error in
+                        if let error = error {
+                            print("Error adding LikeModel: \(error)")
+                        } else {
+                            self.isLiked = true
+                        }
+                    }
+                }
+                catch {
+                    print (error)
+                }
+            }
+        }
+    }
+    
+    func unlikePost(userId: String?) {
+        if let userId = userId {
+            if let postId = postModel.id {
+                let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                likeDocument.delete() { err in
+                    if let err = err {
+                        print("Error removing like document: \(err)")
+                    } else {
+                        print("Document successfully removed!")
+                        self.isLiked = false
+                    }
                 }
             }
         }
