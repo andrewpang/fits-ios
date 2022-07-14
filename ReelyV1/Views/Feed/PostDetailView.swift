@@ -190,6 +190,10 @@ struct PostDetailView: View {
                 ] as [String : Any]
             Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)
             self.postDetailViewModel.fetchComments()
+            self.postDetailViewModel.fetchLikeModel(userId: authenticationViewModel.userModel?.id) 
+        }
+        .onDisappear {
+            self.postDetailViewModel.removeListeners()
         }
     }
 }
