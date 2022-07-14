@@ -93,6 +93,8 @@ struct PostDetailView: View {
                             Button(action: {
                                 generator.notificationOccurred(.error)
                                 postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
+                                let propertiesDict = ["isLike": false as Bool] as [String : Any]
+                                Amplitude.instance().logEvent("Like Button - Clicked", withEventProperties: propertiesDict)
                             }, label: {
                                 Image(systemName: "hands.clap.fill")
                                     .font(.system(size: 28.0, weight: .light))
@@ -107,6 +109,8 @@ struct PostDetailView: View {
                             Button(action: {
                                 generator.notificationOccurred(.success)
                                 postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
+                                let propertiesDict = ["isLike": true as Bool] as [String : Any]
+                                Amplitude.instance().logEvent("Like Button - Clicked", withEventProperties: propertiesDict)
                             }, label: {
                                 Image(systemName: "hands.clap")
                                     .font(.system(size: 28.0, weight: .light))
