@@ -55,14 +55,12 @@ struct GalleryFeedView: View {
                 .isDetailLink(false)
                 Color(Constants.backgroundColor).ignoresSafeArea()
                 StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
-                    NavigationLink(destination: PostDetailView(homeViewModel: homeViewModel, postDetailViewModel: PostDetailViewModel(postModel: post)), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
                         Button(action: {
                             postDetailViewModel = PostDetailViewModel(postModel: post)
                             homeViewModel.shouldPopToRootViewIfFalse = true
                         }, label: {
                             PostCardView(post: post)
                         })
-                    }
                 }).padding(.horizontal, 8)
             }.navigationBarTitle("")
             .navigationBarHidden(true)

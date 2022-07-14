@@ -100,7 +100,7 @@ struct AddPostView: View {
 //                TODO: Change this logic once there are more non-FIT groups
                     postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
                         postViewModel.shouldPopToRootViewIfFalse = false
-//                    TODO: pop Home to root view also
+                        homeViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.setIntroPostMade()
                         tabViewModel.tabSelection = 1
                         homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
