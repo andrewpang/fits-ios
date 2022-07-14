@@ -102,7 +102,7 @@ struct PostDetailView: View {
                                     .padding(.vertical, 8)
                                     .foregroundColor(.gray)
                             })
-                            Text("Liked by others + you")
+                            Text(postDetailViewModel.likeText + " + you")
                                 .font(Font.custom(Constants.bodyFont, size: 16))
                                 .foregroundColor(.gray)
                                 .padding(.horizontal, 4)
@@ -118,7 +118,7 @@ struct PostDetailView: View {
                                     .padding(.vertical, 8)
                                     .foregroundColor(.gray)
                             })
-                            Text("Liked by others")
+                            Text(postDetailViewModel.likeText)
                                 .font(Font.custom(Constants.bodyFont, size: 16))
                                 .foregroundColor(.gray)
                                 .padding(.horizontal, 4)
@@ -195,7 +195,7 @@ struct PostDetailView: View {
                 ] as [String : Any]
             Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)
             self.postDetailViewModel.fetchComments()
-            self.postDetailViewModel.fetchLikeModel(userId: authenticationViewModel.userModel?.id) 
+            self.postDetailViewModel.fetchLikes(userId: authenticationViewModel.userModel?.id) 
         }
         .onDisappear {
             self.postDetailViewModel.removeListeners()
