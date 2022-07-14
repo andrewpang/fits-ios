@@ -25,7 +25,6 @@ struct EditProfileView: View {
                 HStack {
                     Text("What do you want to be called?")
                         .font(Font.custom(Constants.titleFont, size: 24))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }
@@ -38,7 +37,6 @@ struct EditProfileView: View {
                 HStack {
                     Text("What's your major?")
                         .font(Font.custom(Constants.titleFont, size: 24))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }
@@ -51,7 +49,6 @@ struct EditProfileView: View {
                 HStack {
                     Text("What class are you?")
                         .font(Font.custom(Constants.titleFont, size: 24))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }
@@ -67,7 +64,6 @@ struct EditProfileView: View {
                 HStack {
                     Text("Describe yourself")
                         .font(Font.custom(Constants.titleFont, size: 24))
-                        .foregroundColor(.black)
                         .bold()
                     Spacer()
                 }
