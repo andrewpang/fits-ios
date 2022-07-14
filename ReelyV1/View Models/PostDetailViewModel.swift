@@ -19,6 +19,9 @@ class PostDetailViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
+    var commentsListener: ListenerRegistration?
+    var likesListener: ListenerRegistration?
+    
     init(postModel: PostModel) {
         self.postModel = postModel
     }
@@ -29,7 +32,7 @@ class PostDetailViewModel: ObservableObject {
             do {
                 let _ = try commentsCollection.addDocument(from: commentModel) { error in
                     if let error = error {
-                        print("Error adding comment: \(error)")
+                        print("Error adding CommentModel: \(error)")
                     } else {
                         self.commentText = ""
                     }
@@ -43,7 +46,7 @@ class PostDetailViewModel: ObservableObject {
     
     func fetchComments() {
         if let postId = postModel.id {
-            db.collection("posts").document(postId).collection("comments").order(by: "createdAt", descending: false).addSnapshotListener { (querySnapshot, error) in
+            commentsListener = db.collection("posts").document(postId).collection("comments").order(by: "createdAt", descending: false).addSnapshotListener { (querySnapshot, error) in
                 guard let documents = querySnapshot?.documents else {
                     print("No documents")
                     return
@@ -58,6 +61,68 @@ class PostDetailViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func likePost(likeModel: LikeModel) {
+        if let postId = postModel.id {
+            if let userId = likeModel.author.userId {
+                let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                do {
+                    let _ = try likeDocument.setData(from: likeModel) { error in
+                        if let error = error {
+                            print("Error adding LikeModel: \(error)")
+                        } else {
+                            print("LikeModel successfully added!")
+                        }
+                    }
+                }
+                catch {
+                    print (error)
+                }
+            }
+        }
+    }
+    
+    func unlikePost(userId: String?) {
+        if let userId = userId {
+            if let postId = postModel.id {
+                let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                likeDocument.delete() { err in
+                    if let err = err {
+                        print("Error removing like document: \(err)")
+                    } else {
+                        print("LikeModel successfully removed!")
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchLikeModel(userId: String?) {
+        if let userId = userId {
+            if let postId = postModel.id {
+                let likeDocument = db.collection("posts").document(postId).collection("likes").document(userId)
+                likesListener = likeDocument.addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        self.isLiked = false
+                        return
+                    }
+                    guard let data = document.data() else {
+                        print("Document data was empty.")
+                        self.isLiked = false
+                        return
+                    }
+                    print("Current data: \(data)")
+                    self.isLiked = true
+                  }
+            }
+        }
+    }
+    
+    func removeListeners() {
+        commentsListener?.remove()
+        likesListener?.remove()
     }
 }
     
