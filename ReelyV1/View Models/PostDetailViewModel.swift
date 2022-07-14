@@ -67,12 +67,16 @@ class PostDetailViewModel: ObservableObject {
         if let postId = postModel.id {
             if let userId = likeModel.author.userId {
                 let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                let postDocument = self.db.collection("posts").document(postId)
                 do {
-                    let _ = try likeDocument.setData(from: likeModel) { error in
-                        if let error = error {
-                            print("Error adding LikeModel: \(error)")
+                    let batch = db.batch()
+                    try batch.setData(from: likeModel, forDocument: likeDocument, merge: true)
+                    batch.updateData(["likesCount": FieldValue.increment(Int64(1))], forDocument: postDocument)
+                    batch.commit() { err in
+                        if let err = err {
+                            print("Error writing likePost batch \(err)")
                         } else {
-                            print("LikeModel successfully added!")
+                            print("Batch write for likePost succeeded.")
                         }
                     }
                 }
@@ -87,11 +91,15 @@ class PostDetailViewModel: ObservableObject {
         if let userId = userId {
             if let postId = postModel.id {
                 let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
-                likeDocument.delete() { err in
+                let postDocument = self.db.collection("posts").document(postId)
+                let batch = db.batch()
+                batch.deleteDocument(likeDocument)
+                batch.updateData(["likesCount": FieldValue.increment(Int64(-1))], forDocument: postDocument)
+                batch.commit() { err in
                     if let err = err {
-                        print("Error removing like document: \(err)")
+                        print("Error writing unlikePost batch \(err)")
                     } else {
-                        print("LikeModel successfully removed!")
+                        print("Batch write for unlikePost succeeded.")
                     }
                 }
             }
