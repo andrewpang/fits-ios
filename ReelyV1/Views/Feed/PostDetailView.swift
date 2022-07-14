@@ -9,7 +9,8 @@ import SwiftUI
 import Kingfisher
 import Amplitude
 
-struct PostDetailView: View {    
+struct PostDetailView: View {
+    @ObservedObject var homeViewModel: HomeViewModel //TODO: Leaving here in case we need to pop to root
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     

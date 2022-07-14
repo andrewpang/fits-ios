@@ -16,6 +16,7 @@ struct GalleryFeedView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
+    @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
@@ -48,10 +49,16 @@ struct GalleryFeedView: View {
     var body: some View {
         NavigationView {
             ZStack {
+                NavigationLink(destination: PostDetailView(homeViewModel: homeViewModel, postDetailViewModel: postDetailViewModel), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
+                    EmptyView()
+                }
+                .isDetailLink(false)
                 Color(Constants.backgroundColor).ignoresSafeArea()
                 StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
-                    NavigationLink(destination: PostDetailView(postDetailViewModel: PostDetailViewModel(postModel: post)),
-                                       label: {
+                        Button(action: {
+                            postDetailViewModel = PostDetailViewModel(postModel: post)
+                            homeViewModel.shouldPopToRootViewIfFalse = true
+                        }, label: {
                             PostCardView(post: post)
                         })
                 }).padding(.horizontal, 8)
@@ -59,6 +66,7 @@ struct GalleryFeedView: View {
             .navigationBarHidden(true)
             .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)
         }
+        .navigationViewStyle(.stack)
         .onAppear {
             self.authenticationViewModel.checkIfSignedIn()
             requestNotificationPermissions()
