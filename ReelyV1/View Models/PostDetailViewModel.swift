@@ -16,6 +16,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var commentsData = CommentsModel()
     @Published var commentText = ""
     @Published var isLiked = false
+    @Published var likeText = ""
     
     private var db = Firestore.firestore()
     
@@ -34,7 +35,9 @@ class PostDetailViewModel: ObservableObject {
                     if let error = error {
                         print("Error adding CommentModel: \(error)")
                     } else {
-                        self.commentText = ""
+                        DispatchQueue.main.async {
+                            self.commentText = ""
+                        }
                     }
                 }
             }
@@ -106,24 +109,68 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func fetchLikeModel(userId: String?) {
+    func fetchLikes(userId: String?) {
+        fetchUserHasLikePost(userId: userId)
+        fetchRecentLikers(userId: userId)
+    }
+    
+    func fetchUserHasLikePost(userId: String?) {
         if let userId = userId {
             if let postId = postModel.id {
                 let likeDocument = db.collection("posts").document(postId).collection("likes").document(userId)
                 likesListener = likeDocument.addSnapshotListener { documentSnapshot, error in
                     guard let document = documentSnapshot else {
                         print("Error fetching document: \(error!)")
-                        self.isLiked = false
+                        DispatchQueue.main.async {
+                            self.isLiked = false
+                        }
                         return
                     }
                     guard let data = document.data() else {
                         print("Document data was empty.")
-                        self.isLiked = false
+                        DispatchQueue.main.async {
+                            self.isLiked = false
+                        }
                         return
                     }
                     print("Current data: \(data)")
-                    self.isLiked = true
-                  }
+                    DispatchQueue.main.async {
+                        self.isLiked = true
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchRecentLikers(userId: String?) {
+        if let postId = postModel.id {
+            db.collection("posts").document(postId).collection("likes").order(by: "createdAt", descending: true).limit(toLast: 3).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting likers: \(err)")
+                } else {
+                    for document in querySnapshot!.documents {
+                        print("\(document.documentID) => \(document.data())")
+                    }
+                    var recentLikers = [LikeModel]()
+                    recentLikers = querySnapshot!.documents.compactMap { querySnapshot -> LikeModel? in
+                        return try? querySnapshot.data(as: LikeModel.self)
+                    }.filter({ likeModel in
+                        likeModel.author.userId != userId
+                    })
+                    
+                    var likeString: String
+                    if (recentLikers.isEmpty) {
+                        likeString = "Liked by others"
+                    } else if (recentLikers.count == 1) {
+                        likeString = "Liked by \(String(recentLikers[0].author.displayName ?? "")) and others"
+                    } else {
+                        likeString = "Liked by \(String(recentLikers[0].author.displayName ?? "")), \(String(describing: recentLikers[1].author.displayName ?? "")) and others"
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.likeText = likeString
+                    }
+                }
             }
         }
     }
