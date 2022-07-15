@@ -67,6 +67,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func likePost(likeModel: LikeModel) {
+        postModel.incrementLikesCount(number: +1)
         if let postId = postModel.id {
             if let userId = likeModel.author.userId {
                 let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
@@ -91,6 +92,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func unlikePost(userId: String?) {
+        postModel.incrementLikesCount(number: -1)
         if let userId = userId {
             if let postId = postModel.id {
                 let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
@@ -111,7 +113,7 @@ class PostDetailViewModel: ObservableObject {
     
     func fetchLikes(userId: String?) {
         fetchUserHasLikePost(userId: userId)
-        fetchRecentLikers(userId: userId)
+//        fetchRecentLikers(userId: userId)
     }
     
     func fetchUserHasLikePost(userId: String?) {
