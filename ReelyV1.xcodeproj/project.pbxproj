@@ -328,7 +328,6 @@
 		47834458283C63520022025E /* ReelyV1 */ = {
 			isa = PBXGroup;
 			children = (
-				479FE9AF2877F40C0030EE4D /* Videos */,
 				479FE9A32877881E0030EE4D /* Fonts */,
 				47A9DE87286A808200DF76CE /* ReelyV1.entitlements */,
 				4736EEF72867A84D0033C49E /* Controllers */,
@@ -392,13 +391,6 @@
 				479FE9A8287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf */,
 			);
 			path = "Kinfolk Fonts";
-			sourceTree = "<group>";
-		};
-		479FE9AF2877F40C0030EE4D /* Videos */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Videos;
 			sourceTree = "<group>";
 		};
 		47D112E3287CD88B005E424F /* Profile */ = {
