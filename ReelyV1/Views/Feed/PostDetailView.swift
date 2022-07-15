@@ -102,10 +102,17 @@ struct PostDetailView: View {
                                     .padding(.vertical, 8)
                                     .foregroundColor(.gray)
                             })
-                            Text(postDetailViewModel.likeText + " + you")
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                                .padding(.horizontal, 4)
+                            if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
+                                Text("Applauded by others + you!")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal, 4)
+                            } else {
+                                Text("Applauded by you!")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal, 4)
+                            }
                         } else {
                             Button(action: {
                                 generator.notificationOccurred(.success)
@@ -118,10 +125,17 @@ struct PostDetailView: View {
                                     .padding(.vertical, 8)
                                     .foregroundColor(.gray)
                             })
-                            Text(postDetailViewModel.likeText)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                                .padding(.horizontal, 4)
+                            if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
+                                Text("Applauded by others!")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal, 4)
+                            } else {
+                                Text("Be the first to applaud!")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                                    .foregroundColor(.gray)
+                                    .padding(.horizontal, 4)
+                            }
                         }
                         
                         Spacer()

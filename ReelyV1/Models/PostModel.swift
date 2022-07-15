@@ -19,4 +19,10 @@ public struct PostModel: Identifiable, Codable, Hashable {
     var likesCount: Int?
     var tags: [String]?
     var groupId: String?
+    
+    mutating func incrementLikesCount(number: Int) {
+        if (likesCount != nil) {
+            likesCount! += number
+        }
+    }
 }
