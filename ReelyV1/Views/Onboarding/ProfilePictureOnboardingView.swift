@@ -80,7 +80,7 @@ struct ProfilePictureOnboardingView: View {
             }
         }.padding(.horizontal, 24)
         .sheet(isPresented: $showPicker) {
-            ImagePicker(selectedImage: $profileViewModel.image, isPresented: $showPicker, sourceType: sourceType)
+            UIImagePicker(selectedImage: $profileViewModel.image, isPresented: $showPicker, sourceType: sourceType)
         }.confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
             Button ("Photo Library") {
                 self.showPicker = true

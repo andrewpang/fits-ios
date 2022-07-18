@@ -119,7 +119,7 @@ struct MyProfileView: View {
                 }
             }
             }.sheet(isPresented: $showPicker) {
-                ImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
+                UIImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
             }.onChange(of: selectedImage) { _ in
                 if let image = selectedImage {
                     authenticationViewModel.updateUserProfilePhoto(image: image)

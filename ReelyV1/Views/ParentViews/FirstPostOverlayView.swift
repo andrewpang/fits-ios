@@ -114,7 +114,7 @@ struct FirstPostOverlayView: View {
                     Amplitude.instance().logEvent("First Post Overlay - View")
                 }
                 .sheet(isPresented: $showPicker) {
-                    ImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
+                    UIImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
                         if (postViewModel.postImage != nil) {
                             self.postViewModel.postTags = [postViewModel.postType]
                             self.postViewModel.shouldPopToRootViewIfFalse = true
