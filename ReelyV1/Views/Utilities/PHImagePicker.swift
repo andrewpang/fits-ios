@@ -9,17 +9,19 @@ import SwiftUI
 import PhotosUI
 
 struct PHImagePicker: UIViewControllerRepresentable {
-  @Binding var pickerResult: UIImage?
-  @Binding var isPresented: Bool
-  
-  func makeUIViewController(context: Context) -> some UIViewController {
-    var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
-    configuration.filter = .images // filter only to images
-    configuration.selectionLimit = 1
+    @Binding var pickerResult: UIImage?
+    @Binding var isPresented: Bool
     
-    let photoPickerViewController = PHPickerViewController(configuration: configuration)
-    photoPickerViewController.delegate = context.coordinator
-    return photoPickerViewController
+    @Environment(\.presentationMode) private var presentationMode
+    
+    func makeUIViewController(context: Context) -> some UIViewController {
+        var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
+        configuration.filter = .images // filter only to images
+        configuration.selectionLimit = 5
+    
+        let photoPickerViewController = PHPickerViewController(configuration: configuration)
+        photoPickerViewController.delegate = context.coordinator
+        return photoPickerViewController
   }
   
   func updateUIViewController(_ uiViewController: UIViewControllerType, context: Context) { }
@@ -51,9 +53,8 @@ struct PHImagePicker: UIViewControllerRepresentable {
               print("Can't load asset")
             }
         }
-        DispatchQueue.main.async {
-            self.parent.isPresented = false
-        }
+        
+        parent.presentationMode.wrappedValue.dismiss()
     }
   }
 }
