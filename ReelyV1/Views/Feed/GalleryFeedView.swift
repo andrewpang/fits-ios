@@ -69,7 +69,7 @@ struct GalleryFeedView: View {
                             columnsInPortrait: 2,
                             columnsInLandscape: 3,
                             spacing: 8,
-                            animation: .easeInOut(duration: 0.5)
+                            animation: .none
                         )
                         .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
                     }
