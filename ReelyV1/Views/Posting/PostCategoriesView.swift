@@ -12,6 +12,7 @@ import Amplitude
 
 struct PostCategoriesView: View {
     @StateObject var postViewModel = PostViewModel()
+    @StateObject var mediaItems = PickedMediaItems()
     @ObservedObject var homeViewModel: HomeViewModel
     
     @State var showPicker = false
@@ -24,7 +25,7 @@ struct PostCategoriesView: View {
             Color(Constants.backgroundColor).ignoresSafeArea()
             ScrollView {
                 VStack {
-                    NavigationLink(destination: AddPostView(postViewModel: postViewModel, homeViewModel: homeViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
+                    NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                         EmptyView()
                     }
                     .isDetailLink(false)
@@ -186,10 +187,20 @@ struct PostCategoriesView: View {
                 .padding(.vertical, 8)
             }.navigationBarHidden(true)
             .sheet(isPresented: $showPicker) {
-                UIImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
-                    if (postViewModel.postImage != nil) {
-                        self.postViewModel.postTags = [postViewModel.postType]
-                        self.postViewModel.shouldPopToRootViewIfFalse = true
+                if (sourceType == .camera) {
+                    UIImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
+                        if (postViewModel.postImage != nil) {
+                            self.postViewModel.postTags = [postViewModel.postType]
+                            self.postViewModel.shouldPopToRootViewIfFalse = true
+                        }
+                    }
+                } else {
+                    PHImagePicker(mediaItems: mediaItems) { didSelectItem in
+                        showPicker = false
+                        if (didSelectItem) {
+                            self.postViewModel.postTags = [postViewModel.postType]
+                            self.postViewModel.shouldPopToRootViewIfFalse = true
+                        }
                     }
                 }
             }

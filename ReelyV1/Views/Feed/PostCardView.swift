@@ -13,7 +13,7 @@ struct PostCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            KFImage(URL(string: post.imageUrl))
+            KFImage(URL(string: post.imageUrl ?? ""))
                 .resizable()
                 .aspectRatio(contentMode: .fit)
             HStack {

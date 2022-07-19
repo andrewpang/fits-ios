@@ -8,16 +8,18 @@
 import SwiftUI
 import PhotosUI
 
-struct PHImagePicker: UIViewControllerRepresentable {
-    @Binding var pickerResult: UIImage?
-    @Binding var isPresented: Bool
+struct PHImagePicker: UIViewControllerRepresentable {    
+    @ObservedObject var mediaItems: PickedMediaItems
+    var didFinishPicking: (_ didSelectItems: Bool) -> Void
     
     @Environment(\.presentationMode) private var presentationMode
     
     func makeUIViewController(context: Context) -> some UIViewController {
         var configuration = PHPickerConfiguration(photoLibrary: PHPhotoLibrary.shared())
         configuration.filter = .images // filter only to images
+        configuration.selection = .ordered
         configuration.selectionLimit = 5
+        configuration.preferredAssetRepresentationMode = .current
     
         let photoPickerViewController = PHPickerViewController(configuration: configuration)
         photoPickerViewController.delegate = context.coordinator
@@ -38,23 +40,83 @@ struct PHImagePicker: UIViewControllerRepresentable {
     }
     
     func picker(_ picker: PHPickerViewController, didFinishPicking results: [PHPickerResult]) {
-        for image in results {
-            if image.itemProvider.canLoadObject(ofClass: UIImage.self) {
-              image.itemProvider.loadObject(ofClass: UIImage.self) { [weak self] newImage, error in
-                if let error = error {
-                  print("Can't load image \(error.localizedDescription)")
-                } else if let image = newImage as? UIImage {
-                    DispatchQueue.main.async {
-                        self?.parent.pickerResult = image
-                    }
-                }
-              }
-            } else {
-              print("Can't load asset")
-            }
+        parent.didFinishPicking(!results.isEmpty)
+        
+        guard !results.isEmpty else {
+            return
         }
         
-        parent.presentationMode.wrappedValue.dismiss()
+        for result in results {
+            let itemProvider = result.itemProvider
+            
+            guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
+                  let utType = UTType(typeIdentifier)
+            else { continue }
+            
+            if utType.conforms(to: .image) {
+                self.getPhoto(from: itemProvider, isLivePhoto: false)
+            } else if utType.conforms(to: .movie) {
+                // Do nothing for now with videos
+//                self.getVideo(from: itemProvider, typeIdentifier: typeIdentifier)
+            } else {
+                //For now, just pull UIImage from Live Photos
+                self.getPhoto(from: itemProvider, isLivePhoto: false)
+            }
+        }
     }
+      
+      private func getPhoto(from itemProvider: NSItemProvider, isLivePhoto: Bool) {
+          let objectType: NSItemProviderReading.Type = !isLivePhoto ? UIImage.self : PHLivePhoto.self
+                  
+          if itemProvider.canLoadObject(ofClass: objectType) {
+              let progress: Progress?
+              progress = itemProvider.loadObject(ofClass: objectType) { object, error in
+                  if let error = error {
+                      print(error.localizedDescription)
+                  }
+                          
+                  if !isLivePhoto {
+                      if let image = object as? UIImage {
+                          DispatchQueue.main.async {
+                              self.parent.mediaItems.append(item: PhotoPickerModel(with: image))
+                          }
+                      }
+                  } else {
+                      if let livePhoto = object as? PHLivePhoto {
+                          DispatchQueue.main.async {
+                              self.parent.mediaItems.append(item: PhotoPickerModel(with: livePhoto))
+                          }
+                      }
+                  }
+              }
+          }
+      }
+      
+      private func getVideo(from itemProvider: NSItemProvider, typeIdentifier: String) {
+          itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
+              if let error = error {
+                  print(error.localizedDescription)
+              }
+              
+              guard let url = url else { return }
+              
+              let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+              guard let targetURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent) else { return }
+              
+              do {
+                  if FileManager.default.fileExists(atPath: targetURL.path) {
+                      try FileManager.default.removeItem(at: targetURL)
+                  }
+                  
+                  try FileManager.default.copyItem(at: url, to: targetURL)
+                  
+                  DispatchQueue.main.async {
+                      self.parent.mediaItems.append(item: PhotoPickerModel(with: targetURL))
+                  }
+              } catch {
+                  print(error.localizedDescription)
+              }
+          }
+      }
   }
 }

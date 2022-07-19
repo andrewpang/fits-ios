@@ -13,7 +13,8 @@ public struct PostModel: Identifiable, Codable, Hashable {
     @DocumentID public var id: String? = UUID().uuidString
     @ServerTimestamp var createdAt: Timestamp?
     var author: PostAuthorMap
-    var imageUrl: String
+    var imageUrl: String?
+    var imageUrls: [String]?
     var title: String
     var body: String
     var likesCount: Int?
