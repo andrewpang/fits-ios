@@ -81,6 +81,7 @@
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47FC5D86288116B9000B9794 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D85288116B9000B9794 /* Secrets.swift */; };
 		47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 47FC5D99288663F8000B9794 /* WaterfallGrid */; };
+		47FC5D88288627F3000B9794 /* PhotoPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -165,6 +166,7 @@
 		47D112E6287E1714005E424F /* FirstPostOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPostOverlayView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47FC5D85288116B9000B9794 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
+		47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -279,6 +281,7 @@
 				479FE995287554E10030EE4D /* CommentModel.swift */,
 				479FE99D287625F90030EE4D /* TokenModel.swift */,
 				47A29792287FD6E100761026 /* LikeModel.swift */,
+				47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -596,6 +599,7 @@
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
+				47FC5D88288627F3000B9794 /* PhotoPickerModel.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
