@@ -13,9 +13,17 @@ struct PostCardView: View {
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            KFImage(URL(string: post.imageUrl ?? ""))
-                .resizable()
-                .aspectRatio(contentMode: .fit)
+            if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
+                KFImage(URL(string: imageUrls[0]))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            } else {
+                //TODO: Clean this up after everyone is ported over to imageUrls array
+                KFImage(URL(string: post.imageUrl ?? ""))
+                    .resizable()
+                    .aspectRatio(contentMode: .fit)
+            }
+            
             HStack {
                 Spacer()
                 Text(post.title)
