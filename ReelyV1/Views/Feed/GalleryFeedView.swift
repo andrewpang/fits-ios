@@ -9,6 +9,7 @@ import SwiftUI
 import PermissionsSwiftUINotification
 import FirebaseMessaging
 import Amplitude
+import WaterfallGrid
 
 struct GalleryFeedView: View {
     
@@ -54,14 +55,25 @@ struct GalleryFeedView: View {
                 }
                 .isDetailLink(false)
                 Color(Constants.backgroundColor).ignoresSafeArea()
-                StaggeredGrid(columns: 2, list: homeViewModel.postsData.postModels ?? [], content: { post in
-                        Button(action: {
-                            postDetailViewModel = PostDetailViewModel(postModel: post)
-                            homeViewModel.shouldPopToRootViewIfFalse = true
-                        }, label: {
-                            PostCardView(post: post)
-                        })
-                }).padding(.horizontal, 8)
+                ScrollView(.vertical, showsIndicators: false) {
+                    if let postModels = homeViewModel.postsData.postModels {
+                        WaterfallGrid(postModels) { post in
+                            Button(action: {
+                                postDetailViewModel = PostDetailViewModel(postModel: post)
+                                homeViewModel.shouldPopToRootViewIfFalse = true
+                            }, label: {
+                                PostCardView(post: post)
+                            })
+                        }
+                        .gridStyle(
+                            columnsInPortrait: 2,
+                            columnsInLandscape: 3,
+                            spacing: 8,
+                            animation: .easeInOut(duration: 0.5)
+                        )
+                        .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
+                    }
+                }
             }.navigationBarTitle("")
             .navigationBarHidden(true)
             .JMAlert(showModal: $showNotificationPermissionModal, for: [.notification], restrictDismissal: false, autoDismiss: true)

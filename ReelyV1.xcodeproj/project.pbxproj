@@ -18,9 +18,8 @@
 		4736EEFB2867A9310033C49E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFA2867A9310033C49E /* Constants.swift */; };
 		4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */; };
 		473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69E7283C768700D4D15E /* GalleryFeedView.swift */; };
-		473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69EF283C76F700D4D15E /* StaggeredGrid.swift */; };
 		473C69FE283C821400D4D15E /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69FD283C821400D4D15E /* AddPostView.swift */; };
-		473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */; };
+		473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A41283C89A200D4D15E /* PHImagePicker.swift */; };
 		473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A46283C8EB800D4D15E /* PostsModel.swift */; };
 		473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A4B283C8ED800D4D15E /* PostModel.swift */; };
 		473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */; };
@@ -39,7 +38,7 @@
 		4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */; };
 		4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */; };
 		4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */; };
-		4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC02286FBE68008ED1BF /* ImagePicker.swift */; };
+		4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC02286FBE68008ED1BF /* UIImagePicker.swift */; };
 		4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC042870BDE0008ED1BF /* PostViewModel.swift */; };
 		4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC062870C642008ED1BF /* PostAuthorMap.swift */; };
 		4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4761CC082870E09B008ED1BF /* TabViewModel.swift */; };
@@ -81,6 +80,7 @@
 		47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E6287E1714005E424F /* FirstPostOverlayView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47FC5D86288116B9000B9794 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D85288116B9000B9794 /* Secrets.swift */; };
+		47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 47FC5D99288663F8000B9794 /* WaterfallGrid */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,16 +111,15 @@
 		4736EEFA2867A9310033C49E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerWrapper.swift; sourceTree = "<group>"; };
 		473C69E7283C768700D4D15E /* GalleryFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryFeedView.swift; sourceTree = "<group>"; };
-		473C69EF283C76F700D4D15E /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		473C69FD283C821400D4D15E /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
-		473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryPicker.swift; sourceTree = "<group>"; };
+		473C6A41283C89A200D4D15E /* PHImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImagePicker.swift; sourceTree = "<group>"; };
 		473C6A46283C8EB800D4D15E /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		473C6A4B283C8ED800D4D15E /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
 		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
-		4761CC02286FBE68008ED1BF /* ImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
+		4761CC02286FBE68008ED1BF /* UIImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIImagePicker.swift; sourceTree = "<group>"; };
 		4761CC042870BDE0008ED1BF /* PostViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostViewModel.swift; sourceTree = "<group>"; };
 		4761CC062870C642008ED1BF /* PostAuthorMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostAuthorMap.swift; sourceTree = "<group>"; };
 		4761CC082870E09B008ED1BF /* TabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewModel.swift; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 				479FE99028750FEF0030EE4D /* PermissionsSwiftUINotification in Frameworks */,
 				4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */,
 				4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */,
+				47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */,
 				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
 				4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */,
 				471035092878C01A00D41E71 /* Amplitude in Frameworks */,
@@ -242,7 +242,6 @@
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
 				479FE99928755B930030EE4D /* CommentsView.swift */,
 				479FE99B28755C1F0030EE4D /* CommentRowView.swift */,
-				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -417,8 +416,8 @@
 		47D112E9287E1E4D005E424F /* Utilities */ = {
 			isa = PBXGroup;
 			children = (
-				4761CC02286FBE68008ED1BF /* ImagePicker.swift */,
-				473C6A41283C89A200D4D15E /* PhotoGalleryPicker.swift */,
+				4761CC02286FBE68008ED1BF /* UIImagePicker.swift */,
+				473C6A41283C89A200D4D15E /* PHImagePicker.swift */,
 				4705BEE9287E40BE00CB6A58 /* MailView.swift */,
 			);
 			path = Utilities;
@@ -457,6 +456,7 @@
 				479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */,
 				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
 				471035082878C01A00D41E71 /* Amplitude */,
+				47FC5D99288663F8000B9794 /* WaterfallGrid */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FITs.app */;
@@ -536,6 +536,7 @@
 				4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */,
 				471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -595,7 +596,7 @@
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
 				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
-				473C6A42283C89A300D4D15E /* PhotoGalleryPicker.swift in Sources */,
+				473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
 				4705BEEA287E40BE00CB6A58 /* MailView.swift in Sources */,
@@ -612,10 +613,9 @@
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
-				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
 				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
-				4761CC03286FBE68008ED1BF /* ImagePicker.swift in Sources */,
+				4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
@@ -1019,6 +1019,14 @@
 				minimumVersion = 3.4.0;
 			};
 		};
+		47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1101,6 +1109,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */;
 			productName = PermissionsSwiftUIPhoto;
+		};
+		47FC5D99288663F8000B9794 /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
 		};
 /* End XCSwiftPackageProductDependency section */
 
