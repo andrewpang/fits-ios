@@ -18,7 +18,6 @@
 		4736EEFB2867A9310033C49E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFA2867A9310033C49E /* Constants.swift */; };
 		4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */; };
 		473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69E7283C768700D4D15E /* GalleryFeedView.swift */; };
-		473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69EF283C76F700D4D15E /* StaggeredGrid.swift */; };
 		473C69FE283C821400D4D15E /* AddPostView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C69FD283C821400D4D15E /* AddPostView.swift */; };
 		473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A41283C89A200D4D15E /* PHImagePicker.swift */; };
 		473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A46283C8EB800D4D15E /* PostsModel.swift */; };
@@ -81,6 +80,7 @@
 		47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E6287E1714005E424F /* FirstPostOverlayView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47FC5D86288116B9000B9794 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D85288116B9000B9794 /* Secrets.swift */; };
+		47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 47FC5D99288663F8000B9794 /* WaterfallGrid */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -111,7 +111,6 @@
 		4736EEFA2867A9310033C49E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerWrapper.swift; sourceTree = "<group>"; };
 		473C69E7283C768700D4D15E /* GalleryFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryFeedView.swift; sourceTree = "<group>"; };
-		473C69EF283C76F700D4D15E /* StaggeredGrid.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StaggeredGrid.swift; sourceTree = "<group>"; };
 		473C69FD283C821400D4D15E /* AddPostView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddPostView.swift; sourceTree = "<group>"; };
 		473C6A41283C89A200D4D15E /* PHImagePicker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PHImagePicker.swift; sourceTree = "<group>"; };
 		473C6A46283C8EB800D4D15E /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
@@ -185,6 +184,7 @@
 				479FE99028750FEF0030EE4D /* PermissionsSwiftUINotification in Frameworks */,
 				4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */,
 				4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */,
+				47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */,
 				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
 				4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */,
 				471035092878C01A00D41E71 /* Amplitude in Frameworks */,
@@ -242,7 +242,6 @@
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
 				479FE99928755B930030EE4D /* CommentsView.swift */,
 				479FE99B28755C1F0030EE4D /* CommentRowView.swift */,
-				473C69EF283C76F700D4D15E /* StaggeredGrid.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -457,6 +456,7 @@
 				479FE98F28750FEF0030EE4D /* PermissionsSwiftUINotification */,
 				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
 				471035082878C01A00D41E71 /* Amplitude */,
+				47FC5D99288663F8000B9794 /* WaterfallGrid */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FITs.app */;
@@ -536,6 +536,7 @@
 				4756A8B82874DBA6006DA042 /* XCRemoteSwiftPackageReference "Kingfisher" */,
 				479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */,
 				471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
+				47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -612,7 +613,6 @@
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
-				473C69F0283C76F700D4D15E /* StaggeredGrid.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
 				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */,
@@ -1019,6 +1019,14 @@
 				minimumVersion = 3.4.0;
 			};
 		};
+		47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.1;
+			};
+		};
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
@@ -1101,6 +1109,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */;
 			productName = PermissionsSwiftUIPhoto;
+		};
+		47FC5D99288663F8000B9794 /* WaterfallGrid */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */;
+			productName = WaterfallGrid;
 		};
 /* End XCSwiftPackageProductDependency section */
 
