@@ -115,10 +115,20 @@ struct FirstPostOverlayView: View {
                     Amplitude.instance().logEvent("First Post Overlay - View")
                 }
                 .sheet(isPresented: $showPicker) {
-                    UIImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
-                        if (postViewModel.postImage != nil) {
-                            self.postViewModel.postTags = [postViewModel.postType]
-                            self.postViewModel.shouldPopToRootViewIfFalse = true
+                    if (sourceType == .camera) {
+                        UIImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
+                            if (postViewModel.postImage != nil) {
+                                self.postViewModel.postTags = [postViewModel.postType]
+                                self.postViewModel.shouldPopToRootViewIfFalse = true
+                            }
+                        }
+                    } else {
+                        PHImagePicker(mediaItems: mediaItems) { didSelectItem in
+                            showPicker = false
+                            if (didSelectItem) {
+                                self.postViewModel.postTags = [postViewModel.postType]
+                                self.postViewModel.shouldPopToRootViewIfFalse = true
+                            }
                         }
                     }
                 }
