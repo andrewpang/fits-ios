@@ -32,7 +32,7 @@ struct PostDetailView: View {
         VStack(spacing: 0) {
             ScrollView {
                 VStack(alignment: .leading, spacing: 0) {
-                    KFImage(URL(string: postDetailViewModel.postModel.imageUrl))
+                    KFImage(URL(string: postDetailViewModel.postModel.imageUrl ?? ""))
                         .resizable()
                         .scaledToFill()
 //                    HStack {

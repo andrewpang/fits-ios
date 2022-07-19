@@ -8,12 +8,15 @@
 import SwiftUI
 import FirebaseAuth
 import Amplitude
+import UniformTypeIdentifiers
 
 struct AddPostView: View {
     @ObservedObject var postViewModel: PostViewModel
+    @ObservedObject var mediaItems: PickedMediaItems
+    @ObservedObject var homeViewModel: HomeViewModel
+    
     @EnvironmentObject var tabViewModel: TabViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @ObservedObject var homeViewModel: HomeViewModel
     
     let postTitleCharacterLimit = 30
     
@@ -21,14 +24,26 @@ struct AddPostView: View {
         ScrollView {
             VStack (alignment: .leading) {
                 Group {
-                    Text("Photo:")
-                        .font(Font.custom(Constants.titleFontBold, size: 16))
-                    if let postImage = postViewModel.postImage  {
-                        Image(uiImage: postImage)
-                                .resizable()
-                                .scaledToFit()
-                                .frame(maxHeight: 200)
+                    if (mediaItems.items.count > 1) {
+                        Text("Photos:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                    } else {
+                        Text("Photo:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
                     }
+                    ScrollView(.horizontal) {
+                        HStack {
+                            ForEach(mediaItems.items, id: \.id) { item in
+                                Image(uiImage: item.photo ?? UIImage())
+                                    .resizable()
+                                    .scaledToFit()
+                                    .frame(maxHeight: 250)
+                                    .onDrag{
+                                        NSItemProvider(object: String(item.id) as NSString)
+                                    }
+                            }
+                        }
+                    }.frame(maxHeight: 250)
                     if (postViewModel.postType == "intro") {
                         Text("Post Title:")
                             .font(Font.custom(Constants.titleFontBold, size: 16)) +
@@ -98,7 +113,7 @@ struct AddPostView: View {
                     let propertiesDict = ["postType": postViewModel.postType as Any, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as [String : Any]
                     Amplitude.instance().logEvent("Submit Post - Clicked", withEventProperties: propertiesDict)
 //                TODO: Change this logic once there are more non-FIT groups
-                    postViewModel.submitPost(postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
+                    postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
                         postViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.setIntroPostMade()
@@ -139,6 +154,10 @@ struct AddPostView: View {
         .onAppear {
             let propertiesDict = ["postType": postViewModel.postType as Any] as [String : Any]
             Amplitude.instance().logEvent("Add Post Screen - View", withEventProperties: propertiesDict)
+        }
+        .onDisappear {
+            mediaItems.deleteAll()
+            self.postViewModel.isSubmitting = false
         }
     }
 }

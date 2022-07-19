@@ -13,6 +13,7 @@ struct FirstPostOverlayView: View {
     
     @ObservedObject var homeViewModel: HomeViewModel
     @StateObject var postViewModel = PostViewModel()
+    @StateObject var mediaItems = PickedMediaItems()
     
     @State var showPicker = false
     @State var showConfirmationDialog = false
@@ -23,7 +24,7 @@ struct FirstPostOverlayView: View {
             ZStack {
                 Color(red: 0.3, green: 0.3, blue: 0.3, opacity: 0.75)
                     .edgesIgnoringSafeArea(.all)
-                NavigationLink(destination: AddPostView(postViewModel: postViewModel, homeViewModel: homeViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)
