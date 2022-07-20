@@ -20,7 +20,7 @@ struct PhotoPickerModel {
     var livePhoto: PHLivePhoto?
     var mediaType: MediaType = .photo
     
-    init(with photo: UIImage) {
+    init(with photo: UIImage?) {
         id = UUID().uuidString
         self.photo = photo
         mediaType = .photo
@@ -56,6 +56,14 @@ class PickedMediaItems: ObservableObject {
     
     func append(item: PhotoPickerModel) {
         items.append(item)
+    }
+    
+    func addForIndex(item: PhotoPickerModel, index: Int) {
+        items[index] = item
+    }
+    
+    func remove(at index: Int) {
+        items.remove(at: index)
     }
     
     func deleteAll() {
