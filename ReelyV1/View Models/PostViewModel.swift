@@ -61,7 +61,8 @@ class PostViewModel: ObservableObject {
                     postImageUrls[index] = downloadURL.absoluteString
                     imagesDownloaded += 1
                     if (imagesDownloaded == mediaItems.items.count) {
-                        let postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId)
+//                    TODO(REE-158): remove imageUrl once no one is on 1.1 build 8 or before
+                        let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId)
                         self.uploadPostModel(postModel: postModel, completion: completion)
                     }
                 }
