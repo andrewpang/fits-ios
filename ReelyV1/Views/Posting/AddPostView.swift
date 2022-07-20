@@ -33,14 +33,18 @@ struct AddPostView: View {
                     }
                     ScrollView(.horizontal) {
                         HStack {
-                            ForEach(mediaItems.items, id: \.id) { item in
-                                Image(uiImage: item.photo ?? UIImage())
-                                    .resizable()
-                                    .scaledToFit()
-                                    .frame(maxHeight: 250)
-//                                    .onDrag{
-//                                        NSItemProvider(object: String(item.id) as NSString)
-//                                    }
+                            ForEach(mediaItems.items.indices, id: \.self) { index in
+                                ZStack {
+                                    Image(uiImage: mediaItems.items[index].photo ?? UIImage())
+                                        .resizable()
+                                        .scaledToFit()
+                                        .padding(.top, 10)
+                                        .padding(.trailing, 10)
+                                        .frame(maxHeight: 250)
+                                    if (mediaItems.items.count > 1) {
+                                        CloseButton(indexOfImage: index, mediaItems: mediaItems, postViewModel: postViewModel)
+                                    }
+                                }
                             }
                         }
                     }.frame(maxHeight: 250)
@@ -162,6 +166,29 @@ struct AddPostView: View {
     }
 }
 
+struct CloseButton: View {
+    var indexOfImage: Int
+    @ObservedObject var mediaItems: PickedMediaItems
+    @ObservedObject var postViewModel: PostViewModel
+    
+    var body: some View {
+        VStack {
+            HStack {
+                Spacer()
+                Button(action: {
+                    mediaItems.remove(at: indexOfImage)
+                }) {
+                    Image(systemName: "xmark.circle.fill")
+                        .foregroundColor(.white)
+                        .font(.system(size: 18.0))
+                        .background(Color.black)
+                        .clipShape(Circle())
+                }.disabled(postViewModel.isSubmitting)
+            }
+            Spacer()
+        }
+    }
+}
 //struct AddPostView_Previews: PreviewProvider {
 //    static var previews: some View {
 //        AddPostView(homeViewModel: <#T##HomeViewModel#>, authenticationViewModel: <#T##AuthenticationViewModel#>, pickerResult: <#T##Binding<UIImage>#>)
