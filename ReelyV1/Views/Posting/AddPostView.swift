@@ -42,7 +42,7 @@ struct AddPostView: View {
                                         .padding(.trailing, 10)
                                         .frame(maxHeight: 250)
                                     if (mediaItems.items.count > 1) {
-                                        CloseButton(indexOfImage: index, mediaItems: mediaItems, postViewModel: postViewModel)
+                                        RemoveButton(indexOfImage: index, mediaItems: mediaItems, postViewModel: postViewModel)
                                     }
                                 }
                             }
@@ -166,7 +166,7 @@ struct AddPostView: View {
     }
 }
 
-struct CloseButton: View {
+struct RemoveButton: View {
     var indexOfImage: Int
     @ObservedObject var mediaItems: PickedMediaItems
     @ObservedObject var postViewModel: PostViewModel
