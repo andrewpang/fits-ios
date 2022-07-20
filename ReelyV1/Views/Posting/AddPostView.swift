@@ -38,9 +38,9 @@ struct AddPostView: View {
                                     .resizable()
                                     .scaledToFit()
                                     .frame(maxHeight: 250)
-                                    .onDrag{
-                                        NSItemProvider(object: String(item.id) as NSString)
-                                    }
+//                                    .onDrag{
+//                                        NSItemProvider(object: String(item.id) as NSString)
+//                                    }
                             }
                         }
                     }.frame(maxHeight: 250)

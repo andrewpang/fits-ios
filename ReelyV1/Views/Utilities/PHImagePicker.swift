@@ -46,7 +46,9 @@ struct PHImagePicker: UIViewControllerRepresentable {
             return
         }
         
-        for result in results {
+        parent.mediaItems.items = Array(repeating: PhotoPickerModel(with: nil), count: results.count)
+        
+        for (index, result) in results.enumerated() {
             let itemProvider = result.itemProvider
             
             guard let typeIdentifier = itemProvider.registeredTypeIdentifiers.first,
@@ -54,18 +56,18 @@ struct PHImagePicker: UIViewControllerRepresentable {
             else { continue }
             
             if utType.conforms(to: .image) {
-                self.getPhoto(from: itemProvider, isLivePhoto: false)
+                self.getPhoto(from: itemProvider, isLivePhoto: false, indexOfImage: index)
             } else if utType.conforms(to: .movie) {
                 // Do nothing for now with videos
 //                self.getVideo(from: itemProvider, typeIdentifier: typeIdentifier)
             } else {
                 //For now, just pull UIImage from Live Photos
-                self.getPhoto(from: itemProvider, isLivePhoto: false)
+                self.getPhoto(from: itemProvider, isLivePhoto: false, indexOfImage: index)
             }
         }
     }
       
-      private func getPhoto(from itemProvider: NSItemProvider, isLivePhoto: Bool) {
+      private func getPhoto(from itemProvider: NSItemProvider, isLivePhoto: Bool, indexOfImage: Int) {
           let objectType: NSItemProviderReading.Type = !isLivePhoto ? UIImage.self : PHLivePhoto.self
                   
           if itemProvider.canLoadObject(ofClass: objectType) {
@@ -78,13 +80,13 @@ struct PHImagePicker: UIViewControllerRepresentable {
                   if !isLivePhoto {
                       if let image = object as? UIImage {
                           DispatchQueue.main.async {
-                              self.parent.mediaItems.append(item: PhotoPickerModel(with: image))
+                              self.parent.mediaItems.addForIndex(item: PhotoPickerModel(with: image), index: indexOfImage)
                           }
                       }
                   } else {
                       if let livePhoto = object as? PHLivePhoto {
                           DispatchQueue.main.async {
-                              self.parent.mediaItems.append(item: PhotoPickerModel(with: livePhoto))
+                              self.parent.mediaItems.addForIndex(item: PhotoPickerModel(with: livePhoto), index: indexOfImage)
                           }
                       }
                   }
@@ -93,30 +95,30 @@ struct PHImagePicker: UIViewControllerRepresentable {
       }
       
       private func getVideo(from itemProvider: NSItemProvider, typeIdentifier: String) {
-          itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
-              if let error = error {
-                  print(error.localizedDescription)
-              }
-              
-              guard let url = url else { return }
-              
-              let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
-              guard let targetURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent) else { return }
-              
-              do {
-                  if FileManager.default.fileExists(atPath: targetURL.path) {
-                      try FileManager.default.removeItem(at: targetURL)
-                  }
-                  
-                  try FileManager.default.copyItem(at: url, to: targetURL)
-                  
-                  DispatchQueue.main.async {
-                      self.parent.mediaItems.append(item: PhotoPickerModel(with: targetURL))
-                  }
-              } catch {
-                  print(error.localizedDescription)
-              }
-          }
+//          itemProvider.loadFileRepresentation(forTypeIdentifier: typeIdentifier) { url, error in
+//              if let error = error {
+//                  print(error.localizedDescription)
+//              }
+//
+//              guard let url = url else { return }
+//
+//              let documentsDirectory = FileManager.default.urls(for: .documentDirectory, in: .userDomainMask).first
+//              guard let targetURL = documentsDirectory?.appendingPathComponent(url.lastPathComponent) else { return }
+//
+//              do {
+//                  if FileManager.default.fileExists(atPath: targetURL.path) {
+//                      try FileManager.default.removeItem(at: targetURL)
+//                  }
+//
+//                  try FileManager.default.copyItem(at: url, to: targetURL)
+//
+//                  DispatchQueue.main.async {
+//                      self.parent.mediaItems.append(item: PhotoPickerModel(with: targetURL))
+//                  }
+//              } catch {
+//                  print(error.localizedDescription)
+//              }
+//          }
       }
   }
 }
