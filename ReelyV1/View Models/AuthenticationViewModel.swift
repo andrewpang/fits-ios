@@ -30,6 +30,8 @@ class AuthenticationViewModel: ObservableObject {
     
     private let auth = Auth.auth()
     
+    var profileListener: ListenerRegistration?
+    
     func checkIfSignedIn() {
         if (Auth.auth().currentUser != nil) {
             getCurrentUserData()
@@ -44,29 +46,39 @@ class AuthenticationViewModel: ObservableObject {
             try Auth.auth().signOut()
             Amplitude.instance().setUserId(nil)
             state = .signedOut
+            profileListener = nil
         } catch {
         }
     }
     
     func getCurrentUserData() {
-        if let uid = Auth.auth().currentUser?.uid {
-            db.collection("users").document(uid).getDocument(completion: { (documentSnapshot, err) in
-                if let error = err {
-                    self.state = .signedOut
-                    print (error)
-                    return
-                }
-                if let document = documentSnapshot, document.exists {
-                    self.userModel = try? document.data(as: UserModel.self)
+        if (profileListener == nil) {
+            if let uid = Auth.auth().currentUser?.uid {
+                profileListener = db.collection("users").document(uid).addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        self.state = .signedOut
+                        return
+                    }
+                    guard let data = document.data() else {
+                        print("Document data was empty.")
+                        self.state = .signedIn
+                        return
+                    }
+                    print("Current data: \(data)")
+                    guard let userData = try? document.data(as: UserModel.self) else {
+                        print("Couldn't parse user data to UserModel")
+                        self.state = .signedOut
+                        return
+                    }
+                    
+                    self.userModel = userData
                     self.state = .signedIn
-                } else {
-                    print("Auth: Empty Profile")
-                    self.state = .signedIn //TODO: might have to bring up part of onboarding flow again
-                }
-                self.saveFCMDeviceToken()
-                self.registerUserForTopic(topic: "fit")
-                Amplitude.instance().setUserId(uid)
-            })
+                    self.saveFCMDeviceToken()
+                    self.registerUserForTopic(topic: "fit")
+                    Amplitude.instance().setUserId(uid)
+                  }
+            }
         }
     }
     
