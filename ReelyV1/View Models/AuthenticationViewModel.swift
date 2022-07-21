@@ -64,6 +64,7 @@ class AuthenticationViewModel: ObservableObject {
                     self.state = .signedIn //TODO: might have to bring up part of onboarding flow again
                 }
                 self.saveFCMDeviceToken()
+                self.registerUserForTopic(topic: "fit")
                 Amplitude.instance().setUserId(uid)
             })
         }
@@ -87,6 +88,16 @@ class AuthenticationViewModel: ObservableObject {
                 catch {
                     print(error)
                 }
+            }
+        }
+    }
+    
+    func registerUserForTopic(topic: String) {
+        Messaging.messaging().subscribe(toTopic: topic) { error in
+            if let error = error {
+                print("Error subscribing to topic: \(error)")
+            } else {
+                print("Subscribed to topic: \(topic)")
             }
         }
     }
