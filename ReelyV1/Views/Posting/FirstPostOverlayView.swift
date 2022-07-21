@@ -39,7 +39,7 @@ struct FirstPostOverlayView: View {
                         }
                     })
                     .padding(.horizontal, 24)
-                    Text("Welcome to FIT(s)!")
+                    Text("Share your fit!")
                         .font(Font.custom(Constants.titleFont, size: 32))
                         .foregroundColor(Color.black)
                         .bold()

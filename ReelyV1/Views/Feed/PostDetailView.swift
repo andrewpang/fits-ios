@@ -234,6 +234,8 @@ struct PostDetailView: View {
             }
             .onDisappear {
                 self.postDetailViewModel.removeListeners()
+                self.homeViewModel.postsSeenThisSession += 1
+                self.homeViewModel.checkIfShouldShowIntroPostOverlay()
             }
         }
     }

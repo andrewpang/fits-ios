@@ -48,9 +48,6 @@ struct TabsParentView: View {
 //                homeViewModel.fetchPosts()
 //            }
         })
-        .onAppear {
-            self.homeViewModel.checkIfShouldShowIntroPostOverlay()
-        }
     }
 }
 

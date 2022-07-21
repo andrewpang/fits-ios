@@ -17,9 +17,12 @@ class HomeViewModel: ObservableObject {
     @Published var showIntroPostOverlay = false
     @Published var shouldPopToRootViewIfFalse = false
     
+    @Published var postsSeenThisSession = 0
+    
     private var db = Firestore.firestore()
     
     let limitTimesToSeeIntroPostOverlay = 5
+    let numberOfPostsSeenToShowOverlay = 5
     
     var postsListener: ListenerRegistration?
 
@@ -55,10 +58,10 @@ class HomeViewModel: ObservableObject {
     }
     
     func checkIfShouldShowIntroPostOverlay() {
-        let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay") + 1
-        UserDefaults.standard.set(numberOfTimesSeenIntroPostOverlay, forKey: "numberOfTimesSeenIntroPostOverlay")
-        guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay) else {
+        let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay")
+        guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay || postsSeenThisSession != numberOfPostsSeenToShowOverlay) else {
             self.showIntroPostOverlay = true
+            UserDefaults.standard.set(numberOfTimesSeenIntroPostOverlay + 1, forKey: "numberOfTimesSeenIntroPostOverlay")
             return
         }
     }
