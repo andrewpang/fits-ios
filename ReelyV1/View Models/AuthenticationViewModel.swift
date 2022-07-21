@@ -54,8 +54,9 @@ class AuthenticationViewModel: ObservableObject {
     func getCurrentUserData() {
         self.saveFCMDeviceToken()
         self.registerUserForTopic(topic: "fit")
-        if (profileListener == nil) {
-            if let uid = Auth.auth().currentUser?.uid {
+        if let uid = Auth.auth().currentUser?.uid {
+            Amplitude.instance().setUserId(uid)
+            if (profileListener == nil) {
                 profileListener = db.collection("users").document(uid).addSnapshotListener { documentSnapshot, error in
                     guard let document = documentSnapshot else {
                         print("Error fetching document: \(error!)")
@@ -76,8 +77,7 @@ class AuthenticationViewModel: ObservableObject {
                     
                     self.userModel = userData
                     self.state = .signedIn
-                    Amplitude.instance().setUserId(uid)
-                  }
+                }
             }
         }
     }
