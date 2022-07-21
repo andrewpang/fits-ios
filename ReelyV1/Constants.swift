@@ -9,6 +9,8 @@ import CoreGraphics
 import SwiftUI
 
 struct Constants {
+    static let appTitle = "FIT(s)"
+    
     static let smallTextSize: CGFloat = 10
     static let regularTextSize: CGFloat = 16
     static let mediumTextSize: CGFloat = 24

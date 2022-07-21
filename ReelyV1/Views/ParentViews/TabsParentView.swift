@@ -32,6 +32,11 @@ struct TabsParentView: View {
                     Text("Profile")
                   }.tag(3)
             }.accentColor(Color(Constants.darkBackgroundColor))
+            .onAppear {
+                let tabBarAppearance = UITabBarAppearance()
+                tabBarAppearance.configureWithDefaultBackground()
+                UITabBar.appearance().scrollEdgeAppearance = tabBarAppearance
+            }
             if (homeViewModel.showIntroPostOverlay) {
                 FirstPostOverlayView(homeViewModel: homeViewModel)
             }
