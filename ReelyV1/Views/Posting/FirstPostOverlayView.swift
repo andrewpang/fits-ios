@@ -51,7 +51,7 @@ struct FirstPostOverlayView: View {
                         .foregroundColor(Color.black)
                         .multilineTextAlignment(.center)
                         .padding(.horizontal, 24)
-                    Spacer()
+                        .padding(.bottom, 8)
                     KFAnimatedImage(URL(string: Constants.firstPostGifUrl))
                         .scaledToFit()
                         .frame(maxHeight: 250)
