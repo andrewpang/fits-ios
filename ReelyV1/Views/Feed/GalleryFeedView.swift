@@ -50,10 +50,14 @@ struct GalleryFeedView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(destination: PostDetailView(homeViewModel: homeViewModel, postDetailViewModel: postDetailViewModel), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)
+                .onAppear {
+                    self.homeViewModel.postsSeenThisSession += 1
+                    self.homeViewModel.checkIfShouldShowIntroPostOverlay()
+                }
                 Color(Constants.backgroundColor).ignoresSafeArea()
                 VStack(spacing: 0) {
                     Text(Constants.appTitle)
