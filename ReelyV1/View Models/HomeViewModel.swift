@@ -20,8 +20,14 @@ class HomeViewModel: ObservableObject {
     private var db = Firestore.firestore()
     
     let limitTimesToSeeIntroPostOverlay = 5
+    
+    var postsListener: ListenerRegistration?
 
     func fetchPosts(isAdmin: Bool) {
+        if (postsListener != nil) {
+            return
+        }
+        
         var fetchPostQuery: Query
         if (isAdmin) {
             fetchPostQuery = db.collection("posts")
@@ -32,7 +38,7 @@ class HomeViewModel: ObservableObject {
                 .order(by: "createdAt", descending: true)
         }
         
-        fetchPostQuery.addSnapshotListener { (querySnapshot, error) in
+        postsListener = fetchPostQuery.addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
