@@ -50,7 +50,7 @@ struct GalleryFeedView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "homeFeed"), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)

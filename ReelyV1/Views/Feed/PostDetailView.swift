@@ -13,6 +13,8 @@ struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    var source = "homeFeed"
+    
     let generator = UINotificationFeedbackGenerator()
     
     enum PostDetailFocusField: Hashable {
@@ -224,9 +226,11 @@ struct PostDetailView: View {
                 }
             }.navigationBarTitle("", displayMode: .inline)
             .onAppear {
-                let propertiesDict = ["postId": postDetailViewModel.postModel.id as Any,
-                                      "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-                    ] as [String : Any]
+                let propertiesDict = [
+                    "postId": postDetailViewModel.postModel.id as Any,
+                    "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                    "source": self.source,
+                ] as [String : Any]
                 Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)
                 self.postDetailViewModel.fetchComments()
                 self.postDetailViewModel.fetchLikes(userId: authenticationViewModel.userModel?.id)
