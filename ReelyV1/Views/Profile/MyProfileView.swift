@@ -94,8 +94,9 @@ struct MyProfileView: View {
                         self.isEditMode = true
                     }
                 }
-            }.background(Color(Constants.backgroundColor))
+            }
         }.navigationBarTitle("", displayMode: .inline)
+        .background(Color(Constants.backgroundColor))
         .onAppear {
             Amplitude.instance().logEvent("My Profile Screen - View")
         }.sheet(isPresented: $isEditMode, content: {
