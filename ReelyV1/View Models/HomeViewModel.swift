@@ -48,7 +48,7 @@ class HomeViewModel: ObservableObject {
             }
 
             var postList = [PostModel]()
-            postList = querySnapshot!.documents.compactMap { querySnapshot -> PostModel? in
+            postList = documents.compactMap { querySnapshot -> PostModel? in
                 return try? querySnapshot.data(as: PostModel.self)
             }
             DispatchQueue.main.async {

@@ -10,7 +10,6 @@ import Kingfisher
 import Amplitude
 
 struct PostDetailView: View {
-    @ObservedObject var homeViewModel: HomeViewModel //TODO: Leaving here in case we need to pop to root
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
@@ -234,15 +233,7 @@ struct PostDetailView: View {
             }
             .onDisappear {
                 self.postDetailViewModel.removeListeners()
-                self.homeViewModel.postsSeenThisSession += 1
-                self.homeViewModel.checkIfShouldShowIntroPostOverlay()
             }
         }
     }
 }
-
-//struct PostDetailView_Previews: PreviewProvider {
-//    static var previews: some View {
-//        PostDetailView(post: PostModel(author: "Author", body: "Body Text", imageUrl: "", title: "Title", likes: 0))
-//    }
-//}

@@ -56,7 +56,7 @@ class PostDetailViewModel: ObservableObject {
                 }
 
                 var commentsList = [CommentModel]()
-                commentsList = querySnapshot!.documents.compactMap { querySnapshot -> CommentModel? in
+                commentsList = documents.compactMap { querySnapshot -> CommentModel? in
                     return try? querySnapshot.data(as: CommentModel.self)
                 }
                 DispatchQueue.main.async {
