@@ -193,7 +193,7 @@ struct FeedbackButton: View {
     
     @State private var mailData = ComposeMailData(subject: "Feedback for FIT(s)",
                                                     recipients: ["feedback@fitsatfit.com"],
-                                                    message: "Email us feedback/questions/comments and we'll get back to you soon!",
+                                                    message: "How can we make the FIT(s) app better for you?",
                                                     attachments: nil)
     @State private var showMailView = false
     
