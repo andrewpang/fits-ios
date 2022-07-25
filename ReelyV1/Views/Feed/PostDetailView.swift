@@ -75,38 +75,8 @@ struct PostDetailView: View {
                         }.padding(.top, 16)
                         .padding(.horizontal, 24)
                         
-                        HStack {
-                            Spacer()
-                            Text("Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name"))
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                            Spacer()
-                        }
-                        .padding(.horizontal, 24)
-                        .padding(.vertical, 8)
-                        
-                        HStack {
-                            Spacer()
-                            if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                                KFImage(URL(string: profilePicImageUrl))
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                                    .clipShape(Circle())
-                            } else {
-                                Image("portraitPlaceHolder")
-                                    .resizable()
-                                    .scaledToFill()
-                                    .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                                    .clipShape(Circle())
-                            }
-                            Spacer()
-                        }
-                        .padding(.horizontal, 24)
-                        
                         Text(postDetailViewModel.postModel.body)
                             .font(Font.custom(Constants.bodyFont, size: 16))
-                            .padding(.top)
                             .padding(.horizontal, 24)
                             .padding(.vertical, 8)
                         
@@ -121,7 +91,6 @@ struct PostDetailView: View {
                                 }, label: {
                                     Image(systemName: "hands.clap.fill")
                                         .font(.system(size: 28.0, weight: .light))
-                                        .padding(.vertical, 8)
                                         .foregroundColor(.gray)
                                 })
                                 if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
@@ -144,7 +113,6 @@ struct PostDetailView: View {
                                 }, label: {
                                     Image(systemName: "hands.clap")
                                         .font(.system(size: 28.0, weight: .light))
-                                        .padding(.vertical, 8)
                                         .foregroundColor(.gray)
                                 })
                                 if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
@@ -159,7 +127,6 @@ struct PostDetailView: View {
                                         .padding(.horizontal, 4)
                                 }
                             }
-                            
                             Spacer()
                         }.padding(.horizontal, 24)
                         
@@ -167,11 +134,13 @@ struct PostDetailView: View {
                             .padding(.horizontal, 24)
                             .padding(.vertical, 8)
                         
-                        CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField).padding(.horizontal, 24)
+                        CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
+                            .padding(.horizontal, 24)
                     }
                 }.onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 }
+                .padding(.bottom, 8)
                 Divider()
                 HStack {
                     if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
@@ -237,6 +206,25 @@ struct PostDetailView: View {
             }
             .onDisappear {
                 self.postDetailViewModel.removeListeners()
+            }.toolbar {
+                ToolbarItemGroup(placement: .navigationBarLeading) {
+                    if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                        KFImage(URL(string: profilePicImageUrl))
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                            .clipShape(Circle())
+                    } else {
+                        Image("portraitPlaceHolder")
+                            .resizable()
+                            .scaledToFill()
+                            .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                            .clipShape(Circle())
+                    }
+                    
+                    Text(postDetailViewModel.postModel.author.displayName ?? "Name")
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                }
             }
         }
     }
