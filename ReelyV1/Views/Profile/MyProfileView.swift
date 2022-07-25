@@ -20,13 +20,13 @@ struct MyProfileView: View {
     @State var selectedImage: UIImage? = nil
     
     init() {
-        let coloredAppearance = UINavigationBarAppearance()
-        coloredAppearance.configureWithOpaqueBackground()
-        coloredAppearance.backgroundColor = UIColor(named: Constants.backgroundColor)
-        UINavigationBar.appearance().standardAppearance = coloredAppearance
-        UINavigationBar.appearance().compactAppearance = coloredAppearance
-        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
-        UINavigationBar.appearance().tintColor = UIColor(named: Constants.backgroundColor)
+//        let coloredAppearance = UINavigationBarAppearance()
+//        coloredAppearance.configureWithOpaqueBackground()
+//        coloredAppearance.backgroundColor = UIColor(named: Constants.backgroundColor)
+//        UINavigationBar.appearance().standardAppearance = coloredAppearance
+//        UINavigationBar.appearance().compactAppearance = coloredAppearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = coloredAppearance
+//        UINavigationBar.appearance().tintColor = UIColor(named: Constants.backgroundColor)
     }
     
     var body: some View {
