@@ -36,7 +36,8 @@ struct UserProfileView: View {
             userProfileViewModel.fetchUserModel(for: userId)
         }.onDisappear {
             userProfileViewModel.removeListeners()
-        }
+        }.navigationBarTitle("", displayMode: .inline)
+        .background(Color(Constants.backgroundColor))
     }
 }
 
