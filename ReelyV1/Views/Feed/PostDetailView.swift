@@ -198,6 +198,7 @@ struct PostDetailView: View {
                 let propertiesDict = [
                     "postId": postDetailViewModel.postModel.id as Any,
                     "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                    "isUsersOwnPost": (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool,
                     "source": self.source,
                 ] as [String : Any]
                 Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)
@@ -208,22 +209,23 @@ struct PostDetailView: View {
                 self.postDetailViewModel.removeListeners()
             }.toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                        KFImage(URL(string: profilePicImageUrl))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                            .clipShape(Circle())
-                    } else {
-                        Image("portraitPlaceHolder")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                            .clipShape(Circle())
-                    }
-                    
-                    Text(postDetailViewModel.postModel.author.displayName ?? "Name")
-                        .font(Font.custom(Constants.bodyFont, size: 16))
+                    NavigationLink(destination: UserProfileView(userId: postDetailViewModel.postModel.author.userId!)) {
+                        if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                            KFImage(URL(string: profilePicImageUrl))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                                .clipShape(Circle())
+                        } else {
+                            Image("portraitPlaceHolder")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                                .clipShape(Circle())
+                        }
+                        Text(postDetailViewModel.postModel.author.displayName ?? "Name")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                    }.disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
                 }
             }
         }

@@ -12,6 +12,7 @@ import Amplitude
 struct MyProfileView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @StateObject var userProfileViewModel = UserProfileViewModel()
     @State var showUploadPicConfirmationDialog = false
     @State var showSignOutConfirmationDialog = false
     @State var showPicker = false
@@ -35,9 +36,9 @@ struct MyProfileView: View {
                 Text(self.authenticationViewModel.userModel?.displayName ?? "Name")
                     .font(Font.custom(Constants.titleFontBold, size: 40)).padding(.top, 4)
 
-                ProfilePictureView(authenticationViewModel: authenticationViewModel, showUploadPicConfirmationDialog: $showUploadPicConfirmationDialog)
+                MyProfilePictureView(authenticationViewModel: authenticationViewModel, showUploadPicConfirmationDialog: $showUploadPicConfirmationDialog)
                 Divider().padding(.vertical, 8)
-                ProfileInfoView(authenticationViewModel: authenticationViewModel)
+                MyProfileInfoView(authenticationViewModel: authenticationViewModel)
                 Divider().padding(.vertical, 8)
                 FeedbackButton()
                     .padding(.vertical, 8)
@@ -47,7 +48,7 @@ struct MyProfileView: View {
                     Spacer()
                 }.padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                MyPostsFeedView()
+                ProfilePostsFeedView(userProfileViewModel: userProfileViewModel)
             }.sheet(isPresented: $showPicker) {
                 UIImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
             }.onChange(of: selectedImage) { _ in
@@ -111,7 +112,7 @@ struct MyProfileView_Previews: PreviewProvider {
     }
 }
 
-struct ProfilePictureView: View {
+struct MyProfilePictureView: View {
     
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     @Binding var showUploadPicConfirmationDialog: Bool
@@ -154,7 +155,7 @@ struct ProfilePictureView: View {
     }
 }
 
-struct ProfileInfoView: View {
+struct MyProfileInfoView: View {
     
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     

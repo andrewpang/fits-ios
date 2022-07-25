@@ -12,7 +12,6 @@ import Amplitude
 import WaterfallGrid
 
 struct GalleryFeedView: View {
-    
     @ObservedObject var homeViewModel: HomeViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showNotificationPermissionModal = false

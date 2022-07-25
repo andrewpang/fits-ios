@@ -16,12 +16,12 @@ struct PostCardView: View {
             if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
                 KFImage(URL(string: imageUrls[0]))
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
             } else {
                 //TODO: Clean this up after everyone is ported over to imageUrls array
                 KFImage(URL(string: post.imageUrl ?? ""))
                     .resizable()
-                    .aspectRatio(contentMode: .fit)
+                    .scaledToFit()
             }
             
             HStack {
