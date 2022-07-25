@@ -33,7 +33,7 @@ struct ProfilePostsFeedView: View {
                     showPostDetailView = true
                 }, label: {
                     PostCardView(post: post)
-                        .fixedSize(horizontal: false, vertical: true)
+                        .fixedSize(horizontal: false, vertical: true) //HACK Fix: https://github.com/paololeonardi/WaterfallGrid/issues/53
                 })
             }
             .gridStyle(
