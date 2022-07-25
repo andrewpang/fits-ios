@@ -198,6 +198,7 @@ struct PostDetailView: View {
                 let propertiesDict = [
                     "postId": postDetailViewModel.postModel.id as Any,
                     "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                    "isUsersOwnPost": (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool,
                     "source": self.source,
                 ] as [String : Any]
                 Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)

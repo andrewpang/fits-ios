@@ -7,6 +7,7 @@
 
 import SwiftUI
 import Kingfisher
+import Amplitude
 
 struct UserProfileView: View {
     @StateObject var userProfileViewModel = UserProfileViewModel()
@@ -33,6 +34,10 @@ struct UserProfileView: View {
             }
         }.onAppear {
             userProfileViewModel.fetchUserModel(for: userId)
+            let propertiesDict = [
+                "userId": userId as Any,
+            ] as [String : Any]
+            Amplitude.instance().logEvent("User Profile Screen - View", withEventProperties: propertiesDict)
         }.onDisappear {
             userProfileViewModel.removeListeners()
         }.navigationBarTitle("", displayMode: .inline)

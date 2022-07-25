@@ -15,7 +15,7 @@ struct ProfilePostsFeedView: View {
     var profileUserId: String? //Current user's posts, if nil
     
     var body: some View {
-        NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "myPostsFeed"), isActive: $showPostDetailView) {
+        NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "profileFeed"), isActive: $showPostDetailView) {
             EmptyView()
         }
         .isDetailLink(false)
