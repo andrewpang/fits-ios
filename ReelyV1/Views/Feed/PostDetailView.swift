@@ -11,7 +11,6 @@ import Amplitude
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
-    @ObservedObject var homeViewModel: HomeViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     var source = "homeFeed"
@@ -209,7 +208,7 @@ struct PostDetailView: View {
                 self.postDetailViewModel.removeListeners()
             }.toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: UserProfileView(homeViewModel: homeViewModel, userId: postDetailViewModel.postModel.author.userId!)) {
+                    NavigationLink(destination: UserProfileView(userId: postDetailViewModel.postModel.author.userId!)) {
                         if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                             KFImage(URL(string: profilePicImageUrl))
                                 .resizable()

@@ -12,7 +12,6 @@ import Amplitude
 import WaterfallGrid
 
 struct GalleryFeedView: View {
-    
     @ObservedObject var homeViewModel: HomeViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showNotificationPermissionModal = false
@@ -50,7 +49,7 @@ struct GalleryFeedView: View {
     var body: some View {
         NavigationView {
             ZStack {
-                NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, homeViewModel: homeViewModel, source: "homeFeed"), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "homeFeed"), isActive: $homeViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)

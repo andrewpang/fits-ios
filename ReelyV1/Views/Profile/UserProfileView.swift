@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 
 struct UserProfileView: View {
-    @ObservedObject var homeViewModel: HomeViewModel
     @StateObject var userProfileViewModel = UserProfileViewModel()
     var userId: String
 

@@ -15,8 +15,7 @@ struct ProfilePostsFeedView: View {
     var profileUserId: String? //Current user's posts, if nil
     
     var body: some View {
-        //TODO: Remove this home view model
-        NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, homeViewModel: HomeViewModel(), source: "myPostsFeed"), isActive: $showPostDetailView) {
+        NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "myPostsFeed"), isActive: $showPostDetailView) {
             EmptyView()
         }
         .isDetailLink(false)
