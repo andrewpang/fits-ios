@@ -11,6 +11,7 @@ import Amplitude
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
     var source = "homeFeed"
@@ -208,22 +209,23 @@ struct PostDetailView: View {
                 self.postDetailViewModel.removeListeners()
             }.toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                        KFImage(URL(string: profilePicImageUrl))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                            .clipShape(Circle())
-                    } else {
-                        Image("portraitPlaceHolder")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                            .clipShape(Circle())
-                    }
-                    
-                    Text(postDetailViewModel.postModel.author.displayName ?? "Name")
-                        .font(Font.custom(Constants.bodyFont, size: 16))
+                    NavigationLink(destination: UserProfileView(homeViewModel: homeViewModel, userId: postDetailViewModel.postModel.author.userId!)) {
+                        if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                            KFImage(URL(string: profilePicImageUrl))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                                .clipShape(Circle())
+                        } else {
+                            Image("portraitPlaceHolder")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                                .clipShape(Circle())
+                        }
+                        Text(postDetailViewModel.postModel.author.displayName ?? "Name")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                    }.disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
                 }
             }
         }

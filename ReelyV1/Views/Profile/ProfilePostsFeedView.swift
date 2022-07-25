@@ -8,20 +8,26 @@
 import SwiftUI
 import WaterfallGrid
 
-struct MyPostsFeedView: View {
-    @StateObject var myProfileViewModel: MyProfileViewModel = MyProfileViewModel()
+struct ProfilePostsFeedView: View {
+    @ObservedObject var userProfileViewModel: UserProfileViewModel
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
     @State var showPostDetailView = false
+    var profileUserId: String? //Current user's posts, if nil
     
     var body: some View {
-        NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "myPostsFeed"), isActive: $showPostDetailView) {
+        //TODO: Remove this home view model
+        NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, homeViewModel: HomeViewModel(), source: "myPostsFeed"), isActive: $showPostDetailView) {
             EmptyView()
         }
         .isDetailLink(false)
         .onAppear {
-            self.myProfileViewModel.fetchPosts()
+            if let profileUserId = profileUserId {
+                self.userProfileViewModel.fetchPostsForUser(for: profileUserId)
+            } else {
+                self.userProfileViewModel.fetchCurrentUserPosts()
+            }
         }
-        if let postModels = myProfileViewModel.postsData.postModels, !postModels.isEmpty {
+        if let postModels = userProfileViewModel.postsData.postModels, !postModels.isEmpty {
             WaterfallGrid(postModels) { post in
                 Button(action: {
                     postDetailViewModel = PostDetailViewModel(postModel: post)
@@ -42,11 +48,5 @@ struct MyPostsFeedView: View {
                 .font(Font.custom(Constants.bodyFont, size: 16))
                 .padding(.vertical, 24)
         }
-    }
-}
-
-struct MyPostsFeedView_Previews: PreviewProvider {
-    static var previews: some View {
-        MyPostsFeedView()
     }
 }
