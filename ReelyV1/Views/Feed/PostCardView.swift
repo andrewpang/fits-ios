@@ -14,9 +14,17 @@ struct PostCardView: View {
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
             if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
-                KFImage(URL(string: imageUrls[0]))
-                    .resizable()
-                    .scaledToFit()
+                ZStack(alignment: .topTrailing) {
+                    KFImage(URL(string: imageUrls[0]))
+                        .resizable()
+                        .scaledToFit()
+                    if (imageUrls.count > 1) {
+                        Image(systemName: "square.fill.on.square.fill")
+                            .font(.system(size: 14.0, weight: .regular))
+                            .foregroundColor(.white)
+                            .padding(10)
+                    }
+                }
             } else {
                 //TODO: Clean this up after everyone is ported over to imageUrls array
                 KFImage(URL(string: post.imageUrl ?? ""))
