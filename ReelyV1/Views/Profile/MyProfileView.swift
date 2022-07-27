@@ -187,6 +187,7 @@ struct MyProfileInfoView: View {
                     .font(Font.custom(Constants.bodyFont, size: 16))
             }
         }.padding(.vertical, 4)
+        .padding(.horizontal, 24)
     }
 }
 
