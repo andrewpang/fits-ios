@@ -15,22 +15,27 @@ struct CommentRowView: View {
     
     var body: some View {
         HStack(alignment: .top) {
-            if let profilePicImageUrl = commentModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                KFImage(URL(string: profilePicImageUrl))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                    .clipShape(Circle())
-            } else {
-                Image("portraitPlaceHolder")
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                    .clipShape(Circle())
-            }
+            NavigationLink(destination: UserProfileView(userId: commentModel.author.userId!)) {
+                if let profilePicImageUrl = commentModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                    KFImage(URL(string: profilePicImageUrl))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
+                        .clipShape(Circle())
+                } else {
+                    Image("portraitPlaceHolder")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
+                        .clipShape(Circle())
+                }
+            }.disabled(commentModel.author.userId?.isEmpty ?? true)
+            
             VStack(alignment: .leading) {
-                Text(commentModel.author.displayName ?? "Commentor")
-                    .font(Font.system(size: 16, weight: .bold, design: .default))
+                NavigationLink(destination: UserProfileView(userId: commentModel.author.userId!)) {
+                    Text(commentModel.author.displayName ?? "Commentor")
+                        .font(Font.system(size: 16, weight: .bold, design: .default))
+                }.disabled(commentModel.author.userId?.isEmpty ?? true)
                 Text(commentModel.commentText)
                     .font(Font.custom(Constants.bodyFont, size: 16))
             }
