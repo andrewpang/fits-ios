@@ -64,6 +64,7 @@ struct AddPostView: View {
                         .foregroundColor(.gray)
                     TextField("Title", text: $postViewModel.postTitle)
                         .font(Font.custom(Constants.titleFont, size: 16))
+                        .disabled(postViewModel.isSubmitting)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onReceive(postViewModel.postTitle.publisher.collect()) {
                             let s = String($0.prefix(postTitleCharacterLimit))
@@ -89,6 +90,7 @@ struct AddPostView: View {
                 ZStack {
                     TextEditor(text: $postViewModel.postBody)
                         .font(Font.custom(Constants.bodyFont, size: 16))
+                        .disabled(postViewModel.isSubmitting)
                     Text(postViewModel.postBody).opacity(0).padding(.all, 8)
                         .font(Font.custom(Constants.bodyFont, size: 16))
                 }
