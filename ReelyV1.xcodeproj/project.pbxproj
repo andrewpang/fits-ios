@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4705BEEA287E40BE00CB6A58 /* MailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4705BEE9287E40BE00CB6A58 /* MailView.swift */; };
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
@@ -105,7 +104,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4705BEE9287E40BE00CB6A58 /* MailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MailView.swift; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -430,7 +428,6 @@
 			children = (
 				4761CC02286FBE68008ED1BF /* UIImagePicker.swift */,
 				473C6A41283C89A200D4D15E /* PHImagePicker.swift */,
-				4705BEE9287E40BE00CB6A58 /* MailView.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -613,7 +610,6 @@
 				473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
-				4705BEEA287E40BE00CB6A58 /* MailView.swift in Sources */,
 				4761CC092870E09B008ED1BF /* TabViewModel.swift in Sources */,
 				47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */,
 				47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */,
