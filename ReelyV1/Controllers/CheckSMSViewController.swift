@@ -45,7 +45,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     }
     
     fileprivate func setupBackgroundView() {
-        self.view.backgroundColor = UIColor(named: Constants.backgroundColor)
+        self.view.backgroundColor = UIColor(named: Constants.checkSMSBackgroundColor)
     }
     
     fileprivate func setupQuestionLabel() {

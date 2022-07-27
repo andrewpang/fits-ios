@@ -32,6 +32,7 @@ struct Constants {
     
     static let onBoardingButtonColor = "LightGrayButton"
     static let backgroundColor = "OffWhite"
+    static let checkSMSBackgroundColor = "OffWhite-2"
     static let darkBackgroundColor = "DarkModeOffWhite"
     
     static let postCardProfilePicSize: CGFloat = 20
