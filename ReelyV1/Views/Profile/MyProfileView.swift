@@ -200,7 +200,7 @@ struct FeedbackButton: View {
             openMail()
         }) {
             HStack {
-                Text("How can we make FIT(s) better for you?")
+                Text("Feedback for FIT(s)")
                     .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                     .foregroundColor(Color(Constants.backgroundColor))
                     .padding(.vertical, 16)
