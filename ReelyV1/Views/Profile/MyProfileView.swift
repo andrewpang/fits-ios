@@ -193,31 +193,42 @@ struct MyProfileInfoView: View {
 
 struct FeedbackButton: View {
     
-    @State private var mailData = ComposeMailData(subject: "Feedback for FIT(s)",
-                                                    recipients: ["feedback@fitsatfit.com"],
-                                                    message: "How can we make the FIT(s) app better for you?",
-                                                    attachments: nil)
-    @State private var showMailView = false
+    @State private var showingAlert = false
     
     var body: some View {
         Button(action: {
-            showMailView.toggle()
+            openMail()
         }) {
             HStack {
-                Text("Contact/Give Feedback")
+                Text("How can we make FIT(s) better for you?")
                     .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                     .foregroundColor(Color(Constants.backgroundColor))
+                    .padding(.vertical, 16)
+                    .padding(.horizontal, 24)
             }
-            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
             .background(Color(Constants.darkBackgroundColor))
             .cornerRadius(Constants.buttonCornerRadius)
             .padding(.horizontal, 40)
+        }.alert(isPresented: $showingAlert) {
+            Alert(title: Text("Email app not supported"), message: Text("Please email any feedback to feedback@fitsatfit.com"), dismissButton: .default(Text("Ok")))
         }
-        .disabled(!MailView.canSendMail)
-        .sheet(isPresented: $showMailView) {
-            MailView(data: $mailData) { result in
-                print(result)
+    }
+    
+    func openMail() {
+        let email = "feedback@fitsatfit.com"
+        let subject = "Feedback%20for%20FIT(s)"
+        let body = "How%20can%20we%20make%20the%20FIT(s)%20app%20better%20for%20you%3F%20Send%20us%20an%20email%20with%20comments,%20questions,%20or%20feedback!"
+        let urlString = "mailto:\(email)?subject=\(subject)&body=\(body)"
+        
+        if let url = URL(string: urlString) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                self.showingAlert = true
             }
+        } else {
+            self.showingAlert = true
         }
     }
 }
