@@ -44,7 +44,16 @@ class PostViewModel: ObservableObject {
         var imagesDownloaded = 0
         var postImageUrls = Array(repeating: "", count: mediaItems.items.count)
         for (index, image) in mediaItems.items.enumerated() {
-            guard let imageData = image.photo?.jpegData(compressionQuality: 0.5) else { return }
+            guard var imageData = image.photo?.jpegData(compressionQuality: 1.0) else { return }
+            if (imageData.count > 300 * 1024) {
+                if (imageData.count > 1024 * 1024) {// 1m and above
+                    imageData = image.photo?.jpegData(compressionQuality: 0.3) ?? imageData
+                } else if (imageData.count > 512 * 1024) {//0.5M-1M
+                    imageData = image.photo?.jpegData(compressionQuality: 0.5) ?? imageData
+                } else if (imageData.count > 300 * 1024) {//0.25M-0.5M
+                    imageData = image.photo?.jpegData(compressionQuality: 0.9) ?? imageData
+                }
+            }
             let storage = Storage.storage()
             let imagesRef = storage.reference().child("postImages").child(Auth.auth().currentUser?.uid ?? "noUserId")
             
