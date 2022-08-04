@@ -190,6 +190,7 @@ struct PostCategoriesView: View {
                 if (sourceType == .camera) {
                     UIImagePicker(selectedImage: $postViewModel.postImage, isPresented: $showPicker, sourceType: sourceType).onDisappear {
                         if (postViewModel.postImage != nil) {
+                            self.mediaItems.append(item: PhotoPickerModel(with: postViewModel.postImage))
                             self.postViewModel.postTags = [postViewModel.postType]
                             self.postViewModel.shouldPopToRootViewIfFalse = true
                         }
