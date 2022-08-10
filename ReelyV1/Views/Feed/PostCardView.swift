@@ -40,7 +40,8 @@ struct PostCardView: View {
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                 Spacer()
-            }.padding(.vertical, 8)
+            }.padding(.vertical, 6)
+            .padding(.horizontal, 4)
             HStack {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     KFImage(URL(string: profilePicImageUrl))

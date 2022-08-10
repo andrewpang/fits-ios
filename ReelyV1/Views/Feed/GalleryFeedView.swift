@@ -60,6 +60,7 @@ struct GalleryFeedView: View {
                 Color(Constants.backgroundColor).ignoresSafeArea()
                 VStack(spacing: 0) {
                     Text(Constants.appTitle)
+                        .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
                         .padding(.bottom, 4)
                     ScrollView(.vertical, showsIndicators: false) {
@@ -92,6 +93,12 @@ struct GalleryFeedView: View {
             requestNotificationPermissions()
             self.homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
             Amplitude.instance().logEvent("Home Feed Screen - View")
+//            for family in UIFont.familyNames {
+//              print("family:", family)
+//              for font in UIFont.fontNames(forFamilyName: family) {
+//                  print("font:", font)
+//              }
+//            }
         }
     }
 }
