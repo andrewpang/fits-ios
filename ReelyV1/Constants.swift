@@ -40,9 +40,9 @@ struct Constants {
     static let postAuthorProfilePicSize: CGFloat = 32
     static let profilePageProfilePicSize: CGFloat = 140
     
-    static let titleFont = "Didot"
-    static let titleFontBold = "Didot-Bold"
-    static let titleFontItalicized = "Didot-Italic"
+    static let titleFont = "Kinfolk-SerifDeck"
+    static let titleFontBold = "Kinfolk-SerifText"
+    static let titleFontItalicized = "Kinfolk-SerifTextItalic"
     static let bodyFont = "Kinfolk-Sans"
     static let buttonFont = "Kinfolk-Sans"
     
