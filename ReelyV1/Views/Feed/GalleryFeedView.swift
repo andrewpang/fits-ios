@@ -10,6 +10,7 @@ import PermissionsSwiftUINotification
 import FirebaseMessaging
 import Amplitude
 import WaterfallGrid
+import Mixpanel
 
 struct GalleryFeedView: View {
     @ObservedObject var homeViewModel: HomeViewModel
@@ -92,7 +93,9 @@ struct GalleryFeedView: View {
             self.authenticationViewModel.checkIfSignedIn()
             requestNotificationPermissions()
             self.homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
-            Amplitude.instance().logEvent("Home Feed Screen - View")
+            let eventName = "Home Feed Screen - View"
+            Amplitude.instance().logEvent(eventName)
+            Mixpanel.mainInstance().track(event: eventName)
 //            for family in UIFont.familyNames {
 //              print("family:", family)
 //              for font in UIFont.fontNames(forFamilyName: family) {

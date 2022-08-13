@@ -12,6 +12,7 @@ import FirebaseStorage
 import FirebaseMessaging
 import Amplitude
 import SwiftUI
+import Mixpanel
 
 class AuthenticationViewModel: ObservableObject {
     
@@ -37,6 +38,7 @@ class AuthenticationViewModel: ObservableObject {
             getCurrentUserData()
         } else {
             Amplitude.instance().setUserId(nil)
+            Mixpanel.mainInstance().reset()
             state = .signedOut
         }
     }
@@ -45,6 +47,7 @@ class AuthenticationViewModel: ObservableObject {
         do {
             try Auth.auth().signOut()
             Amplitude.instance().setUserId(nil)
+            Mixpanel.mainInstance().reset()
             state = .signedOut
             profileListener = nil
         } catch {
@@ -56,6 +59,7 @@ class AuthenticationViewModel: ObservableObject {
         self.registerUserForTopic(topic: "fit")
         if let uid = Auth.auth().currentUser?.uid {
             Amplitude.instance().setUserId(uid)
+            Mixpanel.mainInstance().identify(distinctId: uid)
             if (profileListener == nil) {
                 profileListener = db.collection("users").document(uid).addSnapshotListener { documentSnapshot, error in
                     guard let document = documentSnapshot else {
@@ -77,6 +81,7 @@ class AuthenticationViewModel: ObservableObject {
                     
                     self.userModel = userData
                     self.state = .signedIn
+                    Mixpanel.mainInstance().people.set(properties: ["displayName": userData.displayName, "phoneNumber": userData.phoneNumber])
                 }
             }
         }

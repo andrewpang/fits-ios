@@ -8,6 +8,7 @@
 import SwiftUI
 import AVKit
 import Amplitude
+import Mixpanel
 
 struct WelcomeView: View {
     let videoUrl = "http://commondatastorage.googleapis.com/gtv-videos-bucket/sample/BigBuckBunny.mp4"
@@ -50,7 +51,9 @@ struct WelcomeView: View {
                 }
             )
         }.onAppear {
-            Amplitude.instance().logEvent("Welcome Screen - View")
+            let eventName = "Welcome Screen - View"
+            Amplitude.instance().logEvent(eventName)
+            Mixpanel.mainInstance().track(event: eventName)
 //            for family in UIFont.familyNames {
 //                 print(family)
 //

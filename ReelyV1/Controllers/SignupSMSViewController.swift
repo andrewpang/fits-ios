@@ -10,6 +10,7 @@ import Foundation
 import FirebaseAuth
 import PhoneNumberKit
 import Amplitude
+import Mixpanel
 
 class SignupSMSViewController: UIViewController, UITextFieldDelegate {
     
@@ -35,8 +36,10 @@ class SignupSMSViewController: UIViewController, UITextFieldDelegate {
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
         
-        let propertiesDict = ["isProfilePictureSet": profileViewModel?.image != nil] as [String : Any]
-        Amplitude.instance().logEvent("SMS Sign Up Screen - View", withEventProperties: propertiesDict)
+        let eventName = "SMS Sign Up Screen - View"
+        let propertiesDict = ["isProfilePictureSet": profileViewModel?.image != nil] as? [String : Bool]
+        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
     }
     
     fileprivate func setupNavBarView() {

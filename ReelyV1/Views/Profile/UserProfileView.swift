@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import Amplitude
+import Mixpanel
 
 struct UserProfileView: View {
     @StateObject var userProfileViewModel = UserProfileViewModel()
@@ -34,10 +35,12 @@ struct UserProfileView: View {
             }
         }.onAppear {
             userProfileViewModel.fetchUserModel(for: userId)
+            let eventName = "User Profile Screen - View"
             let propertiesDict = [
-                "userId": userId as Any,
-            ] as [String : Any]
-            Amplitude.instance().logEvent("User Profile Screen - View", withEventProperties: propertiesDict)
+                "userId": userId as String,
+            ] as? [String : String]
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
         }.onDisappear {
             userProfileViewModel.removeListeners()
         }.navigationBarTitle("", displayMode: .inline)

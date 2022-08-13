@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import Amplitude
+import Mixpanel
 
 struct FirstPostOverlayView: View {
     
@@ -92,27 +93,33 @@ struct FirstPostOverlayView: View {
                 .padding(.horizontal, 24)
                 .padding(.vertical, 24)
                 .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
+                    let eventName = "Post Categories Dialog - Clicked"
                     Button ("Photo Library") {
                         self.showPicker = true
                         self.sourceType = .photoLibrary
-                        let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as [String : Any]
-                        Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                        let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                     }
                     Button ("Camera") {
                         self.showPicker = true
                         self.sourceType = .camera
-                        let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as [String : Any]
-                        Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                        let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                     }
                     Button ("Cancel", role: ButtonRole.cancel) {
-                        let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as [String : Any]
-                        Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                        let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                     }
                 } message: {
                     Text ("Choose a picture from your photo library, or take one now!")
                 }
                 .onAppear {
-                    Amplitude.instance().logEvent("First Post Overlay - View")
+                    let eventName = "First Post Overlay - View"
+                    Amplitude.instance().logEvent(eventName)
+                    Mixpanel.mainInstance().track(event: eventName)
                 }
                 .sheet(isPresented: $showPicker) {
                     if (sourceType == .camera) {

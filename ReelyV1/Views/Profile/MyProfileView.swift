@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import Amplitude
+import Mixpanel
 
 struct MyProfileView: View {
     
@@ -99,7 +100,9 @@ struct MyProfileView: View {
         }.navigationBarTitle("", displayMode: .inline)
         .background(Color(Constants.backgroundColor))
         .onAppear {
-            Amplitude.instance().logEvent("My Profile Screen - View")
+            let eventName = "My Profile Screen - View"
+            Amplitude.instance().logEvent(eventName)
+            Mixpanel.mainInstance().track(event: eventName)
         }.sheet(isPresented: $isEditMode, content: {
             EditProfileView()
         })
