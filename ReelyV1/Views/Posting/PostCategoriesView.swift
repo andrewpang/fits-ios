@@ -9,6 +9,7 @@ import SwiftUI
 import PermissionsSwiftUIPhoto
 import PermissionsSwiftUICamera
 import Amplitude
+import Mixpanel
 
 struct PostCategoriesView: View {
     @StateObject var postViewModel = PostViewModel()
@@ -164,21 +165,25 @@ struct PostCategoriesView: View {
 //                        .cornerRadius(Constants.buttonCornerRadius)
 //                        .opacity(0.5)
                     }.confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
+                        let eventName = "Post Categories Dialog - Clicked"
                         Button ("Photo Library") {
                             self.showPicker = true
                             self.sourceType = .photoLibrary
-                            let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as [String : Any]
-                            Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                            let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
                         Button ("Camera") {
                             self.showPicker = true
                             self.sourceType = .camera
-                            let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as [String : Any]
-                            Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                            let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
                         Button ("Cancel", role: ButtonRole.cancel) {
-                            let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as [String : Any]
-                            Amplitude.instance().logEvent("Post Categories Dialog - Clicked", withEventProperties: propertiesDict)
+                            let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
                     } message: {
                         Text ("Choose a picture from your photo library, or take one now!")
@@ -207,7 +212,9 @@ struct PostCategoriesView: View {
             }
 //            .JMAlert(showModal: $showPermissionsAlert, for: [.camera, .photo], autoDismiss: true)
             .onAppear {
-                Amplitude.instance().logEvent("Post Categories Screen - View")
+                let eventName = "Post Categories Screen - View"
+                Amplitude.instance().logEvent(eventName)
+                Mixpanel.mainInstance().track(event: eventName)
             }
         }
     }

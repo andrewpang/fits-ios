@@ -10,6 +10,7 @@ import CoreData
 import FirebaseCore
 import FirebaseMessaging
 import Amplitude
+import Mixpanel
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         Amplitude.instance().trackingSessionEvents = true
         Amplitude.instance().initializeApiKey(Secrets.AmplitudeAPIKey)
         Amplitude.instance().logEvent("app_start")
+        
+        // Mixpanel
+        Mixpanel.initialize(token: Secrets.MixpanelAPIKey)
 
         return true
     }

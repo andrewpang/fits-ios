@@ -9,6 +9,7 @@ import UIKit
 import Foundation
 import FirebaseAuth
 import Amplitude
+import Mixpanel
 
 class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     
@@ -33,7 +34,9 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
         let tap = UITapGestureRecognizer(target: view, action: #selector(UIView.endEditing))
         tap.cancelsTouchesInView = false
         view.addGestureRecognizer(tap)
-        Amplitude.instance().logEvent("SMS Confirmation Screen - View")
+        let eventName = "SMS Confirmation Screen - View"
+        Amplitude.instance().logEvent(eventName)
+        Mixpanel.mainInstance().track(event: eventName)
     }
     
     fileprivate func setupNavBarView() {
@@ -134,17 +137,20 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
         let credential = PhoneAuthProvider.provider().credential(withVerificationID: verificationID, verificationCode: smsCode)
                
         Auth.auth().signIn(with: credential) { result, error in
+            let eventName = "Confirm SMS Code - Clicked"
             guard result != nil, error == nil else {
                 let propertiesDict = ["wasSignupSuccessful": false,
-                    ] as [String : Any]
-                Amplitude.instance().logEvent("Confirm SMS Code - Clicked", withEventProperties: propertiesDict)
+                    ] as? [String : Bool]
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                 self.displayError()
                 self.confirmNumberButton.isUserInteractionEnabled = true
                 return
             }
             let propertiesDict = ["wasSignupSuccessful": true,
-                ] as [String : Any]
-            Amplitude.instance().logEvent("Confirm SMS Code - Clicked", withEventProperties: propertiesDict)
+                ] as? [String : Bool]
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             self.profileViewModel?.uploadProfilePhotoAndModel()
             self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)

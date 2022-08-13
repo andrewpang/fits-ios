@@ -8,6 +8,7 @@
 import SwiftUI
 import Kingfisher
 import Amplitude
+import Mixpanel
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
@@ -86,8 +87,10 @@ struct PostDetailView: View {
                                 Button(action: {
                                     generator.notificationOccurred(.error)
                                     postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
-                                    let propertiesDict = ["isLike": false as Bool] as [String : Any]
-                                    Amplitude.instance().logEvent("Like Button - Clicked", withEventProperties: propertiesDict)
+                                    let eventName = "Like Button - Clicked"
+                                    let propertiesDict = ["isLike": false as Bool] as? [String : Bool]
+                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                                 }, label: {
                                     Image(systemName: "hands.clap.fill")
                                         .font(.system(size: 28.0, weight: .light))
@@ -108,8 +111,10 @@ struct PostDetailView: View {
                                 Button(action: {
                                     generator.notificationOccurred(.success)
                                     postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
-                                    let propertiesDict = ["isLike": true as Bool] as [String : Any]
-                                    Amplitude.instance().logEvent("Like Button - Clicked", withEventProperties: propertiesDict)
+                                    let eventName = "Like Button - Clicked"
+                                    let propertiesDict = ["isLike": true as Bool] as? [String : Bool]
+                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                                 }, label: {
                                     Image(systemName: "hands.clap")
                                         .font(.system(size: 28.0, weight: .light))
@@ -167,8 +172,10 @@ struct PostDetailView: View {
                             .focused($focusedField, equals: .commentField)
                             .submitLabel(.send)
                             .onSubmit {
-                                let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as [String : Any]
-                                Amplitude.instance().logEvent("Submit Comment - Clicked", withEventProperties: propertiesDict)
+                                let eventName = "Submit Comment - Clicked"
+                                let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Int] as? [String : Int]
+                                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                                 postCommentAndDismissKeyboard()
                             }
                     } else {
@@ -182,8 +189,10 @@ struct PostDetailView: View {
                     }
                     if (!postDetailViewModel.commentText.isEmpty) {
                         Button(action: {
-                            let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as [String : Any]
-                            Amplitude.instance().logEvent("Submit Comment - Clicked", withEventProperties: propertiesDict)
+                            let eventName = "Submit Comment - Clicked"
+                            let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as? [String : Int]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                             postCommentAndDismissKeyboard()
                         }) {
                             Image(systemName: "arrow.up.circle")
@@ -200,8 +209,16 @@ struct PostDetailView: View {
                     "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
                     "isUsersOwnPost": (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool,
                     "source": self.source,
-                ] as [String : Any]
-                Amplitude.instance().logEvent("Post Detail Screen - View", withEventProperties: propertiesDict)
+                ] as? [String : Any]
+                let propertiesDictMixPanel = [
+                    "postId": postDetailViewModel.postModel.id as Any,
+                    "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                    "isUsersOwnPost": (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool,
+                    "source": self.source,
+                ] as? [String : MixpanelType]
+                let eventName = "Post Detail Screen - View"
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
                 self.postDetailViewModel.fetchComments()
                 self.postDetailViewModel.fetchLikes(userId: authenticationViewModel.userModel?.id)
             }

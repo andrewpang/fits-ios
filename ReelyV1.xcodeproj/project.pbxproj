@@ -74,6 +74,7 @@
 		47A29793287FD6E100761026 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A29792287FD6E100761026 /* LikeModel.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
+		47D0444F28A6F9E40071591D /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 47D0444E28A6F9E40071591D /* Mixpanel */; };
 		47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E4287CD8BC005E424F /* ProfileParentView.swift */; };
 		47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E6287E1714005E424F /* FirstPostOverlayView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
@@ -182,6 +183,7 @@
 				4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */,
 				4756A8AD2874CED9006DA042 /* FirebaseDynamicLinks in Frameworks */,
 				4756A8AB2874CED9006DA042 /* FirebaseCrashlytics in Frameworks */,
+				47D0444F28A6F9E40071591D /* Mixpanel in Frameworks */,
 				4756A8B12874CED9006DA042 /* FirebaseFirestoreSwift in Frameworks */,
 				4756A8AF2874CED9006DA042 /* FirebaseFirestore in Frameworks */,
 				479FE98E28750FEF0030EE4D /* PermissionsSwiftUICamera in Frameworks */,
@@ -463,6 +465,7 @@
 				479FE99128750FEF0030EE4D /* PermissionsSwiftUIPhoto */,
 				471035082878C01A00D41E71 /* Amplitude */,
 				47FC5D99288663F8000B9794 /* WaterfallGrid */,
+				47D0444E28A6F9E40071591D /* Mixpanel */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FITs.app */;
@@ -543,6 +546,7 @@
 				479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */,
 				471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
+				47D0444D28A6F9E40071591D /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -1027,6 +1031,14 @@
 				minimumVersion = 3.4.0;
 			};
 		};
+		47D0444D28A6F9E40071591D /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
 		47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
@@ -1117,6 +1129,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 479FE98C28750FEF0030EE4D /* XCRemoteSwiftPackageReference "PermissionsSwiftUI" */;
 			productName = PermissionsSwiftUIPhoto;
+		};
+		47D0444E28A6F9E40071591D /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47D0444D28A6F9E40071591D /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
 		};
 		47FC5D99288663F8000B9794 /* WaterfallGrid */ = {
 			isa = XCSwiftPackageProductDependency;

@@ -12,6 +12,7 @@ import FirebaseStorage
 import FirebaseAuth
 import SwiftUI
 import Amplitude
+import Mixpanel
 
 class ProfileViewModel: ObservableObject {
     
@@ -55,6 +56,7 @@ class ProfileViewModel: ObservableObject {
     func uploadNewUserModel() {
         if let uid = Auth.auth().currentUser?.uid {
             Amplitude.instance().setUserId(uid)
+            Mixpanel.mainInstance().identify(distinctId: uid)
             let userModel = UserModel(
                 id: uid,
                 displayName: displayName.trimmingCharacters(in: .whitespacesAndNewlines),
@@ -66,6 +68,7 @@ class ProfileViewModel: ObservableObject {
                 major: major.isEmpty ? nil : major.trimmingCharacters(in: .whitespacesAndNewlines),
                 graduationYear: graduationYear
             )
+            Mixpanel.mainInstance().people.set(properties: ["displayName": userModel.displayName, "phoneNumber": userModel.phoneNumber])
             let usersCollection = self.db.collection("users")
             do {
                 let _ = try usersCollection.document(uid).setData(from: userModel, merge: false) { error in

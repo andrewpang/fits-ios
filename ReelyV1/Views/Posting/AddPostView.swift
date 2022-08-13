@@ -9,6 +9,7 @@ import SwiftUI
 import FirebaseAuth
 import Amplitude
 import UniformTypeIdentifiers
+import Mixpanel
 
 struct AddPostView: View {
     @ObservedObject var postViewModel: PostViewModel
@@ -116,8 +117,11 @@ struct AddPostView: View {
         .toolbar {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
-                    let propertiesDict = ["postType": postViewModel.postType as Any, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as [String : Any]
-                    Amplitude.instance().logEvent("Submit Post - Clicked", withEventProperties: propertiesDict)
+                    let eventName = "Submit Post - Clicked"
+                    let propertiesDict = ["postType": postViewModel.postType as String, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as? [String : Any]
+                    let propertiesDictMixpanel = ["postType": postViewModel.postType as String, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as? [String : MixpanelType]
+                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixpanel)
 //                TODO: Change this logic once there are more non-FIT groups
                     postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
                         postViewModel.shouldPopToRootViewIfFalse = false
@@ -158,8 +162,10 @@ struct AddPostView: View {
             }
         }
         .onAppear {
-            let propertiesDict = ["postType": postViewModel.postType as Any] as [String : Any]
-            Amplitude.instance().logEvent("Add Post Screen - View", withEventProperties: propertiesDict)
+            let eventName = "Add Post Screen - View"
+            let propertiesDict = ["postType": postViewModel.postType as Any] as? [String : String]
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
         }
         .onDisappear {
             mediaItems.deleteAll()
