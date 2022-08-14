@@ -23,6 +23,7 @@
 		473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A4B283C8ED800D4D15E /* PostModel.swift */; };
 		473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */; };
 		47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47498EC62874F3FE00F45B7D /* PhoneNumberKit */; };
+		4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */; };
 		4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A42874CED9006DA042 /* FirebaseAnalytics */; };
 		4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */; };
 		4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A82874CED9006DA042 /* FirebaseAuth */; };
@@ -118,6 +119,7 @@
 		473C6A46283C8EB800D4D15E /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		473C6A4B283C8ED800D4D15E /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
 		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 			children = (
 				4761CC02286FBE68008ED1BF /* UIImagePicker.swift */,
 				473C6A41283C89A200D4D15E /* PHImagePicker.swift */,
+				4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -617,6 +620,7 @@
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
+				4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
 				479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */,
