@@ -9,6 +9,8 @@ import SwiftUI
 
 struct WaterfallCollectionView: UIViewRepresentable {
     
+    var postModels: [PostModel]
+    
     func makeUIView(context: Context) -> UICollectionView {
         let layout = CHTCollectionViewWaterfallLayout()
         
@@ -37,22 +39,55 @@ struct WaterfallCollectionView: UIViewRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator()
+        Coordinator(self)
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
+        var parent: WaterfallCollectionView
+
+        init(_ parent: WaterfallCollectionView) {
+            self.parent = parent
+        }
+        
+        func sizeOfImageAt(url: URL) -> CGSize? {
+            // with CGImageSource we avoid loading the whole image into memory
+            guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
+                return nil
+            }
+            
+            let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
+            guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
+                return nil
+            }
+            
+            if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
+               let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
+                return CGSize(width: width, height: height)
+            } else {
+                return nil
+            }
+        }
+        
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            CGSize.init(width: 50, height: 50)
+            let postModel = parent.postModels[indexPath.item]
+            if let imageUrl = postModel.imageUrls?[0] {
+                if let url = URL(string: imageUrl) {
+                    if let size = sizeOfImageAt(url: url) {
+                        return CGSize.init(width: size.width, height: size.height)
+                    }
+                }
+            }
+            return CGSize.init(width: 50, height: 100)
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            3
+            parent.postModels.count
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             let cellIdentifier = "hostCell"
             let hostCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? HostCell
-            hostCell?.hostedCell = PostCardView(post: PostModel(author: PostAuthorMap(), title: "Title", body: "Body"))
+            hostCell?.hostedCell = PostCardView(post: parent.postModels[indexPath.item])
             return hostCell!
         }
     }

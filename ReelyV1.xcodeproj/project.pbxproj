@@ -25,6 +25,7 @@
 		47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47498EC62874F3FE00F45B7D /* PhoneNumberKit */; };
 		4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */; };
 		4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B75328A9892600942AAD /* WaterfallCollectionView.swift */; };
+		4755B75A28A9A2DC00942AAD /* GalleryFeedView2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B75928A9A2DC00942AAD /* GalleryFeedView2.swift */; };
 		4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A42874CED9006DA042 /* FirebaseAnalytics */; };
 		4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */; };
 		4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A82874CED9006DA042 /* FirebaseAuth */; };
@@ -122,6 +123,7 @@
 		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
 		4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
 		4755B75328A9892600942AAD /* WaterfallCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallCollectionView.swift; sourceTree = "<group>"; };
+		4755B75928A9A2DC00942AAD /* GalleryFeedView2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GalleryFeedView2.swift; sourceTree = "<group>"; };
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
 		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
@@ -252,6 +254,7 @@
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
 				479FE99928755B930030EE4D /* CommentsView.swift */,
 				479FE99B28755C1F0030EE4D /* CommentRowView.swift */,
+				4755B75928A9A2DC00942AAD /* GalleryFeedView2.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -624,6 +627,7 @@
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
 				4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */,
+				4755B75A28A9A2DC00942AAD /* GalleryFeedView2.swift in Sources */,
 				4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
 				479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */,
