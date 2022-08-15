@@ -17,7 +17,7 @@ struct CommentRowView: View {
         HStack(alignment: .top) {
             NavigationLink(destination: UserProfileView(userId: commentModel.author.userId!)) {
                 if let profilePicImageUrl = commentModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                    KFImage(URL(string: profilePicImageUrl))
+                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                         .resizable()
                         .scaledToFill()
                         .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)

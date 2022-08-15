@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseStorage
 import FirebaseAuth
 import SwiftUI
+import Cloudinary
 
 class PostViewModel: ObservableObject {
     @Published var postsData = PostsModel()
@@ -54,26 +55,28 @@ class PostViewModel: ObservableObject {
                     imageData = image.photo?.jpegData(compressionQuality: 0.9) ?? imageData
                 }
             }
-            let storage = Storage.storage()
-            let imagesRef = storage.reference().child("postImages").child(Auth.auth().currentUser?.uid ?? "noUserId")
             
-            let imageRef = imagesRef.child(image.id)
+            let config = CLDConfiguration(cloudName: "fitsatfit", secure: true)
+            let cloudinary = CLDCloudinary(configuration: config)
             
-            let uploadTask = imageRef.putData(imageData, metadata: nil) { metadata, error in
-                // You can also access to download URL after upload.
-                imageRef.downloadURL { (url, error) in
-                    guard let downloadURL = url else {
-                        // Uh-oh, an error occurred!
-                        print(error)
-                        return
-                    }
-                    postImageUrls[index] = downloadURL.absoluteString
-                    imagesDownloaded += 1
-                    if (imagesDownloaded == mediaItems.items.count) {
+            let uploadRequestParams = CLDUploadRequestParams().setFolder("postImages/\(Auth.auth().currentUser?.uid ?? "noUserId")")
+            
+            let request = cloudinary.createUploader().upload(
+                data: imageData, uploadPreset: "fsthtouv", params: uploadRequestParams) { progress in
+                  // Handle progress
+            } completionHandler: { result, error in
+                  // Handle result
+                guard let downloadURL = result?.secureUrl else {
+                    // Uh-oh, an error occurred!
+                    print(error)
+                    return
+                }
+                postImageUrls[index] = downloadURL
+                imagesDownloaded += 1
+                if (imagesDownloaded == mediaItems.items.count) {
 //                    TODO(REE-158): remove imageUrl once no one is on 1.1 build 8 or before
-                        let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId)
-                        self.uploadPostModel(postModel: postModel, completion: completion)
-                    }
+                    let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId)
+                    self.uploadPostModel(postModel: postModel, completion: completion)
                 }
             }
         }

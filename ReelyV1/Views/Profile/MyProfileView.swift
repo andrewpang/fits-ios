@@ -124,7 +124,7 @@ struct MyProfilePictureView: View {
         HStack {
             Spacer()
             if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                KFImage(URL(string: profilePicImageUrl))
+                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.thumbnailWidth)))
                     .resizable()
                     .scaledToFill()
                     .frame(width: Constants.profilePageProfilePicSize, height:  Constants.profilePageProfilePicSize)

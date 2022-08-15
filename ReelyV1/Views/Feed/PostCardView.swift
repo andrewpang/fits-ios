@@ -15,7 +15,7 @@ struct PostCardView: View {
         VStack(alignment: .leading, spacing: 0) {
             if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
                 ZStack(alignment: .topTrailing) {
-                    KFImage(URL(string: imageUrls[0]))
+                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrls[0], width: CloudinaryHelper.thumbnailWidth)))
                         .resizable()
                         .scaledToFit()
                     if (imageUrls.count > 1) {
@@ -44,7 +44,7 @@ struct PostCardView: View {
             .padding(.horizontal, 4)
             HStack {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                    KFImage(URL(string: profilePicImageUrl))
+                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                         .resizable()
                         .scaledToFill()
                         .frame(width: Constants.postCardProfilePicSize, height:  Constants.postCardProfilePicSize)

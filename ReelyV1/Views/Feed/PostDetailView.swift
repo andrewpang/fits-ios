@@ -39,7 +39,7 @@ struct PostDetailView: View {
                             if (imageUrls.count > 1) {
                                 TabView() {
                                     ForEach(imageUrls, id: \.self) { imageUrl in
-                                        KFImage(URL(string: imageUrl))
+                                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.detailWidth)))
                                             .resizable()
                                             .scaledToFill()
                                             .padding(.vertical)
@@ -47,7 +47,7 @@ struct PostDetailView: View {
                                 }.frame(height: geometry.size.width)
                                 .tabViewStyle(PageTabViewStyle())
                             } else {
-                                KFImage(URL(string: postDetailViewModel.postModel.imageUrls?[0] ?? ""))
+                                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: postDetailViewModel.postModel.imageUrls?[0] ?? "", width: CloudinaryHelper.detailWidth)))
                                     .resizable()
                                     .scaledToFill()
                             }
@@ -149,7 +149,7 @@ struct PostDetailView: View {
                 Divider()
                 HStack {
                     if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                        KFImage(URL(string: profilePicImageUrl))
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                             .resizable()
                             .scaledToFill()
                             .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
@@ -228,7 +228,7 @@ struct PostDetailView: View {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink(destination: UserProfileView(userId: postDetailViewModel.postModel.author.userId!)) {
                         if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                            KFImage(URL(string: profilePicImageUrl))
+                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
