@@ -10,26 +10,38 @@ import Kingfisher
 
 struct PostCardView: View {
     var post: PostModel
+    @State var isShowingLoadingIndicator = true
     
     var body: some View {
         VStack(alignment: .leading, spacing: 0) {
-            if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
-                ZStack(alignment: .topTrailing) {
-                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrls[0], width: CloudinaryHelper.thumbnailWidth)))
+            ZStack(alignment: .center) {
+                if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
+                    ZStack(alignment: .topTrailing) {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrls[0], width: CloudinaryHelper.thumbnailWidth)))
+                            .onSuccess {_ in
+                                isShowingLoadingIndicator = false
+                            }
+                            .resizable()
+                            .scaledToFit()
+                        if (imageUrls.count > 1) {
+                            Image(systemName: "square.fill.on.square.fill")
+                                .font(.system(size: 14.0, weight: .regular))
+                                .foregroundColor(.white)
+                                .padding(10)
+                        }
+                    }
+                } else {
+                    //TODO: Clean this up after everyone is ported over to imageUrls array
+                    KFImage(URL(string: post.imageUrl ?? ""))
+                        .onSuccess {_ in
+                            isShowingLoadingIndicator = false
+                        }
                         .resizable()
                         .scaledToFit()
-                    if (imageUrls.count > 1) {
-                        Image(systemName: "square.fill.on.square.fill")
-                            .font(.system(size: 14.0, weight: .regular))
-                            .foregroundColor(.white)
-                            .padding(10)
-                    }
                 }
-            } else {
-                //TODO: Clean this up after everyone is ported over to imageUrls array
-                KFImage(URL(string: post.imageUrl ?? ""))
-                    .resizable()
-                    .scaledToFit()
+                if (isShowingLoadingIndicator) {
+                    ProgressView()
+                }
             }
             
             HStack {
