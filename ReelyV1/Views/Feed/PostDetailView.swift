@@ -23,6 +23,7 @@ struct PostDetailView: View {
     }
    
     @FocusState var focusedField: PostDetailFocusField?
+    @State var isShowingLoadingIndicator = true
 
     func postCommentAndDismissKeyboard() {
         let commentModel = CommentModel(author: authenticationViewModel.getPostAuthorMap(), commentText: postDetailViewModel.commentText.trimmingCharacters(in: .whitespacesAndNewlines))
@@ -35,28 +36,45 @@ struct PostDetailView: View {
             VStack(spacing: 0) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
-                        if let imageUrls = postDetailViewModel.postModel.imageUrls, !imageUrls.isEmpty {
-                            if (imageUrls.count > 1) {
-                                TabView() {
-                                    ForEach(imageUrls, id: \.self) { imageUrl in
-                                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.detailWidth)))
-                                            .resizable()
-                                            .scaledToFill()
-                                            .padding(.vertical)
-                                    }
-                                }.frame(height: geometry.size.width)
-                                .tabViewStyle(PageTabViewStyle())
+                        ZStack(alignment: .center) {
+                            if let imageUrls = postDetailViewModel.postModel.imageUrls, !imageUrls.isEmpty {
+                                if (imageUrls.count > 1) {
+                                    TabView() {
+                                        ForEach(imageUrls, id: \.self) { imageUrl in
+                                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.detailWidth)))
+                                                .onProgress {_, _ in
+                                                    isShowingLoadingIndicator = true
+                                                }
+                                                .onSuccess {_ in
+                                                    isShowingLoadingIndicator = false
+                                                }
+                                                .resizable()
+                                                .scaledToFill()
+                                                .padding(.vertical)
+                                        }
+                                    }.frame(height: geometry.size.width)
+                                    .tabViewStyle(PageTabViewStyle())
+                                } else {
+                                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: postDetailViewModel.postModel.imageUrls?[0] ?? "", width: CloudinaryHelper.detailWidth)))
+                                        .onSuccess {_ in
+                                            isShowingLoadingIndicator = false
+                                        }
+                                        .resizable()
+                                        .scaledToFill()
+                                }
                             } else {
-                                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: postDetailViewModel.postModel.imageUrls?[0] ?? "", width: CloudinaryHelper.detailWidth)))
+                                //TODO: Clean this up after everyone is ported over to imageUrls array
+                                KFImage(URL(string: postDetailViewModel.postModel.imageUrl ?? ""))
+                                    .onSuccess {_ in
+                                        isShowingLoadingIndicator = false
+                                    }
                                     .resizable()
                                     .scaledToFill()
                             }
-                        } else {
-                            //TODO: Clean this up after everyone is ported over to imageUrls array
-                            KFImage(URL(string: postDetailViewModel.postModel.imageUrl ?? ""))
-                                .resizable()
-                                .scaledToFill()
+                        if (isShowingLoadingIndicator) {
+                            ProgressView()
                         }
+                    }
                        
     //                    HStack {
     //

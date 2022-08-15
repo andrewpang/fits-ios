@@ -9,8 +9,8 @@ import Foundation
 
 class CloudinaryHelper {
     static let profileThumbnailWidth = 100
-    static let thumbnailWidth = 600
-    static let detailWidth = 1200
+    static let thumbnailWidth = 450
+    static let detailWidth = 750
     
     static func getCompressedUrl(url: String, width: Int) -> String {
         if (!url.contains("cloudinary")) {
