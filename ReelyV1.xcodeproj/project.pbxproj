@@ -23,6 +23,8 @@
 		473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A4B283C8ED800D4D15E /* PostModel.swift */; };
 		473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */; };
 		47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47498EC62874F3FE00F45B7D /* PhoneNumberKit */; };
+		4755B77828A9C18F00942AAD /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = 4755B77728A9C18F00942AAD /* Cloudinary */; };
+		4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B77928A9D3D800942AAD /* CloudinaryHelper.swift */; };
 		4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A42874CED9006DA042 /* FirebaseAnalytics */; };
 		4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A62874CED9006DA042 /* FirebaseAnalyticsSwift */; };
 		4756A8A92874CED9006DA042 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A82874CED9006DA042 /* FirebaseAuth */; };
@@ -118,6 +120,7 @@
 		473C6A46283C8EB800D4D15E /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		473C6A4B283C8ED800D4D15E /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4755B77928A9D3D800942AAD /* CloudinaryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudinaryHelper.swift; sourceTree = "<group>"; };
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
 		4761CC00286FB48A008ED1BF /* PostCategoriesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCategoriesView.swift; sourceTree = "<group>"; };
@@ -194,6 +197,7 @@
 				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
 				4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */,
 				471035092878C01A00D41E71 /* Amplitude in Frameworks */,
+				4755B77828A9C18F00942AAD /* Cloudinary in Frameworks */,
 				4756A8A72874CED9006DA042 /* FirebaseAnalyticsSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -427,6 +431,7 @@
 			children = (
 				4761CC02286FBE68008ED1BF /* UIImagePicker.swift */,
 				473C6A41283C89A200D4D15E /* PHImagePicker.swift */,
+				4755B77928A9D3D800942AAD /* CloudinaryHelper.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -466,6 +471,7 @@
 				471035082878C01A00D41E71 /* Amplitude */,
 				47FC5D99288663F8000B9794 /* WaterfallGrid */,
 				47D0444E28A6F9E40071591D /* Mixpanel */,
+				4755B77728A9C18F00942AAD /* Cloudinary */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FITs.app */;
@@ -547,6 +553,7 @@
 				471035072878C01900D41E71 /* XCRemoteSwiftPackageReference "Amplitude-iOS" */,
 				47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */,
 				47D0444D28A6F9E40071591D /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				4755B77628A9C18E00942AAD /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -641,6 +648,7 @@
 				4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
 				479FE99E287625F90030EE4D /* TokenModel.swift in Sources */,
+				4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */,
 				4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
@@ -995,6 +1003,14 @@
 				kind = branch;
 			};
 		};
+		4755B77628A9C18E00942AAD /* XCRemoteSwiftPackageReference "cloudinary_ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/cloudinary/cloudinary_ios.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 3.0.0;
+			};
+		};
 		4756A8A32874CED9006DA042 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/firebase/firebase-ios-sdk.git";
@@ -1063,6 +1079,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 47A9DE8D286A8BAE00DF76CE /* XCRemoteSwiftPackageReference "PhoneNumberKit" */;
 			productName = PhoneNumberKit;
+		};
+		4755B77728A9C18F00942AAD /* Cloudinary */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 4755B77628A9C18E00942AAD /* XCRemoteSwiftPackageReference "cloudinary_ios" */;
+			productName = Cloudinary;
 		};
 		4756A8A42874CED9006DA042 /* FirebaseAnalytics */ = {
 			isa = XCSwiftPackageProductDependency;

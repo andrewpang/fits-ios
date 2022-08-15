@@ -15,7 +15,7 @@ struct PostCardView: View {
         VStack(alignment: .leading, spacing: 0) {
             if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
                 ZStack(alignment: .topTrailing) {
-                    KFImage(URL(string: imageUrls[0]))
+                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrls[0], width: CloudinaryHelper.thumbnailWidth)))
                         .resizable()
                         .scaledToFit()
                     if (imageUrls.count > 1) {

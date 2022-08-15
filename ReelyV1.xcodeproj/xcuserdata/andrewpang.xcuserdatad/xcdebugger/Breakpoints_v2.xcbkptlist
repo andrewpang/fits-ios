@@ -7,64 +7,48 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "8B500A16-57E2-47EB-8601-15964F3B74EB"
+            uuid = "9433D270-85AA-4F7E-8958-E627FA51B286"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Utilities/PHImagePicker.swift"
+            filePath = "ReelyV1/View Models/PostViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "86"
-            endingLineNumber = "86"
-            landmarkName = "getPhoto(from:isLivePhoto:indexOfImage:)"
+            startingLineNumber = "64"
+            endingLineNumber = "64"
+            landmarkName = "submitPost(mediaItems:postAuthorMap:groupId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "A26C23EB-F6A6-40D3-8027-464A31AFE062"
+            uuid = "0205DDB7-FBF4-46D9-88AB-C78CC34CD1DF"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Utilities/PHImagePicker.swift"
+            filePath = "ReelyV1/View Models/PostViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "88"
-            endingLineNumber = "88"
-            landmarkName = "getPhoto(from:isLivePhoto:indexOfImage:)"
+            startingLineNumber = "69"
+            endingLineNumber = "69"
+            landmarkName = "submitPost(mediaItems:postAuthorMap:groupId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "24D55B1C-F813-4CD7-9AE3-B1387BF81E93"
+            uuid = "EB6909B1-ED87-4B0C-A7A1-AA807FF4FF25"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Utilities/PHImagePicker.swift"
+            filePath = "ReelyV1/View Models/PostViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "90"
-            endingLineNumber = "90"
-            landmarkName = "getPhoto(from:isLivePhoto:indexOfImage:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "A49CD12F-2957-49AF-8FD7-3893C0195239"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Utilities/PHImagePicker.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "93"
-            endingLineNumber = "93"
-            landmarkName = "getPhoto(from:isLivePhoto:indexOfImage:)"
+            startingLineNumber = "78"
+            endingLineNumber = "78"
+            landmarkName = "submitPost(mediaItems:postAuthorMap:groupId:completion:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

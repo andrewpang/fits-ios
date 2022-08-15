@@ -28,7 +28,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Mixpanel
         Mixpanel.initialize(token: Secrets.MixpanelAPIKey)
-
+        
         return true
     }
     
