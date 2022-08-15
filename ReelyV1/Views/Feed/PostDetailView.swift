@@ -149,7 +149,7 @@ struct PostDetailView: View {
                 Divider()
                 HStack {
                     if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                        KFImage(URL(string: profilePicImageUrl))
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                             .resizable()
                             .scaledToFill()
                             .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
@@ -228,7 +228,7 @@ struct PostDetailView: View {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
                     NavigationLink(destination: UserProfileView(userId: postDetailViewModel.postModel.author.userId!)) {
                         if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                            KFImage(URL(string: profilePicImageUrl))
+                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                                 .resizable()
                                 .scaledToFill()
                                 .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
