@@ -39,7 +39,7 @@ struct PostDetailView: View {
                             if (imageUrls.count > 1) {
                                 TabView() {
                                     ForEach(imageUrls, id: \.self) { imageUrl in
-                                        KFImage(URL(string: imageUrl))
+                                        KFImage(URL(string: PostModel.getCompressedUrl(url: imageUrl)))
                                             .resizable()
                                             .scaledToFill()
                                             .padding(.vertical)
@@ -47,7 +47,7 @@ struct PostDetailView: View {
                                 }.frame(height: geometry.size.width)
                                 .tabViewStyle(PageTabViewStyle())
                             } else {
-                                KFImage(URL(string: postDetailViewModel.postModel.imageUrls?[0] ?? ""))
+                                KFImage(URL(string: PostModel.getCompressedUrl(url: postDetailViewModel.postModel.imageUrls?[0] ?? "")))
                                     .resizable()
                                     .scaledToFill()
                             }
