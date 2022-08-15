@@ -11,7 +11,6 @@ import FirebaseCore
 import FirebaseMessaging
 import Amplitude
 import Mixpanel
-import Cloudinary
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -29,10 +28,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Mixpanel
         Mixpanel.initialize(token: Secrets.MixpanelAPIKey)
-
-        // Cloudinary
-        let config = CLDConfiguration(cloudName: "fitsatfit", secure: true)
-        let cloudinary = CLDCloudinary(configuration: config)
         
         return true
     }
