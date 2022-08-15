@@ -8,6 +8,7 @@
 import Foundation
 
 class CloudinaryHelper {
+    static let profileThumbnailWidth = 100
     static let thumbnailWidth = 600
     static let detailWidth = 1200
     

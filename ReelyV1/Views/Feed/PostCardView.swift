@@ -44,7 +44,7 @@ struct PostCardView: View {
             .padding(.horizontal, 4)
             HStack {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                    KFImage(URL(string: profilePicImageUrl))
+                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
                         .resizable()
                         .scaledToFill()
                         .frame(width: Constants.postCardProfilePicSize, height:  Constants.postCardProfilePicSize)

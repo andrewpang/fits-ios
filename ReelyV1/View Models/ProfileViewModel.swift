@@ -13,6 +13,7 @@ import FirebaseAuth
 import SwiftUI
 import Amplitude
 import Mixpanel
+import Cloudinary
 
 class ProfileViewModel: ObservableObject {
     
@@ -35,21 +36,24 @@ class ProfileViewModel: ObservableObject {
             self.uploadNewUserModel()
             return
         }
-        let storage = Storage.storage()
-        let imagesRef = storage.reference().child("profilePhotos").child(Auth.auth().currentUser?.uid ?? "noUserId")
-        let imageRef = imagesRef.child(UUID().uuidString)
+        let config = CLDConfiguration(cloudName: "fitsatfit", secure: true)
+        let cloudinary = CLDCloudinary(configuration: config)
         
-        let uploadTask = imageRef.putData(imageData, metadata: nil) { metadata, error in
-            // You can also access to download URL after upload.
-            imageRef.downloadURL { (url, error) in
-                guard let downloadURL = url else {
-                    // Uh-oh, an error occurred!
-                    self.uploadNewUserModel()
-                    return
-                }
-                self.imageUrl = downloadURL.absoluteString
+        let uploadRequestParams = CLDUploadRequestParams().setFolder("profilePhotos/\(Auth.auth().currentUser?.uid ?? "noUserId")")
+        
+        let request = cloudinary.createUploader().upload(
+            data: imageData, uploadPreset: "fsthtouv", params: uploadRequestParams) { progress in
+              // Handle progress
+        } completionHandler: { result, error in
+              // Handle result
+            guard let downloadURL = result?.secureUrl else {
+                // Uh-oh, an error occurred!
+                print(error)
                 self.uploadNewUserModel()
+                return
             }
+            self.imageUrl = downloadURL
+            self.uploadNewUserModel()
         }
     }
     
