@@ -35,6 +35,9 @@ struct Constants {
     static let checkSMSBackgroundColor = "OffWhite-2"
     static let darkBackgroundColor = "DarkModeOffWhite"
     
+    
+    static let postCardPadding: CGFloat = 8.0
+    
     static let postCardProfilePicSize: CGFloat = 20
     static let commentsProfilePicSize: CGFloat = 32
     static let postAuthorProfilePicSize: CGFloat = 32
@@ -45,6 +48,11 @@ struct Constants {
     static let titleFontItalicized = "Kinfolk-SerifTextItalic"
     static let bodyFont = "Kinfolk-Sans"
     static let buttonFont = "Kinfolk-Sans"
+    
+    static let postCardTitleFontSize: CGFloat = 16
+    static let postCardTitleVerticalPadding: CGFloat = 6
+    static let postCardTitleHorizontalPadding: CGFloat = 4
+    static let postCardAuthorSectionHeight: CGFloat = 30
     
     static let ootdRecommendedDetails = "- Name the products in the photo\n- Where did you buy the items?\n- How much did the outfit cost?\n- Share the story behind the photo/outfit\n- Other details"
     static let productReviewRecommendedDetails = "- How much did it cost?\n- Describe the quality and material\n- Describe the sizing\n- Provide brand details (e.g. sustainable, minority-owned business, etc.)"

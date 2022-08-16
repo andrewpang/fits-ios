@@ -18,6 +18,11 @@ struct PostCardView: View {
                     KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrls[0], width: CloudinaryHelper.thumbnailWidth)))
                         .resizable()
                         .scaledToFit()
+                        .overlay(
+                            GeometryReader { proxy in
+                                Text("\(proxy.size.width, specifier: "%.2f") x \(proxy.size.height, specifier: "%.2f")")
+                            }
+                        )
                     if (imageUrls.count > 1) {
                         Image(systemName: "square.fill.on.square.fill")
                             .font(.system(size: 14.0, weight: .regular))
@@ -35,13 +40,20 @@ struct PostCardView: View {
             HStack {
                 Spacer()
                 Text(post.title)
-                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                    .font(Font.custom(Constants.titleFontBold, size: Constants.postCardTitleFontSize))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                 Spacer()
-            }.padding(.vertical, 6)
-            .padding(.horizontal, 4)
+            }.padding(.vertical, Constants.postCardTitleVerticalPadding)
+            .padding(.horizontal, Constants.postCardTitleHorizontalPadding)
+//            .frame(height: 50)
+            .background(.red)
+            .overlay(
+                GeometryReader { proxy in
+                    Text("\(proxy.size.width, specifier: "%.2f") x \(proxy.size.height, specifier: "%.2f")")
+                }
+            )
             HStack {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
@@ -63,6 +75,13 @@ struct PostCardView: View {
 //                    Image(systemName: "heart").font(Font.system(size: 12)).foregroundColor(.gray)
             }.padding(.horizontal)
             .padding(.bottom, 8)
+            .frame(height: Constants.postCardAuthorSectionHeight)
+            .background(.blue)
+            .overlay(
+                GeometryReader { proxy in
+                    Text("\(proxy.size.width, specifier: "%.2f") x \(proxy.size.height, specifier: "%.2f")")
+                }
+            )
         }.background(Color.white)
         .cornerRadius(Constants.buttonCornerRadius)
     }

@@ -13,13 +13,14 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     var uiCollectionViewController: UICollectionViewController
     
     typealias UIViewControllerType = UICollectionViewController
-    
+
     func makeUIViewController(context: Context) -> UICollectionViewController {
         let layout = CHTCollectionViewWaterfallLayout()
         
         // Change individual layout attributes for the spacing between cells
-        layout.minimumColumnSpacing = 5.0
-        layout.minimumInteritemSpacing = 5.0
+        layout.minimumColumnSpacing = Constants.postCardPadding
+        layout.minimumInteritemSpacing = Constants.postCardPadding
+        layout.sectionInset = UIEdgeInsets(top: 0, left: Constants.postCardPadding, bottom: 0, right: Constants.postCardPadding)
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
@@ -30,17 +31,18 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         collectionView.dataSource = context.coordinator
 
         // Collection view attributes
-        collectionView.alwaysBounceVertical = true
+        collectionView.alwaysBounceVertical = false
 
         // Add the waterfall layout to your collection view
         collectionView.collectionViewLayout = layout
         
         uiCollectionViewController.collectionView = collectionView
+        uiCollectionViewController.collectionView.backgroundColor = UIColor(named: Constants.onBoardingButtonColor)
+        
         return uiCollectionViewController
     }
     
     func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
-//        self.viewController = uiViewController
     }
 
     func makeCoordinator() -> Coordinator {
@@ -50,42 +52,30 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
         var parent: WaterfallCollectionViewController
         var uiCollectionViewController: UICollectionViewController
+        var screenWidth = 0.0
+        var cardWidth = 0.0
 
         init(_ parent: WaterfallCollectionViewController, uiCollectionViewController: UICollectionViewController) {
             self.parent = parent
             self.uiCollectionViewController = uiCollectionViewController
+            self.screenWidth = UIScreen.main.bounds.width
+            self.cardWidth = (screenWidth - (Constants.postCardPadding * 3)) / 2
         }
-        
-        func sizeOfImageAt(url: URL) -> CGSize? {
-            // with CGImageSource we avoid loading the whole image into memory
-            guard let source = CGImageSourceCreateWithURL(url as CFURL, nil) else {
-                return nil
-            }
-            
-            let propertiesOptions = [kCGImageSourceShouldCache: false] as CFDictionary
-            guard let properties = CGImageSourceCopyPropertiesAtIndex(source, 0, propertiesOptions) as? [CFString: Any] else {
-                return nil
-            }
-            
-            if let width = properties[kCGImagePropertyPixelWidth] as? CGFloat,
-               let height = properties[kCGImagePropertyPixelHeight] as? CGFloat {
-                return CGSize(width: width, height: height)
-            } else {
-                return nil
-            }
-        }
-        
+
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            let postModel = parent.postModels[indexPath.item]
-//            if let imageUrl = postModel.imageUrls?[0] {
-//                if let url = URL(string: imageUrl) {
-//                    if let size = sizeOfImageAt(url: url) {
-//                        return CGSize.init(width: size.width, height: size.height)
-//                    }
-//                }
-//            }
-            //TODO: Need to get something that respects the aspect ratio of the photo + the details below the photo
-            return CGSize.init(width: Int.random(in: 150..<500), height: Int.random(in: 300..<800))
+            let post = parent.postModels[indexPath.item]
+            let postTitle = post.title
+            if let aspectRatio = post.thumbnailAspectRatio {
+                let cardImageHeight = cardWidth * aspectRatio
+                if let font = UIFont(name: Constants.titleFontBold, size: Constants.postCardTitleFontSize) {
+                    let postTitleHeight = postTitle.height(withConstrainedWidth: cardWidth - (2 * Constants.postCardTitleHorizontalPadding), font: font)
+                    let postTitleHeightWithPadding = postTitleHeight + (2 * Constants.postCardTitleVerticalPadding)
+                    let cardHeight = cardImageHeight + postTitleHeightWithPadding + Constants.postCardAuthorSectionHeight
+                    return CGSize.init(width: cardWidth, height: cardHeight)
+                }
+            }
+            //Return a default aspect ratio, if none set
+            return CGSize.init(width: 200, height: 350)
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -122,10 +112,27 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                    hostController = UIHostingController(rootView: view)
                    if let hostView = hostController?.view {
                        hostView.frame = contentView.bounds
-                       hostView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//                       hostView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+//                       hostView.translatesAutoresizingMaskIntoConstraints = false
                        contentView.addSubview(hostView)
                    }
                }
            }
        }
+}
+
+extension String {
+    func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: width, height: .greatestFiniteMagnitude)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font : font], context: nil)
+    
+        return ceil(boundingBox.height)
+    }
+
+    func width(withConstrainedHeight height: CGFloat, font: UIFont) -> CGFloat {
+        let constraintRect = CGSize(width: .greatestFiniteMagnitude, height: height)
+        let boundingBox = self.boundingRect(with: constraintRect, options: .usesLineFragmentOrigin, attributes: [.font : font], context: nil)
+
+        return ceil(boundingBox.width)
+    }
 }
