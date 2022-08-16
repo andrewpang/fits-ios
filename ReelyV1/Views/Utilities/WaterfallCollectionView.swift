@@ -7,11 +7,14 @@
 
 import SwiftUI
 
-struct WaterfallCollectionView: UIViewRepresentable {
+struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     
     var postModels: [PostModel]
+    var uiCollectionViewController: UICollectionViewController
     
-    func makeUIView(context: Context) -> UICollectionView {
+    typealias UIViewControllerType = UICollectionViewController
+    
+    func makeUIViewController(context: Context) -> UICollectionViewController {
         let layout = CHTCollectionViewWaterfallLayout()
         
         // Change individual layout attributes for the spacing between cells
@@ -32,21 +35,25 @@ struct WaterfallCollectionView: UIViewRepresentable {
         // Add the waterfall layout to your collection view
         collectionView.collectionViewLayout = layout
         
-        return collectionView
+        uiCollectionViewController.collectionView = collectionView
+        return uiCollectionViewController
     }
-
-    func updateUIView(_ uiView: UICollectionView, context: Context) {
+    
+    func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
+//        self.viewController = uiViewController
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self)
+        Coordinator(self, uiCollectionViewController: uiCollectionViewController)
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
-        var parent: WaterfallCollectionView
+        var parent: WaterfallCollectionViewController
+        var uiCollectionViewController: UICollectionViewController
 
-        init(_ parent: WaterfallCollectionView) {
+        init(_ parent: WaterfallCollectionViewController, uiCollectionViewController: UICollectionViewController) {
             self.parent = parent
+            self.uiCollectionViewController = uiCollectionViewController
         }
         
         func sizeOfImageAt(url: URL) -> CGSize? {
@@ -69,15 +76,16 @@ struct WaterfallCollectionView: UIViewRepresentable {
         }
         
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let postModel = parent.postModels[indexPath.item]
-            if let imageUrl = postModel.imageUrls?[0] {
-                if let url = URL(string: imageUrl) {
-                    if let size = sizeOfImageAt(url: url) {
-                        return CGSize.init(width: size.width, height: size.height)
-                    }
-                }
-            }
-            return CGSize.init(width: 50, height: 100)
+//            let postModel = parent.postModels[indexPath.item]
+//            if let imageUrl = postModel.imageUrls?[0] {
+//                if let url = URL(string: imageUrl) {
+//                    if let size = sizeOfImageAt(url: url) {
+//                        return CGSize.init(width: size.width, height: size.height)
+//                    }
+//                }
+//            }
+            //TODO: Need to get something that respects the aspect ratio of the photo + the details below the photo
+            return CGSize.init(width: Int.random(in: 150..<500), height: Int.random(in: 300..<800))
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -89,6 +97,12 @@ struct WaterfallCollectionView: UIViewRepresentable {
             let hostCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? HostCell
             hostCell?.hostedCell = PostCardView(post: parent.postModels[indexPath.item])
             return hostCell!
+        }
+        
+        func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+            let postDetailView = PostDetailView(postDetailViewModel: PostDetailViewModel(postModel: parent.postModels[indexPath.item]))
+            let host = UIHostingController(rootView: postDetailView)
+            uiCollectionViewController.navigationController?.pushViewController(host, animated: true)
         }
     }
     

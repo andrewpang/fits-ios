@@ -64,7 +64,7 @@ struct GalleryFeedView2: View {
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
                         .padding(.bottom, 4)
                     if let postModels = homeViewModel.postsData.postModels {
-                        WaterfallCollectionView(postModels: postModels)
+                        WaterfallCollectionViewController(postModels: postModels, uiCollectionViewController: UICollectionViewController())
                     }
                     
 //                    ScrollView(.vertical, showsIndicators: false) {
