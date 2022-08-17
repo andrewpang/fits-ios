@@ -44,7 +44,13 @@ class PostViewModel: ObservableObject {
         self.isSubmitting = true
         var imagesDownloaded = 0
         var postImageUrls = Array(repeating: "", count: mediaItems.items.count)
+        var thumbnailHeight: Double = 0.0
+        var thumbnailWidth: Double = 0.0
         for (index, image) in mediaItems.items.enumerated() {
+            if (index == 0) {
+                thumbnailHeight = Double(image.photo?.size.height ?? 0.0)
+                thumbnailWidth = Double(image.photo?.size.width ?? 0.0)
+            }
             guard var imageData = image.photo?.jpegData(compressionQuality: 1.0) else { return }
             if (imageData.count > 300 * 1024) {
                 if (imageData.count > 1024 * 1024) {// 1m and above
@@ -75,7 +81,7 @@ class PostViewModel: ObservableObject {
                 imagesDownloaded += 1
                 if (imagesDownloaded == mediaItems.items.count) {
 //                    TODO(REE-158): remove imageUrl once no one is on 1.1 build 8 or before
-                    let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId)
+                    let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth)
                     self.uploadPostModel(postModel: postModel, completion: completion)
                 }
             }
