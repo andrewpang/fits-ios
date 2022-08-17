@@ -66,26 +66,18 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-//            let post = parent.postModels[indexPath.item]
-//            let postTitle = post.title
-//            if (post.getThumbnailAspectRatio() > 0.0) {
-//                let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
-//                if let font = UIFont(name: Constants.titleFontBold, size: Constants.postCardTitleFontSize) {
-//                    let postTitleHeight = postTitle.height(withConstrainedWidth: cardWidth - (2 * Constants.postCardTitleHorizontalPadding), font: font)
-////                    let postTitleHeightWithPadding = postTitleHeight + (2 * Constants.postCardTitleVerticalPadding)
-//                    let postTitleHeightWithPadding = Constants.postCardAuthorSectionHeight * 2
-//                    print(postTitle)
-//                    print(cardImageHeight)
-//                    print(postTitleHeightWithPadding)
-//                    let cardHeight = cardImageHeight + postTitleHeightWithPadding + Constants.postCardAuthorSectionHeight
-//                    print("Width: \(cardWidth)")
-//                    print("Height: \(cardHeight)")
-//                    return CGSize.init(width: cardWidth, height: cardHeight)
-//                }
-//            }
+            let post = parent.postModels[indexPath.item]
+            if (post.getThumbnailAspectRatio() > 0.0) {
+                let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
+                let postTitleHeight = (50.0/183.0) * cardWidth
+                let postAuthorViewHeight = (28.0/183.0) * cardWidth
+                let cardHeight = cardImageHeight + postTitleHeight + postAuthorViewHeight
+                print("Width: \(cardWidth)") //183
+                print("Height: \(cardHeight)") //image + 50 + 28
+                return CGSize.init(width: cardWidth, height: cardHeight)
+            }
             //Return a default aspect ratio, if none set
-            // * Double.random(in: 0.75...1.75)
-            return CGSize.init(width: 200.0, height: 350 * Double.random(in: 0.75...1.75))
+            return CGSize.init(width: 200.0, height: 400 * Double.random(in: 0.75...1.25))
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -93,11 +85,6 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-//            let cellIdentifier = "hostCell"
-//            let hostCell = collectionView.dequeueReusableCell(withReuseIdentifier: cellIdentifier, for: indexPath) as? HostCell
-//            hostCell?.hostedCell = PostCardView(post: parent.postModels[indexPath.item])
-//            return hostCell!
-            
             // Create the cell and return the cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageUICollectionViewCell
             // Add image to cell
@@ -110,12 +97,9 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                 //TODO: clear image so it doesn't get improperly recycled
             }
             cell.postTitleLabel.text = post.title
-//            print(post.title)
-//            print(cell.postTitleLabel.frame.height)
             if let authorName = post.author.displayName {
                 cell.postAuthorLabel.text = authorName
             }
-//            cell.setNeedsLayout()
             return cell
         }
         
@@ -125,31 +109,6 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
             uiCollectionViewController.navigationController?.pushViewController(host, animated: true)
         }
     }
-    
-    private class HostCell: UICollectionViewCell {
-           private var hostController: UIHostingController<PostCardView>?
-           
-           override func prepareForReuse() {
-               if let hostView = hostController?.view {
-                   hostView.removeFromSuperview()
-               }
-               hostController = nil
-           }
-           
-           var hostedCell: PostCardView? {
-               willSet {
-                   guard let view = newValue else { return }
-                   hostController = UIHostingController(rootView: view)
-                   if let hostView = hostController?.view {
-                       hostView.frame = contentView.bounds
-                       hostView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-//                       hostView.translatesAutoresizingMaskIntoConstraints = false
-                       contentView.addSubview(hostView)
-                   }
-               }
-           }
-       }
-}
 
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {

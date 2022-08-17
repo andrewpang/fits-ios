@@ -55,70 +55,6 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "141"
-            endingLineNumber = "141"
-            landmarkName = "hostedCell"
-            landmarkType = "24">
-            <Locations>
-               <Location
-                  uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F - d7c1b001270266d2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FITs.WaterfallCollectionViewController.HostCell.hostedCell.willset : Swift.Optional&lt;FITs.PostCardView&gt;"
-                  moduleName = "FITs"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewpang/Fits/fits-ios/ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "141"
-                  endingLineNumber = "141"
-                  offsetFromSymbolStart = "48">
-               </Location>
-               <Location
-                  uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F - d7c1b001270266d2"
-                  shouldBeEnabled = "Yes"
-                  ignoreCount = "0"
-                  continueAfterRunningActions = "No"
-                  symbolName = "FITs.WaterfallCollectionViewController.HostCell.hostedCell.willset : Swift.Optional&lt;FITs.PostCardView&gt;"
-                  moduleName = "FITs"
-                  usesParentBreakpointCondition = "Yes"
-                  urlString = "file:///Users/andrewpang/Fits/fits-ios/ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
-                  startingColumnNumber = "9223372036854775807"
-                  endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "141"
-                  endingLineNumber = "141"
-                  offsetFromSymbolStart = "100">
-               </Location>
-            </Locations>
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "3C7DAA9A-DAB3-4AF5-B55D-BAEE579380E4"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
-            landmarkName = "prepareForReuse()"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
             uuid = "E2281D03-B2F0-4E45-89E6-ABF9483F2645"
             shouldBeEnabled = "No"
             ignoreCount = "0"
@@ -142,8 +78,8 @@
             filePath = "ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "83"
-            endingLineNumber = "83"
+            startingLineNumber = "77"
+            endingLineNumber = "77"
             landmarkName = "collectionView(_:layout:sizeForItemAt:)"
             landmarkType = "7">
          </BreakpointContent>
