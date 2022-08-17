@@ -62,13 +62,13 @@
             filePath = "ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "133"
-            endingLineNumber = "133"
+            startingLineNumber = "141"
+            endingLineNumber = "141"
             landmarkName = "hostedCell"
             landmarkType = "24">
             <Locations>
                <Location
-                  uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F - d7c1b001270265da"
+                  uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F - d7c1b001270266d2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -78,12 +78,12 @@
                   urlString = "file:///Users/andrewpang/Fits/fits-ios/ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
                   offsetFromSymbolStart = "48">
                </Location>
                <Location
-                  uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F - d7c1b001270265da"
+                  uuid = "EFA2ED11-7E07-4BF8-8871-C89C7B02765F - d7c1b001270266d2"
                   shouldBeEnabled = "Yes"
                   ignoreCount = "0"
                   continueAfterRunningActions = "No"
@@ -93,8 +93,8 @@
                   urlString = "file:///Users/andrewpang/Fits/fits-ios/ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
                   startingColumnNumber = "9223372036854775807"
                   endingColumnNumber = "9223372036854775807"
-                  startingLineNumber = "133"
-                  endingLineNumber = "133"
+                  startingLineNumber = "141"
+                  endingLineNumber = "141"
                   offsetFromSymbolStart = "100">
                </Location>
             </Locations>
@@ -110,8 +110,8 @@
             filePath = "ReelyV1/Views/Utilities/WaterfallCollectionView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "125"
-            endingLineNumber = "125"
+            startingLineNumber = "133"
+            endingLineNumber = "133"
             landmarkName = "prepareForReuse()"
             landmarkType = "7">
          </BreakpointContent>

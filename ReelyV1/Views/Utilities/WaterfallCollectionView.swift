@@ -84,7 +84,8 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
 //                }
 //            }
             //Return a default aspect ratio, if none set
-            return CGSize.init(width: 200, height: 350 * Double.random(in: 0.75...1.75))
+            // * Double.random(in: 0.75...1.75)
+            return CGSize.init(width: 200, height: 350)
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
@@ -103,11 +104,18 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
             let post = parent.postModels[indexPath.item]
             if let imageUrl = post.imageUrls?[0] {
                 cell.setImageUrl(urlString: imageUrl)
+            } else if let imageUrl = post.imageUrl {
+                cell.setImageUrl(urlString: imageUrl)
+            } else {
+                //TODO: clear image so it doesn't get improperly recycled
             }
             cell.postTitleLabel.text = post.title
+            print(post.title)
+            print(cell.postTitleLabel.frame.height)
             if let authorName = post.author.displayName {
                 cell.postAuthorLabel.text = authorName
             }
+//            cell.setNeedsLayout()
             return cell
         }
         
