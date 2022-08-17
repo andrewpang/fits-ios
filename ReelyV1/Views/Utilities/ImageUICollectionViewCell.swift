@@ -40,6 +40,7 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     }
     
     func setImageUrl(urlString: String) {
+        image.kf.indicatorType = .activity
         image.kf.setImage(with: URL(string: urlString))
     }
 }
