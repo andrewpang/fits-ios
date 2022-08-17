@@ -33,8 +33,6 @@ class ImageUICollectionViewCell: UICollectionViewCell {
 //        image.image = nil
 //        portraitImage.image = nil
 //        let constraints = [
-//            postDetailView.topAnchor.constraint(equalTo: image.bottomAnchor),
-//            postDetailView.bottomAnchor.constraint(equalTo: postDetailView.superview!.bottomAnchor),
 //            postTitleLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
 //            postTitleLabel.bottomAnchor.constraint(equalTo: postAuthorView.topAnchor)
 //        ]

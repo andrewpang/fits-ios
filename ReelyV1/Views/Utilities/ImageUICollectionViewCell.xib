@@ -24,14 +24,17 @@
                 <rect key="frame" x="0.0" y="0.0" width="236" height="330"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="8" translatesAutoresizingMaskIntoConstraints="NO" id="l8d-sN-MwX">
+                    <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="l8d-sN-MwX">
                         <rect key="frame" x="0.0" y="0.0" width="236" height="330"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="YL9-10-He7">
-                                <rect key="frame" x="0.0" y="0.0" width="236" height="234"/>
+                                <rect key="frame" x="0.0" y="0.0" width="236" height="252"/>
                             </imageView>
-                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ui1-99-Dbo">
-                                <rect key="frame" x="0.0" y="242" width="236" height="52"/>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Post Title" textAlignment="center" lineBreakMode="wordWrap" numberOfLines="2" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Ui1-99-Dbo">
+                                <rect key="frame" x="0.0" y="252" width="236" height="50"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="50" id="UpC-Z6-QcC"/>
+                                </constraints>
                                 <directionalEdgeInsets key="directionalLayoutMargins" top="0.0" leading="16" bottom="0.0" trailing="16"/>
                                 <fontDescription key="fontDescription" name="Kinfolk-SerifText" family="Kinfolk" pointSize="16"/>
                                 <nil key="textColor"/>
