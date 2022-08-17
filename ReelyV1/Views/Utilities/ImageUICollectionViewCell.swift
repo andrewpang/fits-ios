@@ -10,7 +10,6 @@ import Kingfisher
 
 class ImageUICollectionViewCell: UICollectionViewCell {
     
-    
     @IBOutlet weak var image: UIImageView!
     @IBOutlet weak var postTitleLabel: UILabel!
     @IBOutlet weak var postAuthorLabel: UILabel!
@@ -20,6 +19,9 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
+        contentView.layer.cornerRadius = Constants.buttonCornerRadius
+        contentView.layer.masksToBounds = true
+        
         portraitImage.layer.masksToBounds = true
         portraitImage.layer.cornerRadius = portraitImage.bounds.width / 2
     }
