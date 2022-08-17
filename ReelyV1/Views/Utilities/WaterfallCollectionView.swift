@@ -24,9 +24,6 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         
         let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
         
-        let cellIdentifier = "hostCell"
-        collectionView.register(HostCell.self, forCellWithReuseIdentifier: cellIdentifier)
-        
         collectionView.delegate = context.coordinator
         collectionView.dataSource = context.coordinator
 
@@ -109,6 +106,7 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
             uiCollectionViewController.navigationController?.pushViewController(host, animated: true)
         }
     }
+}
 
 extension String {
     func height(withConstrainedWidth width: CGFloat, font: UIFont) -> CGFloat {
