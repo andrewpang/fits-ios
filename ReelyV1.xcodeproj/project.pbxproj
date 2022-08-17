@@ -13,6 +13,8 @@
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
 		47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBF2843EFA40016D124 /* TabsParentView.swift */; };
 		472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D809F286D6D74008D1BB5 /* EditProfileView.swift */; };
+		4736502F28AC5A600056853C /* ImageUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */; };
+		4736503028AC5A600056853C /* ImageUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */; };
 		4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */; };
 		4736EEFB2867A9310033C49E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFA2867A9310033C49E /* Constants.swift */; };
 		4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */; };
@@ -114,6 +116,8 @@
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		47283BBF2843EFA40016D124 /* TabsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsParentView.swift; sourceTree = "<group>"; };
 		472D809F286D6D74008D1BB5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUICollectionViewCell.swift; sourceTree = "<group>"; };
+		4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageUICollectionViewCell.xib; sourceTree = "<group>"; };
 		4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSMSViewController.swift; sourceTree = "<group>"; };
 		4736EEFA2867A9310033C49E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerWrapper.swift; sourceTree = "<group>"; };
@@ -441,6 +445,8 @@
 				4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */,
 				4755B75328A9892600942AAD /* WaterfallCollectionView.swift */,
 				4755B77928A9D3D800942AAD /* CloudinaryHelper.swift */,
+				4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */,
+				4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -586,6 +592,7 @@
 				479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */,
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
 				479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */,
+				4736503028AC5A600056853C /* ImageUICollectionViewCell.xib in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
 				479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */,
 			);
@@ -614,6 +621,7 @@
 			files = (
 				47A29793287FD6E100761026 /* LikeModel.swift in Sources */,
 				47FC5D86288116B9000B9794 /* Secrets.swift in Sources */,
+				4736502F28AC5A600056853C /* ImageUICollectionViewCell.swift in Sources */,
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */,
 				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,

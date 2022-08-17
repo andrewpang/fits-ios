@@ -20,11 +20,21 @@ public struct PostModel: Identifiable, Codable, Hashable {
     var likesCount: Int?
     var tags: [String]?
     var groupId: String?
-    var thumbnailAspectRatio: Double?
+    var thumbnailHeight: Double?
+    var thumbnailWidth: Double?
     
     mutating func incrementLikesCount(number: Int) {
         if (likesCount != nil) {
             likesCount! += number
         }
+    }
+    
+    func getThumbnailAspectRatio() -> Double {
+        if let thumbnailWidth = thumbnailWidth {
+            if let thumbnailHeight = thumbnailHeight {
+                return thumbnailHeight/thumbnailWidth
+            }
+        }
+        return 0.0
     }
 }

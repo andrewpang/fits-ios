@@ -47,7 +47,7 @@ struct PostCardView: View {
                 Spacer()
             }.padding(.vertical, Constants.postCardTitleVerticalPadding)
             .padding(.horizontal, Constants.postCardTitleHorizontalPadding)
-//            .frame(height: 50)
+            .frame(height: Constants.postCardAuthorSectionHeight * 2)
             .background(.red)
             .overlay(
                 GeometryReader { proxy in
