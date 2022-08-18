@@ -181,5 +181,17 @@ class PostDetailViewModel: ObservableObject {
         commentsListener?.remove()
         likesListener?.remove()
     }
-}
     
+    func deletePost() {
+        if let postId = postModel.id {
+            let postDocument = self.db.collection("posts").document(postId)
+            postDocument.delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+        }
+    }
+}

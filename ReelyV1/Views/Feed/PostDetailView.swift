@@ -15,6 +15,8 @@ struct PostDetailView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showConfirmationDialog = false
     
+    @Environment(\.presentationMode) var presentationMode
+    
     var source = "homeFeed"
     
     let generator = UINotificationFeedbackGenerator()
@@ -281,7 +283,8 @@ struct PostDetailView: View {
                         
                     }
                     Button ("Delete Post", role: ButtonRole.destructive) {
-                        
+                        postDetailViewModel.deletePost()
+                        self.presentationMode.wrappedValue.dismiss()
                     }
                 } else {
                     Button ("Report Post", role: ButtonRole.destructive) {
