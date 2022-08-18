@@ -117,9 +117,6 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
             if let post = parent.homeViewModel.postsData.postModels?[indexPath.item] {
                 postDetailViewModel = PostDetailViewModel(postModel: post)
                 parent.homeViewModel.shouldPopToRootViewIfFalse = true
-//                let postDetailView = PostDetailView(postDetailViewModel: PostDetailViewModel(postModel: post))
-//                let host = UIHostingController(rootView: postDetailView)
-//                uiCollectionViewController.navigationController?.pushViewController(host, animated: true)
             }
         }
     }

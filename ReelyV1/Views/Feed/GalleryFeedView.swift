@@ -64,7 +64,6 @@ struct GalleryFeedView: View {
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
                         .padding(.bottom, 4)
-//                    WaterfallCollectionViewController(postsModel: $homeViewModel.postsData, uiCollectionViewController: UICollectionViewController())
                     WaterfallCollectionViewController(homeViewModel: homeViewModel, postDetailViewModel: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
                 }
             }.navigationBarTitle("")
