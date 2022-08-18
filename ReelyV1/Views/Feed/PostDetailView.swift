@@ -13,6 +13,7 @@ import Mixpanel
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @State var showConfirmationDialog = false
     
     var source = "homeFeed"
     
@@ -29,6 +30,10 @@ struct PostDetailView: View {
         let commentModel = CommentModel(author: authenticationViewModel.getPostAuthorMap(), commentText: postDetailViewModel.commentText.trimmingCharacters(in: .whitespacesAndNewlines))
         postDetailViewModel.postComment(commentModel: commentModel)
         UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+    }
+    
+    func isUsersOwnPost() -> Bool {
+        return (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool
     }
     
     var body: some View {
@@ -225,13 +230,13 @@ struct PostDetailView: View {
                 let propertiesDict = [
                     "postId": postDetailViewModel.postModel.id as Any,
                     "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-                    "isUsersOwnPost": (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool,
+                    "isUsersOwnPost": isUsersOwnPost(),
                     "source": self.source,
                 ] as? [String : Any]
                 let propertiesDictMixPanel = [
                     "postId": postDetailViewModel.postModel.id as Any,
                     "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-                    "isUsersOwnPost": (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool,
+                    "isUsersOwnPost": isUsersOwnPost(),
                     "source": self.source,
                 ] as? [String : MixpanelType]
                 let eventName = "Post Detail Screen - View"
@@ -262,7 +267,48 @@ struct PostDetailView: View {
                             .font(Font.custom(Constants.bodyFont, size: 16))
                     }.disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
                 }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    Button(action: {
+                        showConfirmationDialog = true
+                    }, label: {
+                        Image(systemName: "ellipsis")
+                    })
+                }
             }
+            .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
+                if (isUsersOwnPost()) {
+                    Button ("Edit Post") {
+                        
+                    }
+                    Button ("Delete Post", role: ButtonRole.destructive) {
+                        
+                    }
+                } else {
+                    Button ("Report Post", role: ButtonRole.destructive) {
+                        openMail(postId: postDetailViewModel.postModel.id)
+                    }
+                }
+                Button ("Cancel", role: ButtonRole.cancel) {}
+            } message: {
+//                Text ("Choose a picture from your photo library, or take one now!")
+            }
+        }
+    }
+    
+    func openMail(postId: String?) {
+        let email = "feedback@fitsatfit.com"
+        let subject = "Report%20Post:%20\(postId ?? "no ID")"
+        let body = "Please%20let%20us%20know%20why%20you%20want%20to%20report%20this%20post.%20"
+        let urlString = "mailto:\(email)?subject=\(subject)&body=\(body)"
+        
+        if let url = URL(string: urlString) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                // Not handling if they don't have email app
+            }
+        } else {
+            // Not handling if they don't have email app
         }
     }
 }
