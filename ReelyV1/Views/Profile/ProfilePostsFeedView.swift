@@ -27,7 +27,22 @@ struct ProfilePostsFeedView: View {
             }
         }
         if let postModels = userProfileViewModel.postsData.postModels, !postModels.isEmpty {
-            WaterfallCollectionViewController(postsModel: $userProfileViewModel.postsData, uiCollectionViewController: UICollectionViewController())
+            WaterfallGrid(postModels) { post in
+                Button(action: {
+                    postDetailViewModel = PostDetailViewModel(postModel: post)
+                    showPostDetailView = true
+                }, label: {
+                    PostCardView(post: post)
+                        .fixedSize(horizontal: false, vertical: true) //HACK Fix: https://github.com/paololeonardi/WaterfallGrid/issues/53
+                })
+            }
+            .gridStyle(
+                columnsInPortrait: 2,
+                columnsInLandscape: 3,
+                spacing: 8,
+                animation: .none
+            )
+            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
         } else {
             Text("You don't have any posts yet :(")
                 .font(Font.custom(Constants.bodyFont, size: 16))
