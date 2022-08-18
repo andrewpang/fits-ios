@@ -357,6 +357,7 @@ struct PostDetailView: View {
                             showConfirmationDialog = true
                         }, label: {
                             Image(systemName: "ellipsis")
+                                .padding(.vertical, 16)
                         })
                     }
                 }
