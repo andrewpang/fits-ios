@@ -28,10 +28,8 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     
     override func prepareForReuse() {
         super.prepareForReuse()
-//        postTitleLabel.text = ""
-//        postAuthorLabel.text = ""
-//        image.image = nil
-//        portraitImage.image = nil
+        image.image = UIImage(named: "placeHolder")
+        portraitImage.image = UIImage(named: "portraitPlaceHolder")
 //        let constraints = [
 //            postTitleLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
 //            postTitleLabel.bottomAnchor.constraint(equalTo: postAuthorView.topAnchor)

@@ -41,7 +41,6 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
         
-        
         return uiCollectionViewController
     }
     
@@ -98,8 +97,6 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                 } else if let imageUrl = post.imageUrl {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)
                     cell.setImageUrl(urlString: cloudinaryCompressedUrl)
-                } else {
-                    //TODO: clear image so it doesn't get improperly recycled
                 }
                 cell.postTitleLabel.text = post.title
                 if let authorName = post.author.displayName {
