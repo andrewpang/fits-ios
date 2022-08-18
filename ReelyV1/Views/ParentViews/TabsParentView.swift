@@ -12,10 +12,19 @@ let homeIndex = 1
 struct TabsParentView: View {
     @StateObject var tabViewModel: TabViewModel = TabViewModel()
     @StateObject var homeViewModel = HomeViewModel()
+    @State var lastTabSelection = homeIndex
     
     var body: some View {
         ZStack {
-            TabView(selection: $tabViewModel.tabSelection) {
+            TabView(selection: $tabViewModel.tabSelection.onUpdate {
+                if (lastTabSelection == tabViewModel.tabSelection) {
+                    if (lastTabSelection == homeIndex) {
+                        homeViewModel.shouldPopToRootViewIfFalse = false
+                    }
+                    //TODO(REE-243): Pop profile tab to root
+                }
+                lastTabSelection = tabViewModel.tabSelection
+            }) {
                 GalleryFeedView(homeViewModel: homeViewModel)
                     .tabItem {
                        Image(systemName: "house")
@@ -42,13 +51,19 @@ struct TabsParentView: View {
             }
         }
         .environmentObject(tabViewModel)
-        .onChange(of: tabViewModel.tabSelection, perform: { index in
-//            TODO: We need this so that it fetches after posting, but now there are times where it'll fetch twice
-//            if (index == homeIndex) {
-//                homeViewModel.fetchPosts()
-//            }
-        })
     }
+}
+
+//Need to use this binding to get clicks on the active tab
+extension Binding {
+ func onUpdate(_ closure: @escaping () -> Void) -> Binding<Value> {
+    Binding(get: {
+        wrappedValue
+    }, set: { newValue in
+        wrappedValue = newValue
+        closure()
+    })
+ }
 }
 
 struct SignedInView_Previews: PreviewProvider {
