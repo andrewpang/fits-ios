@@ -16,12 +16,7 @@ struct TabsParentView: View {
     var body: some View {
         ZStack {
             TabView(selection: $tabViewModel.tabSelection) {
-//                GalleryFeedView(homeViewModel: homeViewModel)
-//                 .tabItem {
-//                    Image(systemName: "house")
-//                    Text("Home")
-//                  }.tag(homeIndex)
-                GalleryFeedView2(homeViewModel: homeViewModel)
+                GalleryFeedView(homeViewModel: homeViewModel)
                     .tabItem {
                        Image(systemName: "house")
                        Text("Home")

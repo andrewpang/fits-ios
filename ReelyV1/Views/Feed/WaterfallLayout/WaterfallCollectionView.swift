@@ -33,11 +33,14 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         // Add the waterfall layout to your collection view
         collectionView.collectionViewLayout = layout
         
+        collectionView.showsVerticalScrollIndicator = false
+        
         uiCollectionViewController.collectionView = collectionView
         uiCollectionViewController.collectionView.backgroundColor = UIColor(named: Constants.onBoardingButtonColor)
         
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
+        
         
         return uiCollectionViewController
     }
@@ -77,7 +80,7 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                 }
             }
             //Return a default aspect ratio, if none set
-            return CGSize.init(width: 200.0, height: 400)
+            return CGSize.init(width: 200.0, height: 400.0)
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {

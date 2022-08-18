@@ -64,25 +64,7 @@ struct GalleryFeedView: View {
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
                         .padding(.bottom, 4)
-                    ScrollView(.vertical, showsIndicators: false) {
-                        if let postModels = homeViewModel.postsData.postModels {
-                            WaterfallGrid(postModels) { post in
-                                Button(action: {
-                                    postDetailViewModel = PostDetailViewModel(postModel: post)
-                                    homeViewModel.shouldPopToRootViewIfFalse = true
-                                }, label: {
-                                    PostCardView(post: post)
-                                })
-                            }
-                            .gridStyle(
-                                columnsInPortrait: 2,
-                                columnsInLandscape: 3,
-                                spacing: 8,
-                                animation: .none
-                            )
-                            .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
-                        }
-                    }
+                    WaterfallCollectionViewController(postsModel: $homeViewModel.postsData, uiCollectionViewController: UICollectionViewController())
                 }
             }.navigationBarTitle("")
             .navigationBarHidden(true)
