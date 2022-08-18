@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     
-    var postModels: [PostModel]
+    @Binding var postsModel: PostsModel
     var uiCollectionViewController: UICollectionViewController
     
     typealias UIViewControllerType = UICollectionViewController
@@ -43,6 +43,8 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     }
     
     func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
+        //TODO: Look into if there's a more perfomant way to handle this
+        uiViewController.collectionView.reloadData()
     }
 
     func makeCoordinator() -> Coordinator {
@@ -63,47 +65,51 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            let post = parent.postModels[indexPath.item]
-            if (post.getThumbnailAspectRatio() > 0.0) {
-                let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
-                let postTitleHeight = (50.0/183.0) * cardWidth
-                let postAuthorViewHeight = (28.0/183.0) * cardWidth
-                let cardHeight = cardImageHeight + postTitleHeight + postAuthorViewHeight
-                print("Width: \(cardWidth)") //183
-                print("Height: \(cardHeight)") //image + 50 + 28
-                return CGSize.init(width: cardWidth, height: cardHeight)
+            if let post = parent.postsModel.postModels?[indexPath.item] {
+                if (post.getThumbnailAspectRatio() > 0.0) {
+                    let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
+                    let postTitleHeight = (50.0/183.0) * cardWidth
+                    let postAuthorViewHeight = (28.0/183.0) * cardWidth
+                    let cardHeight = cardImageHeight + postTitleHeight + postAuthorViewHeight
+                    print("Width: \(cardWidth)") //183
+                    print("Height: \(cardHeight)") //image + 50 + 28
+                    return CGSize.init(width: cardWidth, height: cardHeight)
+                }
             }
             //Return a default aspect ratio, if none set
-            return CGSize.init(width: 200.0, height: 400 * Double.random(in: 0.75...1.25))
+            return CGSize.init(width: 200.0, height: 400)
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            parent.postModels.count
+            parent.postsModel.postModels?.count ?? 0
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             // Create the cell and return the cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageUICollectionViewCell
             // Add image to cell
-            let post = parent.postModels[indexPath.item]
-            if let imageUrl = post.imageUrls?[0] {
-                cell.setImageUrl(urlString: imageUrl)
-            } else if let imageUrl = post.imageUrl {
-                cell.setImageUrl(urlString: imageUrl)
-            } else {
-                //TODO: clear image so it doesn't get improperly recycled
-            }
-            cell.postTitleLabel.text = post.title
-            if let authorName = post.author.displayName {
-                cell.postAuthorLabel.text = authorName
+            if let post = parent.postsModel.postModels?[indexPath.item] {
+                if let imageUrl = post.imageUrls?[0] {
+                    cell.setImageUrl(urlString: imageUrl)
+                } else if let imageUrl = post.imageUrl {
+                    cell.setImageUrl(urlString: imageUrl)
+                } else {
+                    //TODO: clear image so it doesn't get improperly recycled
+                }
+                cell.postTitleLabel.text = post.title
+                if let authorName = post.author.displayName {
+                    cell.postAuthorLabel.text = authorName
+                }
             }
             return cell
         }
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            let postDetailView = PostDetailView(postDetailViewModel: PostDetailViewModel(postModel: parent.postModels[indexPath.item]))
-            let host = UIHostingController(rootView: postDetailView)
-            uiCollectionViewController.navigationController?.pushViewController(host, animated: true)
+            if let post = parent.postsModel.postModels?[indexPath.item] {
+                let postDetailView = PostDetailView(postDetailViewModel: PostDetailViewModel(postModel: post))
+                let host = UIHostingController(rootView: postDetailView)
+                uiCollectionViewController.navigationController?.pushViewController(host, animated: true)
+            }
         }
     }
 }
