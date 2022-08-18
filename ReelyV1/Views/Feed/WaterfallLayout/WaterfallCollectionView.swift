@@ -10,7 +10,6 @@ import SwiftUI
 struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     
     @ObservedObject var homeViewModel: HomeViewModel
-    
     @Binding var postDetailViewModel: PostDetailViewModel
     
     var uiCollectionViewController: UICollectionViewController
@@ -50,6 +49,12 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
         //TODO: Look into if there's a more perfomant way to handle this
         uiViewController.collectionView.reloadData()
+        if (homeViewModel.shouldScrollToTop) {
+            uiViewController.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                              at: .top,
+                                        animated: true)
+            homeViewModel.shouldScrollToTop = false
+        }
     }
 
     func makeCoordinator() -> Coordinator {

@@ -19,7 +19,11 @@ struct TabsParentView: View {
             TabView(selection: $tabViewModel.tabSelection.onUpdate {
                 if (lastTabSelection == tabViewModel.tabSelection) {
                     if (lastTabSelection == homeIndex) {
-                        homeViewModel.shouldPopToRootViewIfFalse = false
+                        if (homeViewModel.shouldPopToRootViewIfFalse == false) {
+                            homeViewModel.shouldScrollToTop = true
+                        } else {
+                            homeViewModel.shouldPopToRootViewIfFalse = false
+                        }
                     }
                     //TODO(REE-243): Pop profile tab to root
                 }

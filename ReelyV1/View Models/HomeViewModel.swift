@@ -16,6 +16,7 @@ class HomeViewModel: ObservableObject {
     @Published var postsData = PostsModel()
     @Published var showIntroPostOverlay = false
     @Published var shouldPopToRootViewIfFalse = false
+    @Published var shouldScrollToTop = false
     
     @Published var postsSeenThisSession = 0
     
