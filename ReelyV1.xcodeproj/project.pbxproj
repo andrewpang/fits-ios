@@ -13,6 +13,8 @@
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
 		47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBF2843EFA40016D124 /* TabsParentView.swift */; };
 		472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 472D809F286D6D74008D1BB5 /* EditProfileView.swift */; };
+		4736502F28AC5A600056853C /* ImageUICollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */; };
+		4736503028AC5A600056853C /* ImageUICollectionViewCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */; };
 		4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */; };
 		4736EEFB2867A9310033C49E /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFA2867A9310033C49E /* Constants.swift */; };
 		4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */; };
@@ -23,6 +25,8 @@
 		473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A4B283C8ED800D4D15E /* PostModel.swift */; };
 		473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */; };
 		47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */ = {isa = PBXBuildFile; productRef = 47498EC62874F3FE00F45B7D /* PhoneNumberKit */; };
+		4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */; };
+		4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B75328A9892600942AAD /* WaterfallCollectionView.swift */; };
 		4755B77828A9C18F00942AAD /* Cloudinary in Frameworks */ = {isa = PBXBuildFile; productRef = 4755B77728A9C18F00942AAD /* Cloudinary */; };
 		4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4755B77928A9D3D800942AAD /* CloudinaryHelper.swift */; };
 		4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */ = {isa = PBXBuildFile; productRef = 4756A8A42874CED9006DA042 /* FirebaseAnalytics */; };
@@ -111,6 +115,8 @@
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
 		47283BBF2843EFA40016D124 /* TabsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabsParentView.swift; sourceTree = "<group>"; };
 		472D809F286D6D74008D1BB5 /* EditProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileView.swift; sourceTree = "<group>"; };
+		4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageUICollectionViewCell.swift; sourceTree = "<group>"; };
+		4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ImageUICollectionViewCell.xib; sourceTree = "<group>"; };
 		4736EEF82867A85C0033C49E /* SignupSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignupSMSViewController.swift; sourceTree = "<group>"; };
 		4736EEFA2867A9310033C49E /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		4736EEFC2867A9EB0033C49E /* SignUpControllerWrapper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpControllerWrapper.swift; sourceTree = "<group>"; };
@@ -120,6 +126,8 @@
 		473C6A46283C8EB800D4D15E /* PostsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsModel.swift; sourceTree = "<group>"; };
 		473C6A4B283C8ED800D4D15E /* PostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostModel.swift; sourceTree = "<group>"; };
 		473C6A51283C8F8C00D4D15E /* HomeViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewModel.swift; sourceTree = "<group>"; };
+		4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CHTCollectionViewWaterfallLayout.swift; sourceTree = "<group>"; };
+		4755B75328A9892600942AAD /* WaterfallCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallCollectionView.swift; sourceTree = "<group>"; };
 		4755B77928A9D3D800942AAD /* CloudinaryHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CloudinaryHelper.swift; sourceTree = "<group>"; };
 		4761CBF8286E6DFA008ED1BF /* WelcomeView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WelcomeView.swift; sourceTree = "<group>"; };
 		4761CBFE286E73C6008ED1BF /* OnboardingRulesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OnboardingRulesView.swift; sourceTree = "<group>"; };
@@ -247,6 +255,7 @@
 		472D809E286D6CD7008D1BB5 /* Feed */ = {
 			isa = PBXGroup;
 			children = (
+				4736503528ADE2380056853C /* WaterfallLayout */,
 				473C69E7283C768700D4D15E /* GalleryFeedView.swift */,
 				47283BB92842C7690016D124 /* PostDetailView.swift */,
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
@@ -254,6 +263,17 @@
 				479FE99B28755C1F0030EE4D /* CommentRowView.swift */,
 			);
 			path = Feed;
+			sourceTree = "<group>";
+		};
+		4736503528ADE2380056853C /* WaterfallLayout */ = {
+			isa = PBXGroup;
+			children = (
+				4755B75328A9892600942AAD /* WaterfallCollectionView.swift */,
+				4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */,
+				4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */,
+				4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */,
+			);
+			path = WaterfallLayout;
 			sourceTree = "<group>";
 		};
 		4736EEF72867A84D0033C49E /* Controllers */ = {
@@ -577,6 +597,7 @@
 				479FE9AB287789F30030EE4D /* Kinfolk-Sans.ttf in Resources */,
 				47834466283C63560022025E /* Preview Assets.xcassets in Resources */,
 				479FE9AC287789F30030EE4D /* Kinfolk-SerifTextItalic.ttf in Resources */,
+				4736503028AC5A600056853C /* ImageUICollectionViewCell.xib in Resources */,
 				47834463283C63560022025E /* Assets.xcassets in Resources */,
 				479FE9AE287789F30030EE4D /* Kinfolk-SerifDeck.ttf in Resources */,
 			);
@@ -605,6 +626,7 @@
 			files = (
 				47A29793287FD6E100761026 /* LikeModel.swift in Sources */,
 				47FC5D86288116B9000B9794 /* Secrets.swift in Sources */,
+				4736502F28AC5A600056853C /* ImageUICollectionViewCell.swift in Sources */,
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */,
 				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,
@@ -624,6 +646,7 @@
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
+				4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
 				479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */,
@@ -637,6 +660,7 @@
 				47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
+				4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,

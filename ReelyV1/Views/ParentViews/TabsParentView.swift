@@ -17,10 +17,10 @@ struct TabsParentView: View {
         ZStack {
             TabView(selection: $tabViewModel.tabSelection) {
                 GalleryFeedView(homeViewModel: homeViewModel)
-                 .tabItem {
-                    Image(systemName: "house")
-                    Text("Home")
-                  }.tag(homeIndex)
+                    .tabItem {
+                       Image(systemName: "house")
+                       Text("Home")
+                     }.tag(homeIndex)
                 PostParentView(homeViewModel: homeViewModel)
                  .tabItem {
                     Image(systemName: "plus.circle")

@@ -47,13 +47,14 @@ struct PostCardView: View {
             HStack {
                 Spacer()
                 Text(post.title)
-                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                    .font(Font.custom(Constants.titleFontBold, size: Constants.postCardTitleFontSize))
                     .foregroundColor(.black)
                     .multilineTextAlignment(.center)
                     .lineLimit(2)
                 Spacer()
-            }.padding(.vertical, 6)
-            .padding(.horizontal, 4)
+            }.padding(.vertical, Constants.postCardTitleVerticalPadding)
+            .padding(.horizontal, Constants.postCardTitleHorizontalPadding)
+            .frame(height: Constants.postCardAuthorSectionHeight * 2)
             HStack {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
@@ -75,6 +76,7 @@ struct PostCardView: View {
 //                    Image(systemName: "heart").font(Font.system(size: 12)).foregroundColor(.gray)
             }.padding(.horizontal)
             .padding(.bottom, 8)
+            .frame(height: Constants.postCardAuthorSectionHeight)
         }.background(Color.white)
         .cornerRadius(Constants.buttonCornerRadius)
     }
