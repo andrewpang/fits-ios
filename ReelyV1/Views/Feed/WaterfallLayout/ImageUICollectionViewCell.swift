@@ -43,4 +43,8 @@ class ImageUICollectionViewCell: UICollectionViewCell {
         image.kf.indicatorType = .activity
         image.kf.setImage(with: URL(string: urlString))
     }
+    
+    func setProfileImageUrl(urlString: String) {
+        portraitImage.kf.setImage(with: URL(string: urlString))
+    }
 }

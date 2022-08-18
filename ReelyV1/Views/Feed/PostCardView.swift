@@ -55,12 +55,6 @@ struct PostCardView: View {
             }.padding(.vertical, Constants.postCardTitleVerticalPadding)
             .padding(.horizontal, Constants.postCardTitleHorizontalPadding)
             .frame(height: Constants.postCardAuthorSectionHeight * 2)
-            .background(.red)
-            .overlay(
-                GeometryReader { proxy in
-                    Text("\(proxy.size.width, specifier: "%.2f") x \(proxy.size.height, specifier: "%.2f")")
-                }
-            )
             HStack {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
@@ -83,12 +77,6 @@ struct PostCardView: View {
             }.padding(.horizontal)
             .padding(.bottom, 8)
             .frame(height: Constants.postCardAuthorSectionHeight)
-            .background(.blue)
-            .overlay(
-                GeometryReader { proxy in
-                    Text("\(proxy.size.width, specifier: "%.2f") x \(proxy.size.height, specifier: "%.2f")")
-                }
-            )
         }.background(Color.white)
         .cornerRadius(Constants.buttonCornerRadius)
     }

@@ -93,15 +93,21 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
             // Add image to cell
             if let post = parent.postsModel.postModels?[indexPath.item] {
                 if let imageUrl = post.imageUrls?[0] {
-                    cell.setImageUrl(urlString: imageUrl)
+                    let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)
+                    cell.setImageUrl(urlString: cloudinaryCompressedUrl)
                 } else if let imageUrl = post.imageUrl {
-                    cell.setImageUrl(urlString: imageUrl)
+                    let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)
+                    cell.setImageUrl(urlString: cloudinaryCompressedUrl)
                 } else {
                     //TODO: clear image so it doesn't get improperly recycled
                 }
                 cell.postTitleLabel.text = post.title
                 if let authorName = post.author.displayName {
                     cell.postAuthorLabel.text = authorName
+                }
+                if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                    let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)
+                    cell.setProfileImageUrl(urlString: cloudinaryCompressedUrl)
                 }
             }
             return cell
