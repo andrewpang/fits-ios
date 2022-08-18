@@ -15,7 +15,7 @@ struct PostDetailView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showConfirmationDialog = false
     @State var isEditMode = false
-    
+    @State var showingDeleteAlert = false
     @State var editPostTitle = ""
     @State var editPostBody = ""
     
@@ -370,8 +370,7 @@ struct PostDetailView: View {
                         focusedField = .editPostTitleField
                     }
                     Button ("Delete Post", role: ButtonRole.destructive) {
-                        postDetailViewModel.deletePost()
-                        self.presentationMode.wrappedValue.dismiss()
+                        showingDeleteAlert = true
                     }
                 } else {
                     Button ("Report Post", role: ButtonRole.destructive) {
@@ -381,7 +380,16 @@ struct PostDetailView: View {
                 Button ("Cancel", role: ButtonRole.cancel) {}
             } message: {
 //                Text ("Choose a picture from your photo library, or take one now!")
-            }.navigationBarBackButtonHidden(isEditMode)
+            }.alert("Delete Post", isPresented: $showingDeleteAlert, actions: {
+                  Button("No", role: .cancel, action: {})
+                  Button("Delete", role: .destructive, action: {
+                      postDetailViewModel.deletePost()
+                      self.presentationMode.wrappedValue.dismiss()
+                  })
+                }, message: {
+                    Text("Are you sure you want to delete your post? (You can't undo this)")
+                })
+            .navigationBarBackButtonHidden(isEditMode)
         }
     }
     
