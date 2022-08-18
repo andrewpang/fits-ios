@@ -14,6 +14,10 @@ struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showConfirmationDialog = false
+    @State var isEditMode = false
+    
+    @State var editPostTitle = ""
+    @State var editPostBody = ""
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -22,7 +26,8 @@ struct PostDetailView: View {
     let generator = UINotificationFeedbackGenerator()
     
     enum PostDetailFocusField: Hashable {
-       case commentField
+        case commentField
+        case editPostTitleField
     }
    
     @FocusState var focusedField: PostDetailFocusField?
@@ -78,152 +83,189 @@ struct PostDetailView: View {
                                     .resizable()
                                     .scaledToFill()
                             }
-                        if (isShowingLoadingIndicator) {
-                            ProgressView()
-                        }
-                    }
-                       
-    //                    HStack {
-    //
-    //                        Text("Posted by: " + (postDetailViewModel.postModel.author.displayName ?? "Name"))
-    //                            .font(Font.custom(Constants.bodyFont, size: 16))
-    //                            .foregroundColor(.gray)
-    //                        Spacer()
-    //                    }.padding(.horizontal, 24)
-    //
-                        HStack {
-                            Spacer()
-                            Text(postDetailViewModel.postModel.title)
-                                .font(Font.custom(Constants.titleFontBold, size: 20))
-                                .multilineTextAlignment(.center)
-                            Spacer()
-                            
-                        }.padding(.top, 16)
-                        .padding(.horizontal, 24)
-                        
-                        Text(postDetailViewModel.postModel.body)
-                            .font(Font.custom(Constants.bodyFont, size: 16))
-                            .padding(.horizontal, 24)
-                            .padding(.vertical, 8)
-                        
-                        HStack {
-    //                        Spacer()
-                            if (postDetailViewModel.isLiked) {
-                                Button(action: {
-                                    generator.notificationOccurred(.error)
-                                    postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
-                                    let eventName = "Like Button - Clicked"
-                                    let propertiesDict = ["isLike": false as Bool] as? [String : Bool]
-                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                                }, label: {
-                                    Image(systemName: "hands.clap.fill")
-                                        .font(.system(size: 28.0, weight: .light))
-                                        .foregroundColor(.gray)
-                                })
-                                if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
-                                    Text("Applauded by others + you!")
-                                        .font(Font.custom(Constants.bodyFont, size: 16))
-                                        .foregroundColor(.gray)
-                                        .padding(.horizontal, 4)
-                                } else {
-                                    Text("Applauded by you!")
-                                        .font(Font.custom(Constants.bodyFont, size: 16))
-                                        .foregroundColor(.gray)
-                                        .padding(.horizontal, 4)
-                                }
-                            } else {
-                                Button(action: {
-                                    generator.notificationOccurred(.success)
-                                    postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
-                                    let eventName = "Like Button - Clicked"
-                                    let propertiesDict = ["isLike": true as Bool] as? [String : Bool]
-                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                                }, label: {
-                                    Image(systemName: "hands.clap")
-                                        .font(.system(size: 28.0, weight: .light))
-                                        .foregroundColor(.gray)
-                                })
-                                if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
-                                    Text("Applauded by others!")
-                                        .font(Font.custom(Constants.bodyFont, size: 16))
-                                        .foregroundColor(.gray)
-                                        .padding(.horizontal, 4)
-                                } else {
-                                    Text("Be the first to applaud!")
-                                        .font(Font.custom(Constants.bodyFont, size: 16))
-                                        .foregroundColor(.gray)
-                                        .padding(.horizontal, 4)
-                                }
+                            if (isShowingLoadingIndicator) {
+                                ProgressView()
                             }
-                            Spacer()
-                        }.padding(.horizontal, 24)
-                        
-                        Divider()
+                        }
+                        if (isEditMode) {
+                            Text("Post Title:")
+                                .font(Font.custom(Constants.titleFontBold, size: 16))
+                                .padding(.top, 16)
+                                .padding(.horizontal, 24)
+                            Text("Required (Max. 30 Characters)")
+                                .font(Font.custom(Constants.bodyFont, size: 12))
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 24)
+                            TextField("Title", text: $editPostTitle)
+                                .font(Font.custom(Constants.titleFont, size: 16))
+//                                    .disabled(postViewModel.isSubmitting)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .focused($focusedField, equals: .editPostTitleField)
+                                .onReceive(editPostTitle.publisher.collect()) {
+                                    let s = String($0.prefix(Constants.postTitleCharacterLimit))
+                                    if editPostTitle != s {
+                                        editPostTitle = s
+                                    }
+                                  }
+                                .padding(.vertical, 8)
+                                .padding(.horizontal, 24)
+                            
+                            Text("Note:")
+                                .font(Font.custom(Constants.titleFontBold, size: 16))
+                                .padding(.horizontal, 24)
+                            Text("Required (Max. 500 Characters)")
+                                .font(Font.custom(Constants.bodyFont, size: 12))
+                                .foregroundColor(.gray)
+                                .padding(.horizontal, 24)
+                            ZStack {
+                                TextEditor(text: $editPostBody)
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+//                                        .disabled(postViewModel.isSubmitting)
+                                Text(editPostBody).opacity(0).padding(.all, 8)
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                            }.overlay(RoundedRectangle(cornerRadius: 8)
+                            .stroke(Color.gray).opacity(0.3))
+                            .frame(minHeight: 100)
                             .padding(.horizontal, 24)
                             .padding(.vertical, 8)
-                        
-                        CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
+                        } else {
+                            HStack {
+                                Spacer()
+                                Text(postDetailViewModel.postModel.title)
+                                    .font(Font.custom(Constants.titleFontBold, size: 20))
+                                    .multilineTextAlignment(.center)
+                                Spacer()
+                            }.padding(.top, 16)
                             .padding(.horizontal, 24)
+                            
+                            Text(postDetailViewModel.postModel.body)
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 8)
+                        }
+     
+                        if (!isEditMode) {
+                            HStack {
+        //                        Spacer()
+                                if (postDetailViewModel.isLiked) {
+                                    Button(action: {
+                                        generator.notificationOccurred(.error)
+                                        postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
+                                        let eventName = "Like Button - Clicked"
+                                        let propertiesDict = ["isLike": false as Bool] as? [String : Bool]
+                                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                                    }, label: {
+                                        Image(systemName: "hands.clap.fill")
+                                            .font(.system(size: 28.0, weight: .light))
+                                            .foregroundColor(.gray)
+                                    })
+                                    if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
+                                        Text("Applauded by others + you!")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 4)
+                                    } else {
+                                        Text("Applauded by you!")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 4)
+                                    }
+                                } else {
+                                    Button(action: {
+                                        generator.notificationOccurred(.success)
+                                        postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
+                                        let eventName = "Like Button - Clicked"
+                                        let propertiesDict = ["isLike": true as Bool] as? [String : Bool]
+                                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                                    }, label: {
+                                        Image(systemName: "hands.clap")
+                                            .font(.system(size: 28.0, weight: .light))
+                                            .foregroundColor(.gray)
+                                    })
+                                    if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
+                                        Text("Applauded by others!")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 4)
+                                    } else {
+                                        Text("Be the first to applaud!")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 4)
+                                    }
+                                }
+                                Spacer()
+                            }.padding(.horizontal, 24)
+                            
+                            Divider()
+                                .padding(.horizontal, 24)
+                                .padding(.vertical, 8)
+                            
+                            CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
+                                .padding(.horizontal, 24)
+                        }
                     }
                 }.onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 }
                 .padding(.bottom, 8)
-                Divider()
-                HStack {
-                    if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                            .clipShape(Circle())
-                            .padding(.leading, 8)
-                    } else {
-                        Image("portraitPlaceHolder")
-                            .resizable()
-                            .scaledToFill()
-                            .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                            .clipShape(Circle())
-                            .padding(.leading, 8)
-                    }
-                    if #available(iOS 15.0, *) {
-                        TextField("Add Comment", text: $postDetailViewModel.commentText)
-                            .font(Font.custom(Constants.bodyFont, size: 16))
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 16)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                            .focused($focusedField, equals: .commentField)
-                            .submitLabel(.send)
-                            .onSubmit {
+                if (!isEditMode) {
+                    Divider()
+                    HStack {
+                        if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
+                                .clipShape(Circle())
+                                .padding(.leading, 8)
+                        } else {
+                            Image("portraitPlaceHolder")
+                                .resizable()
+                                .scaledToFill()
+                                .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
+                                .clipShape(Circle())
+                                .padding(.leading, 8)
+                        }
+                        if #available(iOS 15.0, *) {
+                            TextField("Add Comment", text: $postDetailViewModel.commentText)
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 16)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                                .focused($focusedField, equals: .commentField)
+                                .submitLabel(.send)
+                                .onSubmit {
+                                    let eventName = "Submit Comment - Clicked"
+                                    let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Int] as? [String : Int]
+                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                                    postCommentAndDismissKeyboard()
+                                }
+                        } else {
+                            // Fallback on earlier versions
+                            TextField("Add Comment", text: $postDetailViewModel.commentText)
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .focused($focusedField, equals: .commentField)
+                                .padding(.horizontal, 8)
+                                .padding(.vertical, 16)
+                                .textFieldStyle(RoundedBorderTextFieldStyle())
+                        }
+                        if (!postDetailViewModel.commentText.isEmpty) {
+                            Button(action: {
                                 let eventName = "Submit Comment - Clicked"
-                                let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Int] as? [String : Int]
+                                let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as? [String : Int]
                                 Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                                 Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                                 postCommentAndDismissKeyboard()
+                            }) {
+                                Image(systemName: "arrow.up.circle")
+                                    .font(.system(size: 32.0))
+                                    .foregroundColor(.gray)
+                                    .padding(.trailing, 8)
                             }
-                    } else {
-                        // Fallback on earlier versions
-                        TextField("Add Comment", text: $postDetailViewModel.commentText)
-                            .font(Font.custom(Constants.bodyFont, size: 16))
-                            .focused($focusedField, equals: .commentField)
-                            .padding(.horizontal, 8)
-                            .padding(.vertical, 16)
-                            .textFieldStyle(RoundedBorderTextFieldStyle())
-                    }
-                    if (!postDetailViewModel.commentText.isEmpty) {
-                        Button(action: {
-                            let eventName = "Submit Comment - Clicked"
-                            let propertiesDict = ["commentLength": postDetailViewModel.commentText.count as Any] as? [String : Int]
-                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                            postCommentAndDismissKeyboard()
-                        }) {
-                            Image(systemName: "arrow.up.circle")
-                                .font(.system(size: 32.0))
-                                .foregroundColor(.gray)
-                                .padding(.trailing, 8)
                         }
                     }
                 }
@@ -251,36 +293,81 @@ struct PostDetailView: View {
                 self.postDetailViewModel.removeListeners()
             }.toolbar {
                 ToolbarItemGroup(placement: .navigationBarLeading) {
-                    NavigationLink(destination: UserProfileView(userId: postDetailViewModel.postModel.author.userId!)) {
-                        if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                                .clipShape(Circle())
-                        } else {
-                            Image("portraitPlaceHolder")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
-                                .clipShape(Circle())
+                    if (isEditMode) {
+                        Button("Cancel") {
+                            isEditMode = false
                         }
-                        Text(postDetailViewModel.postModel.author.displayName ?? "Name")
-                            .font(Font.custom(Constants.bodyFont, size: 16))
-                    }.disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
+                        .foregroundColor(Color.gray)
+                    } else {
+                        NavigationLink(destination: UserProfileView(userId: postDetailViewModel.postModel.author.userId!)) {
+                            if let profilePicImageUrl = postDetailViewModel.postModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                                    .clipShape(Circle())
+                            } else {
+                                Image("portraitPlaceHolder")
+                                    .resizable()
+                                    .scaledToFill()
+                                    .frame(width: Constants.postAuthorProfilePicSize, height:  Constants.postAuthorProfilePicSize)
+                                    .clipShape(Circle())
+                            }
+                            Text(postDetailViewModel.postModel.author.displayName ?? "Name")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                        }.disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
+                    }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
-                    Button(action: {
-                        showConfirmationDialog = true
-                    }, label: {
-                        Image(systemName: "ellipsis")
-                    })
+                    if (isEditMode) {
+                        Button(action: {
+                            postDetailViewModel.editPost(title: editPostTitle, body: editPostBody)
+                            isEditMode = false
+                            UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                        }) {
+                            if (editPostTitle.isEmpty || editPostBody.isEmpty) {
+                                HStack {
+                                   Text("Done")
+                                        .font(Font.custom(Constants.bodyFont, size: 16))
+                                }.padding(.vertical, 4)
+                                .padding(.horizontal, 16)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                                .opacity(0.75)
+                            } else {
+                                HStack {
+                                    if (postDetailViewModel.isSubmitting) {
+                                        Text("Loading...")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                    } else {
+                                        Text("Done")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                    }
+                                }.padding(.vertical, 4)
+                                .padding(.horizontal, 16)
+                                .background(Color.blue)
+                                .foregroundColor(.white)
+                                .cornerRadius(10)
+                            }
+                        }
+                        .disabled(self.postDetailViewModel.isSubmitting || editPostTitle.isEmpty || editPostBody.isEmpty)
+                    } else {
+                        Button(action: {
+                            showConfirmationDialog = true
+                        }, label: {
+                            Image(systemName: "ellipsis")
+                        })
+                    }
                 }
             }
             .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
                 if (isUsersOwnPost()) {
                     Button ("Edit Post") {
-                        
+                        editPostTitle = postDetailViewModel.postModel.title
+                        editPostBody = postDetailViewModel.postModel.body
+                        isEditMode = true
+                        focusedField = .editPostTitleField
                     }
                     Button ("Delete Post", role: ButtonRole.destructive) {
                         postDetailViewModel.deletePost()
@@ -294,7 +381,7 @@ struct PostDetailView: View {
                 Button ("Cancel", role: ButtonRole.cancel) {}
             } message: {
 //                Text ("Choose a picture from your photo library, or take one now!")
-            }
+            }.navigationBarBackButtonHidden(isEditMode)
         }
     }
     

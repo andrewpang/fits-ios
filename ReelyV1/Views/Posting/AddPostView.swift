@@ -19,8 +19,6 @@ struct AddPostView: View {
     @EnvironmentObject var tabViewModel: TabViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    let postTitleCharacterLimit = 30
-    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
@@ -68,7 +66,7 @@ struct AddPostView: View {
                         .disabled(postViewModel.isSubmitting)
                         .textFieldStyle(RoundedBorderTextFieldStyle())
                         .onReceive(postViewModel.postTitle.publisher.collect()) {
-                            let s = String($0.prefix(postTitleCharacterLimit))
+                            let s = String($0.prefix(Constants.postTitleCharacterLimit))
                             if postViewModel.postTitle != s {
                                 postViewModel.postTitle = s
                             }
