@@ -10,6 +10,7 @@ import SwiftUI
 struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     
     @Binding var postsModel: PostsModel
+    
     var uiCollectionViewController: UICollectionViewController
     
     typealias UIViewControllerType = UICollectionViewController
@@ -70,11 +71,9 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
             if let post = parent.postsModel.postModels?[indexPath.item] {
                 if (post.getThumbnailAspectRatio() > 0.0) {
                     let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
-                    let postTitleHeight = (50.0/183.0) * cardWidth
-                    let postAuthorViewHeight = (28.0/183.0) * cardWidth
+                    let postTitleHeight = 50.0
+                    let postAuthorViewHeight = 28.0
                     let cardHeight = cardImageHeight + postTitleHeight + postAuthorViewHeight
-                    print("Width: \(cardWidth)") //183
-                    print("Height: \(cardHeight)") //image + 50 + 28
                     return CGSize.init(width: cardWidth, height: cardHeight)
                 }
             }

@@ -35,7 +35,6 @@ struct Constants {
     static let checkSMSBackgroundColor = "OffWhite-2"
     static let darkBackgroundColor = "DarkModeOffWhite"
     
-    
     static let postCardPadding: CGFloat = 8.0
     
     static let postCardProfilePicSize: CGFloat = 20
