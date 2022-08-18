@@ -17,6 +17,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var commentText = ""
     @Published var isLiked = false
     @Published var likeText = ""
+    @Published var isSubmitting = false
     
     private var db = Firestore.firestore()
     
@@ -181,5 +182,40 @@ class PostDetailViewModel: ObservableObject {
         commentsListener?.remove()
         likesListener?.remove()
     }
-}
     
+    func deletePost() {
+        if let postId = postModel.id {
+            let postDocument = self.db.collection("posts").document(postId)
+            postDocument.delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                }
+            }
+        }
+    }
+    
+    func editPost(title: String, body: String) {
+        self.isSubmitting = true
+        if let postId = postModel.id {
+            let postDocument = self.db.collection("posts").document(postId)
+            postDocument.updateData([
+                "title": title,
+                "body": body,
+                "lastUpdated": FieldValue.serverTimestamp(),
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                    self.isSubmitting = false
+                } else {
+                    print("Document successfully updated")
+                    self.isSubmitting = false
+                    //Passing PostModel in without listener, so easier to just set on client for now
+                    self.postModel.title = title
+                    self.postModel.body = body
+                }
+            }
+        }
+    }
+}
