@@ -38,7 +38,7 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         collectionView.showsVerticalScrollIndicator = false
         
         uiCollectionViewController.collectionView = collectionView
-        uiCollectionViewController.collectionView.backgroundColor = UIColor(named: Constants.onBoardingButtonColor)
+        uiCollectionViewController.collectionView.backgroundColor = UIColor(named: Constants.backgroundColor)
         
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")

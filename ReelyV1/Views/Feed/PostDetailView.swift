@@ -158,7 +158,7 @@ struct PostDetailView: View {
                                     }, label: {
                                         Image(systemName: "hands.clap.fill")
                                             .font(.system(size: 28.0, weight: .light))
-                                            .foregroundColor(.gray)
+                                            .foregroundColor(.yellow)
                                     })
                                     if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
                                         Text("Applauded by others + you!")
