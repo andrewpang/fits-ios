@@ -16,13 +16,21 @@ struct ChallengesParentView: View {
             VStack(spacing: 0) {
                 Text("Weekly Challenges")
                     .font(Font.custom(Constants.titleFontBold, size: 36))
-                    .padding(.vertical, 8)
+                Text("Every Sunday, we'll release a new challenge blah blah blah blah blah blah blah")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
+                    .padding(.vertical, 16)
                 if let challengeModels = challengesViewModel.challengesData.challengeModels, !challengeModels.isEmpty {
                     ScrollView {
                         LazyVStack {
                             ForEach(challengeModels, id: \.id) { challengeModel in
-                                ChallengesRowView(challengeModel: challengeModel)
-                                    .padding(8)
+                                Button(action: {
+                                    //If going to participate, show post
+                                    //If not blurred, show challenge view
+                                }) {
+                                    ChallengesRowView(challengeModel: challengeModel)
+                                        .padding(.bottom, 8)
+                                }
                             }
                         }
                     }
@@ -35,7 +43,7 @@ struct ChallengesParentView: View {
 //                Text(challengesViewModel.challengesData.challengeModels?[0].title ?? "hi")
             }.navigationBarTitle("")
             .navigationBarHidden(true)
-            
+            .padding(.horizontal, 16)
         }.onAppear {
             challengesViewModel.fetchChallenges()
         }
