@@ -12,6 +12,7 @@
 		470FD76E28B5723600D70341 /* ChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76D28B5723600D70341 /* ChallengesModel.swift */; };
 		470FD77028B5735C00D70341 /* PostChallengeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76F28B5735C00D70341 /* PostChallengeMap.swift */; };
 		470FD77228B574ED00D70341 /* ChallengesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77128B574ED00D70341 /* ChallengesViewModel.swift */; };
+		470FD77628B582B700D70341 /* ChallengesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77528B582B700D70341 /* ChallengesRowView.swift */; };
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
@@ -120,6 +121,7 @@
 		470FD76D28B5723600D70341 /* ChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesModel.swift; sourceTree = "<group>"; };
 		470FD76F28B5735C00D70341 /* PostChallengeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeMap.swift; sourceTree = "<group>"; };
 		470FD77128B574ED00D70341 /* ChallengesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewModel.swift; sourceTree = "<group>"; };
+		470FD77528B582B700D70341 /* ChallengesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesRowView.swift; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -241,6 +243,7 @@
 			isa = PBXGroup;
 			children = (
 				470FD76728B5717B00D70341 /* ChallengesParentView.swift */,
+				470FD77528B582B700D70341 /* ChallengesRowView.swift */,
 			);
 			path = Challenges;
 			sourceTree = "<group>";
@@ -673,6 +676,7 @@
 				4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
+				470FD77628B582B700D70341 /* ChallengesRowView.swift in Sources */,
 				479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */,
 				479FE9942875524B0030EE4D /* PostDetailViewModel.swift in Sources */,
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
