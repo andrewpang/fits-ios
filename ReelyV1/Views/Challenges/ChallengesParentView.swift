@@ -8,8 +8,18 @@
 import SwiftUI
 
 struct ChallengesParentView: View {
+    
+    @StateObject var challengesViewModel = ChallengesViewModel()
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
+        NavigationView {
+            VStack {
+                Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/) 
+//                Text(challengesViewModel.challengesData.challengeModels?[0].title ?? "hi")
+            }
+        }.onAppear {
+            challengesViewModel.fetchChallenges()
+        }
     }
 }
 

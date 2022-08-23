@@ -15,5 +15,5 @@ public struct ChallengeModel: Identifiable, Codable, Hashable {
     var startTime: Timestamp?
     var endTime: Timestamp?
     var title: String
-    var previewPosts: PostsModel
+    var previewPosts: PostsModel?
 }

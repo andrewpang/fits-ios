@@ -5,16 +5,42 @@
 //  Created by Andrew Pang on 8/23/22.
 //
 
-import SwiftUI
+import Foundation
+import Firebase
 
-struct ChallengesViewModel: View {
-    var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
+class ChallengesViewModel: ObservableObject {
+    
+    @Published var challengesData = ChallengesModel()
 
-struct ChallengesViewModel_Previews: PreviewProvider {
-    static var previews: some View {
-        ChallengesViewModel()
+    private var db = Firestore.firestore()
+    
+    var challengesListener: ListenerRegistration?
+
+    func fetchChallenges() {
+        if (challengesListener != nil) {
+            return
+        }
+        
+        var fetchChallengesQuery: Query
+        fetchChallengesQuery = db.collection("challenges")
+            .whereField("endTime", isGreaterThan: Timestamp.init())
+            .order(by: "endTime", descending: true)
+        
+        
+        challengesListener = fetchChallengesQuery.addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            var challengeList = [ChallengeModel]()
+            challengeList = documents.compactMap { querySnapshot -> ChallengeModel? in
+                return try? querySnapshot.data(as: ChallengeModel.self)
+            }
+            DispatchQueue.main.async {
+                self.challengesData = ChallengesModel(challengeModels: challengeList)
+            }
+        }
     }
+    
 }
