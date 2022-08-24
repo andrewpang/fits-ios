@@ -12,6 +12,8 @@ import UniformTypeIdentifiers
 import Mixpanel
 
 struct AddPostView: View {
+    @Environment(\.presentationMode) var presentationMode
+    
     @ObservedObject var postViewModel: PostViewModel
     @ObservedObject var mediaItems: PickedMediaItems
     @ObservedObject var homeViewModel: HomeViewModel
@@ -142,7 +144,10 @@ struct AddPostView: View {
                         postViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.setIntroPostMade()
-                        if (postViewModel.postType != "challenge") {
+                        if (postViewModel.postType == "challenge") {
+                            //Dismiss for now, instead of popping to root
+                            presentationMode.wrappedValue.dismiss()
+                        } else {
                             tabViewModel.tabSelection = 1
                             homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                         }
