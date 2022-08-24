@@ -11,6 +11,7 @@ import Firebase
 class ChallengesViewModel: ObservableObject {
     
     @Published var challengesData = ChallengesModel()
+    @Published var shouldPopToRootViewIfFalse = false
 
     private var db = Firestore.firestore()
     

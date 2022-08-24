@@ -19,9 +19,22 @@ struct AddPostView: View {
     @EnvironmentObject var tabViewModel: TabViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
+    @State var challengeModel: ChallengeModel?
+    
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
+                if (postViewModel.postType == "challenge") {
+                    if let challengeModel = challengeModel {
+                        HStack {
+                            Spacer()
+                            Text(challengeModel.title)
+                                .font(Font.custom(Constants.titleFontBold, size: 24))
+                                .multilineTextAlignment(.center)
+                            Spacer()
+                        }.padding(.bottom, 8)
+                    }
+                }
                 Group {
                     if (mediaItems.items.count > 1) {
                         Text("Photos:")
@@ -105,9 +118,8 @@ struct AddPostView: View {
                     .font(Font.custom(Constants.bodyFont, size: 18))
                 Text(postViewModel.recommendedDetails)
                     .font(Font.custom(Constants.bodyFont, size: 16))
-            }
+            }.padding()
         }
-        .padding()
         .navigationBarTitle("", displayMode: .inline)
         .onTapGesture {
             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
@@ -121,12 +133,19 @@ struct AddPostView: View {
                     Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                     Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixpanel)
 //                TODO: Change this logic once there are more non-FIT groups
-                    postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: Constants.FITGroupId) {
+                    let groupId = authenticationViewModel.userModel?.groups?.first ?? Constants.FITGroupId
+                    var postChallengeMap: PostChallengeMap? = nil
+                    if let challengeModel = challengeModel {
+                        postChallengeMap = PostChallengeMap(title: challengeModel.title, challengeId: challengeModel.id)
+                    }
+                    postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: groupId, challenge: postChallengeMap) {
                         postViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.setIntroPostMade()
-                        tabViewModel.tabSelection = 1
-                        homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+                        if (postViewModel.postType != "challenge") {
+                            tabViewModel.tabSelection = 1
+                            homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+                        }
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {

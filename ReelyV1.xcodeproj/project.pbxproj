@@ -89,6 +89,7 @@
 		47D0444F28A6F9E40071591D /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 47D0444E28A6F9E40071591D /* Mixpanel */; };
 		47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E4287CD8BC005E424F /* ProfileParentView.swift */; };
 		47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E6287E1714005E424F /* FirstPostOverlayView.swift */; };
+		47D2F51C28B6C8C50071B246 /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51B28B6C8C50071B246 /* ChallengeDetailView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -187,6 +188,7 @@
 		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
 		47D112E4287CD8BC005E424F /* ProfileParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentView.swift; sourceTree = "<group>"; };
 		47D112E6287E1714005E424F /* FirstPostOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPostOverlayView.swift; sourceTree = "<group>"; };
+		47D2F51B28B6C8C50071B246 /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -244,6 +246,7 @@
 			children = (
 				470FD76728B5717B00D70341 /* ChallengesParentView.swift */,
 				470FD77528B582B700D70341 /* ChallengesRowView.swift */,
+				47D2F51B28B6C8C50071B246 /* ChallengeDetailView.swift */,
 			);
 			path = Challenges;
 			sourceTree = "<group>";
@@ -707,6 +710,7 @@
 				4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */,
 				4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
+				47D2F51C28B6C8C50071B246 /* ChallengeDetailView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
 				4736EEFB2867A9310033C49E /* Constants.swift in Sources */,
 			);

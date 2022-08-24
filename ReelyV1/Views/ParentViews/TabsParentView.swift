@@ -34,7 +34,7 @@ struct TabsParentView: View {
                        Image(systemName: "house")
                        Text("Home")
                      }.tag(homeIndex)
-                ChallengesParentView()
+                ChallengesParentView(homeViewModel: homeViewModel)
                     .tabItem {
                        Image(systemName: "sparkles")
                        Text("Challenges")
