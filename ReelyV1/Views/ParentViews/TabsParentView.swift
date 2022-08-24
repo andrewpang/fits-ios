@@ -34,16 +34,21 @@ struct TabsParentView: View {
                        Image(systemName: "house")
                        Text("Home")
                      }.tag(homeIndex)
+                ChallengesParentView(homeViewModel: homeViewModel)
+                    .tabItem {
+                       Image(systemName: "sparkles")
+                       Text("Challenges")
+                     }.tag(2)
                 PostParentView(homeViewModel: homeViewModel)
-                 .tabItem {
-                    Image(systemName: "plus.circle")
-                    Text("Add Post")
-                  }.tag(2)
+                     .tabItem {
+                        Image(systemName: "plus.circle")
+                        Text("Add Post")
+                      }.tag(3)
                 ProfileParentView()
-                 .tabItem {
-                    Image(systemName: "person")
-                    Text("Profile")
-                  }.tag(3)
+                     .tabItem {
+                        Image(systemName: "person")
+                        Text("Profile")
+                      }.tag(4)
             }.accentColor(Color(Constants.darkBackgroundColor))
             .onAppear {
                 let tabBarAppearance = UITabBarAppearance()

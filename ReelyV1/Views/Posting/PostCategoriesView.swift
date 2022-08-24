@@ -36,7 +36,7 @@ struct PostCategoriesView: View {
                         .padding(.vertical, 32)
                     
                     Button(action: {
-                        showPermissionsAlert = true
+//                        showPermissionsAlert = true
                         postViewModel.resetData()
                         showConfirmationDialog = true
                         postViewModel.postType = "ootd"

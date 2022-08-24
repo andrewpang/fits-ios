@@ -30,6 +30,9 @@ struct Constants {
     static let buttonCornerRadius: CGFloat = 10
     static let buttonFontSize: CGFloat = 18
     
+    static let challengeImageCornerRadius: CGFloat = 6
+    static let challengeImageSpacing: CGFloat = 12
+    
     static let onBoardingButtonColor = "LightGrayButton"
     static let backgroundColor = "OffWhite"
     static let checkSMSBackgroundColor = "OffWhite-2"
