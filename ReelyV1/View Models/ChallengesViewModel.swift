@@ -43,5 +43,4 @@ class ChallengesViewModel: ObservableObject {
             }
         }
     }
-    
 }

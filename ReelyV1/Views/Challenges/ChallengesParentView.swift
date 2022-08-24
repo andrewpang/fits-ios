@@ -15,7 +15,7 @@ struct ChallengesParentView: View {
     @StateObject var postViewModel = PostViewModel()
     @StateObject var mediaItems = PickedMediaItems()
     @ObservedObject var homeViewModel: HomeViewModel
-    @State var selectedChallengeModel: ChallengeModel?
+    @State var selectedChallengeModel: ChallengeModel = ChallengeModel(title: "") //Initial default value
     
     @State var showPicker = false
     @State var showConfirmationDialog = false
@@ -25,6 +25,10 @@ struct ChallengesParentView: View {
         NavigationView {
             VStack(spacing: 0) {
                 NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, challengeModel: selectedChallengeModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
+                    EmptyView()
+                }
+                .isDetailLink(false)
+                NavigationLink(destination: ChallengeDetailView(challengeDetailViewModel: ChallengeDetailViewModel(challengeModel: selectedChallengeModel), homeViewModel: homeViewModel), isActive: $challengesViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)
@@ -40,12 +44,14 @@ struct ChallengesParentView: View {
                         LazyVStack {
                             ForEach(challengeModels, id: \.id) { challengeModel in
                                 Button(action: {
+                                    selectedChallengeModel = challengeModel
+                                    challengesViewModel.shouldPopToRootViewIfFalse = true
                                     //If going to participate, show post
                                     //If not blurred, show challenge view
-                                    postViewModel.resetData()
-                                    selectedChallengeModel = challengeModel
-                                    showConfirmationDialog = true
-                                    postViewModel.postType = "challenge"
+//                                    postViewModel.resetData()
+//                                    challengesViewModel.selectedChallengeModel = challengeModel
+//                                    showConfirmationDialog = true
+//                                    postViewModel.postType = "challenge"
                                 }) {
                                     ChallengesRowView(challengeModel: challengeModel)
                                         .padding(.bottom, 8)
