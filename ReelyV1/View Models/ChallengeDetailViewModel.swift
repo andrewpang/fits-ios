@@ -54,5 +54,9 @@ class ChallengeDetailViewModel: ObservableObject {
         challengeModel = ChallengeModel(title: "")
         postsData = PostsModel()
     }
+    
+    func removeListeners() {
+        challengePostListener?.remove()
+    }
 }
 

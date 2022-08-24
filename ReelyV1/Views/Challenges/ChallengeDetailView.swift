@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct ChallengeDetailView: View {
-    
     @ObservedObject var challengeDetailViewModel: ChallengeDetailViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
@@ -25,10 +24,9 @@ struct ChallengeDetailView: View {
             NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, challengeModel: challengeDetailViewModel.challengeModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                 EmptyView()
             }
-            NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "homeFeed"), isActive: $challengeDetailViewModel.detailViewIsActive) {
+            NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "themesFeed"), isActive: $challengeDetailViewModel.detailViewIsActive) {
                 EmptyView()
             }
-            .isDetailLink(false)
             Color(Constants.backgroundColor).ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {
@@ -125,6 +123,9 @@ struct ChallengeDetailView: View {
         }
         .onAppear {
             challengeDetailViewModel.fetchPostsForChallenge()
+        }.onDisappear {
+            challengeDetailViewModel.resetData()
+            challengeDetailViewModel.removeListeners()
         }
     }
 }

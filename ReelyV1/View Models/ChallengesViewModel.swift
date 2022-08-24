@@ -43,4 +43,8 @@ class ChallengesViewModel: ObservableObject {
             }
         }
     }
+    
+    func removeListeners() {
+        challengesListener?.remove()
+    }
 }
