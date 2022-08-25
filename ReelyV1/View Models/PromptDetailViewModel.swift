@@ -51,8 +51,10 @@ class PromptDetailViewModel: ObservableObject {
     }
     
     func resetData() {
-        promptModel = PromptModel(title: "")
-        postsData = PostsModel()
+        DispatchQueue.main.async {
+            self.promptModel = PromptModel(title: "")
+            self.postsData = PostsModel()
+        }
     }
     
     func removeListeners() {

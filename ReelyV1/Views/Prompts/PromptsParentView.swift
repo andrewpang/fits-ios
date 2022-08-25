@@ -52,7 +52,7 @@ struct PromptsParentView: View {
 //                                    showConfirmationDialog = true
 //                                    postViewModel.postType = "challenge"
                                 }) {
-                                    PromptRowView(promptModel: promptModel)
+                                    PromptRowView(promptRowViewModel: PromptRowViewModel(promptModel: promptModel))
                                         .padding(.bottom, 8)
                                 }
                             }
