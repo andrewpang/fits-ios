@@ -1,5 +1,5 @@
 //
-//  ChallengeDetailView.swift
+//  PromptDetailView.swift
 //  FITs
 //
 //  Created by Andrew Pang on 8/24/22.
@@ -7,8 +7,8 @@
 
 import SwiftUI
 
-struct ChallengeDetailView: View {
-    @ObservedObject var challengeDetailViewModel: ChallengeDetailViewModel
+struct PromptDetailView: View {
+    @ObservedObject var promptDetailViewModel: PromptDetailViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
     
@@ -21,17 +21,17 @@ struct ChallengeDetailView: View {
     
     var body: some View {
         ZStack {
-            NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, challengeModel: challengeDetailViewModel.challengeModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
+            NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, promptModel: promptDetailViewModel.promptModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                 EmptyView()
             }
-            NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "themesFeed"), isActive: $challengeDetailViewModel.detailViewIsActive) {
+            NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "themesFeed"), isActive: $promptDetailViewModel.detailViewIsActive) {
                 EmptyView()
             }
             Color(Constants.backgroundColor).ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {
                     Spacer()
-                    Text(challengeDetailViewModel.challengeModel.title ?? "Challenge")
+                    Text(promptDetailViewModel.promptModel.title ?? "Prompt")
                         .font(Font.custom(Constants.titleFontBold, size: 24))
                         .multilineTextAlignment(.center)
                     Spacer()
@@ -41,7 +41,7 @@ struct ChallengeDetailView: View {
                 Button(action: {
                     postViewModel.resetData()
                     showConfirmationDialog = true
-                    postViewModel.postType = "challenge"
+                    postViewModel.postType = Constants.postTypePrompt
                 }) {
                     HStack {
                         Text("Contribute your fit")
@@ -56,7 +56,7 @@ struct ChallengeDetailView: View {
                     .padding(.horizontal, 60)
                 }.padding(16)
                 
-                Text("*You can post once a day until the challenge ends")
+                Text("*You can post once a day until the prompt ends")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .foregroundColor(.gray)
                     .multilineTextAlignment(.center)
@@ -69,14 +69,14 @@ struct ChallengeDetailView: View {
                 }.padding(.horizontal, 8)
                 .padding(.vertical, 8)
                
-                if let postModels = challengeDetailViewModel.postsData.postModels, !postModels.isEmpty {
+                if let postModels = promptDetailViewModel.postsData.postModels, !postModels.isEmpty {
                     //
                 } else {
                     Text("There's no posts yet, be the first to post!")
                         .font(Font.custom(Constants.bodyFont, size: 24))
                         .padding(.vertical, 40)
                 }
-                WaterfallChallengeCollectionView(challengeDetailViewModel: challengeDetailViewModel, postDetailViewModel: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
+                WaterfallPromptCollectionView(promptDetailViewModel: promptDetailViewModel, postDetailViewModel: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
             }
         }.navigationBarTitle("", displayMode: .inline)
         .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
@@ -122,10 +122,10 @@ struct ChallengeDetailView: View {
             }
         }
         .onAppear {
-            challengeDetailViewModel.fetchPostsForChallenge()
+            promptDetailViewModel.fetchPostsForPrompt()
         }.onDisappear {
-            challengeDetailViewModel.resetData()
-            challengeDetailViewModel.removeListeners()
+            promptDetailViewModel.resetData()
+            promptDetailViewModel.removeListeners()
         }
     }
 }

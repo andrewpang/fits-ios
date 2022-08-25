@@ -8,12 +8,12 @@
 import SwiftUI
 
 let homeIndex = 1
-let challengesIndex = 2
+let promptsIndex = 2
 
 struct TabsParentView: View {
     @StateObject var tabViewModel: TabViewModel = TabViewModel()
     @StateObject var homeViewModel = HomeViewModel()
-    @StateObject var challengesViewModel = ChallengesViewModel()
+    @StateObject var promptsViewModel = PromptsViewModel()
     @State var lastTabSelection = homeIndex
     
     var body: some View {
@@ -26,8 +26,8 @@ struct TabsParentView: View {
                         } else {
                             homeViewModel.shouldPopToRootViewIfFalse = false
                         }
-                    } else if (lastTabSelection == challengesIndex) {
-                        challengesViewModel.shouldPopToRootViewIfFalse = false
+                    } else if (lastTabSelection == promptsIndex) {
+                        promptsViewModel.shouldPopToRootViewIfFalse = false
                     }
                     //TODO(REE-243): Pop profile tab to root
                 }
@@ -38,11 +38,11 @@ struct TabsParentView: View {
                        Image(systemName: "house")
                        Text("Home")
                      }.tag(homeIndex)
-                ChallengesParentView(challengesViewModel: challengesViewModel, homeViewModel: homeViewModel)
+                PromptsParentView(promptsViewModel: promptsViewModel, homeViewModel: homeViewModel)
                     .tabItem {
                        Image(systemName: "sparkles")
-                       Text("Challenges")
-                     }.tag(challengesIndex)
+                       Text("Fit Check")
+                     }.tag(promptsIndex)
                 PostParentView(homeViewModel: homeViewModel)
                      .tabItem {
                         Image(systemName: "plus.circle")
