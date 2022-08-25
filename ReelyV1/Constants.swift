@@ -30,8 +30,8 @@ struct Constants {
     static let buttonCornerRadius: CGFloat = 10
     static let buttonFontSize: CGFloat = 18
     
-    static let challengeImageCornerRadius: CGFloat = 6
-    static let challengeImageSpacing: CGFloat = 12
+    static let promptImageCornerRadius: CGFloat = 6
+    static let promptImageSpacing: CGFloat = 12
     
     static let onBoardingButtonColor = "LightGrayButton"
     static let backgroundColor = "OffWhite"
@@ -57,6 +57,8 @@ struct Constants {
     static let postCardAuthorSectionHeight: CGFloat = 30
     
     static let postTitleCharacterLimit = 30
+    
+    static let postTypePrompt = "prompt"
     
     static let ootdRecommendedDetails = "- Name the products in the photo\n- Where did you buy the items?\n- How much did the outfit cost?\n- Share the story behind the photo/outfit\n- Other details"
     static let productReviewRecommendedDetails = "- How much did it cost?\n- Describe the quality and material\n- Describe the sizing\n- Provide brand details (e.g. sustainable, minority-owned business, etc.)"

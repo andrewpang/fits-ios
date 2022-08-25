@@ -1,5 +1,5 @@
 //
-//  WaterfallChallengeCollectionView.swift
+//  WaterfallPromptCollectionView.swift
 //  FITs
 //
 //  Created by Andrew Pang on 8/24/22.
@@ -7,9 +7,9 @@
 
 import SwiftUI
 
-struct WaterfallChallengeCollectionView: UIViewControllerRepresentable {
+struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
     
-    @ObservedObject var challengeDetailViewModel: ChallengeDetailViewModel
+    @ObservedObject var promptDetailViewModel: PromptDetailViewModel
     @Binding var postDetailViewModel: PostDetailViewModel
     
     var uiCollectionViewController: UICollectionViewController
@@ -62,13 +62,13 @@ struct WaterfallChallengeCollectionView: UIViewControllerRepresentable {
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
-        var parent: WaterfallChallengeCollectionView
+        var parent: WaterfallPromptCollectionView
         var uiCollectionViewController: UICollectionViewController
         var screenWidth = 0.0
         var cardWidth = 0.0
         @Binding var postDetailViewModel: PostDetailViewModel
         
-        init(_ parent: WaterfallChallengeCollectionView, uiCollectionViewController: UICollectionViewController, postDetailViewModel: Binding<PostDetailViewModel>) {
+        init(_ parent: WaterfallPromptCollectionView, uiCollectionViewController: UICollectionViewController, postDetailViewModel: Binding<PostDetailViewModel>) {
             self.parent = parent
             self.uiCollectionViewController = uiCollectionViewController
             self.screenWidth = UIScreen.main.bounds.width
@@ -77,7 +77,7 @@ struct WaterfallChallengeCollectionView: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            if let post = parent.challengeDetailViewModel.postsData.postModels?[indexPath.item] {
+            if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
                 if (post.getThumbnailAspectRatio() > 0.0) {
                     let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
                     let postTitleHeight = 50.0
@@ -91,14 +91,14 @@ struct WaterfallChallengeCollectionView: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            parent.challengeDetailViewModel.postsData.postModels?.count ?? 0
+            parent.promptDetailViewModel.postsData.postModels?.count ?? 0
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             // Create the cell and return the cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageUICollectionViewCell
             // Add image to cell
-            if let post = parent.challengeDetailViewModel.postsData.postModels?[indexPath.item] {
+            if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
                 if let imageUrl = post.imageUrls?[0] {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)
                     cell.setImageUrl(urlString: cloudinaryCompressedUrl)
@@ -119,9 +119,9 @@ struct WaterfallChallengeCollectionView: UIViewControllerRepresentable {
         }
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if let post = parent.challengeDetailViewModel.postsData.postModels?[indexPath.item] {
+            if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
                 postDetailViewModel = PostDetailViewModel(postModel: post)
-                parent.challengeDetailViewModel.detailViewIsActive = true
+                parent.promptDetailViewModel.detailViewIsActive = true
             }
         }
     }

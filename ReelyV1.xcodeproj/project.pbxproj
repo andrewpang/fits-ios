@@ -7,12 +7,12 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		470FD76828B5717B00D70341 /* ChallengesParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76728B5717B00D70341 /* ChallengesParentView.swift */; };
-		470FD76C28B5722300D70341 /* ChallengeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76B28B5722300D70341 /* ChallengeModel.swift */; };
-		470FD76E28B5723600D70341 /* ChallengesModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76D28B5723600D70341 /* ChallengesModel.swift */; };
-		470FD77028B5735C00D70341 /* PostChallengeMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76F28B5735C00D70341 /* PostChallengeMap.swift */; };
-		470FD77228B574ED00D70341 /* ChallengesViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77128B574ED00D70341 /* ChallengesViewModel.swift */; };
-		470FD77628B582B700D70341 /* ChallengesRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77528B582B700D70341 /* ChallengesRowView.swift */; };
+		470FD76828B5717B00D70341 /* PromptsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76728B5717B00D70341 /* PromptsParentView.swift */; };
+		470FD76C28B5722300D70341 /* PromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76B28B5722300D70341 /* PromptModel.swift */; };
+		470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76D28B5723600D70341 /* PromptsModel.swift */; };
+		470FD77028B5735C00D70341 /* PostPromptMap.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76F28B5735C00D70341 /* PostPromptMap.swift */; };
+		470FD77228B574ED00D70341 /* PromptsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77128B574ED00D70341 /* PromptsViewModel.swift */; };
+		470FD77628B582B700D70341 /* PromptRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77528B582B700D70341 /* PromptRowView.swift */; };
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
@@ -89,9 +89,9 @@
 		47D0444F28A6F9E40071591D /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 47D0444E28A6F9E40071591D /* Mixpanel */; };
 		47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E4287CD8BC005E424F /* ProfileParentView.swift */; };
 		47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E6287E1714005E424F /* FirstPostOverlayView.swift */; };
-		47D2F51C28B6C8C50071B246 /* ChallengeDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51B28B6C8C50071B246 /* ChallengeDetailView.swift */; };
-		47D2F51E28B6DBB40071B246 /* WaterfallChallengeCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51D28B6DBB40071B246 /* WaterfallChallengeCollectionView.swift */; };
-		47D2F52028B6E1B70071B246 /* ChallengeDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51F28B6E1B70071B246 /* ChallengeDetailViewModel.swift */; };
+		47D2F51C28B6C8C50071B246 /* PromptDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51B28B6C8C50071B246 /* PromptDetailView.swift */; };
+		47D2F51E28B6DBB40071B246 /* WaterfallPromptCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */; };
+		47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -119,12 +119,12 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		470FD76728B5717B00D70341 /* ChallengesParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesParentView.swift; sourceTree = "<group>"; };
-		470FD76B28B5722300D70341 /* ChallengeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeModel.swift; sourceTree = "<group>"; };
-		470FD76D28B5723600D70341 /* ChallengesModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesModel.swift; sourceTree = "<group>"; };
-		470FD76F28B5735C00D70341 /* PostChallengeMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostChallengeMap.swift; sourceTree = "<group>"; };
-		470FD77128B574ED00D70341 /* ChallengesViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesViewModel.swift; sourceTree = "<group>"; };
-		470FD77528B582B700D70341 /* ChallengesRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengesRowView.swift; sourceTree = "<group>"; };
+		470FD76728B5717B00D70341 /* PromptsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsParentView.swift; sourceTree = "<group>"; };
+		470FD76B28B5722300D70341 /* PromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptModel.swift; sourceTree = "<group>"; };
+		470FD76D28B5723600D70341 /* PromptsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsModel.swift; sourceTree = "<group>"; };
+		470FD76F28B5735C00D70341 /* PostPromptMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPromptMap.swift; sourceTree = "<group>"; };
+		470FD77128B574ED00D70341 /* PromptsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsViewModel.swift; sourceTree = "<group>"; };
+		470FD77528B582B700D70341 /* PromptRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptRowView.swift; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -190,9 +190,9 @@
 		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
 		47D112E4287CD8BC005E424F /* ProfileParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentView.swift; sourceTree = "<group>"; };
 		47D112E6287E1714005E424F /* FirstPostOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPostOverlayView.swift; sourceTree = "<group>"; };
-		47D2F51B28B6C8C50071B246 /* ChallengeDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailView.swift; sourceTree = "<group>"; };
-		47D2F51D28B6DBB40071B246 /* WaterfallChallengeCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallChallengeCollectionView.swift; sourceTree = "<group>"; };
-		47D2F51F28B6E1B70071B246 /* ChallengeDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChallengeDetailViewModel.swift; sourceTree = "<group>"; };
+		47D2F51B28B6C8C50071B246 /* PromptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDetailView.swift; sourceTree = "<group>"; };
+		47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallPromptCollectionView.swift; sourceTree = "<group>"; };
+		47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDetailViewModel.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -248,9 +248,9 @@
 		470FD76628B5716500D70341 /* Challenges */ = {
 			isa = PBXGroup;
 			children = (
-				470FD76728B5717B00D70341 /* ChallengesParentView.swift */,
-				470FD77528B582B700D70341 /* ChallengesRowView.swift */,
-				47D2F51B28B6C8C50071B246 /* ChallengeDetailView.swift */,
+				470FD76728B5717B00D70341 /* PromptsParentView.swift */,
+				470FD77528B582B700D70341 /* PromptRowView.swift */,
+				47D2F51B28B6C8C50071B246 /* PromptDetailView.swift */,
 			);
 			path = Challenges;
 			sourceTree = "<group>";
@@ -300,7 +300,7 @@
 				4755B75128A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift */,
 				4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */,
 				4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */,
-				47D2F51D28B6DBB40071B246 /* WaterfallChallengeCollectionView.swift */,
+				47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */,
 			);
 			path = WaterfallLayout;
 			sourceTree = "<group>";
@@ -332,17 +332,17 @@
 			isa = PBXGroup;
 			children = (
 				473C6A46283C8EB800D4D15E /* PostsModel.swift */,
-				470FD76D28B5723600D70341 /* ChallengesModel.swift */,
+				470FD76D28B5723600D70341 /* PromptsModel.swift */,
 				479FE99728755A1A0030EE4D /* CommentsModel.swift */,
 				473C6A4B283C8ED800D4D15E /* PostModel.swift */,
-				470FD76F28B5735C00D70341 /* PostChallengeMap.swift */,
+				470FD76F28B5735C00D70341 /* PostPromptMap.swift */,
 				4761CC062870C642008ED1BF /* PostAuthorMap.swift */,
 				4761CC0A28724E62008ED1BF /* UserModel.swift */,
 				479FE995287554E10030EE4D /* CommentModel.swift */,
 				479FE99D287625F90030EE4D /* TokenModel.swift */,
 				47A29792287FD6E100761026 /* LikeModel.swift */,
 				47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */,
-				470FD76B28B5722300D70341 /* ChallengeModel.swift */,
+				470FD76B28B5722300D70341 /* PromptModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -357,8 +357,8 @@
 				47F767F8288E094A00265633 /* UserProfileViewModel.swift */,
 				4761CC082870E09B008ED1BF /* TabViewModel.swift */,
 				479FE9932875524B0030EE4D /* PostDetailViewModel.swift */,
-				47D2F51F28B6E1B70071B246 /* ChallengeDetailViewModel.swift */,
-				470FD77128B574ED00D70341 /* ChallengesViewModel.swift */,
+				47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */,
+				470FD77128B574ED00D70341 /* PromptsViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -672,7 +672,7 @@
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				47F767F7288E082800265633 /* UserProfileView.swift in Sources */,
 				47FC5D88288627F3000B9794 /* PhotoPickerModel.swift in Sources */,
-				470FD77028B5735C00D70341 /* PostChallengeMap.swift in Sources */,
+				470FD77028B5735C00D70341 /* PostPromptMap.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */,
 				47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */,
 				47283BC02843EFA40016D124 /* TabsParentView.swift in Sources */,
@@ -685,11 +685,11 @@
 				4755B75228A9886C00942AAD /* CHTCollectionViewWaterfallLayout.swift in Sources */,
 				4761CBFF286E73C6008ED1BF /* OnboardingRulesView.swift in Sources */,
 				4783445C283C63520022025E /* SceneDelegate.swift in Sources */,
-				470FD77628B582B700D70341 /* ChallengesRowView.swift in Sources */,
+				470FD77628B582B700D70341 /* PromptRowView.swift in Sources */,
 				479FE99828755A1A0030EE4D /* CommentsModel.swift in Sources */,
 				479FE9942875524B0030EE4D /* PostDetailViewModel.swift in Sources */,
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
-				470FD76828B5717B00D70341 /* ChallengesParentView.swift in Sources */,
+				470FD76828B5717B00D70341 /* PromptsParentView.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
@@ -698,14 +698,14 @@
 				47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
-				470FD76E28B5723600D70341 /* ChallengesModel.swift in Sources */,
+				470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */,
 				4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
-				47D2F52028B6E1B70071B246 /* ChallengeDetailViewModel.swift in Sources */,
-				470FD76C28B5722300D70341 /* ChallengeModel.swift in Sources */,
+				47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */,
+				470FD76C28B5722300D70341 /* PromptModel.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
 				479FE996287554E10030EE4D /* CommentModel.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
@@ -713,14 +713,14 @@
 				4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
 				479FE99E287625F90030EE4D /* TokenModel.swift in Sources */,
-				470FD77228B574ED00D70341 /* ChallengesViewModel.swift in Sources */,
+				470FD77228B574ED00D70341 /* PromptsViewModel.swift in Sources */,
 				4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */,
 				4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
-				47D2F51C28B6C8C50071B246 /* ChallengeDetailView.swift in Sources */,
+				47D2F51C28B6C8C50071B246 /* PromptDetailView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
 				4736EEFB2867A9310033C49E /* Constants.swift in Sources */,
-				47D2F51E28B6DBB40071B246 /* WaterfallChallengeCollectionView.swift in Sources */,
+				47D2F51E28B6DBB40071B246 /* WaterfallPromptCollectionView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

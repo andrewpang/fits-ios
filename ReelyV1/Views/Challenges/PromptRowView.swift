@@ -1,5 +1,5 @@
 //
-//  ChallengesRowView.swift
+//  PromptRowView.swift
 //  FITs
 //
 //  Created by Andrew Pang on 8/23/22.
@@ -7,14 +7,14 @@
 
 import SwiftUI
 
-struct ChallengesRowView: View {
+struct PromptRowView: View {
     
-    @State var challengeModel: ChallengeModel
+    @State var promptModel: PromptModel
     @State var isBlurred = true
     
     var body: some View {
         VStack(spacing: 0){
-            Text(challengeModel.title)
+            Text(promptModel.title)
                 .font(Font.custom(Constants.titleFontBold, size: 24))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(Constants.backgroundColor))
@@ -22,24 +22,24 @@ struct ChallengesRowView: View {
                 .padding(.bottom, 16)
                 .padding(.horizontal, 16)
             ZStack {
-                VStack(spacing: Constants.challengeImageSpacing) {
-                    HStack(spacing: Constants.challengeImageSpacing) {
+                VStack(spacing: Constants.promptImageSpacing) {
+                    HStack(spacing: Constants.promptImageSpacing) {
                         Rectangle().fill(Color.gray)
                             .aspectRatio(1.0, contentMode: .fill)
-                            .cornerRadius(Constants.challengeImageCornerRadius)
+                            .cornerRadius(Constants.promptImageCornerRadius)
                         Rectangle().fill(Color.gray)
                             .aspectRatio(1.0, contentMode: .fill)
-                            .cornerRadius(Constants.challengeImageCornerRadius)
+                            .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    HStack(spacing: Constants.challengeImageSpacing) {
+                    HStack(spacing: Constants.promptImageSpacing) {
                         Rectangle().fill(Color.gray)
                             .aspectRatio(1.0, contentMode: .fill)
-                            .cornerRadius(Constants.challengeImageCornerRadius)
+                            .cornerRadius(Constants.promptImageCornerRadius)
                         Rectangle().fill(Color.gray)
                             .aspectRatio(1.0, contentMode: .fill)
-                            .cornerRadius(Constants.challengeImageCornerRadius)
+                            .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                }.padding(Constants.challengeImageSpacing)
+                }.padding(Constants.promptImageSpacing)
                 .aspectRatio(contentMode: .fit)
                 .blur(radius: getBlurRadius())
                 if (isBlurred) {

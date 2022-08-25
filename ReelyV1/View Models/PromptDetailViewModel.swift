@@ -1,5 +1,5 @@
 //
-//  ChallengeDetailViewModel.swift
+//  PromptDetailViewModel.swift
 //  FITs
 //
 //  Created by Andrew Pang on 8/24/22.
@@ -8,32 +8,32 @@
 import Foundation
 import Firebase
 
-class ChallengeDetailViewModel: ObservableObject {
+class PromptDetailViewModel: ObservableObject {
     
     @Published var detailViewIsActive = false
     
-    @Published var challengeModel: ChallengeModel
+    @Published var promptModel: PromptModel
     @Published var postsData = PostsModel()
 
     private var db = Firestore.firestore()
     
-    var challengePostListener: ListenerRegistration?
+    var promptPostsListener: ListenerRegistration?
     
-    init(challengeModel: ChallengeModel) {
-        self.challengeModel = challengeModel
+    init(promptModel: PromptModel) {
+        self.promptModel = promptModel
     }
     
-    func fetchPostsForChallenge() {
-        if (challengePostListener != nil) {
+    func fetchPostsForPrompt() {
+        if (promptPostsListener != nil) {
             return
         }
         
-        var fetchChallengePostsQuery: Query
-        fetchChallengePostsQuery = db.collection("posts")
-            .whereField("challenge.challengeId", isEqualTo: challengeModel.id)
+        var fetchPromptPostsQuery: Query
+        fetchPromptPostsQuery = db.collection("posts")
+            .whereField("prompt.promptId", isEqualTo: promptModel.id)
             .order(by: "createdAt", descending: true)
         
-        challengePostListener = fetchChallengePostsQuery.addSnapshotListener { (querySnapshot, error) in
+        promptPostsListener = fetchPromptPostsQuery.addSnapshotListener { (querySnapshot, error) in
             guard let documents = querySnapshot?.documents else {
                 print("No documents")
                 return
@@ -51,12 +51,12 @@ class ChallengeDetailViewModel: ObservableObject {
     }
     
     func resetData() {
-        challengeModel = ChallengeModel(title: "")
+        promptModel = PromptModel(title: "")
         postsData = PostsModel()
     }
     
     func removeListeners() {
-        challengePostListener?.remove()
+        promptPostsListener?.remove()
     }
 }
 

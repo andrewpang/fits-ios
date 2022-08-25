@@ -22,7 +22,7 @@ public struct PostModel: Identifiable, Codable, Hashable {
     var groupId: String?
     var thumbnailHeight: Double? 
     var thumbnailWidth: Double?
-    var challenge: PostChallengeMap?
+    var prompt: PostPromptMap?
     
     mutating func incrementLikesCount(number: Int) {
         if (likesCount != nil) {

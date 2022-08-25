@@ -21,16 +21,16 @@ struct AddPostView: View {
     @EnvironmentObject var tabViewModel: TabViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     
-    @State var challengeModel: ChallengeModel?
+    @State var promptModel: PromptModel?
     
     var body: some View {
         ScrollView {
             VStack (alignment: .leading) {
-                if (postViewModel.postType == "challenge") {
-                    if let challengeModel = challengeModel {
+                if (postViewModel.postType == Constants.postTypePrompt) {
+                    if let promptModel = promptModel {
                         HStack {
                             Spacer()
-                            Text(challengeModel.title)
+                            Text(promptModel.title)
                                 .font(Font.custom(Constants.titleFontBold, size: 24))
                                 .multilineTextAlignment(.center)
                             Spacer()
@@ -136,15 +136,15 @@ struct AddPostView: View {
                     Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixpanel)
 //                TODO: Change this logic once there are more non-FIT groups
                     let groupId = authenticationViewModel.userModel?.groups?.first ?? Constants.FITGroupId
-                    var postChallengeMap: PostChallengeMap? = nil
-                    if let challengeModel = challengeModel {
-                        postChallengeMap = PostChallengeMap(title: challengeModel.title, challengeId: challengeModel.id)
+                    var postPromptMap: PostPromptMap? = nil
+                    if let promptModel = promptModel {
+                        postPromptMap = PostPromptMap(title: promptModel.title, promptId: promptModel.id)
                     }
-                    postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: groupId, challenge: postChallengeMap) {
+                    postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: groupId, prompt: postPromptMap) {
                         postViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.shouldPopToRootViewIfFalse = false
                         homeViewModel.setIntroPostMade()
-                        if (postViewModel.postType == "challenge") {
+                        if (postViewModel.postType == Constants.postTypePrompt) {
                             //Dismiss for now, instead of popping to root
                             presentationMode.wrappedValue.dismiss()
                         } else {

@@ -1,5 +1,5 @@
 //
-//  ChallengesParentView.swift
+//  PromptsParentView.swift
 //  FITs
 //
 //  Created by Andrew Pang on 8/23/22.
@@ -9,12 +9,12 @@ import SwiftUI
 import Amplitude
 import Mixpanel
 
-struct ChallengesParentView: View {
-    @ObservedObject var challengesViewModel: ChallengesViewModel
+struct PromptsParentView: View {
+    @ObservedObject var promptsViewModel: PromptsViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @StateObject var postViewModel = PostViewModel()
     @StateObject var mediaItems = PickedMediaItems()
-    @State var selectedChallengeModel: ChallengeModel = ChallengeModel(title: "") //Initial default value
+    @State var selectedPromptModel: PromptModel = PromptModel(title: "") //Initial default value
     
     @State var showPicker = false
     @State var showConfirmationDialog = false
@@ -23,28 +23,28 @@ struct ChallengesParentView: View {
     var body: some View {
         NavigationView {
             VStack(spacing: 0) {
-                NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, challengeModel: selectedChallengeModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, promptModel: selectedPromptModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)
-                NavigationLink(destination: ChallengeDetailView(challengeDetailViewModel: ChallengeDetailViewModel(challengeModel: selectedChallengeModel), homeViewModel: homeViewModel), isActive: $challengesViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination: PromptDetailView(promptDetailViewModel: PromptDetailViewModel(promptModel: selectedPromptModel), homeViewModel: homeViewModel), isActive: $promptsViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)
                 
-                Text("Weekly Challenges")
+                Text("Weekly Prompts")
                     .font(Font.custom(Constants.titleFontBold, size: 36))
-                Text("Every Sunday, we'll release a new challenge blah blah blah blah blah blah blah")
+                Text("Every Sunday, we'll release a new prompt blah blah blah blah blah blah blah")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 16)
-                if let challengeModels = challengesViewModel.challengesData.challengeModels, !challengeModels.isEmpty {
+                if let promptModels = promptsViewModel.promptsData.promptModels, !promptModels.isEmpty {
                     ScrollView {
                         LazyVStack {
-                            ForEach(challengeModels, id: \.id) { challengeModel in
+                            ForEach(promptModels, id: \.id) { promptModel in
                                 Button(action: {
-                                    selectedChallengeModel = challengeModel
-                                    challengesViewModel.shouldPopToRootViewIfFalse = true
+                                    selectedPromptModel = promptModel
+                                    promptsViewModel.shouldPopToRootViewIfFalse = true
                                     //If going to participate, show post
                                     //If not blurred, show challenge view
 //                                    postViewModel.resetData()
@@ -52,14 +52,14 @@ struct ChallengesParentView: View {
 //                                    showConfirmationDialog = true
 //                                    postViewModel.postType = "challenge"
                                 }) {
-                                    ChallengesRowView(challengeModel: challengeModel)
+                                    PromptRowView(promptModel: promptModel)
                                         .padding(.bottom, 8)
                                 }
                             }
                         }
                     }
                 } else {
-                    Text("Sorry, there's no challenges at the moment :(")
+                    Text("Sorry, there's no prompts at the moment :(")
                         .font(Font.custom(Constants.bodyFont, size: 16))
                         .foregroundColor(.gray)
                         .padding(16)
@@ -111,9 +111,9 @@ struct ChallengesParentView: View {
                 }
             }
         }.onAppear {
-            challengesViewModel.fetchChallenges()
+            promptsViewModel.fetchPrompts()
         }.onDisappear {
-            challengesViewModel.removeListeners()
+            promptsViewModel.removeListeners()
         }
     }
 }

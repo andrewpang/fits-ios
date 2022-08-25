@@ -40,7 +40,7 @@ class PostViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
-    func submitPost(mediaItems: PickedMediaItems, postAuthorMap: PostAuthorMap, groupId: String?, challenge: PostChallengeMap?, completion: @escaping () -> Void) {
+    func submitPost(mediaItems: PickedMediaItems, postAuthorMap: PostAuthorMap, groupId: String?, prompt: PostPromptMap?, completion: @escaping () -> Void) {
         self.isSubmitting = true
         var imagesDownloaded = 0
         var postImageUrls = Array(repeating: "", count: mediaItems.items.count)
@@ -81,7 +81,7 @@ class PostViewModel: ObservableObject {
                 imagesDownloaded += 1
                 if (imagesDownloaded == mediaItems.items.count) {
 //                    TODO(REE-158): remove imageUrl once no one is on 1.1 build 8 or before
-                    let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, challenge: challenge)
+                    let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
                     self.uploadPostModel(postModel: postModel, completion: completion)
                 }
             }
