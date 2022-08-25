@@ -10,6 +10,7 @@ import Amplitude
 import Mixpanel
 
 struct PromptsParentView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @ObservedObject var promptsViewModel: PromptsViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @StateObject var postViewModel = PostViewModel()
@@ -42,17 +43,18 @@ struct PromptsParentView: View {
                     ScrollView {
                         LazyVStack {
                             ForEach(promptModels, id: \.id) { promptModel in
+                                let userHasPostedToThisPrompt = promptsViewModel.promptIdToPostPromptMapDictionary.keys.contains(promptModel.id ?? "noId")
                                 Button(action: {
                                     selectedPromptModel = promptModel
-                                    promptsViewModel.shouldPopToRootViewIfFalse = true
-                                    //If going to participate, show post
-                                    //If not blurred, show challenge view
-//                                    postViewModel.resetData()
-//                                    challengesViewModel.selectedChallengeModel = challengeModel
-//                                    showConfirmationDialog = true
-//                                    postViewModel.postType = "challenge"
+                                    if (userHasPostedToThisPrompt) {
+                                        promptsViewModel.shouldPopToRootViewIfFalse = true
+                                    } else {
+                                        postViewModel.resetData()
+                                        showConfirmationDialog = true
+                                        postViewModel.postType = Constants.postTypePrompt
+                                    }
                                 }) {
-                                    PromptRowView(promptRowViewModel: PromptRowViewModel(promptModel: promptModel))
+                                    PromptRowView(promptsViewModel: promptsViewModel, promptModel: promptModel)
                                         .padding(.bottom, 8)
                                 }
                             }
@@ -111,7 +113,7 @@ struct PromptsParentView: View {
                 }
             }
         }.onAppear {
-            promptsViewModel.fetchPrompts()
+            promptsViewModel.fetchPrompts(userId: authenticationViewModel.userModel?.id ?? "")
         }.onDisappear {
             promptsViewModel.removeListeners()
         }

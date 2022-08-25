@@ -15,9 +15,11 @@ class PromptsViewModel: ObservableObject {
 
     private var db = Firestore.firestore()
     
+    @Published var promptIdToPostPromptMapDictionary: [String: PromptPostModel] = [:]
+    
     var promptsListener: ListenerRegistration?
 
-    func fetchPrompts() {
+    func fetchPrompts(userId: String) {
         if (promptsListener != nil) {
             return
         }
@@ -40,6 +42,28 @@ class PromptsViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.promptsData = PromptsModel(promptModels: promptList)
+                self.fetchPostPromptMapping(userId: userId)
+            }
+        }
+    }
+    
+    func fetchPostPromptMapping(userId: String) {
+        if let promptModels = promptsData.promptModels {
+            for promptModel in promptModels {
+                if let promptId = promptModel.id {
+                    let documentId = "\(userId)_\(promptId)"
+                    let fetchPromptPostQuery = db.collection("promptPosts").document(documentId)
+                    fetchPromptPostQuery.getDocument { (document, error) in
+                        if let document = document, document.exists {
+                            let promptPostModel = try? document.data(as: PromptPostModel.self)
+                            DispatchQueue.main.async {
+                                self.promptIdToPostPromptMapDictionary[promptId] = promptPostModel
+                            }
+                        } else {
+                            print("Document does not exist")
+                        }
+                    }
+                }
             }
         }
     }

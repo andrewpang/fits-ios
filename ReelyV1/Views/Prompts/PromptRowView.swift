@@ -9,11 +9,12 @@ import SwiftUI
 
 struct PromptRowView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @StateObject var promptRowViewModel: PromptRowViewModel
+    @ObservedObject var promptsViewModel: PromptsViewModel
+    @State var promptModel: PromptModel
     
     var body: some View {
         VStack(spacing: 0) {
-            Text(promptRowViewModel.promptModel.title)
+            Text(promptModel.title)
                 .font(Font.custom(Constants.titleFontBold, size: 24))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(Constants.backgroundColor))
@@ -41,7 +42,7 @@ struct PromptRowView: View {
                 }.padding(Constants.promptImageSpacing)
                 .aspectRatio(contentMode: .fit)
                 .blur(radius: getBlurRadius())
-                if (promptRowViewModel.isBlurred) {
+                if (!promptsViewModel.promptIdToPostPromptMapDictionary.keys.contains(promptModel.id ?? "noId")) {
                     VStack {
 //                        Text("🙈")
 //                            .font(.system(size: 40))
@@ -71,17 +72,11 @@ struct PromptRowView: View {
                 }
             }
         }.background(Color(Constants.darkBackgroundColor))
-        .cornerRadius(Constants.buttonCornerRadius)
-        .disabled(promptRowViewModel.isBlurred)
-        .onAppear {
-            if let userId = authenticationViewModel.userModel?.id {
-                promptRowViewModel.getPromptRowIsBlurred(userId: userId)
-            }
-        }  
+        .cornerRadius(Constants.buttonCornerRadius)        
     }
     
     func getBlurRadius() -> CGFloat {
-        if (promptRowViewModel.isBlurred) {
+        if (!promptsViewModel.promptIdToPostPromptMapDictionary.keys.contains(promptModel.id ?? "noId")) {
             return 10
         } else {
             return 0
