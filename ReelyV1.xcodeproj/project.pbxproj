@@ -245,14 +245,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
-		470FD76628B5716500D70341 /* Challenges */ = {
+		470FD76628B5716500D70341 /* Prompts */ = {
 			isa = PBXGroup;
 			children = (
 				470FD76728B5717B00D70341 /* PromptsParentView.swift */,
 				470FD77528B582B700D70341 /* PromptRowView.swift */,
 				47D2F51B28B6C8C50071B246 /* PromptDetailView.swift */,
 			);
-			path = Challenges;
+			path = Prompts;
 			sourceTree = "<group>";
 		};
 		472D809C286D6C6E008D1BB5 /* Onboarding */ = {
@@ -317,7 +317,7 @@
 		473C69E6283C766D00D4D15E /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				470FD76628B5716500D70341 /* Challenges */,
+				470FD76628B5716500D70341 /* Prompts */,
 				47D112E8287E1E30005E424F /* ParentViews */,
 				472D809E286D6CD7008D1BB5 /* Feed */,
 				472D809D286D6C94008D1BB5 /* Posting */,
