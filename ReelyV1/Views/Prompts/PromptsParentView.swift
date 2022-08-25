@@ -8,6 +8,7 @@
 import SwiftUI
 import Amplitude
 import Mixpanel
+import Firebase
 
 struct PromptsParentView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
@@ -43,10 +44,9 @@ struct PromptsParentView: View {
                     ScrollView {
                         LazyVStack {
                             ForEach(promptModels, id: \.id) { promptModel in
-                                let userHasPostedToThisPrompt = promptsViewModel.promptIdToPostPromptMapDictionary.keys.contains(promptModel.id ?? "noId")
                                 Button(action: {
                                     selectedPromptModel = promptModel
-                                    if (userHasPostedToThisPrompt) {
+                                    if (promptsViewModel.hasCurrentUserPostedToPrompt(with: promptModel.id) || promptModel.promptHasAlreadyEnded()) {
                                         promptsViewModel.shouldPopToRootViewIfFalse = true
                                     } else {
                                         postViewModel.resetData()

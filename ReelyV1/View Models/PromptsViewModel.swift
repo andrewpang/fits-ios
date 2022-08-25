@@ -26,7 +26,6 @@ class PromptsViewModel: ObservableObject {
         
         var fetchPromptsQuery: Query
         fetchPromptsQuery = db.collection("prompts")
-            .whereField("endTime", isGreaterThan: Timestamp.init())
             .order(by: "endTime", descending: true)
         
         
@@ -66,6 +65,10 @@ class PromptsViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func hasCurrentUserPostedToPrompt(with promptId: String?) -> Bool {
+        return promptIdToPostPromptMapDictionary.keys.contains(promptId ?? "noId")
     }
     
     func removeListeners() {

@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct PromptRowView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
@@ -14,7 +15,7 @@ struct PromptRowView: View {
     
     var body: some View {
         VStack(spacing: 0) {
-            Text(promptModel.title)
+            Text(promptModel.title ?? "")
                 .font(Font.custom(Constants.titleFontBold, size: 24))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(Constants.backgroundColor))
@@ -42,7 +43,7 @@ struct PromptRowView: View {
                 }.padding(Constants.promptImageSpacing)
                 .aspectRatio(contentMode: .fit)
                 .blur(radius: getBlurRadius())
-                if (!promptsViewModel.promptIdToPostPromptMapDictionary.keys.contains(promptModel.id ?? "noId")) {
+                if (!promptsViewModel.hasCurrentUserPostedToPrompt(with: promptModel.id) && !promptModel.promptHasAlreadyEnded()) {
                     VStack {
 //                        Text("🙈")
 //                            .font(.system(size: 40))
@@ -76,7 +77,7 @@ struct PromptRowView: View {
     }
     
     func getBlurRadius() -> CGFloat {
-        if (!promptsViewModel.promptIdToPostPromptMapDictionary.keys.contains(promptModel.id ?? "noId")) {
+        if (!promptsViewModel.hasCurrentUserPostedToPrompt(with: promptModel.id) && !promptModel.promptHasAlreadyEnded()) {
             return 10
         } else {
             return 0

@@ -8,12 +8,20 @@
 import Foundation
 import FirebaseFirestoreSwift
 import FirebaseFirestore
+import Firebase
 
 public struct PromptModel: Identifiable, Codable, Hashable {
     @DocumentID public var id: String? = UUID().uuidString
     @ServerTimestamp var createdAt: Timestamp?
     var startTime: Timestamp?
     var endTime: Timestamp?
-    var title: String
+    var title: String?
     var previewPosts: PostsModel?
+    
+    func promptHasAlreadyEnded() -> Bool {
+        if let endTime = endTime {
+            return endTime.seconds < Timestamp.init().seconds
+        }
+        return false
+    }
 }

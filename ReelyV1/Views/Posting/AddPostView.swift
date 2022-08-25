@@ -30,7 +30,7 @@ struct AddPostView: View {
                     if let promptModel = promptModel {
                         HStack {
                             Spacer()
-                            Text(promptModel.title)
+                            Text(promptModel.title ?? "")
                                 .font(Font.custom(Constants.titleFontBold, size: 24))
                                 .multilineTextAlignment(.center)
                             Spacer()
