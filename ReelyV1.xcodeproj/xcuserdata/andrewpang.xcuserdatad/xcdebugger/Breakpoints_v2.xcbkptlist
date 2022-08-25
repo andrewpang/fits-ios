@@ -23,32 +23,32 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "FAD21678-7F22-4676-8723-2C170F99DF6A"
+            uuid = "A89D7094-FF6A-4AED-B097-ECB4F691F171"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReelyV1/View Models/PromptsViewModel.swift"
+            filePath = "ReelyV1/View Models/PromptDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "59"
-            endingLineNumber = "59"
-            landmarkName = "fetchPostPromptMapping(userId:)"
+            startingLineNumber = "71"
+            endingLineNumber = "71"
+            landmarkName = "isSameDay(date1:date2:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "842ED1A7-214E-4C97-8249-DF925E868F84"
+            uuid = "6E22586F-1DA1-4E1C-9509-99D3C270DD36"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReelyV1/View Models/PromptsViewModel.swift"
+            filePath = "ReelyV1/View Models/PromptDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "62"
-            endingLineNumber = "62"
-            landmarkName = "fetchPostPromptMapping(userId:)"
+            startingLineNumber = "73"
+            endingLineNumber = "73"
+            landmarkName = "isSameDay(date1:date2:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

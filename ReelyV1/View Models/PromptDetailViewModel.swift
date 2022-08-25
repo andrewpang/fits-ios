@@ -14,13 +14,15 @@ class PromptDetailViewModel: ObservableObject {
     
     @Published var promptModel: PromptModel
     @Published var postsData = PostsModel()
-
+    var promptPostModel: PromptPostModel?
+    
     private var db = Firestore.firestore()
     
     var promptPostsListener: ListenerRegistration?
     
-    init(promptModel: PromptModel) {
+    init(promptModel: PromptModel, promptPostModel: PromptPostModel?) {
         self.promptModel = promptModel
+        self.promptPostModel = promptPostModel
     }
     
     func fetchPostsForPrompt() {
@@ -48,6 +50,28 @@ class PromptDetailViewModel: ObservableObject {
             }
         }
         
+    }
+    
+    func userHasPostedInLastDay() -> Bool {
+        if let promptPostModel = promptPostModel {
+            if let postedTimestamps = promptPostModel.postedTimestamps {
+                for timestamp in postedTimestamps {
+                    if (isSameDay(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue())) {
+                        return true
+                    }
+                }
+            }
+        }
+        return false
+    }
+    
+    func isSameDay(date1: Date, date2: Date) -> Bool {
+        let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
+        if diff.day == 0 {
+            return true
+        } else {
+            return false
+        }
     }
     
     func resetData() {

@@ -44,17 +44,32 @@ struct PromptDetailView: View {
                     postViewModel.postType = Constants.postTypePrompt
                 }) {
                     HStack {
-                        Text("Contribute your fit")
-                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                            .foregroundColor(Color(Constants.backgroundColor))
-                            .padding(.vertical, 16)
-                            .padding(.horizontal, 24)
+                        if (promptDetailViewModel.promptModel.promptHasAlreadyEnded()) {
+                            Text("This fit check has already ended")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 24)
+                        } else if (promptDetailViewModel.userHasPostedInLastDay()) {
+                            Text("Wait until tomorrow to post again")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 24)
+                        } else {
+                            Text("Contribute your fit")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 24)
+                        }
                     }
                     .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
                     .background(Color("FITColor"))
                     .cornerRadius(Constants.buttonCornerRadius)
                     .padding(.horizontal, 60)
-                }.padding(16)
+                }.disabled(promptDetailViewModel.promptModel.promptHasAlreadyEnded() || promptDetailViewModel.userHasPostedInLastDay())
+                .padding(16)
                 
                 Text("*You can post once a day until the prompt ends")
                     .font(Font.custom(Constants.bodyFont, size: 16))
