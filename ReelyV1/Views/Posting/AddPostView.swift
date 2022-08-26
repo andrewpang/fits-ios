@@ -138,7 +138,7 @@ struct AddPostView: View {
                     let groupId = authenticationViewModel.userModel?.groups?.first ?? Constants.FITGroupId
                     var postPromptMap: PostPromptMap? = nil
                     if let promptModel = promptModel {
-                        postPromptMap = PostPromptMap(title: promptModel.title, promptId: promptModel.id)
+                        postPromptMap = PostPromptMap(title: promptModel.title, promptId: promptModel.id, endTime: promptModel.endTime)
                     }
                     postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: groupId, prompt: postPromptMap) {
                         postViewModel.shouldPopToRootViewIfFalse = false
@@ -147,9 +147,12 @@ struct AddPostView: View {
                         if (postViewModel.postType == Constants.postTypePrompt) {
                             //Dismiss for now, instead of popping to root
                             presentationMode.wrappedValue.dismiss()
+                            homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+                            homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         } else {
                             tabViewModel.tabSelection = 1
                             homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+                            homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         }
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

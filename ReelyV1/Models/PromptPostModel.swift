@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 
 public struct PromptPostModel: Codable {
-    var postId: String?
+    var promptId: String?
     var userId: String?
     var postedTimestamps: [Timestamp]?
 }
