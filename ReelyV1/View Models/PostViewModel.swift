@@ -121,7 +121,7 @@ class PostViewModel: ObservableObject {
                     "userId": userId,
                     "promptId": promptId,
                     "postedTimestamps": FieldValue.arrayUnion([Timestamp.init()])
-                ]){ error in
+                ], merge: true){ error in
                     if let error = error {
                         print("Error adding promptPost: \(error)")
                     } else {

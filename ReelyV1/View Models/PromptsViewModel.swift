@@ -18,6 +18,7 @@ class PromptsViewModel: ObservableObject {
     @Published var promptIdToPostPromptMapDictionary: [String: PromptPostModel] = [:]
     
     var promptsListener: ListenerRegistration?
+    var promptPostsListener: ListenerRegistration?
 
     func fetchPrompts(userId: String) {
         if (promptsListener != nil) {
@@ -47,19 +48,28 @@ class PromptsViewModel: ObservableObject {
     }
     
     func fetchPostPromptMapping(userId: String) {
+        if (promptPostsListener != nil) {
+            return
+        }
+        
         if let promptModels = promptsData.promptModels {
             for promptModel in promptModels {
                 if let promptId = promptModel.id {
                     let documentId = "\(userId)_\(promptId)"
                     let fetchPromptPostQuery = db.collection("promptPosts").document(documentId)
-                    fetchPromptPostQuery.getDocument { (document, error) in
-                        if let document = document, document.exists {
-                            let promptPostModel = try? document.data(as: PromptPostModel.self)
-                            DispatchQueue.main.async {
-                                self.promptIdToPostPromptMapDictionary[promptId] = promptPostModel
-                            }
-                        } else {
-                            print("Document does not exist")
+                    promptPostsListener = fetchPromptPostQuery.addSnapshotListener { documentSnapshot, error in
+                        guard let document = documentSnapshot else {
+                            print("Error fetching document: \(error!)")
+                            return
+                        }
+                        guard let data = document.data() else {
+                            print("Document data was empty.")
+                            return
+                        }
+                        print("Current data: \(data)")
+                        let promptPostModel = try? document.data(as: PromptPostModel.self)
+                        DispatchQueue.main.async {
+                            self.promptIdToPostPromptMapDictionary[promptId] = promptPostModel
                         }
                     }
                 }
@@ -73,5 +83,6 @@ class PromptsViewModel: ObservableObject {
     
     func removeListeners() {
         promptsListener?.remove()
+        promptPostsListener?.remove()
     }
 }
