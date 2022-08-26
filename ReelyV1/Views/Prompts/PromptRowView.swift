@@ -21,8 +21,15 @@ struct PromptRowView: View {
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(Constants.backgroundColor))
                 .padding(.top, 24)
-                .padding(.bottom, 16)
                 .padding(.horizontal, 16)
+            if let endTimeString = promptModel.getFormattedDateString() {
+                Text("Ends: \(endTimeString)")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
+                    .foregroundColor(Color(Constants.backgroundColor))
+                    .padding(.vertical, 4)
+                    .padding(.horizontal, 16)
+            }
             ZStack {
                 HStack(spacing: Constants.promptImageSpacing) {
                     if (promptModel.previewImageUrls?.count ?? 0 > 0) {
@@ -102,7 +109,7 @@ struct PromptRowView: View {
                             .cornerRadius(Constants.buttonCornerRadius)
                             .padding(.horizontal, 60)
 //                        }
-                    }
+                    }.padding(.top, 16)
                 }
             }
         }.background(Color(Constants.darkBackgroundColor))

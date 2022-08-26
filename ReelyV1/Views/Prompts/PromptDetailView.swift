@@ -37,6 +37,14 @@ struct PromptDetailView: View {
                     Spacer()
                 }
                 .padding(.horizontal, 8)
+                
+                if let endTimeString = promptDetailViewModel.promptModel.getFormattedDateString() {
+                    Text("Ends: \(endTimeString)")
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                        .multilineTextAlignment(.center)
+                        .padding(.top, 4)
+                        .padding(.horizontal, 16)
+                }
 
                 Button(action: {
                     postViewModel.resetData()
