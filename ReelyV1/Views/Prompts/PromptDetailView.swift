@@ -84,13 +84,13 @@ struct PromptDetailView: View {
                 }.padding(.horizontal, 8)
                 .padding(.vertical, 8)
                
-                if let postModels = promptDetailViewModel.postsData.postModels, !postModels.isEmpty {
-                    //
-                } else {
-                    Text("There's no posts yet, be the first to post!")
-                        .font(Font.custom(Constants.bodyFont, size: 24))
-                        .padding(.vertical, 40)
-                }
+//                if let postModels = promptDetailViewModel.postsData.postModels, !postModels.isEmpty {
+//                    //
+//                } else {
+//                    Text("There's no posts yet, be the first to post!")
+//                        .font(Font.custom(Constants.bodyFont, size: 24))
+//                        .padding(.vertical, 40)
+//                }
                 WaterfallPromptCollectionView(promptDetailViewModel: promptDetailViewModel, postDetailViewModel: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
             }
         }.navigationBarTitle("", displayMode: .inline)
