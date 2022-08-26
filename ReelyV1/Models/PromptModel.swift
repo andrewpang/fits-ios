@@ -16,7 +16,7 @@ public struct PromptModel: Identifiable, Codable, Hashable {
     var startTime: Timestamp?
     var endTime: Timestamp?
     var title: String?
-    var previewPosts: PostsModel?
+    var previewImageUrls: [String]?
     
     func promptHasAlreadyEnded() -> Bool {
         if let endTime = endTime {

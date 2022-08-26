@@ -31,7 +31,7 @@ struct Constants {
     static let buttonFontSize: CGFloat = 18
     
     static let promptImageCornerRadius: CGFloat = 6
-    static let promptImageSpacing: CGFloat = 12
+    static let promptImageSpacing: CGFloat = 8
     
     static let onBoardingButtonColor = "LightGrayButton"
     static let backgroundColor = "OffWhite"

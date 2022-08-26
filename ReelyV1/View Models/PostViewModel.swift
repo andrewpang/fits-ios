@@ -85,6 +85,7 @@ class PostViewModel: ObservableObject {
                     self.uploadPostModel(postModel: postModel, completion: completion)
                     if let prompt = prompt {
                         self.uploadPromptPostModel(userId: postAuthorMap.userId, promptId: prompt.promptId)
+                        self.uploadPromptPostImageUrl(promptId: prompt.promptId, imageUrl: postImageUrls[0])
                     }
                 }
             }
@@ -127,6 +128,20 @@ class PostViewModel: ObservableObject {
                     } else {
                         print("Added promptPost")
                     }
+                }
+            }
+        }
+    }
+    
+    func uploadPromptPostImageUrl(promptId: String?, imageUrl: String) {
+        if let promptId = promptId {
+            self.db.collection("prompts").document(promptId).setData([
+                "previewImageUrls": FieldValue.arrayUnion([imageUrl])
+            ], merge: true){ error in
+                if let error = error {
+                    print("Error adding previewImageUrl: \(error)")
+                } else {
+                    print("Added previewImageUrl")
                 }
             }
         }
