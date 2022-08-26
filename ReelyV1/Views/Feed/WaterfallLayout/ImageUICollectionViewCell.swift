@@ -15,6 +15,7 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var postAuthorLabel: UILabel!
     @IBOutlet weak var portraitImage: UIImageView!
     @IBOutlet weak var postAuthorView: UIStackView!
+    var blurEffectView: UIVisualEffectView?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -30,6 +31,7 @@ class ImageUICollectionViewCell: UICollectionViewCell {
         super.prepareForReuse()
         image.image = UIImage(named: "placeHolder")
         portraitImage.image = UIImage(named: "portraitPlaceHolder")
+        removeBlurAndAddPromptButton()
 //        let constraints = [
 //            postTitleLabel.topAnchor.constraint(equalTo: image.bottomAnchor),
 //            postTitleLabel.bottomAnchor.constraint(equalTo: postAuthorView.topAnchor)
@@ -44,5 +46,22 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     
     func setProfileImageUrl(urlString: String) {
         portraitImage.kf.setImage(with: URL(string: urlString))
+    }
+    
+    func setBlurAndAddPromptButton() {
+        let blurEffect = UIBlurEffect(style: .regular)
+        blurEffectView = UIVisualEffectView()
+        if let blurEffectView = blurEffectView {
+            blurEffectView.frame = CGRect(x: 0, y: 0, width: image.frame.width, height:  image.frame.height)
+            blurEffectView.center = image.center
+            self.image.addSubview(blurEffectView)
+            blurEffectView.effect = blurEffect
+        }
+    }
+    
+    func removeBlurAndAddPromptButton() {
+        if let blurEffectView = blurEffectView {
+            blurEffectView.removeFromSuperview()
+        }
     }
 }

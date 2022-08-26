@@ -75,6 +75,7 @@ struct GalleryFeedView: View {
             self.authenticationViewModel.checkIfSignedIn()
             requestNotificationPermissions()
             self.homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+            self.homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
             let eventName = "Home Feed Screen - View"
             Amplitude.instance().logEvent(eventName)
             Mixpanel.mainInstance().track(event: eventName)

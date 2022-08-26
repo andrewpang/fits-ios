@@ -114,14 +114,23 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)
                     cell.setProfileImageUrl(urlString: cloudinaryCompressedUrl)
                 }
+                if let prompt = post.prompt, !prompt.promptHasAlreadyEnded() && !parent.homeViewModel.hasUserPostedToPrompt(promptId: prompt.promptId){
+                    cell.setBlurAndAddPromptButton()
+                } else {
+                    cell.removeBlurAndAddPromptButton()
+                }
             }
             return cell
         }
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             if let post = parent.homeViewModel.postsData.postModels?[indexPath.item] {
-                postDetailViewModel = PostDetailViewModel(postModel: post)
-                parent.homeViewModel.shouldPopToRootViewIfFalse = true
+                if let prompt = post.prompt, !prompt.promptHasAlreadyEnded() && !parent.homeViewModel.hasUserPostedToPrompt(promptId: prompt.promptId){
+                    //Don't allow click if hidden/blurred
+                } else {
+                    postDetailViewModel = PostDetailViewModel(postModel: post)
+                    parent.homeViewModel.shouldPopToRootViewIfFalse = true
+                }
             }
         }
     }

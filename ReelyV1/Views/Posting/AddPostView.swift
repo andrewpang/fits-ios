@@ -138,7 +138,7 @@ struct AddPostView: View {
                     let groupId = authenticationViewModel.userModel?.groups?.first ?? Constants.FITGroupId
                     var postPromptMap: PostPromptMap? = nil
                     if let promptModel = promptModel {
-                        postPromptMap = PostPromptMap(title: promptModel.title, promptId: promptModel.id)
+                        postPromptMap = PostPromptMap(title: promptModel.title, promptId: promptModel.id, endTime: promptModel.endTime)
                     }
                     postViewModel.submitPost(mediaItems: mediaItems, postAuthorMap: authenticationViewModel.getPostAuthorMap(), groupId: groupId, prompt: postPromptMap) {
                         postViewModel.shouldPopToRootViewIfFalse = false

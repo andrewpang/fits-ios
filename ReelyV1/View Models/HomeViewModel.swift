@@ -17,7 +17,7 @@ class HomeViewModel: ObservableObject {
     @Published var showIntroPostOverlay = false
     @Published var shouldPopToRootViewIfFalse = false
     @Published var shouldScrollToTop = false
-    
+    @Published var promptPostsData = [PromptPostModel]()
     @Published var postsSeenThisSession = 0
     
     private var db = Firestore.firestore()
@@ -26,7 +26,8 @@ class HomeViewModel: ObservableObject {
     let numberOfPostsSeenToShowOverlay = 5
     
     var postsListener: ListenerRegistration?
-
+    var promptPostsListener: ListenerRegistration?
+    
     func fetchPosts(isAdmin: Bool) {
         if (postsListener != nil) {
             return
@@ -58,6 +59,29 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func fetchPromptPostsForUser(with userId: String) {
+        if (promptPostsListener != nil || userId == "noId") {
+            return
+        }
+        let fetchPromptPostsQuery = db.collection("promptPosts")
+            .whereField("userId", isEqualTo: userId)
+            
+        promptPostsListener = fetchPromptPostsQuery.addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            var promptPostList = [PromptPostModel]()
+            promptPostList = documents.compactMap { querySnapshot -> PromptPostModel? in
+                return try? querySnapshot.data(as: PromptPostModel.self)
+            }
+            DispatchQueue.main.async {
+                self.promptPostsData = promptPostList
+            }
+        }
+    }
+    
     func checkIfShouldShowIntroPostOverlay() {
         let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay")
         guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay || postsSeenThisSession != numberOfPostsSeenToShowOverlay) else {
@@ -70,5 +94,16 @@ class HomeViewModel: ObservableObject {
     func setIntroPostMade() {
         showIntroPostOverlay = false
         UserDefaults.standard.set(true, forKey: "hasPostedIntroPost")
+    }
+    
+    func hasUserPostedToPrompt(promptId: String?) -> Bool {
+        if let promptId = promptId {
+            for promptPost in promptPostsData {
+                if (promptPost.postId == promptId) {
+                    return true
+                }
+            }
+        }
+        return false
     }
 }
