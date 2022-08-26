@@ -24,37 +24,6 @@ struct PromptRowView: View {
                 .padding(.bottom, 16)
                 .padding(.horizontal, 16)
             ZStack {
-//                VStack(spacing: Constants.promptImageSpacing) {
-//                    HStack(spacing: Constants.promptImageSpacing) {
-//                        if (promptModel.previewImageUrls?.count ?? 0 > 1) {
-//                            if let imageUrl = promptModel.previewImageUrls?[0] {
-//                                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-//                                    .resizable()
-//                                    .aspectRatio(1.0, contentMode: .fit)
-//                                    .cornerRadius(Constants.promptImageCornerRadius)
-//                            }
-//                        } else {
-//                            Rectangle().fill(Color.gray)
-//                                .aspectRatio(1.0, contentMode: .fill)
-//                                .cornerRadius(Constants.promptImageCornerRadius)
-//                        }
-//
-//                        Rectangle().fill(Color.gray)
-//                            .aspectRatio(1.0, contentMode: .fill)
-//                            .cornerRadius(Constants.promptImageCornerRadius)
-//                    }
-//                    HStack(spacing: Constants.promptImageSpacing) {
-//                        Rectangle().fill(Color.gray)
-//                            .aspectRatio(1.0, contentMode: .fill)
-//                            .cornerRadius(Constants.promptImageCornerRadius)
-//                        Rectangle().fill(Color.gray)
-//                            .aspectRatio(1.0, contentMode: .fill)
-//                            .cornerRadius(Constants.promptImageCornerRadius)
-//                    }
-//                }.padding(Constants.promptImageSpacing)
-//                .aspectRatio(contentMode: .fit)
-//                .blur(radius: getBlurRadius())
-                
                 HStack(spacing: Constants.promptImageSpacing) {
                     if (promptModel.previewImageUrls?.count ?? 0 > 0) {
                         if let imageUrl = promptModel.previewImageUrls?[0] {
