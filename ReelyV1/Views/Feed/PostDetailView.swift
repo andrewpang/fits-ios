@@ -129,6 +129,29 @@ struct PostDetailView: View {
                             .padding(.horizontal, 24)
                             .padding(.vertical, 8)
                         } else {
+                            if let promptTitle = postDetailViewModel.postModel.prompt?.title {
+                                HStack {
+                                    Spacer()
+                                    Text("Fit Check:")
+                                        .font(Font.custom(Constants.titleFontItalicized, size: 16))
+                                        .foregroundColor(Color(Constants.backgroundColor))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }.padding(.top, 16)
+                                .padding(.horizontal, 16)
+                                .background(Color(Constants.darkBackgroundColor))
+                                HStack {
+                                    Spacer()
+                                    Text(promptTitle)
+                                        .font(Font.custom(Constants.titleFont, size: 18))
+                                        .foregroundColor(Color(Constants.backgroundColor))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }.padding(.bottom, 16)
+                                .padding(.horizontal, 16)
+                                .background(Color(Constants.darkBackgroundColor))
+                            }
+                            
                             HStack {
                                 Spacer()
                                 Text(postDetailViewModel.postModel.title)
