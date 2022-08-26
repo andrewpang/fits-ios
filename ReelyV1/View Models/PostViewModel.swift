@@ -83,6 +83,9 @@ class PostViewModel: ObservableObject {
 //                    TODO(REE-158): remove imageUrl once no one is on 1.1 build 8 or before
                     let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
                     self.uploadPostModel(postModel: postModel, completion: completion)
+                    if let prompt = prompt {
+                        self.uploadPromptPostModel(userId: postAuthorMap.userId, promptId: prompt.promptId)
+                    }
                 }
             }
         }
@@ -104,6 +107,28 @@ class PostViewModel: ObservableObject {
         }
         catch {
             print (error)
+        }
+    }
+    
+    func uploadPromptPostModel(userId: String?, promptId: String?) {
+        if let userId = userId {
+            if let promptId = promptId {
+                let promptPostsCollection = self.db.collection("promptPosts")
+                let documentId = "\(userId)_\(promptId)"
+                
+                let docRef = promptPostsCollection.document(documentId)
+                docRef.setData([
+                    "userId": userId,
+                    "promptId": promptId,
+                    "postedTimestamps": FieldValue.arrayUnion([Timestamp.init()])
+                ]){ error in
+                    if let error = error {
+                        print("Error adding promptPost: \(error)")
+                    } else {
+                        print("Added promptPost")
+                    }
+                }
+            }
         }
     }
     

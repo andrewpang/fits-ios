@@ -147,9 +147,12 @@ struct AddPostView: View {
                         if (postViewModel.postType == Constants.postTypePrompt) {
                             //Dismiss for now, instead of popping to root
                             presentationMode.wrappedValue.dismiss()
+                            homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+                            homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         } else {
                             tabViewModel.tabSelection = 1
                             homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
+                            homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         }
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)

@@ -99,7 +99,7 @@ class HomeViewModel: ObservableObject {
     func hasUserPostedToPrompt(promptId: String?) -> Bool {
         if let promptId = promptId {
             for promptPost in promptPostsData {
-                if (promptPost.postId == promptId) {
+                if (promptPost.promptId == promptId) {
                     return true
                 }
             }
