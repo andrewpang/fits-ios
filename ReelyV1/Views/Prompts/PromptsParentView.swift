@@ -34,9 +34,10 @@ struct PromptsParentView: View {
                 }
                 .isDetailLink(false)
                 
-                Text("Weekly Prompts")
+                Text("Fit Check")
                     .font(Font.custom(Constants.titleFontBold, size: 36))
-                Text("Every Sunday, we'll release a new prompt blah blah blah blah blah blah blah")
+                    .padding(.top, 16)
+                Text("Every Sunday, we'll release a new FIT CHECK theme to post to! Participate to see other people's posts")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 16)
