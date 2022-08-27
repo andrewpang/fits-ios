@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Amplitude
+import Mixpanel
 
 struct PromptDetailView: View {
     @StateObject var promptDetailViewModel: PromptDetailViewModel
@@ -108,20 +110,20 @@ struct PromptDetailView: View {
                 self.showPicker = true
                 self.sourceType = .photoLibrary
                 let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as? [String : String]
-//                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
             Button ("Camera") {
                 self.showPicker = true
                 self.sourceType = .camera
                 let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as? [String : String]
-//                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
             Button ("Cancel", role: ButtonRole.cancel) {
                 let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as? [String : String]
-//                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
         } message: {
             Text ("Choose a picture from your photo library, or take one now!")
@@ -146,6 +148,12 @@ struct PromptDetailView: View {
         }
         .onAppear {
             promptDetailViewModel.fetchPostsForPrompt()
+            let propertiesDict = [
+                "promptId": promptDetailViewModel.promptModel.id
+            ] as? [String : String]
+            let eventName = "Prompt Detail Screen - View"
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
         }.onDisappear {
             promptDetailViewModel.removeListeners()
         }
