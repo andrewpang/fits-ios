@@ -32,52 +32,47 @@ struct PromptRowView: View {
             }
             ZStack {
                 HStack(spacing: Constants.promptImageSpacing) {
-                    if (promptModel.previewImageUrls?.count ?? 0 > 0) {
-                        if let imageUrl = promptModel.previewImageUrls?[0] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 1 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 1], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    if (promptModel.previewImageUrls?.count ?? 0 > 1) {
-                        if let imageUrl = promptModel.previewImageUrls?[1] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 2 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 2], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
+
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    if (promptModel.previewImageUrls?.count ?? 0 > 2) {
-                        if let imageUrl = promptModel.previewImageUrls?[2] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 3 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 3], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
+
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    if (promptModel.previewImageUrls?.count ?? 0 > 3) {
-                        if let imageUrl = promptModel.previewImageUrls?[3] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 4 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 4], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
+
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
                 }.blur(radius: getBlurRadius())
