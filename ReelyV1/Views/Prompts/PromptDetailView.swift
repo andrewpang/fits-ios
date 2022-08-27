@@ -8,7 +8,7 @@
 import SwiftUI
 
 struct PromptDetailView: View {
-    @ObservedObject var promptDetailViewModel: PromptDetailViewModel
+    @StateObject var promptDetailViewModel: PromptDetailViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
     
@@ -147,7 +147,6 @@ struct PromptDetailView: View {
         .onAppear {
             promptDetailViewModel.fetchPostsForPrompt()
         }.onDisappear {
-            promptDetailViewModel.resetData()
             promptDetailViewModel.removeListeners()
         }
     }

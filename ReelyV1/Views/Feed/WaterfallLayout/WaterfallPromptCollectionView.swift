@@ -9,7 +9,7 @@ import SwiftUI
 
 struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
     
-    @ObservedObject var promptDetailViewModel: PromptDetailViewModel
+    @StateObject var promptDetailViewModel: PromptDetailViewModel
     @Binding var postDetailViewModel: PostDetailViewModel
     
     var uiCollectionViewController: UICollectionViewController
