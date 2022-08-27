@@ -49,7 +49,6 @@ class PromptDetailViewModel: ObservableObject {
                 self.postsData = PostsModel(postModels: postList)
             }
         }
-        
     }
     
     func userHasPostedInLastDay() -> Bool {
