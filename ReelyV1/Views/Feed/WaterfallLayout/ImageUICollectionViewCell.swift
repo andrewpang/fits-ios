@@ -54,15 +54,18 @@ class ImageUICollectionViewCell: UICollectionViewCell {
 
         blurEffectView = UIVisualEffectView()
         if let blurEffectView = blurEffectView {
-            blurEffectView.frame = CGRect(x: 0, y: 0, width: image.frame.width, height: image.frame.height)
+            blurEffectView.frame = image.bounds
+            blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             blurEffectView.center = image.center
             self.image.addSubview(blurEffectView)
             let blurEffect = UIBlurEffect(style: .regular)
             blurEffectView.effect = blurEffect
         }
         
-        participateLabel = UILabel(frame: CGRect(x: 0, y: 0, width: contentView.frame.width, height: contentView.frame.height))
+        participateLabel = UILabel()
         if let participateLabel = participateLabel {
+            participateLabel.frame = image.bounds
+            participateLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             participateLabel.center = image.center
             participateLabel.text = "Participate in Fit Check to View!"
             participateLabel.numberOfLines = 0
