@@ -130,8 +130,8 @@ struct AddPostView: View {
             ToolbarItemGroup(placement: .navigationBarTrailing) {
                 Button(action: {
                     let eventName = "Submit Post - Clicked"
-                    let propertiesDict = ["postType": postViewModel.postType as String, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as? [String : Any]
-                    let propertiesDictMixpanel = ["postType": postViewModel.postType as String, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count] as? [String : MixpanelType]
+                    let propertiesDict = ["postType": postViewModel.postType as String, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count, "promptId": promptModel?.id] as? [String : Any]
+                    let propertiesDictMixpanel = ["postType": postViewModel.postType as String, "postTitleLength": postViewModel.postTitle.count, "postBodyLength": postViewModel.postBody.count, "promptId": promptModel?.id] as? [String : MixpanelType]
                     Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                     Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixpanel)
 //                TODO: Change this logic once there are more non-FIT groups
