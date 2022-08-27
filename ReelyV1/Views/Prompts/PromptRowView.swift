@@ -26,7 +26,7 @@ struct PromptRowView: View {
                 Text("Ends: \(endTimeString)")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color(Constants.backgroundColor))
+                    .foregroundColor(.gray)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 16)
             }
@@ -81,10 +81,7 @@ struct PromptRowView: View {
                     VStack {
 //                        Text("🙈")
 //                            .font(.system(size: 40))
-                        Image(systemName: "eye.slash")
-                            .font(.system(size: 24.0))
-                            .foregroundColor(Color(Constants.backgroundColor))
-                            .padding(.vertical, 8)
+                       
 //                        Text("Participate to View")
 //                            .font(Font.custom(Constants.bodyFont, size: 16))
 //                            .multilineTextAlignment(.center)
@@ -92,19 +89,20 @@ struct PromptRowView: View {
 //                        Button(action: {
 //                            //
 //                        }) {
-                            HStack {
-                                Text("Participate to View")
-                                    .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                                    .foregroundColor(Color(Constants.backgroundColor))
-                                    .padding(.vertical, 16)
-                                    .padding(.horizontal, 24)
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
-                            .background(Color("FITColor"))
-                            .cornerRadius(Constants.buttonCornerRadius)
-                            .padding(.horizontal, 60)
-//                        }
-                    }.padding(.top, 16)
+                        HStack {
+                            Image(systemName: "eye.slash")
+                                .font(.system(size: 20.0))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                            Text("Participate to View")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
+                        .background(Color("FITColor"))
+                        .cornerRadius(Constants.buttonCornerRadius)
+                        .padding(.horizontal, 40)
+                    }.padding(.vertical, 8)
                 }
             }
         }.background(Color(Constants.darkBackgroundColor))
