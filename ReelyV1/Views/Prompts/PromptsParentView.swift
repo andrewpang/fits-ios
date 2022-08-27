@@ -42,7 +42,7 @@ struct PromptsParentView: View {
                     .multilineTextAlignment(.center)
                     .padding(.vertical, 16)
                 if let promptModels = promptsViewModel.promptsData.promptModels, !promptModels.isEmpty {
-                    ScrollView {
+                    ScrollView(showsIndicators: false) {
                         LazyVStack {
                             ForEach(promptModels, id: \.id) { promptModel in
                                 Button(action: {
@@ -78,20 +78,20 @@ struct PromptsParentView: View {
                 self.showPicker = true
                 self.sourceType = .photoLibrary
                 let propertiesDict = ["selection": "photoLibrary", "postType": postViewModel.postType] as? [String : String]
-//                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
             Button ("Camera") {
                 self.showPicker = true
                 self.sourceType = .camera
                 let propertiesDict = ["selection": "camera", "postType": postViewModel.postType] as? [String : String]
-//                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
             Button ("Cancel", role: ButtonRole.cancel) {
                 let propertiesDict = ["selection": "cancel", "postType": postViewModel.postType] as? [String : String]
-//                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
         } message: {
             Text ("Choose a picture from your photo library, or take one now!")
@@ -115,6 +115,9 @@ struct PromptsParentView: View {
             }
         }.onAppear {
             promptsViewModel.fetchPrompts(userId: authenticationViewModel.userModel?.id ?? "")
+            let eventName = "Prompts List Screen - View"
+            Amplitude.instance().logEvent(eventName)
+            Mixpanel.mainInstance().track(event: eventName)
         }.onDisappear {
             promptsViewModel.removeListeners()
         }
