@@ -26,58 +26,53 @@ struct PromptRowView: View {
                 Text("Ends: \(endTimeString)")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .multilineTextAlignment(.center)
-                    .foregroundColor(Color(Constants.backgroundColor))
+                    .foregroundColor(.gray)
                     .padding(.vertical, 4)
                     .padding(.horizontal, 16)
             }
             ZStack {
                 HStack(spacing: Constants.promptImageSpacing) {
-                    if (promptModel.previewImageUrls?.count ?? 0 > 0) {
-                        if let imageUrl = promptModel.previewImageUrls?[0] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 1 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 1], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    if (promptModel.previewImageUrls?.count ?? 0 > 1) {
-                        if let imageUrl = promptModel.previewImageUrls?[1] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 2 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 2], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
+
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    if (promptModel.previewImageUrls?.count ?? 0 > 2) {
-                        if let imageUrl = promptModel.previewImageUrls?[2] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 3 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 3], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
+
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
-                    if (promptModel.previewImageUrls?.count ?? 0 > 3) {
-                        if let imageUrl = promptModel.previewImageUrls?[3] {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)))
-                                .resizable()
-                                .aspectRatio(0.666, contentMode: .fit)
-                                .cornerRadius(Constants.promptImageCornerRadius)
-                        }
+                    if let previewImageUrls = promptModel.previewImageUrls, previewImageUrls.count >= 4 {
+                        KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrls[previewImageUrls.count - 4], width: CloudinaryHelper.thumbnailWidth)))
+                            .resizable()
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
+                            .cornerRadius(Constants.promptImageCornerRadius)
+
                     } else {
                         Rectangle().fill(Color.gray)
-                            .aspectRatio(0.666, contentMode: .fit)
+                            .aspectRatio(Constants.promptPreviewImageAspectRatio, contentMode: .fit)
                             .cornerRadius(Constants.promptImageCornerRadius)
                     }
                 }.blur(radius: getBlurRadius())
@@ -86,10 +81,7 @@ struct PromptRowView: View {
                     VStack {
 //                        Text("🙈")
 //                            .font(.system(size: 40))
-                        Image(systemName: "eye.slash")
-                            .font(.system(size: 24.0))
-                            .foregroundColor(Color(Constants.backgroundColor))
-                            .padding(.vertical, 8)
+                       
 //                        Text("Participate to View")
 //                            .font(Font.custom(Constants.bodyFont, size: 16))
 //                            .multilineTextAlignment(.center)
@@ -97,19 +89,20 @@ struct PromptRowView: View {
 //                        Button(action: {
 //                            //
 //                        }) {
-                            HStack {
-                                Text("Participate to View")
-                                    .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                                    .foregroundColor(Color(Constants.backgroundColor))
-                                    .padding(.vertical, 16)
-                                    .padding(.horizontal, 24)
-                            }
-                            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
-                            .background(Color("FITColor"))
-                            .cornerRadius(Constants.buttonCornerRadius)
-                            .padding(.horizontal, 60)
-//                        }
-                    }.padding(.top, 16)
+                        HStack {
+                            Image(systemName: "eye.slash")
+                                .font(.system(size: 20.0))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                            Text("Participate to View")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                        }
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
+                        .background(Color("FITColor"))
+                        .cornerRadius(Constants.buttonCornerRadius)
+                        .padding(.horizontal, 40)
+                    }.padding(.vertical, 8)
                 }
             }
         }.background(Color(Constants.darkBackgroundColor))
