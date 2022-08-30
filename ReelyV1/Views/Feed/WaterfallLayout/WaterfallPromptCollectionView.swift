@@ -9,7 +9,7 @@ import SwiftUI
 
 // WARNING: When updating, check if needs to update WaterfallCollectionViewController
 struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
-    
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @StateObject var promptDetailViewModel: PromptDetailViewModel
     @Binding var selectedPostDetail: PostDetailViewModel
     
@@ -117,8 +117,20 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
                 }
                 if parent.promptDetailViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
                     cell.showHighlightedApplaudButton()
+                    cell.applaudButtonTapAction = {
+                        () in
+                        self.parent.promptDetailViewModel.unlikePost(postModel: post, userId: self.parent.authenticationViewModel.userModel?.id)
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.error)
+                    }
                 } else {
                     cell.showUnhighlighedApplaudButton()
+                    cell.applaudButtonTapAction = {
+                        () in
+                        self.parent.promptDetailViewModel.likePost(postModel: post, likeModel: LikeModel(id: self.parent.authenticationViewModel.userModel?.id, author: self.parent.authenticationViewModel.getPostAuthorMap()))
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.success)
+                    }
                 }
             }
             return cell

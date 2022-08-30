@@ -48,9 +48,6 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     }
     
     @objc func applaudButtonTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        print("Tapped!")
-        showHighlightedApplaudButton()
-        
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
            // use our "call back" action to tell the controller the button was tapped
@@ -58,9 +55,8 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     }
     
     func showHighlightedApplaudButton() {
-//        let conf = UIImage.SymbolConfiguration(pointSize: 10, weight: .medium, scale: .large)
         let image = UIImage(systemName: "hands.clap.fill")!
-        let yellowImage = image.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+        let yellowImage = image.withTintColor(UIColor(named: "FITColor") ?? .systemBlue, renderingMode: .alwaysOriginal)
         applaudButtonImage.image = yellowImage
     }
     

@@ -77,6 +77,55 @@ class PromptDetailViewModel: ObservableObject {
         return postsUserHasLikedList.contains(postId)
     }
     
+    func likePost(postModel: PostModel, likeModel: LikeModel) {
+        if let postId = postModel.id {
+            if let userId = likeModel.author.userId {
+                let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                let postDocument = self.db.collection("posts").document(postId)
+                do {
+                    let batch = db.batch()
+                    try batch.setData(from: likeModel, forDocument: likeDocument, merge: true)
+                    batch.updateData(["likesCount": FieldValue.increment(Int64(1))], forDocument: postDocument)
+                    batch.commit() { err in
+                        if let err = err {
+                            print("Error writing likePost batch \(err)")
+                        } else {
+                            DispatchQueue.main.async {
+                                self.postsUserHasLikedList.append(postId)
+                            }
+                            print("Batch write for likePost succeeded.")
+                        }
+                    }
+                }
+                catch {
+                    print (error)
+                }
+            }
+        }
+    }
+        
+    func unlikePost(postModel: PostModel, userId: String?) {
+        if let userId = userId {
+            if let postId = postModel.id {
+                let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+                let postDocument = self.db.collection("posts").document(postId)
+                let batch = db.batch()
+                batch.deleteDocument(likeDocument)
+                batch.updateData(["likesCount": FieldValue.increment(Int64(-1))], forDocument: postDocument)
+                batch.commit() { err in
+                    if let err = err {
+                        print("Error writing unlikePost batch \(err)")
+                    } else {
+                        DispatchQueue.main.async {
+                            self.postsUserHasLikedList.removeAll{ $0 == postId }
+                        }
+                        print("Batch write for unlikePost succeeded.")
+                    }
+                }
+            }
+        }
+    }
+    
     func userHasPostedInLastDay() -> Bool {
         if let promptPostModel = promptPostModel {
             if let postedTimestamps = promptPostModel.postedTimestamps {
