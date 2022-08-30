@@ -351,6 +351,10 @@ struct PostDetailView: View {
                             postDetailViewModel.editPost(title: editPostTitle, body: editPostBody)
                             isEditMode = false
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+                            let eventName = "Edit Post - Clicked"
+                            let propertiesDict = ["userId": authenticationViewModel.userModel?.id, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }) {
                             if (editPostTitle.isEmpty || editPostBody.isEmpty) {
                                 HStack {
@@ -413,6 +417,10 @@ struct PostDetailView: View {
                   Button("Delete", role: .destructive, action: {
                       postDetailViewModel.deletePost()
                       self.presentationMode.wrappedValue.dismiss()
+                      let eventName = "Delete Post - Clicked"
+                      let propertiesDict = ["userId": authenticationViewModel.userModel?.id, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : String]
+                      Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                      Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                   })
                 }, message: {
                     Text("Are you sure you want to delete your post? (You can't undo this)")
