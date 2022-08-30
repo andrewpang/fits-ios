@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Amplitude
+import Mixpanel
 
 // WARNING: When updating, check if needs to update WaterfallCollectionViewController
 struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
@@ -122,6 +124,11 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
                         self.parent.promptDetailViewModel.unlikePost(postModel: post, userId: self.parent.authenticationViewModel.userModel?.id)
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.error)
+                        let eventName = "Like Button - Clicked"
+                        let propertiesDict = ["isLike": false as Bool, "source": "promptFeed"] as? [String : Any]
+                        let mixpanelDict = ["isLike": false as Bool, "source": "promptFeed"] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
                 } else {
                     cell.showUnhighlighedApplaudButton()
@@ -130,6 +137,11 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
                         self.parent.promptDetailViewModel.likePost(postModel: post, likeModel: LikeModel(id: self.parent.authenticationViewModel.userModel?.id, author: self.parent.authenticationViewModel.getPostAuthorMap()))
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.success)
+                        let eventName = "Like Button - Clicked"
+                        let propertiesDict = ["isLike": true as Bool, "source": "promptFeed"] as? [String : Any]
+                        let mixpanelDict = ["isLike": true as Bool, "source": "promptFeed"] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
                 }
             }
