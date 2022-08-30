@@ -30,8 +30,8 @@
             filePath = "ReelyV1/Views/Prompts/PromptDetailView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "150"
-            endingLineNumber = "150"
+            startingLineNumber = "151"
+            endingLineNumber = "151"
             landmarkName = "body"
             landmarkType = "24">
          </BreakpointContent>
@@ -46,8 +46,8 @@
             filePath = "ReelyV1/View Models/PromptDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "49"
-            endingLineNumber = "49"
+            startingLineNumber = "50"
+            endingLineNumber = "50"
             landmarkName = "fetchPostsForPrompt()"
             landmarkType = "7">
          </BreakpointContent>
@@ -55,32 +55,16 @@
       <BreakpointProxy
          BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
          <BreakpointContent
-            uuid = "03A83CD8-96FC-4B85-B184-E7F5BAF76B61"
+            uuid = "B8B85F5B-5D8F-4AD9-9ED3-8721F9A864AA"
             shouldBeEnabled = "Yes"
             ignoreCount = "0"
             continueAfterRunningActions = "No"
-            filePath = "ReelyV1/Views/Feed/WaterfallLayout/WaterfallCollectionView.swift"
+            filePath = "ReelyV1/View Models/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "127"
-            endingLineNumber = "127"
-            landmarkName = "collectionView(_:didSelectItemAt:)"
-            landmarkType = "7">
-         </BreakpointContent>
-      </BreakpointProxy>
-      <BreakpointProxy
-         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
-         <BreakpointContent
-            uuid = "2775E067-DDA4-4998-8F1D-77B1A79DF567"
-            shouldBeEnabled = "Yes"
-            ignoreCount = "0"
-            continueAfterRunningActions = "No"
-            filePath = "ReelyV1/View Models/PromptDetailViewModel.swift"
-            startingColumnNumber = "9223372036854775807"
-            endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "24"
-            endingLineNumber = "24"
-            landmarkName = "init(promptModel:promptPostModel:)"
+            startingLineNumber = "126"
+            endingLineNumber = "126"
+            landmarkName = "fetchPostLikesForUser(with:)"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

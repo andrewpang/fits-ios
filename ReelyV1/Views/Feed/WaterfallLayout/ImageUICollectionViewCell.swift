@@ -15,8 +15,11 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var postAuthorLabel: UILabel!
     @IBOutlet weak var portraitImage: UIImageView!
     @IBOutlet weak var postAuthorView: UIStackView!
+    @IBOutlet weak var applaudButtonImage: UIImageView!
     var blurEffectView: UIVisualEffectView?
     var participateLabel: UILabel?
+    
+    var applaudButtonTapAction : (()->())?
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,6 +29,10 @@ class ImageUICollectionViewCell: UICollectionViewCell {
         
         portraitImage.layer.masksToBounds = true
         portraitImage.layer.cornerRadius = portraitImage.bounds.width / 2
+        
+        let tapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(applaudButtonTapped(tapGestureRecognizer:)))
+        applaudButtonImage.isUserInteractionEnabled = true
+        applaudButtonImage.addGestureRecognizer(tapGestureRecognizer)
     }
     
     override func prepareForReuse() {
@@ -38,6 +45,29 @@ class ImageUICollectionViewCell: UICollectionViewCell {
 //            postTitleLabel.bottomAnchor.constraint(equalTo: postAuthorView.topAnchor)
 //        ]
 //        NSLayoutConstraint.activate(constraints)
+    }
+    
+    @objc func applaudButtonTapped(tapGestureRecognizer: UITapGestureRecognizer) {
+        print("Tapped!")
+        showHighlightedApplaudButton()
+        
+        let generator = UINotificationFeedbackGenerator()
+        generator.notificationOccurred(.success)
+           // use our "call back" action to tell the controller the button was tapped
+        applaudButtonTapAction?()
+    }
+    
+    func showHighlightedApplaudButton() {
+//        let conf = UIImage.SymbolConfiguration(pointSize: 10, weight: .medium, scale: .large)
+        let image = UIImage(systemName: "hands.clap.fill")!
+        let yellowImage = image.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+        applaudButtonImage.image = yellowImage
+    }
+    
+    func showUnhighlighedApplaudButton() {
+        let image = UIImage(systemName: "hands.clap")!
+        let grayImage = image.withTintColor(.systemGray, renderingMode: .alwaysOriginal)
+        applaudButtonImage.image = grayImage
     }
     
     func setImageUrl(urlString: String) {

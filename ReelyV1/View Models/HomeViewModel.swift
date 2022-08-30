@@ -19,6 +19,7 @@ class HomeViewModel: ObservableObject {
     @Published var shouldScrollToTop = false
     @Published var promptPostsData = [PromptPostModel]()
     @Published var postsSeenThisSession = 0
+    @Published var postsUserHasLikedList = [String]()
     
     private var db = Firestore.firestore()
     
@@ -106,4 +107,74 @@ class HomeViewModel: ObservableObject {
         }
         return false
     }
+    
+    func fetchPostLikesForUser(with userId: String) {
+        if (userId == "noId") {
+            return
+        }
+        db.collectionGroup("likes").whereField("author.userId", isEqualTo: userId).order(by: "createdAt", descending: true).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting user likes: \(error)")
+            } else {
+                var listOfLikes = [String]()
+                for document in snapshot!.documents {
+                    if let postId = document.reference.parent.parent?.documentID {
+                        listOfLikes.append(postId)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.postsUserHasLikedList = listOfLikes
+                }
+            }
+        }
+    }
+    
+    func hasUserLikedPost(postId: String) -> Bool {
+        return postsUserHasLikedList.contains(postId)
+    }
+ 
+//    func likePost(postModel: PostModel, likeModel: LikeModel) {
+//            postModel.incrementLikesCount(number: +1)
+//            if let postId = postModel.id {
+//                if let userId = likeModel.author.userId {
+//                    let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+//                    let postDocument = self.db.collection("posts").document(postId)
+//                    do {
+//                        let batch = db.batch()
+//                        try batch.setData(from: likeModel, forDocument: likeDocument, merge: true)
+//                        batch.updateData(["likesCount": FieldValue.increment(Int64(1))], forDocument: postDocument)
+//                        batch.commit() { err in
+//                            if let err = err {
+//                                print("Error writing likePost batch \(err)")
+//                            } else {
+//                                print("Batch write for likePost succeeded.")
+//                            }
+//                        }
+//                    }
+//                    catch {
+//                        print (error)
+//                    }
+//                }
+//            }
+//        }
+//        
+//        func unlikePost(userId: String?) {
+//            postModel.incrementLikesCount(number: -1)
+//            if let userId = userId {
+//                if let postId = postModel.id {
+//                    let likeDocument = self.db.collection("posts").document(postId).collection("likes").document(userId)
+//                    let postDocument = self.db.collection("posts").document(postId)
+//                    let batch = db.batch()
+//                    batch.deleteDocument(likeDocument)
+//                    batch.updateData(["likesCount": FieldValue.increment(Int64(-1))], forDocument: postDocument)
+//                    batch.commit() { err in
+//                        if let err = err {
+//                            print("Error writing unlikePost batch \(err)")
+//                        } else {
+//                            print("Batch write for unlikePost succeeded.")
+//                        }
+//                    }
+//                }
+//            }
+//        }
 }

@@ -7,10 +7,12 @@
 
 import SwiftUI
 
+
+// WARNING: When updating, check if needs to update WaterfallPromptCollectionView
 struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     
     @ObservedObject var homeViewModel: HomeViewModel
-    @Binding var postDetailViewModel: PostDetailViewModel
+    @Binding var selectedPostDetail: PostDetailViewModel
     
     var uiCollectionViewController: UICollectionViewController
     
@@ -58,7 +60,7 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, uiCollectionViewController: uiCollectionViewController, postDetailViewModel: $postDetailViewModel)
+        Coordinator(self, uiCollectionViewController: uiCollectionViewController, postDetailViewModel: $selectedPostDetail)
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
@@ -118,6 +120,11 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                     cell.setBlurAndAddPromptButton()
                 } else {
                     cell.removeBlurAndAddPromptButton()
+                }
+                if parent.homeViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
+                    cell.showHighlightedApplaudButton()
+                } else {
+                    cell.showUnhighlighedApplaudButton()
                 }
             }
             return cell

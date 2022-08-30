@@ -64,7 +64,7 @@ struct GalleryFeedView: View {
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
                         .padding(.bottom, 4)
-                    WaterfallCollectionViewController(homeViewModel: homeViewModel, postDetailViewModel: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
+                    WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
                 }
             }.navigationBarTitle("")
             .navigationBarHidden(true)
@@ -76,6 +76,7 @@ struct GalleryFeedView: View {
             requestNotificationPermissions()
             self.homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
             self.homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
+            self.homeViewModel.fetchPostLikesForUser(with: authenticationViewModel.userModel?.id ?? "noId")
             let eventName = "Home Feed Screen - View"
             Amplitude.instance().logEvent(eventName)
             Mixpanel.mainInstance().track(event: eventName)

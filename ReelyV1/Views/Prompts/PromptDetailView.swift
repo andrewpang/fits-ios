@@ -10,6 +10,7 @@ import Amplitude
 import Mixpanel
 
 struct PromptDetailView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @StateObject var promptDetailViewModel: PromptDetailViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
@@ -101,7 +102,7 @@ struct PromptDetailView: View {
 //                        .font(Font.custom(Constants.bodyFont, size: 24))
 //                        .padding(.vertical, 40)
 //                }
-                WaterfallPromptCollectionView(promptDetailViewModel: promptDetailViewModel, postDetailViewModel: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
+                WaterfallPromptCollectionView(promptDetailViewModel: promptDetailViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
             }
         }.navigationBarTitle("", displayMode: .inline)
         .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
@@ -148,6 +149,7 @@ struct PromptDetailView: View {
         }
         .onAppear {
             promptDetailViewModel.fetchPostsForPrompt()
+            promptDetailViewModel.fetchPostLikesForUser(with: authenticationViewModel.userModel?.id ?? "noId")
             let propertiesDict = [
                 "promptId": promptDetailViewModel.promptModel.id
             ] as? [String : String]

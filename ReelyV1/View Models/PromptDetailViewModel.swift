@@ -14,6 +14,7 @@ class PromptDetailViewModel: ObservableObject {
     
     @Published var promptModel: PromptModel
     @Published var postsData = PostsModel()
+    @Published var postsUserHasLikedList = [String]()
     var promptPostModel: PromptPostModel?
     
     private var db = Firestore.firestore()
@@ -49,6 +50,31 @@ class PromptDetailViewModel: ObservableObject {
                 self.postsData = PostsModel(postModels: postList)
             }
         }
+    }
+    
+    func fetchPostLikesForUser(with userId: String) {
+        if (userId == "noId") {
+            return
+        }
+        db.collectionGroup("likes").whereField("author.userId", isEqualTo: userId).order(by: "createdAt", descending: true).getDocuments { (snapshot, error) in
+            if let error = error {
+                print("Error getting user likes: \(error)")
+            } else {
+                var listOfLikes = [String]()
+                for document in snapshot!.documents {
+                    if let postId = document.reference.parent.parent?.documentID {
+                        listOfLikes.append(postId)
+                    }
+                }
+                DispatchQueue.main.async {
+                    self.postsUserHasLikedList = listOfLikes
+                }
+            }
+        }
+    }
+    
+    func hasUserLikedPost(postId: String) -> Bool {
+        return postsUserHasLikedList.contains(postId)
     }
     
     func userHasPostedInLastDay() -> Bool {
