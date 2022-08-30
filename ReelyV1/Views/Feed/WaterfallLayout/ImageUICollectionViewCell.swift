@@ -48,9 +48,6 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     }
     
     @objc func applaudButtonTapped(tapGestureRecognizer: UITapGestureRecognizer) {
-        print("Tapped!")
-        showHighlightedApplaudButton()
-        
         let generator = UINotificationFeedbackGenerator()
         generator.notificationOccurred(.success)
            // use our "call back" action to tell the controller the button was tapped
