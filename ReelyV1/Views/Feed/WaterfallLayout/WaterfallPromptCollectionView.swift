@@ -7,10 +7,11 @@
 
 import SwiftUI
 
+// WARNING: When updating, check if needs to update WaterfallCollectionViewController
 struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
     
     @StateObject var promptDetailViewModel: PromptDetailViewModel
-    @Binding var postDetailViewModel: PostDetailViewModel
+    @Binding var selectedPostDetail: PostDetailViewModel
     
     var uiCollectionViewController: UICollectionViewController
     
@@ -58,7 +59,7 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
     }
 
     func makeCoordinator() -> Coordinator {
-        Coordinator(self, uiCollectionViewController: uiCollectionViewController, postDetailViewModel: $postDetailViewModel)
+        Coordinator(self, uiCollectionViewController: uiCollectionViewController, postDetailViewModel: $selectedPostDetail)
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
@@ -113,6 +114,11 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
                 if let profilePicImageUrl = post.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)
                     cell.setProfileImageUrl(urlString: cloudinaryCompressedUrl)
+                }
+                if parent.promptDetailViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
+                    cell.showHighlightedApplaudButton()
+                } else {
+                    cell.showUnhighlighedApplaudButton()
                 }
             }
             return cell

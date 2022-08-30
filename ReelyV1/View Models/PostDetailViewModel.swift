@@ -113,11 +113,11 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchLikes(userId: String?) {
-        fetchUserHasLikePost(userId: userId)
+        fetchUserHasLikedPost(userId: userId)
 //        fetchRecentLikers(userId: userId)
     }
     
-    func fetchUserHasLikePost(userId: String?) {
+    func fetchUserHasLikedPost(userId: String?) {
         if let userId = userId {
             if let postId = postModel.id {
                 let likeDocument = db.collection("posts").document(postId).collection("likes").document(userId)
