@@ -56,7 +56,7 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     
     func showHighlightedApplaudButton() {
         let image = UIImage(systemName: "hands.clap.fill")!
-        let yellowImage = image.withTintColor(.systemYellow, renderingMode: .alwaysOriginal)
+        let yellowImage = image.withTintColor(UIColor(named: "FITColor") ?? .systemBlue, renderingMode: .alwaysOriginal)
         applaudButtonImage.image = yellowImage
     }
     
