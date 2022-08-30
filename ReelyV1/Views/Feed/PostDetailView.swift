@@ -175,8 +175,8 @@ struct PostDetailView: View {
                                         generator.notificationOccurred(.error)
                                         postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
                                         let eventName = "Like Button - Clicked"
-                                        let propertiesDict = ["isLike": false as Bool, "source": "postDetail"] as? [String : Any]
-                                        let mixpanelDict = ["isLike": false as Bool, "source": "postDetail"] as? [String : MixpanelType]
+                                        let propertiesDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+                                        let mixpanelDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
                                         Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                                     }, label: {
@@ -200,8 +200,8 @@ struct PostDetailView: View {
                                         generator.notificationOccurred(.success)
                                         postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
                                         let eventName = "Like Button - Clicked"
-                                        let propertiesDict = ["isLike": true as Bool, "source": "postDetail"] as? [String : Any]
-                                        let mixpanelDict = ["isLike": true as Bool, "source": "postDetail"] as? [String : MixpanelType]
+                                        let propertiesDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+                                        let mixpanelDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
                                         Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                                     }, label: {

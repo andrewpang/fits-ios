@@ -130,8 +130,8 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.error)
                         let eventName = "Like Button - Clicked"
-                        let propertiesDict = ["isLike": false as Bool, "source": "homeFeed"] as? [String : Any]
-                        let mixpanelDict = ["isLike": false as Bool, "source": "homeFeed"] as? [String : MixpanelType]
+                        let propertiesDict = ["isLike": false as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": false as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
                         Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
@@ -143,8 +143,8 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.success)
                         let eventName = "Like Button - Clicked"
-                        let propertiesDict = ["isLike": true as Bool, "source": "homeFeed"] as? [String : Any]
-                        let mixpanelDict = ["isLike": true as Bool, "source": "homeFeed"] as? [String : MixpanelType]
+                        let propertiesDict = ["isLike": true as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": true as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
                         Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
