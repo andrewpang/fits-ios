@@ -9,4 +9,10 @@ import Foundation
 
 class TabViewModel: ObservableObject {
     @Published var tabSelection = 1
+    
+    func showPromptTab() {
+        DispatchQueue.main.async {
+            self.tabSelection = 2
+        }
+    }
 }

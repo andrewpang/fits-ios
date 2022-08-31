@@ -17,8 +17,10 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var postAuthorView: UIStackView!
     @IBOutlet weak var applaudButtonImage: UIImageView!
     var blurEffectView: UIVisualEffectView?
+    var hiddenImageIcon: UIImageView?
     var participateLabel: UILabel?
     var multiPhotoIcon: UIImageView?
+    
     
     var applaudButtonTapAction : (()->())?
     
@@ -89,16 +91,24 @@ class ImageUICollectionViewCell: UICollectionViewCell {
             blurEffectView.effect = blurEffect
         }
         
+//        hiddenImageIcon = UIImageView(image: UIImage(systemName: "eye.slash"))
+//        if let hiddenImageIcon = hiddenImageIcon {
+//            hiddenImageIcon.frame = CGRect(x: 0, y: image.frame.height - 48, width: 32, height: 24)
+//            hiddenImageIcon.center.x = contentView.center.x
+//            hiddenImageIcon.tintColor = .white
+//            self.image.addSubview(hiddenImageIcon)
+//        }
+        
         participateLabel = UILabel()
         if let participateLabel = participateLabel {
             participateLabel.frame = image.bounds
             participateLabel.autoresizingMask = [.flexibleWidth, .flexibleHeight]
             participateLabel.center = image.center
-            participateLabel.text = "Participate in Fit Check to View!"
+            participateLabel.text = "Participate in \"FIT CHECK\" to view!"
             participateLabel.numberOfLines = 0
-            participateLabel.font = UIFont(name: Constants.titleFont, size: 24)
+            participateLabel.font = UIFont(name: Constants.titleFont, size: 18)
             participateLabel.textColor = .white
-            self.contentView.addSubview(participateLabel)
+            self.image.addSubview(participateLabel)
             participateLabel.setMargins()
             participateLabel.textAlignment = .center
         }
@@ -111,6 +121,9 @@ class ImageUICollectionViewCell: UICollectionViewCell {
         if let participateLabel = participateLabel {
             participateLabel.removeFromSuperview()
         }
+//        if let hiddenImageIcon = hiddenImageIcon {
+//            hiddenImageIcon.removeFromSuperview()
+//        }
     }
     
     func showMultiPhotoIcon() {
