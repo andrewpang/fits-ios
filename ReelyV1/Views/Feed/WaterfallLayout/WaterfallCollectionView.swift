@@ -12,6 +12,7 @@ import Mixpanel
 // WARNING: When updating, check if needs to update WaterfallPromptCollectionView
 struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @EnvironmentObject var tabViewModel: TabViewModel
     @ObservedObject var homeViewModel: HomeViewModel
     @Binding var selectedPostDetail: PostDetailViewModel
     
@@ -162,7 +163,7 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
             if let post = parent.homeViewModel.postsData.postModels?[indexPath.item] {
                 if let prompt = post.prompt, !prompt.promptHasAlreadyEnded() && !parent.homeViewModel.hasUserPostedToPrompt(promptId: prompt.promptId){
-                    //Don't allow click if hidden/blurred
+                    parent.tabViewModel.showPromptTab()
                 } else {
                     postDetailViewModel = PostDetailViewModel(postModel: post)
                     parent.homeViewModel.shouldPopToRootViewIfFalse = true
