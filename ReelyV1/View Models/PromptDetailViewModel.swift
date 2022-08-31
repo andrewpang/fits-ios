@@ -130,13 +130,22 @@ class PromptDetailViewModel: ObservableObject {
         if let promptPostModel = promptPostModel {
             if let postedTimestamps = promptPostModel.postedTimestamps {
                 for timestamp in postedTimestamps {
-                    if (isSameDay(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue())) {
+                    if (isSameDay(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue()) && isWithin12Hours(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue())) {
                         return true
                     }
                 }
             }
         }
         return false
+    }
+    
+    func isWithin12Hours(date1: Date, date2: Date) -> Bool {
+        let diff = Calendar.current.dateComponents([.hour], from: date1, to: date2)
+        if let diffHour = diff.hour, diffHour < 12 {
+            return true
+        } else {
+            return false
+        }
     }
     
     func isSameDay(date1: Date, date2: Date) -> Bool {
