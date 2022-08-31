@@ -18,6 +18,7 @@ class ImageUICollectionViewCell: UICollectionViewCell {
     @IBOutlet weak var applaudButtonImage: UIImageView!
     var blurEffectView: UIVisualEffectView?
     var participateLabel: UILabel?
+    var multiPhotoIcon: UIImageView?
     
     var applaudButtonTapAction : (()->())?
     
@@ -109,6 +110,23 @@ class ImageUICollectionViewCell: UICollectionViewCell {
         }
         if let participateLabel = participateLabel {
             participateLabel.removeFromSuperview()
+        }
+    }
+    
+    func showMultiPhotoIcon() {
+        hideMultiPhotoIcon()
+        
+        multiPhotoIcon = UIImageView(image: UIImage(systemName: "square.fill.on.square.fill"))
+        if let multiPhotoIcon = multiPhotoIcon {
+            multiPhotoIcon.frame = CGRect(x: image.frame.width - 28, y: 10, width: 18, height: 18)
+            multiPhotoIcon.tintColor = .white
+            self.image.addSubview(multiPhotoIcon)
+        }
+    }
+    
+    func hideMultiPhotoIcon() {
+        if let multiPhotoIcon = multiPhotoIcon {
+            multiPhotoIcon.removeFromSuperview()
         }
     }
 }

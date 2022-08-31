@@ -102,9 +102,14 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageUICollectionViewCell
             // Add image to cell
             if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
-                if let imageUrl = post.imageUrls?[0] {
-                    let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)
+                if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
+                    let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrls.first!, width: CloudinaryHelper.thumbnailWidth)
                     cell.setImageUrl(urlString: cloudinaryCompressedUrl)
+                    if (imageUrls.count > 1) {
+                        cell.showMultiPhotoIcon()
+                    } else {
+                        cell.hideMultiPhotoIcon()
+                    }
                 } else if let imageUrl = post.imageUrl {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrl, width: CloudinaryHelper.thumbnailWidth)
                     cell.setImageUrl(urlString: cloudinaryCompressedUrl)
