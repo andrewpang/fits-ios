@@ -25,6 +25,13 @@ public struct PromptModel: Identifiable, Codable, Hashable {
         return false
     }
     
+    func promptHasNotStarted() -> Bool {
+        if let startTime = startTime {
+            return startTime.seconds > Timestamp.init().seconds
+        }
+        return true
+    }
+    
     func getFormattedDateString() -> String? {
         if let endTime = endTime {
             let dateFormatter = DateFormatter()
