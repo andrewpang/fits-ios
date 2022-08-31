@@ -45,18 +45,22 @@ struct PromptsParentView: View {
                     ScrollView(showsIndicators: false) {
                         LazyVStack {
                             ForEach(promptModels, id: \.id) { promptModel in
-                                Button(action: {
-                                    selectedPromptModel = promptModel
-                                    if (promptsViewModel.hasCurrentUserPostedToPrompt(with: promptModel.id) || promptModel.promptHasAlreadyEnded()) {
-                                        promptsViewModel.shouldPopToRootViewIfFalse = true
-                                    } else {
-                                        postViewModel.resetData()
-                                        showConfirmationDialog = true
-                                        postViewModel.postType = Constants.postTypePrompt
+                                if (promptModel.promptHasNotStarted()) {
+                                    //Don't add anything
+                                } else {
+                                    Button(action: {
+                                        selectedPromptModel = promptModel
+                                        if (promptsViewModel.hasCurrentUserPostedToPrompt(with: promptModel.id) || promptModel.promptHasAlreadyEnded()) {
+                                            promptsViewModel.shouldPopToRootViewIfFalse = true
+                                        } else {
+                                            postViewModel.resetData()
+                                            showConfirmationDialog = true
+                                            postViewModel.postType = Constants.postTypePrompt
+                                        }
+                                    }) {
+                                        PromptRowView(promptsViewModel: promptsViewModel, promptModel: promptModel)
+                                            .padding(.bottom, 8)
                                     }
-                                }) {
-                                    PromptRowView(promptsViewModel: promptsViewModel, promptModel: promptModel)
-                                        .padding(.bottom, 8)
                                 }
                             }
                         }
