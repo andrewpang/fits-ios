@@ -14,5 +14,6 @@ public struct CommentModel: Identifiable, Codable, Hashable {
     @ServerTimestamp var createdAt: Timestamp?
     var author: PostAuthorMap
     var commentText: String
-    var likes: Int?
+    var commentLikeCount: Int?
+    var commentLikes: [CommentLikeModel]?
 }

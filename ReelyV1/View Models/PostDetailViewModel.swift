@@ -62,6 +62,7 @@ class PostDetailViewModel: ObservableObject {
                 }
                 DispatchQueue.main.async {
                     self.commentsData = CommentsModel(commentModels: commentsList)
+                    self.fetchCommentLikes()
                 }
             }
         }
@@ -214,6 +215,77 @@ class PostDetailViewModel: ObservableObject {
                     //Passing PostModel in without listener, so easier to just set on client for now
                     self.postModel.title = title
                     self.postModel.body = body
+                }
+            }
+        }
+    }
+    
+    func likeComment(commentLikeModel: CommentLikeModel) {
+        if let postId = postModel.id {
+            if let userId = commentLikeModel.author.userId {
+                if let commentId = commentLikeModel.commentId {
+                    let commentDocument = self.db.collection("posts").document(postId).collection("comments").document(commentId)
+                    let commentLikeDocument = commentDocument.collection("commentLikes").document(userId)
+                    do {
+                        let batch = db.batch()
+                        try batch.setData(from: commentLikeModel, forDocument: commentLikeDocument, merge: true)
+                        batch.updateData(["commentLikesCount": FieldValue.increment(Int64(1))], forDocument: commentDocument)
+                        batch.commit() { err in
+                            if let err = err {
+                                print("Error writing likeComment batch \(err)")
+                            } else {
+                                print("Batch write for likeComment succeeded.")
+                            }
+                        }
+                    }
+                    catch {
+                        print (error)
+                    }
+                }
+            }
+        }
+    }
+    
+    func unlikeComment(commentId: String, userId: String?) {
+        if let userId = userId {
+            if let postId = postModel.id {
+                let commentDocument = self.db.collection("posts").document(postId).collection("comments").document(commentId)
+                let commentLikeDocument = commentDocument.collection("commentLikes").document(userId)
+                let batch = db.batch()
+                batch.deleteDocument(commentLikeDocument)
+                batch.updateData(["likesCount": FieldValue.increment(Int64(-1))], forDocument: commentDocument)
+                batch.commit() { err in
+                    if let err = err {
+                        print("Error writing unlikeComment batch \(err)")
+                    } else {
+                        print("Batch write for unlikeComment succeeded.")
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchCommentLikes() {
+        if let postModelId = postModel.id {
+            if let commentModels = commentsData.commentModels {
+                for var comment in commentModels {
+                    if let commentId = comment.id {
+                        let commentLikesRef = db.collection("posts").document(postModelId).collection("comments").document(commentId).collection("commentLikes")
+                        
+                        commentLikesRef.getDocuments() { (querySnapshot, err) in
+                            if let err = err {
+                                print("Error getting documents: \(err)")
+                            } else {
+                                var commentLikes = [CommentLikeModel]()
+                                commentLikes = querySnapshot!.documents.compactMap { querySnapshot -> CommentLikeModel? in
+                                    return try? querySnapshot.data(as: CommentLikeModel.self)
+                                }
+                                DispatchQueue.main.async {
+                                    comment.commentLikes = commentLikes
+                                }
+                            }
+                        }
+                    }
                 }
             }
         }
