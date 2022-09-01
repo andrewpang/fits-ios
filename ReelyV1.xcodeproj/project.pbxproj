@@ -14,6 +14,7 @@
 		470FD77228B574ED00D70341 /* PromptsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77128B574ED00D70341 /* PromptsViewModel.swift */; };
 		470FD77628B582B700D70341 /* PromptRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD77528B582B700D70341 /* PromptRowView.swift */; };
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
+		471E5F0D28C167270095B987 /* CommentLikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471E5F0C28C167270095B987 /* CommentLikeModel.swift */; };
 		47283BB82842C65F0016D124 /* PostCardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB72842C65F0016D124 /* PostCardView.swift */; };
 		47283BBA2842C7690016D124 /* PostDetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BB92842C7690016D124 /* PostDetailView.swift */; };
 		47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */; };
@@ -126,6 +127,7 @@
 		470FD76F28B5735C00D70341 /* PostPromptMap.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPromptMap.swift; sourceTree = "<group>"; };
 		470FD77128B574ED00D70341 /* PromptsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsViewModel.swift; sourceTree = "<group>"; };
 		470FD77528B582B700D70341 /* PromptRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptRowView.swift; sourceTree = "<group>"; };
+		471E5F0C28C167270095B987 /* CommentLikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikeModel.swift; sourceTree = "<group>"; };
 		47283BB72842C65F0016D124 /* PostCardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostCardView.swift; sourceTree = "<group>"; };
 		47283BB92842C7690016D124 /* PostDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostDetailView.swift; sourceTree = "<group>"; };
 		47283BBB2843E47A0016D124 /* AuthenticationViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationViewModel.swift; sourceTree = "<group>"; };
@@ -344,6 +346,7 @@
 				479FE995287554E10030EE4D /* CommentModel.swift */,
 				479FE99D287625F90030EE4D /* TokenModel.swift */,
 				47A29792287FD6E100761026 /* LikeModel.swift */,
+				471E5F0C28C167270095B987 /* CommentLikeModel.swift */,
 				47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */,
 				470FD76B28B5722300D70341 /* PromptModel.swift */,
 			);
@@ -720,6 +723,7 @@
 				470FD77228B574ED00D70341 /* PromptsViewModel.swift in Sources */,
 				4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */,
 				4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */,
+				471E5F0D28C167270095B987 /* CommentLikeModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				47D2F51C28B6C8C50071B246 /* PromptDetailView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
