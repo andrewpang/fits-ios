@@ -12,5 +12,6 @@ import FirebaseFirestore
 public struct CommentLikeModel: Identifiable, Codable, Hashable {
     @DocumentID public var id: String?
     @ServerTimestamp var createdAt: Timestamp?
+    var commentId: String?
     var author: PostAuthorMap
 }

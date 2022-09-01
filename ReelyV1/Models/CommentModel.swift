@@ -15,4 +15,5 @@ public struct CommentModel: Identifiable, Codable, Hashable {
     var author: PostAuthorMap
     var commentText: String
     var commentLikeCount: Int?
+    var commentLikes: [CommentLikeModel]?
 }
