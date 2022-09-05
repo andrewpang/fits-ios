@@ -19,7 +19,7 @@ struct CommentsView: View {
         if let commentModels = postDetailViewModel.commentsData.commentModels, !commentModels.isEmpty {
             VStack(spacing: 0) {
                 ForEach(commentModels, id: \.id) { comment in
-                    CommentRowView(commentModel: comment).padding(.vertical, 8)
+                    CommentRowView(postDetailViewModel: postDetailViewModel, commentModel: comment).padding(.vertical, 8)
                 }
             }
         } else {
