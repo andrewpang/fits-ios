@@ -31,17 +31,6 @@ class PostDetailViewModel: ObservableObject {
         self.postModel = postModel
     }
     
-    func getCommentModel(with commentId: String) -> CommentModel? {
-        if let commentModels = commentsData.commentModels {
-            for commentModel in commentModels {
-                if commentModel.id == commentId {
-                    return commentModel
-                }
-            }
-        }
-        return nil
-    }
-    
     func postComment(commentModel: CommentModel) {
         if let postId = postModel.id {
             let commentsCollection = self.db.collection("posts").document(postId).collection("comments")
