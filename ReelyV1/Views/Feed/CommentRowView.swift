@@ -7,6 +7,8 @@
 
 import SwiftUI
 import Kingfisher
+import Amplitude
+import Mixpanel
 
 struct CommentRowView: View {
     
@@ -48,11 +50,11 @@ struct CommentRowView: View {
                     Button(action: {
                         generator.notificationOccurred(.error)
                         postDetailViewModel.unlikeComment(commentId: commentId, userId: authenticationViewModel.userModel?.id)
-    //                    let eventName = "Like Button - Clicked"
-    //                    let propertiesDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-    //                    let mixpanelDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-    //                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-    //                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                        let eventName = "Comment Like Button - Clicked"
+                        let propertiesDict = ["isLike": false as Bool, "postId": postDetailViewModel.postModel.id ?? "noId", "commentId": commentId] as? [String : Any]
+                        let mixpanelDict = ["isLike": false as Bool, "postId": postDetailViewModel.postModel.id ?? "noId", "commentId": commentId] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }, label: {
                         Image(systemName: "hands.clap.fill")
                             .font(.system(size: 16.0, weight: .light))
@@ -62,11 +64,11 @@ struct CommentRowView: View {
                     Button(action: {
                         generator.notificationOccurred(.success)
                         postDetailViewModel.likeComment(commentLikeModel: CommentLikeModel(id: authenticationViewModel.userModel?.id, commentId: commentId, author: authenticationViewModel.getPostAuthorMap()))
-    //                    let eventName = "Like Button - Clicked"
-    //                    let propertiesDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-    //                    let mixpanelDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-    //                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-    //                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                        let eventName = "Comment Like Button - Clicked"
+                        let propertiesDict = ["isLike": true as Bool, "postId": postDetailViewModel.postModel.id ?? "noId", "commentId": commentId] as? [String : Any]
+                        let mixpanelDict = ["isLike": true as Bool, "postId": postDetailViewModel.postModel.id ?? "noId", "commentId": commentId] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }, label: {
                         Image(systemName: "hands.clap")
                             .font(.system(size: 16.0, weight: .light))
@@ -74,7 +76,6 @@ struct CommentRowView: View {
                     })
                 }
             }
-
         }
     }
 }
