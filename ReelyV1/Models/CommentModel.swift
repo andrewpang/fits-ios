@@ -16,4 +16,8 @@ public struct CommentModel: Identifiable, Codable, Hashable {
     var commentText: String
     var commentLikeCount: Int?
     var commentLikes: [CommentLikeModel]?
+    
+    mutating func addCommentLikes(commentLikes: [CommentLikeModel]) {
+        self.commentLikes = commentLikes
+    }
 }

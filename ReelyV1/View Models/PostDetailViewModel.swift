@@ -23,9 +23,23 @@ class PostDetailViewModel: ObservableObject {
     
     var commentsListener: ListenerRegistration?
     var likesListener: ListenerRegistration?
+    var commentsLikesListeners: [ListenerRegistration]?
+    
+    @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
     
     init(postModel: PostModel) {
         self.postModel = postModel
+    }
+    
+    func getCommentModel(with commentId: String) -> CommentModel? {
+        if let commentModels = commentsData.commentModels {
+            for commentModel in commentModels {
+                if commentModel.id == commentId {
+                    return commentModel
+                }
+            }
+        }
+        return nil
     }
     
     func postComment(commentModel: CommentModel) {
@@ -182,6 +196,11 @@ class PostDetailViewModel: ObservableObject {
     func removeListeners() {
         commentsListener?.remove()
         likesListener?.remove()
+        if let commentsLikesListeners = commentsLikesListeners {
+            for listener in commentsLikesListeners {
+                listener.remove()
+            }
+        }
     }
     
     func deletePost() {
@@ -268,23 +287,26 @@ class PostDetailViewModel: ObservableObject {
     func fetchCommentLikes() {
         if let postModelId = postModel.id {
             if let commentModels = commentsData.commentModels {
-                for var comment in commentModels {
+                for comment in commentModels {
                     if let commentId = comment.id {
                         let commentLikesRef = db.collection("posts").document(postModelId).collection("comments").document(commentId).collection("commentLikes")
                         
-                        commentLikesRef.getDocuments() { (querySnapshot, err) in
-                            if let err = err {
-                                print("Error getting documents: \(err)")
-                            } else {
-                                var commentLikes = [CommentLikeModel]()
-                                commentLikes = querySnapshot!.documents.compactMap { querySnapshot -> CommentLikeModel? in
-                                    return try? querySnapshot.data(as: CommentLikeModel.self)
-                                }
-                                DispatchQueue.main.async {
-                                    comment.commentLikes = commentLikes
-                                }
+                        let commentLikesListener = commentLikesRef.addSnapshotListener { querySnapshot, error in
+                            guard let documents = querySnapshot?.documents else {
+                                print("Error fetching documents: \(error!)")
+                                return
+                            }
+                            self.commentIdToCommentLikesDictionary.removeAll()
+                            
+                            var commentLikes = [CommentLikeModel]()
+                            commentLikes = documents.compactMap { querySnapshot -> CommentLikeModel? in
+                                return try? querySnapshot.data(as: CommentLikeModel.self)
+                            }
+                            DispatchQueue.main.async {
+                                self.commentIdToCommentLikesDictionary[commentId] = CommentLikesModel(commentLikeModels: commentLikes)
                             }
                         }
+                        commentsLikesListeners?.append(commentLikesListener)
                     }
                 }
             }

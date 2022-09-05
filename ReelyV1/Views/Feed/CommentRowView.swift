@@ -11,7 +11,10 @@ import Kingfisher
 struct CommentRowView: View {
     
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+    @ObservedObject var postDetailViewModel: PostDetailViewModel
     @State var commentModel: CommentModel
+    
+    let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
         HStack(alignment: .top) {
@@ -40,12 +43,44 @@ struct CommentRowView: View {
                     .font(Font.custom(Constants.bodyFont, size: 16))
             }
             Spacer()
+            if let commentId = commentModel.id {
+                if let commentLikesModel = postDetailViewModel.commentIdToCommentLikesDictionary[commentId], commentLikesModel.hasUserHasLikedComment(with: authenticationViewModel.userModel?.id ?? "noId") {
+                    Button(action: {
+                        generator.notificationOccurred(.error)
+                        postDetailViewModel.unlikeComment(commentId: commentId, userId: authenticationViewModel.userModel?.id)
+    //                    let eventName = "Like Button - Clicked"
+    //                    let propertiesDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+    //                    let mixpanelDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
+    //                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+    //                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                    }, label: {
+                        Image(systemName: "hands.clap.fill")
+                            .font(.system(size: 16.0, weight: .light))
+                            .foregroundColor(Color("FITColor"))
+                    })
+                } else {
+                    Button(action: {
+                        generator.notificationOccurred(.success)
+                        postDetailViewModel.likeComment(commentLikeModel: CommentLikeModel(id: authenticationViewModel.userModel?.id, commentId: commentId, author: authenticationViewModel.getPostAuthorMap()))
+    //                    let eventName = "Like Button - Clicked"
+    //                    let propertiesDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+    //                    let mixpanelDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
+    //                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+    //                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                    }, label: {
+                        Image(systemName: "hands.clap")
+                            .font(.system(size: 16.0, weight: .light))
+                            .foregroundColor(.gray)
+                    })
+                }
+            }
+
         }
     }
 }
 
-struct CommentRowView_Previews: PreviewProvider {
-    static var previews: some View {
-        CommentRowView(commentModel: CommentModel(author: PostAuthorMap(displayName: "Name", profilePicImageUrl: nil, userId: nil), commentText: "This is a comment"))
-    }
-}
+//struct CommentRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        CommentRowView(commentModel: CommentModel(author: PostAuthorMap(displayName: "Name", profilePicImageUrl: nil, userId: nil), commentText: "This is a comment"))
+//    }
+//}
