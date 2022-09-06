@@ -31,9 +31,11 @@ public struct PostModel: Identifiable, Codable, Hashable {
     }
     
     func getThumbnailAspectRatio() -> Double {
+        let maxAspectRatio = 1.8
         if let thumbnailWidth = thumbnailWidth {
             if let thumbnailHeight = thumbnailHeight {
-                return thumbnailHeight/thumbnailWidth
+                let aspectRatio = thumbnailHeight/thumbnailWidth
+                return aspectRatio > maxAspectRatio ? maxAspectRatio : aspectRatio
             }
         }
         return 0.0
