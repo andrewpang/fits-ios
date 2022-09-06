@@ -43,6 +43,7 @@ struct Constants {
     static let postCardProfilePicSize: CGFloat = 20
     static let commentsProfilePicSize: CGFloat = 32
     static let postAuthorProfilePicSize: CGFloat = 32
+    static let likesListProfilePicSize: CGFloat = 60
     static let profilePageProfilePicSize: CGFloat = 140
     
     static let titleFont = "Kinfolk-SerifDeck"

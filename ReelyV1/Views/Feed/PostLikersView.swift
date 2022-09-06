@@ -8,13 +8,23 @@
 import SwiftUI
 
 struct PostLikersView: View {
+    @ObservedObject var postDetailViewModel: PostDetailViewModel
+    
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello, World!"/*@END_MENU_TOKEN@*/)
-    }
-}
-
-struct PostLikersView_Previews: PreviewProvider {
-    static var previews: some View {
-        PostLikersView()
+        ScrollView {
+            LazyVStack {
+                if let likeModels = postDetailViewModel.likersList, !likeModels.isEmpty {
+                    ForEach(likeModels, id: \.id) { like in
+                        NavigationLink(destination: UserProfileView(userId: like.author.userId!)) {
+                            PostLikerRowView(likeModel: like)
+                        }.disabled(like.author.userId?.isEmpty ?? true)
+//                            .padding(.vertical, 8)
+                    }
+                }
+            }
+        }.navigationBarTitle("Applauders", displayMode: .inline)
+        .onAppear {
+            postDetailViewModel.fetchLikers()
+        }
     }
 }

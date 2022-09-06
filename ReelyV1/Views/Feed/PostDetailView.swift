@@ -227,7 +227,7 @@ struct PostDetailView: View {
                             if (postDetailViewModel.postModel.likesCount ?? 0 > 1 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
                                     Spacer()
-                                    NavigationLink(destination: PostLikersView()) {
+                                    NavigationLink(destination: PostLikersView(postDetailViewModel: postDetailViewModel)) {
                                         HStack {
                                             Text("View Applauders")
                                                 .font(Font.custom(Constants.buttonFont, size: 16))
