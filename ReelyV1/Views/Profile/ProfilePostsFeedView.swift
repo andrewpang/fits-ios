@@ -44,7 +44,7 @@ struct ProfilePostsFeedView: View {
             )
             .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
         } else {
-            if profileUserId != nil {
+            if profileUserId == nil {
                 Text("You don't have any posts yet :(")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .padding(.vertical, 24)
