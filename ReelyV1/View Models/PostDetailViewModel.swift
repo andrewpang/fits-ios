@@ -285,7 +285,6 @@ class PostDetailViewModel: ObservableObject {
                                 print("Error fetching documents: \(error!)")
                                 return
                             }
-                            self.commentIdToCommentLikesDictionary.removeAll()
                             
                             var commentLikes = [CommentLikeModel]()
                             commentLikes = documents.compactMap { querySnapshot -> CommentLikeModel? in
