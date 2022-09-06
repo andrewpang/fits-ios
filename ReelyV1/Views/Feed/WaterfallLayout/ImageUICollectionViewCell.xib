@@ -78,6 +78,8 @@
                             <constraint firstItem="YL9-10-He7" firstAttribute="leading" secondItem="l8d-sN-MwX" secondAttribute="leading" id="ANf-nY-NSl"/>
                             <constraint firstAttribute="trailing" secondItem="YL9-10-He7" secondAttribute="trailing" id="IXu-Nw-y7z"/>
                             <constraint firstAttribute="trailing" secondItem="Lva-ct-0vO" secondAttribute="trailing" id="XqQ-DW-m22"/>
+                            <constraint firstAttribute="trailing" secondItem="Ui1-99-Dbo" secondAttribute="trailing" constant="16" id="Zsy-8u-mXU"/>
+                            <constraint firstItem="Ui1-99-Dbo" firstAttribute="leading" secondItem="l8d-sN-MwX" secondAttribute="leading" constant="16" id="hE8-Tw-IsW"/>
                         </constraints>
                     </stackView>
                 </subviews>
