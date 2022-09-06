@@ -18,7 +18,6 @@ struct PostLikersView: View {
                         NavigationLink(destination: UserProfileView(userId: like.author.userId!)) {
                             PostLikerRowView(likeModel: like)
                         }.disabled(like.author.userId?.isEmpty ?? true)
-//                            .padding(.vertical, 8)
                     }
                 }
             }
