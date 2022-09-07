@@ -19,6 +19,8 @@ class PostDetailViewModel: ObservableObject {
     @Published var likeText = ""
     @Published var isSubmitting = false
     
+    @Published var likersList = [LikeModel]()
+    
     private var db = Firestore.firestore()
     
     var commentsListener: ListenerRegistration?
@@ -143,6 +145,29 @@ class PostDetailViewModel: ObservableObject {
                     print("Current data: \(data)")
                     DispatchQueue.main.async {
                         self.isLiked = true
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchLikers() {
+        if let postId = postModel.id {
+            db.collection("posts").document(postId).collection("likes").order(by: "createdAt", descending: true).getDocuments() { (querySnapshot, err) in
+                if let err = err {
+                    print("Error getting likers: \(err)")
+                } else {
+                    guard let documents = querySnapshot?.documents else {
+                        print("Error fetching documents: fetchLikers")
+                        return
+                    }
+                    var likers = [LikeModel]()
+                    likers = documents.compactMap { querySnapshot -> LikeModel? in
+                        return try? querySnapshot.data(as: LikeModel.self)
+                    }
+                    
+                    DispatchQueue.main.async {
+                        self.likersList = likers
                     }
                 }
             }

@@ -44,9 +44,15 @@ struct ProfilePostsFeedView: View {
             )
             .padding(EdgeInsets(top: 8, leading: 8, bottom: 8, trailing: 8))
         } else {
-            Text("You don't have any posts yet :(")
-                .font(Font.custom(Constants.bodyFont, size: 16))
-                .padding(.vertical, 24)
+            if profileUserId == nil {
+                Text("You don't have any posts yet :(")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .padding(.vertical, 24)
+            } else {
+                Text("This user doesn't have posts yet :(")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .padding(.vertical, 24)
+            }
         }
     }
 }

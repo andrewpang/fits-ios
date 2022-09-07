@@ -224,6 +224,26 @@ struct PostDetailView: View {
                                 Spacer()
                             }.padding(.horizontal, 24)
                             
+                            if (postDetailViewModel.postModel.likesCount ?? 0 > 0 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
+                                HStack {
+                                    Spacer()
+                                    NavigationLink(destination: PostLikersView(postDetailViewModel: postDetailViewModel)) {
+                                        HStack {
+                                            Text("View Applauders")
+                                                .font(Font.custom(Constants.buttonFont, size: 16))
+                                                .foregroundColor(Color(Constants.backgroundColor))
+                                                .padding(.vertical, 12)
+                                                .padding(.horizontal, 24)
+                                        }
+                                        .background(Color("FITColor"))
+                                        .cornerRadius(Constants.buttonCornerRadius)
+                                    }
+                                    .padding(.vertical, 8)
+                                    .padding(.horizontal, 24)
+                                    Spacer()
+                                }
+                            }
+                            
                             Divider()
                                 .padding(.horizontal, 24)
                                 .padding(.vertical, 8)
