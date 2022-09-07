@@ -31,6 +31,9 @@ struct PostLikerRowView: View {
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .padding(.horizontal, 8)
                 Spacer()
+                Image(systemName: "hands.clap.fill")
+                    .font(.system(size: 22.0, weight: .light))
+                    .foregroundColor(Color("FITColor"))
             }.padding(.horizontal, 24)
             Divider()
         }
