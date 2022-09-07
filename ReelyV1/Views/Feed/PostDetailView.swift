@@ -224,7 +224,7 @@ struct PostDetailView: View {
                                 Spacer()
                             }.padding(.horizontal, 24)
                             
-                            if (postDetailViewModel.postModel.likesCount ?? 0 > 1 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
+                            if (postDetailViewModel.postModel.likesCount ?? 0 > 0 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
                                     Spacer()
                                     NavigationLink(destination: PostLikersView(postDetailViewModel: postDetailViewModel)) {
