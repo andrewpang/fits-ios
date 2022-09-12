@@ -132,8 +132,8 @@ class UserProfileViewModel: ObservableObject {
     func isAheadOfDate(date1: Date, date2: Date) -> Bool {
         var calendar = Calendar.current
         calendar.timeZone = .current
-        let diff = calendar.dateComponents([.hour], from: date1, to: date2)
-        if let diffHour = diff.hour, diffHour < 0 {
+        let diff = calendar.dateComponents([.minute], from: date1, to: date2)
+        if let diffMinute = diff.minute, diffMinute < 0 {
             return true
         } else {
             return false
