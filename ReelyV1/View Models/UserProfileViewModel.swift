@@ -14,6 +14,7 @@ import FirebaseAuth
 class UserProfileViewModel: ObservableObject {
     @Published var userModel: UserModel? = nil
     @Published var postsData = PostsModel()
+    @Published var postStreak = 0
     
     var profileListener: ListenerRegistration?
     var postsListener: ListenerRegistration?
@@ -62,6 +63,7 @@ class UserProfileViewModel: ObservableObject {
                     }
                     DispatchQueue.main.async {
                         self.postsData = PostsModel(postModels: postList)
+                        self.getPostStreak()
                     }
             }
         }
@@ -91,8 +93,59 @@ class UserProfileViewModel: ObservableObject {
         }
     }
     
+    func getPostStreak() {
+        var streak = 0
+        var date = Timestamp.init().dateValue()
+        if let postModels = postsData.postModels {
+            for post in postModels {
+                if let postTime = post.createdAt?.dateValue() {
+                    if (isSameDay(date1: date, date2: postTime)) {
+                        streak += 1
+                        if let oneDayBack = date.getDateFor(days: -1) {
+                            date = oneDayBack
+                        } else {
+                            break;
+                        }
+                    }
+                    else {
+                        if let oneDayForward = date.getDateFor(days: 1) {
+                            if (isSameDay(date1: oneDayForward, date2: postTime)) {
+                                continue;
+                            }
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.postStreak = streak
+        }
+    }
+    
+    func getDayDiffWithCurrentTimeZone(date1: Date, date2: Date) -> Int {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.day], from: date1, to: date2)
+        return diff.day ?? 0
+    }
+
+    func isSameDay(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        return calendar.isDate(date1, inSameDayAs: date2)
+    }
+    
     func removeListeners() {
         profileListener?.remove()
         postsListener?.remove()
+    }
+}
+
+extension Date {
+    func getDateFor(days: Int) -> Date? {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        return calendar.date(byAdding: .day, value: days, to: self)
     }
 }

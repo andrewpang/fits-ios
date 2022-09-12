@@ -140,7 +140,9 @@ class PromptDetailViewModel: ObservableObject {
     }
     
     func isWithin10Hours(date1: Date, date2: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.hour], from: date1, to: date2)
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.hour], from: date1, to: date2)
         if let diffHour = diff.hour, diffHour < 10 {
             return true
         } else {
@@ -149,7 +151,9 @@ class PromptDetailViewModel: ObservableObject {
     }
     
     func isSameDay(date1: Date, date2: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.day], from: date1, to: date2)
         if diff.day == 0 {
             return true
         } else {
