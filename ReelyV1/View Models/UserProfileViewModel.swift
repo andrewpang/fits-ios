@@ -107,10 +107,10 @@ class UserProfileViewModel: ObservableObject {
                         } else {
                             break;
                         }
-                    } else if (isWithin24Hours(date1: postTime, date2: date)) {
+                    } else if (isWithin24Hours(date1: postTime, date2: date) && post == postModels[0]) {
                         streak += 1
-                        if let oneDayBack = date.getDateFor(days: -2) {
-                            date = oneDayBack
+                        if let twoDaysBack = date.getDateFor(days: -2) {
+                            date = twoDaysBack
                         } else {
                             break;
                         }
