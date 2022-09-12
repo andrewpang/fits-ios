@@ -29,6 +29,8 @@ struct UserProfileView: View {
                     Text("Posts")
                         .font(Font.custom(Constants.titleFont, size: 24))
                     Spacer()
+                    Text("Post Streak: \(userProfileViewModel.postStreak) 🪄")
+                        .font(Font.custom(Constants.titleFont, size: 16))
                 }.padding(.horizontal, 16)
                 .padding(.vertical, 8)
                 ProfilePostsFeedView(userProfileViewModel: userProfileViewModel, profileUserId: userId)
@@ -88,25 +90,32 @@ struct ProfileInfoView: View {
             if ((self.userProfileViewModel.userModel?.major ?? "").isEmpty) {
                 Text("No Major Set")
                     .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
             } else {
                 Text((self.userProfileViewModel.userModel?.major)!)
                     .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
             }
             
             if (self.userProfileViewModel.userModel?.graduationYear ?? -1 == -1) {
                 Text("No Graduation Year Set")
                     .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
             } else {
                 Text(String((self.userProfileViewModel.userModel?.graduationYear)!))
                     .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
             }
+            
             
             if ((self.userProfileViewModel.userModel?.bio ?? "").isEmpty) {
                 Text("No Bio Set")
                     .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
             } else {
                 Text((self.userProfileViewModel.userModel?.bio)!)
                     .font(Font.custom(Constants.bodyFont, size: 16))
+                    .multilineTextAlignment(.center)
             }
         }.padding(.vertical, 4)
         .padding(.horizontal, 24)

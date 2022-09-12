@@ -88,6 +88,7 @@ class UserProfileViewModel: ObservableObject {
                     }
                     DispatchQueue.main.async {
                         self.postsData = PostsModel(postModels: postList)
+                        self.getPostStreak()
                     }
                 }
         }
