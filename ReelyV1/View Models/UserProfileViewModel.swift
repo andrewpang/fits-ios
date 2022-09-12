@@ -14,6 +14,7 @@ import FirebaseAuth
 class UserProfileViewModel: ObservableObject {
     @Published var userModel: UserModel? = nil
     @Published var postsData = PostsModel()
+    @Published var postStreak = 0
     
     var profileListener: ListenerRegistration?
     var postsListener: ListenerRegistration?
@@ -62,6 +63,7 @@ class UserProfileViewModel: ObservableObject {
                     }
                     DispatchQueue.main.async {
                         self.postsData = PostsModel(postModels: postList)
+                        self.getPostStreak()
                     }
             }
         }
@@ -86,13 +88,85 @@ class UserProfileViewModel: ObservableObject {
                     }
                     DispatchQueue.main.async {
                         self.postsData = PostsModel(postModels: postList)
+                        self.getPostStreak()
                     }
                 }
         }
     }
     
+    func getPostStreak() {
+        var streak = 0
+        var date = Timestamp.init().dateValue()
+        if let postModels = postsData.postModels {
+            for post in postModels {
+                if let postTime = post.createdAt?.dateValue() {
+                    if (isSameDay(date1: date, date2: postTime)) {
+                        streak += 1
+                        if let oneDayBack = date.getDateFor(days: -1) {
+                            date = oneDayBack
+                        } else {
+                            break;
+                        }
+                    } else if (isWithin24Hours(date1: postTime, date2: date) && post == postModels[0]) {
+                        streak += 1
+                        if let twoDaysBack = date.getDateFor(days: -2) {
+                            date = twoDaysBack
+                        } else {
+                            break;
+                        }
+                    }
+                    else {
+                        if (isAheadOfDate(date1: postTime, date2: date)) {
+                            continue;
+                        }
+                        break;
+                    }
+                }
+            }
+        }
+        DispatchQueue.main.async {
+            self.postStreak = streak
+        }
+    }
+    
+    func isAheadOfDate(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.minute], from: date1, to: date2)
+        if let diffMinute = diff.minute, diffMinute < 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+                    
+    func isWithin24Hours(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.hour], from: date1, to: date2)
+        if let diffHour = diff.hour, diffHour < 24, diffHour >= 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    func isSameDay(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        return calendar.isDate(date1, inSameDayAs: date2)
+    }
+    
     func removeListeners() {
         profileListener?.remove()
         postsListener?.remove()
+    }
+}
+
+extension Date {
+    func getDateFor(days: Int) -> Date? {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        return calendar.date(byAdding: .day, value: days, to: self)
     }
 }

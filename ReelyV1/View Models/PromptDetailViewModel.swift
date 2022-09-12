@@ -130,7 +130,7 @@ class PromptDetailViewModel: ObservableObject {
         if let promptPostModel = promptPostModel {
             if let postedTimestamps = promptPostModel.postedTimestamps {
                 for timestamp in postedTimestamps {
-                    if (isSameDay(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue()) && isWithin10Hours(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue())) {
+                    if (isSameDay(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue()) && isWithin6Hours(date1: timestamp.dateValue(), date2: Timestamp.init().dateValue())) {
                         return true
                     }
                 }
@@ -139,9 +139,11 @@ class PromptDetailViewModel: ObservableObject {
         return false
     }
     
-    func isWithin10Hours(date1: Date, date2: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.hour], from: date1, to: date2)
-        if let diffHour = diff.hour, diffHour < 10 {
+    func isWithin6Hours(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.hour], from: date1, to: date2)
+        if let diffHour = diff.hour, diffHour < 6 {
             return true
         } else {
             return false
@@ -149,12 +151,9 @@ class PromptDetailViewModel: ObservableObject {
     }
     
     func isSameDay(date1: Date, date2: Date) -> Bool {
-        let diff = Calendar.current.dateComponents([.day], from: date1, to: date2)
-        if diff.day == 0 {
-            return true
-        } else {
-            return false
-        }
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        return calendar.isDate(date1, inSameDayAs: date2)
     }
     
     func resetData() {
