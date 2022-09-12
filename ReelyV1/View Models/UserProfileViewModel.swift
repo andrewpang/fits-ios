@@ -107,12 +107,17 @@ class UserProfileViewModel: ObservableObject {
                         } else {
                             break;
                         }
+                    } else if (isWithin24Hours(date1: postTime, date2: date)) {
+                        streak += 1
+                        if let oneDayBack = date.getDateFor(days: -2) {
+                            date = oneDayBack
+                        } else {
+                            break;
+                        }
                     }
                     else {
-                        if let oneDayForward = date.getDateFor(days: 1) {
-                            if (isSameDay(date1: oneDayForward, date2: postTime)) {
-                                continue;
-                            }
+                        if (isAheadOfDate(date1: postTime, date2: date)) {
+                            continue;
                         }
                         break;
                     }
@@ -124,11 +129,26 @@ class UserProfileViewModel: ObservableObject {
         }
     }
     
-    func getDayDiffWithCurrentTimeZone(date1: Date, date2: Date) -> Int {
+    func isAheadOfDate(date1: Date, date2: Date) -> Bool {
         var calendar = Calendar.current
         calendar.timeZone = .current
-        let diff = calendar.dateComponents([.day], from: date1, to: date2)
-        return diff.day ?? 0
+        let diff = calendar.dateComponents([.hour], from: date1, to: date2)
+        if let diffHour = diff.hour, diffHour < 0 {
+            return true
+        } else {
+            return false
+        }
+    }
+                    
+    func isWithin24Hours(date1: Date, date2: Date) -> Bool {
+        var calendar = Calendar.current
+        calendar.timeZone = .current
+        let diff = calendar.dateComponents([.hour], from: date1, to: date2)
+        if let diffHour = diff.hour, diffHour < 24, diffHour >= 0 {
+            return true
+        } else {
+            return false
+        }
     }
 
     func isSameDay(date1: Date, date2: Date) -> Bool {
