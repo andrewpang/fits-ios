@@ -28,6 +28,7 @@ class HomeViewModel: ObservableObject {
     
     var postsListener: ListenerRegistration?
     var promptPostsListener: ListenerRegistration?
+    var likesListener: ListenerRegistration?
     
     func fetchPosts(isAdmin: Bool) {
         if (postsListener != nil) {
@@ -112,19 +113,20 @@ class HomeViewModel: ObservableObject {
         if (userId == "noId") {
             return
         }
-        db.collectionGroup("likes").whereField("author.userId", isEqualTo: userId).order(by: "createdAt", descending: true).getDocuments { (snapshot, error) in
-            if let error = error {
-                print("Error getting user likes: \(error)")
-            } else {
-                var listOfLikes = [String]()
-                for document in snapshot!.documents {
-                    if let postId = document.reference.parent.parent?.documentID {
-                        listOfLikes.append(postId)
-                    }
+        likesListener = db.collectionGroup("likes").whereField("author.userId", isEqualTo: userId).order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            var listOfLikes = [String]()
+            for document in documents {
+                if let postId = document.reference.parent.parent?.documentID {
+                    listOfLikes.append(postId)
                 }
-                DispatchQueue.main.async {
-                    self.postsUserHasLikedList = listOfLikes
-                }
+            }
+            DispatchQueue.main.async {
+                self.postsUserHasLikedList = listOfLikes
             }
         }
     }
