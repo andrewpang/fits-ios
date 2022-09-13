@@ -27,12 +27,16 @@ class AuthenticationViewModel: ObservableObject {
     }
 
     @Published var state: SignInState = .loading
+    @Published var followerData: FollowerModel = FollowerModel()
+    @Published var followingData = [FollowerModel()]
     
     let db = Firestore.firestore()
     
     private let auth = Auth.auth()
     
     var profileListener: ListenerRegistration?
+    var followersListener: ListenerRegistration?
+    var followingListener: ListenerRegistration?
     
     func checkIfSignedIn() {
         if (Auth.auth().currentUser != nil) {
@@ -178,5 +182,88 @@ class AuthenticationViewModel: ObservableObject {
     
     func getPostAuthorMap() -> PostAuthorMap {
         return PostAuthorMap(displayName: self.userModel?.displayName, profilePicImageUrl: self.userModel?.profilePicImageUrl, userId: self.userModel?.id, pushNotificationToken: Messaging.messaging().fcmToken)
+    }
+    
+    func followUser(with userId: String) {
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            let followersRef = self.db.collection("followers").document(userId)
+            followersRef.updateData([
+                "users": FieldValue.arrayUnion([currentUserId])
+            ]) { err in
+                if let err = err {
+                    print("Error following user: \(err)")
+                } else {
+                    print("User successfuly followed")
+                }
+            }
+        }
+    }
+    
+    func unfollowUser(with userId: String) {
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            let followersRef = self.db.collection("followers").document(userId)
+            followersRef.updateData([
+                "users": FieldValue.arrayRemove([currentUserId])
+            ]) { err in
+                if let err = err {
+                    print("Error unfollowing user: \(err)")
+                } else {
+                    print("User successfuly unfollowed")
+                }
+            }
+        }
+    }
+    
+    func getFollowersList() {
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            if (followersListener != nil) {
+                return
+            }
+            let fetchFollowersQuery = db.collection("followers").document(currentUserId)
+                
+            followersListener = fetchFollowersQuery.addSnapshotListener { documentSnapshot, error in
+                guard let document = documentSnapshot else {
+                    print("Error fetching document: \(error!)")
+                    return
+                }
+                guard let data = document.data() else {
+                    print("Document data was empty.")
+                    return
+                }
+                print("Current data: \(data)")
+                guard let followerData = try? document.data(as: FollowerModel.self) else {
+                    print("Couldn't parse user data to UserModel")
+                    return
+                }
+                
+                DispatchQueue.main.async {
+                    self.followerData = followerData
+                }
+            }
+        }
+    }
+    
+    func getFollowingList() {
+        if let currentUserId = Auth.auth().currentUser?.uid {
+            if (followingListener != nil) {
+                return
+            }
+            let fetchFollowingQuery = db.collection("followers").whereField("users", arrayContains: currentUserId)
+                
+            followingListener = fetchFollowingQuery.addSnapshotListener { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+
+                var followingList = [FollowerModel]()
+                followingList = documents.compactMap { querySnapshot -> FollowerModel? in
+                    return try? querySnapshot.data(as: FollowerModel.self)
+                }
+                DispatchQueue.main.async {
+                    self.followingData = followingList
+                }
+            }
+        }
     }
 }

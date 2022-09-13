@@ -84,6 +84,10 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func fetchFollowingPosts(isAdmin: Bool) {
+        //TODO: Figure out how to hide "admin" posts
+    }
+    
     func checkIfShouldShowIntroPostOverlay() {
         let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay")
         guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay || postsSeenThisSession != numberOfPostsSeenToShowOverlay) else {

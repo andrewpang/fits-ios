@@ -98,6 +98,7 @@
 		47D2F51E28B6DBB40071B246 /* WaterfallPromptCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */; };
 		47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */; };
 		47E6F27228D0314E00CA503C /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 47E6F27128D0314E00CA503C /* ConfettiSwiftUI */; };
+		47E6F27428D12F0C00CA503C /* FollowerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27328D12F0C00CA503C /* FollowerModel.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -204,6 +205,7 @@
 		47D2F51B28B6C8C50071B246 /* PromptDetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDetailView.swift; sourceTree = "<group>"; };
 		47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallPromptCollectionView.swift; sourceTree = "<group>"; };
 		47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDetailViewModel.swift; sourceTree = "<group>"; };
+		47E6F27328D12F0C00CA503C /* FollowerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerModel.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				471E5F0E28C6AF770095B987 /* CommentLikesModel.swift */,
 				47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */,
 				470FD76B28B5722300D70341 /* PromptModel.swift */,
+				47E6F27328D12F0C00CA503C /* FollowerModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -727,6 +730,7 @@
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
 				47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */,
 				470FD76C28B5722300D70341 /* PromptModel.swift in Sources */,
+				47E6F27428D12F0C00CA503C /* FollowerModel.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
 				479FE996287554E10030EE4D /* CommentModel.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
