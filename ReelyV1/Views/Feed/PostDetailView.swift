@@ -133,7 +133,7 @@ struct PostDetailView: View {
                                 .foregroundColor(Color("FITColor"))
                                 .opacity(isAnimatingApplaud ? 1.0 : 0)
                                 .scaleEffect(isAnimatingApplaud ? 1.0 : 0)
-                                .animation(.easeInOut(duration: 0.75), value: isAnimatingApplaud)
+                                .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
                         }.confettiCannon(counter: $confettiCounterOne, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
                         
                         if (isEditMode) {
@@ -233,7 +233,7 @@ struct PostDetailView: View {
                                             .font(.system(size: 28.0, weight: .light))
                                             .foregroundColor(Color("FITColor"))
                                             .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
-                                            .animation(.easeInOut(duration: 0.25), value: isAnimatingApplaud)
+                                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
                                     })
                                     if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
                                         Text("Applauded by others + you!")
@@ -256,7 +256,7 @@ struct PostDetailView: View {
                                             .font(.system(size: 28.0, weight: .light))
                                             .foregroundColor(.gray)
                                             .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
-                                            .animation(.easeInOut(duration: 0.25), value: isAnimatingApplaud)
+                                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
                                         if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
                                             Text("Applauded by others!")
                                                 .font(Font.custom(Constants.bodyFont, size: 16))
@@ -497,7 +497,6 @@ struct PostDetailView: View {
                 })
             .navigationBarBackButtonHidden(isEditMode)
         }
-//        .confettiCannon(counter: $confettiCounter, confettis: [.text("❤️"), .text("💙"), .text("💚"), .text("🧡")])
     }
     
     func openMail(postId: String?) {
