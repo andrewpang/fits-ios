@@ -84,16 +84,16 @@ struct PostDetailView: View {
                                                 .resizable()
                                                 .scaledToFill()
                                                 .padding(.vertical)
-                                                .onTapGesture(count: 2) {
-                                                    animateApplaud()
-                                                    generator.notificationOccurred(.success)
-                                                    if (!postDetailViewModel.isLiked) {
-                                                        likePostFirebaseAndAnalytics()
-                                                    }
-                                                }
                                         }
                                     }.frame(height: geometry.size.width)
                                     .tabViewStyle(PageTabViewStyle())
+                                    .onTapGesture(count: 2) {
+                                        animateApplaud()
+                                        generator.notificationOccurred(.success)
+                                        if (!postDetailViewModel.isLiked) {
+                                            likePostFirebaseAndAnalytics()
+                                        }
+                                    }
                                 } else {
                                     KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: postDetailViewModel.postModel.imageUrls?[0] ?? "", width: CloudinaryHelper.detailWidth)))
                                         .onSuccess {_ in
