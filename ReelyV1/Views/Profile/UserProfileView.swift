@@ -9,10 +9,15 @@ import SwiftUI
 import Kingfisher
 import Amplitude
 import Mixpanel
+import ConfettiSwiftUI
 
 struct UserProfileView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @StateObject var userProfileViewModel = UserProfileViewModel()
     var userId: String
+    @State var showUnfollowConfirmationDialog = false
+    
+    let generator = UINotificationFeedbackGenerator()
 
     var body: some View {
         ScrollView(.vertical, showsIndicators: false) {
@@ -47,6 +52,57 @@ struct UserProfileView: View {
             userProfileViewModel.removeListeners()
         }.navigationBarTitle("", displayMode: .inline)
         .background(Color(Constants.backgroundColor))
+        .toolbar {
+            ToolbarItemGroup(placement: .navigationBarTrailing) {
+                HStack {
+                    if (authenticationViewModel.isFollowingUser(with: userId)) {
+                        HStack {
+                           Text("Following")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .padding(.horizontal, 4)
+                                .fixedSize()
+                        }.padding(.vertical, 4)
+                        .padding(.horizontal, 16)
+                        .background(Color(Constants.backgroundColor))
+                        .foregroundColor(Color(Constants.darkBackgroundColor))
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            self.isFollow.toggle() //TODO: Remove
+                            showUnfollowConfirmationDialog = true
+                            generator.notificationOccurred(.warning)
+                        }
+                        .overlay(
+                            RoundedRectangle(cornerRadius: 10)
+                                .stroke(Color(Constants.darkBackgroundColor), lineWidth: 1)
+                        )
+                    } else {
+                        HStack {
+                           Text("Follow")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .padding(.horizontal, 4)
+                                .fixedSize()
+                        }.padding(.vertical, 4)
+                        .padding(.horizontal, 16)
+                        .background(Color(Constants.darkBackgroundColor))
+                        .foregroundColor(Color(Constants.backgroundColor))
+                        .cornerRadius(10)
+                        .onTapGesture {
+                            self.isFollow.toggle() //TODO: Remove
+                            authenticationViewModel.followUser(with: userId)
+                            userProfileViewModel.confettiCounter += 1
+                            generator.notificationOccurred(.success)
+                        }
+                    }
+                }
+            }
+        }.confirmationDialog("Unfollow User", isPresented: $showUnfollowConfirmationDialog) {
+            Button ("Unfollow", role: ButtonRole.destructive) {
+                authenticationViewModel.unfollowUser(with: userId)
+            }
+            Button ("Cancel", role: ButtonRole.cancel) {}
+        } message: {
+            Text ("Are you sure you want to stop following this user?")
+        }
     }
 }
 
@@ -75,7 +131,7 @@ struct ProfilePictureView: View {
                     .padding()
             }
             Spacer()
-        }
+        }.confettiCannon(counter: $userProfileViewModel.confettiCounter, num: 50, confettis: [.text("📸"), .text("✨"), .text("👖"), .text("👠"), .text("👟"), .text("👗")], confettiSize: 25, openingAngle: Angle(degrees: 0), closingAngle: Angle(degrees: 360), radius: 200)
     }
 }
 

@@ -187,9 +187,9 @@ class AuthenticationViewModel: ObservableObject {
     func followUser(with userId: String) {
         if let currentUserId = Auth.auth().currentUser?.uid {
             let followersRef = self.db.collection("followers").document(userId)
-            followersRef.updateData([
+            followersRef.setData([
                 "users": FieldValue.arrayUnion([currentUserId])
-            ]) { err in
+            ], merge: true) { err in
                 if let err = err {
                     print("Error following user: \(err)")
                 } else {
@@ -265,5 +265,14 @@ class AuthenticationViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func isFollowingUser(with userId: String) -> Bool {
+        for following in followingData {
+            if (following.id == userId) {
+                return true
+            }
+        }
+        return false
     }
 }

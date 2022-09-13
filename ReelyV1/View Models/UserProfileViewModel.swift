@@ -15,6 +15,7 @@ class UserProfileViewModel: ObservableObject {
     @Published var userModel: UserModel? = nil
     @Published var postsData = PostsModel()
     @Published var postStreak = 0
+    @Published var confettiCounter = 0
     
     var profileListener: ListenerRegistration?
     var postsListener: ListenerRegistration?

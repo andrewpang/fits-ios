@@ -89,6 +89,8 @@ struct MyProfileView: View {
                     HStack {
                        Text("Edit Profile")
                             .font(Font.custom(Constants.bodyFont, size: 16))
+                            .padding(.horizontal, 4)
+                            .fixedSize()
                     }.padding(.vertical, 4)
                     .padding(.horizontal, 16)
                     .background(Color(Constants.darkBackgroundColor))
