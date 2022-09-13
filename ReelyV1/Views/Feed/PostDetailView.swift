@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 import Amplitude
 import Mixpanel
+import ConfettiSwiftUI
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
@@ -19,6 +20,8 @@ struct PostDetailView: View {
     @State var editPostTitle = ""
     @State var editPostBody = ""
     @State var isAnimatingApplaud = false
+    @State private var confettiCounterOne: Int = 0
+    @State private var confettiCounterTwo: Int = 0
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -45,6 +48,7 @@ struct PostDetailView: View {
     }
     
     func animateApplaud() {
+        confettiCounterOne += 1
         isAnimatingApplaud = true
         DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
             self.isAnimatingApplaud = false
@@ -130,7 +134,8 @@ struct PostDetailView: View {
                                 .opacity(isAnimatingApplaud ? 1.0 : 0)
                                 .scaleEffect(isAnimatingApplaud ? 1.0 : 0)
                                 .animation(.easeInOut(duration: 0.75), value: isAnimatingApplaud)
-                        }
+                        }.confettiCannon(counter: $confettiCounterOne, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
+                        
                         if (isEditMode) {
                             Text("Post Title:")
                                 .font(Font.custom(Constants.titleFontBold, size: 16))
@@ -228,7 +233,7 @@ struct PostDetailView: View {
                                             .font(.system(size: 28.0, weight: .light))
                                             .foregroundColor(Color("FITColor"))
                                             .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
-                                            .animation(.easeInOut(duration: 0.75), value: isAnimatingApplaud)
+                                            .animation(.easeInOut(duration: 0.25), value: isAnimatingApplaud)
                                     })
                                     if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
                                         Text("Applauded by others + you!")
@@ -243,6 +248,7 @@ struct PostDetailView: View {
                                     }
                                 } else {
                                     Button(action: {
+                                        confettiCounterTwo += 1
                                         generator.notificationOccurred(.success)
                                         likePostFirebaseAndAnalytics()
                                     }, label: {
@@ -250,7 +256,7 @@ struct PostDetailView: View {
                                             .font(.system(size: 28.0, weight: .light))
                                             .foregroundColor(.gray)
                                             .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
-                                            .animation(.easeInOut(duration: 0.75), value: isAnimatingApplaud)
+                                            .animation(.easeInOut(duration: 0.25), value: isAnimatingApplaud)
                                         if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
                                             Text("Applauded by others!")
                                                 .font(Font.custom(Constants.bodyFont, size: 16))
@@ -266,6 +272,7 @@ struct PostDetailView: View {
                                 }
                                 Spacer()
                             }.padding(.horizontal, 24)
+                            .confettiCannon(counter: $confettiCounterTwo, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
                             
                             if (postDetailViewModel.postModel.likesCount ?? 0 > 0 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
@@ -490,6 +497,7 @@ struct PostDetailView: View {
                 })
             .navigationBarBackButtonHidden(isEditMode)
         }
+//        .confettiCannon(counter: $confettiCounter, confettis: [.text("❤️"), .text("💙"), .text("💚"), .text("🧡")])
     }
     
     func openMail(postId: String?) {
