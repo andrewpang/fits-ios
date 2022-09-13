@@ -9,6 +9,7 @@ import SwiftUI
 import Kingfisher
 import Amplitude
 import Mixpanel
+import ConfettiSwiftUI
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
@@ -18,6 +19,9 @@ struct PostDetailView: View {
     @State var showingDeleteAlert = false
     @State var editPostTitle = ""
     @State var editPostBody = ""
+    @State var isAnimatingApplaud = false
+    @State private var confettiCounterOne: Int = 0
+    @State private var confettiCounterTwo: Int = 0
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -43,8 +47,25 @@ struct PostDetailView: View {
         return (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool
     }
     
+    func animateApplaud() {
+        confettiCounterOne += 1
+        isAnimatingApplaud = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 1.0, execute: {
+            self.isAnimatingApplaud = false
+        })
+    }
+    
+    func likePostFirebaseAndAnalytics() {
+        postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
+        let eventName = "Like Button - Clicked"
+        let propertiesDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+        let mixpanelDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
+        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+    }
+    
     var body: some View {
-        GeometryReader{ geometry in
+        GeometryReader { geometry in
             VStack(spacing: 0) {
                 ScrollView {
                     VStack(alignment: .leading, spacing: 0) {
@@ -63,6 +84,13 @@ struct PostDetailView: View {
                                                 .resizable()
                                                 .scaledToFill()
                                                 .padding(.vertical)
+                                                .onTapGesture(count: 2) {
+                                                    animateApplaud()
+                                                    generator.notificationOccurred(.success)
+                                                    if (!postDetailViewModel.isLiked) {
+                                                        likePostFirebaseAndAnalytics()
+                                                    }
+                                                }
                                         }
                                     }.frame(height: geometry.size.width)
                                     .tabViewStyle(PageTabViewStyle())
@@ -73,6 +101,13 @@ struct PostDetailView: View {
                                         }
                                         .resizable()
                                         .scaledToFill()
+                                        .onTapGesture(count: 2) {
+                                            animateApplaud()
+                                            generator.notificationOccurred(.success)
+                                            if (!postDetailViewModel.isLiked) {
+                                                likePostFirebaseAndAnalytics()
+                                            }
+                                        }
                                 }
                             } else {
                                 //TODO: Clean this up after everyone is ported over to imageUrls array
@@ -82,11 +117,25 @@ struct PostDetailView: View {
                                     }
                                     .resizable()
                                     .scaledToFill()
+                                    .onTapGesture(count: 2) {
+                                        animateApplaud()
+                                        generator.notificationOccurred(.success)
+                                        if (!postDetailViewModel.isLiked) {
+                                            likePostFirebaseAndAnalytics()
+                                        }
+                                    }
                             }
                             if (isShowingLoadingIndicator) {
                                 ProgressView()
                             }
-                        }
+                            Image(systemName: "hands.clap.fill")
+                                .font(.system(size: 64.0, weight: .light))
+                                .foregroundColor(Color("FITColor"))
+                                .opacity(isAnimatingApplaud ? 1.0 : 0)
+                                .scaleEffect(isAnimatingApplaud ? 1.0 : 0)
+                                .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
+                        }.confettiCannon(counter: $confettiCounterOne, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
+                        
                         if (isEditMode) {
                             Text("Post Title:")
                                 .font(Font.custom(Constants.titleFontBold, size: 16))
@@ -183,6 +232,8 @@ struct PostDetailView: View {
                                         Image(systemName: "hands.clap.fill")
                                             .font(.system(size: 28.0, weight: .light))
                                             .foregroundColor(Color("FITColor"))
+                                            .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
+                                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
                                     })
                                     if (postDetailViewModel.postModel.likesCount ?? 0 > 1) {
                                         Text("Applauded by others + you!")
@@ -197,32 +248,31 @@ struct PostDetailView: View {
                                     }
                                 } else {
                                     Button(action: {
+                                        confettiCounterTwo += 1
                                         generator.notificationOccurred(.success)
-                                        postDetailViewModel.likePost(likeModel: LikeModel(id: authenticationViewModel.userModel?.id, author: authenticationViewModel.getPostAuthorMap()))
-                                        let eventName = "Like Button - Clicked"
-                                        let propertiesDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-                                        let mixpanelDict = ["isLike": true as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-                                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                                        likePostFirebaseAndAnalytics()
                                     }, label: {
                                         Image(systemName: "hands.clap")
                                             .font(.system(size: 28.0, weight: .light))
                                             .foregroundColor(.gray)
+                                            .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
+                                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
+                                        if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
+                                            Text("Applauded by others!")
+                                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                                .foregroundColor(.gray)
+                                                .padding(.horizontal, 4)
+                                        } else {
+                                            Text("Be the first to applaud!")
+                                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                                .foregroundColor(.gray)
+                                                .padding(.horizontal, 4)
+                                        }
                                     })
-                                    if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
-                                        Text("Applauded by others!")
-                                            .font(Font.custom(Constants.bodyFont, size: 16))
-                                            .foregroundColor(.gray)
-                                            .padding(.horizontal, 4)
-                                    } else {
-                                        Text("Be the first to applaud!")
-                                            .font(Font.custom(Constants.bodyFont, size: 16))
-                                            .foregroundColor(.gray)
-                                            .padding(.horizontal, 4)
-                                    }
                                 }
                                 Spacer()
                             }.padding(.horizontal, 24)
+                            .confettiCannon(counter: $confettiCounterTwo, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
                             
                             if (postDetailViewModel.postModel.likesCount ?? 0 > 0 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
