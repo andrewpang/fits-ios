@@ -99,6 +99,11 @@
 		47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */; };
 		47E6F27228D0314E00CA503C /* ConfettiSwiftUI in Frameworks */ = {isa = PBXBuildFile; productRef = 47E6F27128D0314E00CA503C /* ConfettiSwiftUI */; };
 		47E6F27428D12F0C00CA503C /* FollowerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27328D12F0C00CA503C /* FollowerModel.swift */; };
+		47E6F27828D2737C00CA503C /* FollowerFollowingParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27728D2737C00CA503C /* FollowerFollowingParentView.swift */; };
+		47E6F27A28D2769D00CA503C /* FollowerListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27928D2769D00CA503C /* FollowerListView.swift */; };
+		47E6F27C28D279CF00CA503C /* FollowingListView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27B28D279CF00CA503C /* FollowingListView.swift */; };
+		47E6F27E28D27BC500CA503C /* FollowerFollowingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27D28D27BC500CA503C /* FollowerFollowingRowView.swift */; };
+		47E6F28028D27F8900CA503C /* FollowerFollowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -206,6 +211,11 @@
 		47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallPromptCollectionView.swift; sourceTree = "<group>"; };
 		47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptDetailViewModel.swift; sourceTree = "<group>"; };
 		47E6F27328D12F0C00CA503C /* FollowerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerModel.swift; sourceTree = "<group>"; };
+		47E6F27728D2737C00CA503C /* FollowerFollowingParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingParentView.swift; sourceTree = "<group>"; };
+		47E6F27928D2769D00CA503C /* FollowerListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerListView.swift; sourceTree = "<group>"; };
+		47E6F27B28D279CF00CA503C /* FollowingListView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingListView.swift; sourceTree = "<group>"; };
+		47E6F27D28D27BC500CA503C /* FollowerFollowingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingRowView.swift; sourceTree = "<group>"; };
+		47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingViewModel.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -379,6 +389,7 @@
 				479FE9932875524B0030EE4D /* PostDetailViewModel.swift */,
 				47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */,
 				470FD77128B574ED00D70341 /* PromptsViewModel.swift */,
+				47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -487,6 +498,10 @@
 				47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */,
 				47D112E4287CD8BC005E424F /* ProfileParentView.swift */,
 				472D809F286D6D74008D1BB5 /* EditProfileView.swift */,
+				47E6F27728D2737C00CA503C /* FollowerFollowingParentView.swift */,
+				47E6F27B28D279CF00CA503C /* FollowingListView.swift */,
+				47E6F27D28D27BC500CA503C /* FollowerFollowingRowView.swift */,
+				47E6F27928D2769D00CA503C /* FollowerListView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -686,11 +701,14 @@
 				4736502F28AC5A600056853C /* ImageUICollectionViewCell.swift in Sources */,
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */,
+				47E6F27E28D27BC500CA503C /* FollowerFollowingRowView.swift in Sources */,
 				47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */,
 				4761CC01286FB48A008ED1BF /* PostCategoriesView.swift in Sources */,
 				479FE9A0287746180030EE4D /* MyProfileView.swift in Sources */,
 				4783445A283C63520022025E /* AppDelegate.swift in Sources */,
+				47E6F27828D2737C00CA503C /* FollowerFollowingParentView.swift in Sources */,
 				47C5C1CE28B8319000F84E66 /* PromptPostModel.swift in Sources */,
+				47E6F27C28D279CF00CA503C /* FollowingListView.swift in Sources */,
 				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				47F767F7288E082800265633 /* UserProfileView.swift in Sources */,
@@ -716,6 +734,7 @@
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
+				47E6F27A28D2769D00CA503C /* FollowerListView.swift in Sources */,
 				47F767F9288E094A00265633 /* UserProfileViewModel.swift in Sources */,
 				479FE99A28755B930030EE4D /* CommentsView.swift in Sources */,
 				47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */,
@@ -729,6 +748,7 @@
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
 				47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */,
+				47E6F28028D27F8900CA503C /* FollowerFollowingViewModel.swift in Sources */,
 				470FD76C28B5722300D70341 /* PromptModel.swift in Sources */,
 				47E6F27428D12F0C00CA503C /* FollowerModel.swift in Sources */,
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,

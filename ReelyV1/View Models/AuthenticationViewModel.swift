@@ -28,7 +28,7 @@ class AuthenticationViewModel: ObservableObject {
 
     @Published var state: SignInState = .loading
     @Published var followerData: FollowerModel = FollowerModel()
-    @Published var followingData = [FollowerModel()]
+    @Published var followingData = [FollowerModel]()
     
     let db = Firestore.firestore()
     

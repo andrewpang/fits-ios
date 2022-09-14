@@ -288,7 +288,7 @@ struct PostDetailView: View {
                                         }
                                         .background(Color("FITColor"))
                                         .cornerRadius(Constants.buttonCornerRadius)
-                                    }
+                                    }.isDetailLink(false)
                                     .padding(.vertical, 8)
                                     .padding(.horizontal, 24)
                                     Spacer()
@@ -413,7 +413,8 @@ struct PostDetailView: View {
                             }
                             Text(postDetailViewModel.postModel.author.displayName ?? "Name")
                                 .font(Font.custom(Constants.bodyFont, size: 16))
-                        }.disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
+                        }.isDetailLink(false)
+                        .disabled(postDetailViewModel.postModel.author.userId?.isEmpty ?? true)
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {

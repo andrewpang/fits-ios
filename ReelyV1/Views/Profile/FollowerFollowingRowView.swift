@@ -1,16 +1,18 @@
 //
-//  PostLikerRowView.swift
+//  FollowingRowView.swift
 //  FITs
 //
-//  Created by Andrew Pang on 9/6/22.
+//  Created by Andrew Pang on 9/14/22.
 //
 
 import SwiftUI
 import Kingfisher
 
-struct PostLikerRowView: View {
+struct FollowerFollowingRowView: View {
+
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @State var likeModel: LikeModel
+    @StateObject var followerFollowingViewModel = FollowerFollowingViewModel()
+    @State var userId: String
     @State var showUnfollowConfirmationDialog = false
     
     let generator = UINotificationFeedbackGenerator()
@@ -18,7 +20,7 @@ struct PostLikerRowView: View {
     var body: some View {
         VStack {
             HStack {
-                if let profilePicImageUrl = likeModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+                if let profilePicImageUrl = followerFollowingViewModel.userModel.profilePicImageUrl, !profilePicImageUrl.isEmpty {
                     KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.thumbnailWidth)))
                         .resizable()
                         .scaledToFill()
@@ -31,12 +33,12 @@ struct PostLikerRowView: View {
                         .frame(width: Constants.likesListProfilePicSize, height:  Constants.likesListProfilePicSize)
                         .clipShape(Circle())
                 }
-                Text(likeModel.author.displayName ?? "Applauder")
+                Text(followerFollowingViewModel.userModel.displayName ?? "Follower")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .padding(.horizontal, 8)
                 Spacer()
-                if let likerUserId = likeModel.author.userId {
-                    if (authenticationViewModel.isFollowingUser(with: likerUserId)) {
+                if let userId = followerFollowingViewModel.userModel.id {
+                    if (authenticationViewModel.isFollowingUser(with: userId)) {
                         HStack {
                            Text("Following")
                                 .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
@@ -57,7 +59,7 @@ struct PostLikerRowView: View {
                         )
                     } else {
                         HStack {
-                            if (authenticationViewModel.isUserFollowingCurrentUser(with: likerUserId)) {
+                            if (authenticationViewModel.isUserFollowingCurrentUser(with: userId)) {
                                Text("Follow Back")
                                     .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
                                     .padding(.horizontal, 4)
@@ -74,7 +76,7 @@ struct PostLikerRowView: View {
                         .foregroundColor(Color(Constants.backgroundColor))
                         .cornerRadius(10)
                         .onTapGesture {
-                            authenticationViewModel.followUser(with: likerUserId)
+                            authenticationViewModel.followUser(with: userId)
                             generator.notificationOccurred(.success)
                         }
                     }
@@ -83,13 +85,23 @@ struct PostLikerRowView: View {
             Divider()
         }.confirmationDialog("Unfollow User", isPresented: $showUnfollowConfirmationDialog) {
             Button ("Unfollow", role: ButtonRole.destructive) {
-                if let likerUserId = likeModel.author.userId {
-                    authenticationViewModel.unfollowUser(with: likerUserId)
+                if let userId = followerFollowingViewModel.userModel.id {
+                    authenticationViewModel.unfollowUser(with: userId)
                 }
             }
             Button ("Cancel", role: ButtonRole.cancel) {}
         } message: {
             Text ("Are you sure you want to stop following this user?")
+        }.onAppear {
+            followerFollowingViewModel.getUserModel(with: userId)
+        }.onDisappear {
+            followerFollowingViewModel.removeListeners()
         }
     }
 }
+
+//struct FollowingRowView_Previews: PreviewProvider {
+//    static var previews: some View {
+//        FollowingRowView()
+//    }
+//}

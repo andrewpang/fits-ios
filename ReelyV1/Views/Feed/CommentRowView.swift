@@ -34,13 +34,15 @@ struct CommentRowView: View {
                         .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
                         .clipShape(Circle())
                 }
-            }.disabled(commentModel.author.userId?.isEmpty ?? true)
+            }.isDetailLink(false)
+            .disabled(commentModel.author.userId?.isEmpty ?? true)
             
             VStack(alignment: .leading) {
                 NavigationLink(destination: UserProfileView(userId: commentModel.author.userId!)) {
                     Text(commentModel.author.displayName ?? "Commentor")
                         .font(Font.system(size: 16, weight: .bold, design: .default))
-                }.disabled(commentModel.author.userId?.isEmpty ?? true)
+                }.isDetailLink(false)
+                .disabled(commentModel.author.userId?.isEmpty ?? true)
                 Text(commentModel.commentText)
                     .font(Font.custom(Constants.bodyFont, size: 16))
             }
