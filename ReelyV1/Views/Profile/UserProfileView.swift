@@ -67,7 +67,6 @@ struct UserProfileView: View {
                         .foregroundColor(Color(Constants.darkBackgroundColor))
                         .cornerRadius(10)
                         .onTapGesture {
-                            self.isFollow.toggle() //TODO: Remove
                             showUnfollowConfirmationDialog = true
                             generator.notificationOccurred(.warning)
                         }
@@ -77,17 +76,23 @@ struct UserProfileView: View {
                         )
                     } else {
                         HStack {
-                           Text("Follow")
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .padding(.horizontal, 4)
-                                .fixedSize()
+                            if (authenticationViewModel.isUserFollowingCurrentUser(with: userId)) {
+                               Text("Follow Back")
+                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                                    .padding(.horizontal, 4)
+                                    .fixedSize()
+                            } else {
+                                Text("Follow")
+                                     .font(Font.custom(Constants.bodyFont, size: 16))
+                                     .padding(.horizontal, 4)
+                                     .fixedSize()
+                            }
                         }.padding(.vertical, 4)
                         .padding(.horizontal, 16)
                         .background(Color(Constants.darkBackgroundColor))
                         .foregroundColor(Color(Constants.backgroundColor))
                         .cornerRadius(10)
                         .onTapGesture {
-                            self.isFollow.toggle() //TODO: Remove
                             authenticationViewModel.followUser(with: userId)
                             userProfileViewModel.confettiCounter += 1
                             generator.notificationOccurred(.success)

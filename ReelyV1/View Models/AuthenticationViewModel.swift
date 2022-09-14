@@ -87,6 +87,8 @@ class AuthenticationViewModel: ObservableObject {
                     self.userModel = userData
                     self.state = .signedIn
                     Mixpanel.mainInstance().people.set(properties: ["displayName": userData.displayName, "phoneNumber": userData.phoneNumber])
+                    self.getFollowersList()
+                    self.getFollowingList()
                 }
             }
         }
@@ -272,6 +274,13 @@ class AuthenticationViewModel: ObservableObject {
             if (following.id == userId) {
                 return true
             }
+        }
+        return false
+    }
+    
+    func isUserFollowingCurrentUser(with userId: String) -> Bool {
+        if let followers = followerData.users {
+            return followers.contains(userId)
         }
         return false
     }
