@@ -17,7 +17,7 @@ struct FollowingListView: View {
                     ForEach(followingModels, id: \.id) { following in
                         if let userId = following.id {
                             NavigationLink(destination: UserProfileView(userId: userId)) {
-                                FollowerFollowingRowView(userId: userId)
+                                FollowingRowView(userId: userId)
                             }.isDetailLink(false)
                         }
                     }

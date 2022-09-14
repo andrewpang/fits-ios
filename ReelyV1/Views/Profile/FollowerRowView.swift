@@ -8,7 +8,7 @@
 import SwiftUI
 import Kingfisher
 
-struct FollowerFollowingRowView: View {
+struct FollowerRowView: View {
 
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @StateObject var followerFollowingViewModel = FollowerFollowingViewModel()
@@ -33,7 +33,7 @@ struct FollowerFollowingRowView: View {
                         .frame(width: Constants.likesListProfilePicSize, height:  Constants.likesListProfilePicSize)
                         .clipShape(Circle())
                 }
-                Text(followerFollowingViewModel.userModel.displayName ?? "Follower")
+                Text(followerFollowingViewModel.userModel.displayName ?? " ")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .padding(.horizontal, 8)
                 Spacer()
@@ -59,17 +59,10 @@ struct FollowerFollowingRowView: View {
                         )
                     } else {
                         HStack {
-                            if (authenticationViewModel.isUserFollowingCurrentUser(with: userId)) {
-                               Text("Follow Back")
-                                    .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
-                                    .padding(.horizontal, 4)
-                                    .fixedSize()
-                            } else {
-                                Text("Follow")
-                                     .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
-                                     .padding(.horizontal, 4)
-                                     .fixedSize()
-                            }
+                            Text("Follow Back")
+                                 .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
+                                 .padding(.horizontal, 4)
+                                 .fixedSize()
                         }.padding(.vertical, 4)
                         .padding(.horizontal, 8)
                         .background(Color(Constants.darkBackgroundColor))
@@ -78,7 +71,7 @@ struct FollowerFollowingRowView: View {
                         .onTapGesture {
                             authenticationViewModel.followUser(with: userId)
                             generator.notificationOccurred(.success)
-                        }
+                        }.disabled(followerFollowingViewModel.userModel.displayName?.isEmpty ?? true)
                     }
                 }
             }.padding(.horizontal, 24)
@@ -94,8 +87,6 @@ struct FollowerFollowingRowView: View {
             Text ("Are you sure you want to stop following this user?")
         }.onAppear {
             followerFollowingViewModel.getUserModel(with: userId)
-        }.onDisappear {
-            followerFollowingViewModel.removeListeners()
         }
     }
 }

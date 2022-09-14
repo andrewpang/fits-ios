@@ -16,7 +16,7 @@ struct FollowerListView: View {
                 if let followers = authenticationViewModel.followerData.users, !followers.isEmpty {
                     ForEach(followers, id: \.self) { follower in
                         NavigationLink(destination: UserProfileView(userId: follower)) {
-                            FollowerFollowingRowView(userId: follower)
+                            FollowerRowView(userId: follower)
                         }.isDetailLink(false)
                     }
                 }
