@@ -58,6 +58,7 @@ struct Constants {
     static let postCardAuthorSectionHeight: CGFloat = 30
     
     static let postTitleCharacterLimit = 30
+    static let followButtonTextSize: CGFloat = 14
     
     static let postTypePrompt = "prompt"
     static let promptPreviewImageAspectRatio = 0.666

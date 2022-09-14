@@ -15,6 +15,7 @@ struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showConfirmationDialog = false
+    @State var showUnfollowConfirmationDialog = false
     @State var isEditMode = false
     @State var showingDeleteAlert = false
     @State var editPostTitle = ""
@@ -416,6 +417,52 @@ struct PostDetailView: View {
                     }
                 }
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
+                    if (!isEditMode && !isUsersOwnPost()) {
+                        if (authenticationViewModel.isFollowingUser(with: postDetailViewModel.postModel.author.userId!)) {
+                            HStack {
+                                Text("Following")
+                                    .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
+                                    .padding(.horizontal, 4)
+                                    .fixedSize()
+                            }.padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color(Constants.backgroundColor))
+                            .foregroundColor(Color(Constants.darkBackgroundColor))
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                showUnfollowConfirmationDialog = true
+                                generator.notificationOccurred(.warning)
+                            }
+                            .overlay(
+                                RoundedRectangle(cornerRadius: 10)
+                                    .stroke(Color(Constants.darkBackgroundColor), lineWidth: 1)
+                            )
+                        } else {
+                            HStack {
+                                if (authenticationViewModel.isUserFollowingCurrentUser(with: postDetailViewModel.postModel.author.userId!)) {
+                                    Text("Follow Back")
+                                        .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
+                                        .padding(.horizontal, 4)
+                                        .fixedSize()
+                                } else {
+                                    Text("Follow")
+                                        .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
+                                        .padding(.horizontal, 4)
+                                        .fixedSize()
+                                }
+                            }.padding(.vertical, 4)
+                            .padding(.horizontal, 8)
+                            .background(Color(Constants.darkBackgroundColor))
+                            .foregroundColor(Color(Constants.backgroundColor))
+                            .cornerRadius(10)
+                            .onTapGesture {
+                                authenticationViewModel.followUser(with: postDetailViewModel.postModel.author.userId!)
+                                generator.notificationOccurred(.success)
+                            }
+                        }
+                    }
+                }
+                ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if (isEditMode) {
                         Button(action: {
                             postDetailViewModel.editPost(title: editPostTitle, body: editPostBody)
@@ -462,6 +509,15 @@ struct PostDetailView: View {
                         })
                     }
                 }
+            }
+            .confirmationDialog("Unfollow User", isPresented: $showUnfollowConfirmationDialog) {
+                Button ("Unfollow", role: ButtonRole.destructive) {
+                    authenticationViewModel.unfollowUser(with: postDetailViewModel.postModel.author.userId!)
+                    generator.notificationOccurred(.warning)
+                }
+                Button ("Cancel", role: ButtonRole.cancel) {}
+            } message: {
+                Text ("Are you sure you want to stop following this user?")
             }
             .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
                 if (isUsersOwnPost()) {

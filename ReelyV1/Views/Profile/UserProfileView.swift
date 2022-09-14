@@ -58,11 +58,11 @@ struct UserProfileView: View {
                     if (authenticationViewModel.isFollowingUser(with: userId)) {
                         HStack {
                            Text("Following")
-                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
                                 .padding(.horizontal, 4)
                                 .fixedSize()
                         }.padding(.vertical, 4)
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, 8)
                         .background(Color(Constants.backgroundColor))
                         .foregroundColor(Color(Constants.darkBackgroundColor))
                         .cornerRadius(10)
@@ -78,17 +78,17 @@ struct UserProfileView: View {
                         HStack {
                             if (authenticationViewModel.isUserFollowingCurrentUser(with: userId)) {
                                Text("Follow Back")
-                                    .font(Font.custom(Constants.bodyFont, size: 16))
+                                    .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
                                     .padding(.horizontal, 4)
                                     .fixedSize()
                             } else {
                                 Text("Follow")
-                                     .font(Font.custom(Constants.bodyFont, size: 16))
+                                     .font(Font.custom(Constants.bodyFont, size: Constants.followButtonTextSize))
                                      .padding(.horizontal, 4)
                                      .fixedSize()
                             }
                         }.padding(.vertical, 4)
-                        .padding(.horizontal, 16)
+                        .padding(.horizontal, 8)
                         .background(Color(Constants.darkBackgroundColor))
                         .foregroundColor(Color(Constants.backgroundColor))
                         .cornerRadius(10)
