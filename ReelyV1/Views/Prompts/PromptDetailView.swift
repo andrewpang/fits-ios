@@ -26,10 +26,10 @@ struct PromptDetailView: View {
         ZStack {
             NavigationLink(destination: AddPostView(postViewModel: postViewModel, mediaItems: mediaItems, homeViewModel: homeViewModel, promptModel: promptDetailViewModel.promptModel), isActive: $postViewModel.shouldPopToRootViewIfFalse) {
                 EmptyView()
-            }
+            }.isDetailLink(false)
             NavigationLink(destination: PostDetailView(postDetailViewModel: postDetailViewModel, source: "themesFeed"), isActive: $promptDetailViewModel.detailViewIsActive) {
                 EmptyView()
-            }
+            }.isDetailLink(false)
             Color(Constants.backgroundColor).ignoresSafeArea()
             VStack(spacing: 0) {
                 HStack {

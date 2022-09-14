@@ -36,13 +36,20 @@ struct MyProfileView: View {
             VStack(spacing: 0) {
                 Text(self.authenticationViewModel.userModel?.displayName ?? "Name")
                     .font(Font.custom(Constants.titleFontBold, size: 40)).padding(.top, 4)
-
                 MyProfilePictureView(authenticationViewModel: authenticationViewModel, showUploadPicConfirmationDialog: $showUploadPicConfirmationDialog)
+                HStack(spacing: 8) {
+                    Spacer()
+                    FollowersButton()
+                    FollowingButton()
+                    Spacer()
+                }.padding(.horizontal, 16)
+                .padding(.vertical, 8)
                 Divider().padding(.vertical, 8)
                 MyProfileInfoView(authenticationViewModel: authenticationViewModel)
                 Divider().padding(.vertical, 8)
                 FeedbackButton()
                     .padding(.vertical, 8)
+                
                 HStack {
                     Text("My Posts")
                         .font(Font.custom(Constants.titleFont, size: 24))
@@ -158,7 +165,7 @@ struct MyProfilePictureView: View {
             Text("Update Profile Photo")
                 .font(Font.custom(Constants.buttonFont, size: 16))
                 .foregroundColor(Color.gray)
-        }).padding(.bottom, 16)
+        }).padding(.bottom, 8)
     }
 }
 
@@ -245,3 +252,48 @@ struct FeedbackButton: View {
         }
     }
 }
+
+struct FollowersButton: View {
+    
+    var body: some View {
+        NavigationLink(destination: FollowerFollowingParentView(selectedTab: FollowerFollowingParentView.followersTabIndex)) {
+            HStack {
+               Text("Followers")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .padding(.horizontal, 4)
+                    .fixedSize()
+            }.padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background(Color(Constants.backgroundColor))
+            .foregroundColor(Color(Constants.darkBackgroundColor))
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(Constants.darkBackgroundColor), lineWidth: 1)
+            )
+        }.isDetailLink(false)
+    }
+}
+
+struct FollowingButton: View {
+    
+    var body: some View {
+        NavigationLink(destination: FollowerFollowingParentView(selectedTab: FollowerFollowingParentView.followingTabIndex)) {
+            HStack {
+               Text("Following")
+                    .font(Font.custom(Constants.bodyFont, size: 16))
+                    .padding(.horizontal, 4)
+                    .fixedSize()
+            }.padding(.vertical, 4)
+            .padding(.horizontal, 8)
+            .background(Color(Constants.backgroundColor))
+            .foregroundColor(Color(Constants.darkBackgroundColor))
+            .cornerRadius(10)
+            .overlay(
+                RoundedRectangle(cornerRadius: 10)
+                    .stroke(Color(Constants.darkBackgroundColor), lineWidth: 1)
+            )
+        }.isDetailLink(false)
+    }
+}
+

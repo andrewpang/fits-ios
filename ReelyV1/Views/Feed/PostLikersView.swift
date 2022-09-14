@@ -20,7 +20,8 @@ struct PostLikersView: View {
                     ForEach(likeModels, id: \.id) { like in
                         NavigationLink(destination: UserProfileView(userId: like.author.userId!)) {
                             PostLikerRowView(likeModel: like)
-                        }.disabled(like.author.userId?.isEmpty ?? true)
+                        }.isDetailLink(false)
+                        .disabled(like.author.userId?.isEmpty ?? true)
                     }
                 }
             }
