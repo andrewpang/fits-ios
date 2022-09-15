@@ -15,11 +15,13 @@ struct FollowerListView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                if let followers = authenticationViewModel.followerData.users, !followers.isEmpty {
-                    ForEach(followers, id: \.self) { follower in
-                        NavigationLink(destination: UserProfileView(userId: follower)) {
-                            FollowerRowView(userId: follower)
-                        }.isDetailLink(false)
+                if let followers = authenticationViewModel.followerData, !followers.isEmpty {
+                    ForEach(followers, id: \.id) { follower in
+                        if let followerId = follower.id {
+                            NavigationLink(destination: UserProfileView(userId: followerId)) {
+                                FollowerRowView(userId: followerId)
+                            }.isDetailLink(false)
+                        }
                     }
                 }
             }

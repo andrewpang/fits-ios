@@ -27,8 +27,8 @@ class AuthenticationViewModel: ObservableObject {
     }
 
     @Published var state: SignInState = .loading
-    @Published var followerData: FollowerModel = FollowerModel()
-    @Published var followingData = [FollowerModel]()
+    @Published var followerData: [FollowerUserModel] = [FollowerUserModel]()
+    @Published var followingData: [FollowerUserModel] = [FollowerUserModel]()
     
     let db = Firestore.firestore()
     
@@ -44,8 +44,8 @@ class AuthenticationViewModel: ObservableObject {
         } else {
             Amplitude.instance().setUserId(nil)
             Mixpanel.mainInstance().reset()
-            followerData = FollowerModel()
-            followingData = [FollowerModel]()
+            followerData = [FollowerUserModel]()
+            followingData = [FollowerUserModel]()
             state = .signedOut
         }
     }
@@ -55,8 +55,8 @@ class AuthenticationViewModel: ObservableObject {
             try Auth.auth().signOut()
             Amplitude.instance().setUserId(nil)
             Mixpanel.mainInstance().reset()
-            followerData = FollowerModel()
-            followingData = [FollowerModel]()
+            followerData = [FollowerUserModel]()
+            followingData = [FollowerUserModel]()
             state = .signedOut
             profileListener = nil
         } catch {
@@ -192,36 +192,37 @@ class AuthenticationViewModel: ObservableObject {
     
     func followUser(with userId: String) {
         if let currentUserId = Auth.auth().currentUser?.uid {
-            let followersRef = self.db.collection("followers").document(userId)
-            followersRef.setData([
-                "users": FieldValue.arrayUnion([currentUserId])
-            ], merge: true) { err in
-                if let err = err {
-                    print("Error following user: \(err)")
-                } else {
-                    print("User successfuly followed")
-                    let eventName = "Follow User - Clicked"
-                    let propertiesDict = [
-                        "followerUserId": currentUserId,
-                        "followingUserId": userId
-                    ] as? [String : String]
-                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                }
+            let followersRef = self.db.collection("followers").document(userId).collection("followerUsers").document(currentUserId)
+            let followerUserModel = FollowerUserModel(author: getPostAuthorMap())
+            do {
+                try followersRef.setData(from: followerUserModel) { error in
+                    if let error = error {
+                        print("Error adding follower user: \(error)")
+                    } else {
+                        print("Uploaded FollowerUserModel")
+                        let eventName = "Follow User - Clicked"
+                        let propertiesDict = [
+                            "followerUserId": currentUserId,
+                            "followingUserId": userId
+                        ] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                   }
+               }
+            } catch {
+                print (error)
             }
         }
     }
     
     func unfollowUser(with userId: String) {
         if let currentUserId = Auth.auth().currentUser?.uid {
-            let followersRef = self.db.collection("followers").document(userId)
-            followersRef.updateData([
-                "users": FieldValue.arrayRemove([currentUserId])
-            ]) { err in
+            let followerDocument = self.db.collection("followers").document(userId).collection("followerUsers").document(currentUserId)
+            followerDocument.delete() { err in
                 if let err = err {
-                    print("Error unfollowing user: \(err)")
+                    print("Error removing document: \(err)")
                 } else {
-                    print("User successfuly unfollowed")
+                    print("Document successfully removed!")
                     let eventName = "Unfollow User - Clicked"
                     let propertiesDict = [
                         "followerUserId": currentUserId,
@@ -239,25 +240,20 @@ class AuthenticationViewModel: ObservableObject {
             if (followersListener != nil) {
                 return
             }
-            let fetchFollowersQuery = db.collection("followers").document(currentUserId)
-                
-            followersListener = fetchFollowersQuery.addSnapshotListener { documentSnapshot, error in
-                guard let document = documentSnapshot else {
-                    print("Error fetching document: \(error!)")
-                    return
-                }
-                guard let data = document.data() else {
-                    print("Document data was empty.")
-                    return
-                }
-                print("Current data: \(data)")
-                guard let followerData = try? document.data(as: FollowerModel.self) else {
-                    print("Couldn't parse user data to UserModel")
+            let fetchFollowersQuery = db.collection("followers").document(currentUserId).collection("followerUsers")
+            
+            followersListener = fetchFollowersQuery.addSnapshotListener { querySnapshot, error in
+                guard let documents = querySnapshot?.documents else {
+                    print("Error fetching documents: \(error!)")
                     return
                 }
                 
+                var followersList = [FollowerUserModel]()
+                followersList = documents.compactMap { querySnapshot -> FollowerUserModel? in
+                    return try? querySnapshot.data(as: FollowerUserModel.self)
+                }
                 DispatchQueue.main.async {
-                    self.followerData = followerData
+                    self.followerData = followersList
                 }
             }
         }
@@ -268,7 +264,7 @@ class AuthenticationViewModel: ObservableObject {
             if (followingListener != nil) {
                 return
             }
-            let fetchFollowingQuery = db.collection("followers").whereField("users", arrayContains: currentUserId)
+            let fetchFollowingQuery = db.collectionGroup("followerUsers").whereField("author.userId", isEqualTo: currentUserId)
                 
             followingListener = fetchFollowingQuery.addSnapshotListener { (querySnapshot, error) in
                 guard let documents = querySnapshot?.documents else {
@@ -276,9 +272,9 @@ class AuthenticationViewModel: ObservableObject {
                     return
                 }
 
-                var followingList = [FollowerModel]()
-                followingList = documents.compactMap { querySnapshot -> FollowerModel? in
-                    return try? querySnapshot.data(as: FollowerModel.self)
+                var followingList = [FollowerUserModel]()
+                followingList = documents.compactMap { querySnapshot -> FollowerUserModel? in
+                    return try? querySnapshot.data(as: FollowerUserModel.self)
                 }
                 DispatchQueue.main.async {
                     self.followingData = followingList
@@ -297,8 +293,10 @@ class AuthenticationViewModel: ObservableObject {
     }
     
     func isUserFollowingCurrentUser(with userId: String) -> Bool {
-        if let followers = followerData.users {
-            return followers.contains(userId)
+        for follower in followerData {
+            if follower.id == userId {
+                return true
+            }
         }
         return false
     }
