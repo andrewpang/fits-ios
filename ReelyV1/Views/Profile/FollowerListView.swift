@@ -23,8 +23,7 @@ struct FollowerListView: View {
             }
         }.navigationBarTitle("", displayMode: .inline)
         .onAppear {
-            print("follower list view")
-            authenticationViewModel.getFollowingList()
+            authenticationViewModel.getFollowersList()
 //            let propertiesDict = [
 //                "postId": postDetailViewModel.postModel.id as Any,
 //                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,

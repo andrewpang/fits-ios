@@ -44,6 +44,8 @@ class AuthenticationViewModel: ObservableObject {
         } else {
             Amplitude.instance().setUserId(nil)
             Mixpanel.mainInstance().reset()
+            followerData = FollowerModel()
+            followingData = [FollowerModel]()
             state = .signedOut
         }
     }
@@ -53,6 +55,8 @@ class AuthenticationViewModel: ObservableObject {
             try Auth.auth().signOut()
             Amplitude.instance().setUserId(nil)
             Mixpanel.mainInstance().reset()
+            followerData = FollowerModel()
+            followingData = [FollowerModel]()
             state = .signedOut
             profileListener = nil
         } catch {

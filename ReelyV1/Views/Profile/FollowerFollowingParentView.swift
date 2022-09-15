@@ -7,8 +7,6 @@
 
 import SwiftUI
 
-
-
 struct FollowerFollowingParentView: View {
     
     @State var selectedTab = 0
