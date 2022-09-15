@@ -83,10 +83,10 @@ struct PostDetailView: View {
                                                     isShowingLoadingIndicator = false
                                                 }
                                                 .resizable()
-                                                .scaledToFill()
-                                                .padding(.vertical)
+                                                .scaledToFit()
                                         }
-                                    }.frame(height: geometry.size.width)
+                                    }
+                                    .frame(height: geometry.size.width)
                                     .tabViewStyle(PageTabViewStyle())
                                     .onTapGesture(count: 2) {
                                         animateApplaud()
@@ -258,24 +258,24 @@ struct PostDetailView: View {
                                             .foregroundColor(.gray)
                                             .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
                                             .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
-                                        if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
-                                            Text("Applauded by others!")
-                                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                                .foregroundColor(.gray)
-                                                .padding(.horizontal, 4)
-                                        } else {
-                                            Text("Be the first to applaud!")
-                                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                                .foregroundColor(.gray)
-                                                .padding(.horizontal, 4)
-                                        }
+//                                        if (postDetailViewModel.postModel.likesCount ?? 0 > 0) {
+                                        Text("Applauded by others!")
+                                            .font(Font.custom(Constants.bodyFont, size: 16))
+                                            .foregroundColor(.gray)
+                                            .padding(.horizontal, 4)
+//                                        } else {
+//                                            Text("Be the first to applaud!")
+//                                                .font(Font.custom(Constants.bodyFont, size: 16))
+//                                                .foregroundColor(.gray)
+//                                                .padding(.horizontal, 4)
+//                                        }
                                     })
                                 }
                                 Spacer()
                             }.padding(.horizontal, 24)
                             .confettiCannon(counter: $confettiCounterTwo, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
                             
-                            if (postDetailViewModel.postModel.likesCount ?? 0 > 0 && postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
+                            if (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
                                     Spacer()
                                     NavigationLink(destination: PostLikersView(postDetailViewModel: postDetailViewModel)) {
