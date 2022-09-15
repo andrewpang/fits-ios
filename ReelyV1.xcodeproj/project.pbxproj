@@ -105,6 +105,7 @@
 		47E6F27E28D27BC500CA503C /* FollowerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27D28D27BC500CA503C /* FollowerRowView.swift */; };
 		47E6F28028D27F8900CA503C /* FollowerFollowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */; };
 		47E6F28228D2940F00CA503C /* FollowingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28128D2940F00CA503C /* FollowingRowView.swift */; };
+		47E6F28628D3D88400CA503C /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28528D3D88400CA503C /* NotificationModel.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -218,6 +219,7 @@
 		47E6F27D28D27BC500CA503C /* FollowerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerRowView.swift; sourceTree = "<group>"; };
 		47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingViewModel.swift; sourceTree = "<group>"; };
 		47E6F28128D2940F00CA503C /* FollowingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingRowView.swift; sourceTree = "<group>"; };
+		47E6F28528D3D88400CA503C /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -375,6 +377,7 @@
 				47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */,
 				470FD76B28B5722300D70341 /* PromptModel.swift */,
 				47E6F27328D12F0C00CA503C /* FollowerModel.swift */,
+				47E6F28528D3D88400CA503C /* NotificationModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -762,6 +765,7 @@
 				4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
 				479FE99E287625F90030EE4D /* TokenModel.swift in Sources */,
+				47E6F28628D3D88400CA503C /* NotificationModel.swift in Sources */,
 				470FD77228B574ED00D70341 /* PromptsViewModel.swift in Sources */,
 				4755B77A28A9D3D800942AAD /* CloudinaryHelper.swift in Sources */,
 				4761CC0B28724E62008ED1BF /* UserModel.swift in Sources */,
