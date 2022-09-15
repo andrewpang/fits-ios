@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Amplitude
+import Mixpanel
 
 struct FollowerListView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
@@ -24,19 +26,9 @@ struct FollowerListView: View {
         }.navigationBarTitle("", displayMode: .inline)
         .onAppear {
             authenticationViewModel.getFollowersList()
-//            let propertiesDict = [
-//                "postId": postDetailViewModel.postModel.id as Any,
-//                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-//                "isUsersOwnPost": isUsersOwnPost(),
-//            ] as? [String : Any]
-//            let propertiesDictMixPanel = [
-//                "postId": postDetailViewModel.postModel.id as Any,
-//                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-//                "isUsersOwnPost": isUsersOwnPost(),
-//            ] as? [String : MixpanelType]
-//            let eventName = "Post Likers Screen - View"
-//            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
+            let eventName = "Follower List - View"
+            Amplitude.instance().logEvent(eventName)
+            Mixpanel.mainInstance().track(event: eventName)
         }
     }
 }

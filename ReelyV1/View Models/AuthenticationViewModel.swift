@@ -200,6 +200,13 @@ class AuthenticationViewModel: ObservableObject {
                     print("Error following user: \(err)")
                 } else {
                     print("User successfuly followed")
+                    let eventName = "Follow User - Clicked"
+                    let propertiesDict = [
+                        "followerUserId": currentUserId,
+                        "followingUserId": userId
+                    ] as? [String : String]
+                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                 }
             }
         }
@@ -215,6 +222,13 @@ class AuthenticationViewModel: ObservableObject {
                     print("Error unfollowing user: \(err)")
                 } else {
                     print("User successfuly unfollowed")
+                    let eventName = "Unfollow User - Clicked"
+                    let propertiesDict = [
+                        "followerUserId": currentUserId,
+                        "unfollowedUserId": userId
+                    ] as? [String : String]
+                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                 }
             }
         }
