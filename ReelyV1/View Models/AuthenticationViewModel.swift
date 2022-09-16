@@ -192,22 +192,34 @@ class AuthenticationViewModel: ObservableObject {
     
     func followUser(with userId: String) {
         if let currentUserId = Auth.auth().currentUser?.uid {
-            let followersRef = self.db.collection("followers").document(userId)
-            followersRef.setData([
-                "users": FieldValue.arrayUnion([currentUserId])
-            ], merge: true) { err in
-                if let err = err {
-                    print("Error following user: \(err)")
-                } else {
-                    print("User successfuly followed")
-                    let eventName = "Follow User - Clicked"
-                    let propertiesDict = [
-                        "followerUserId": currentUserId,
-                        "followingUserId": userId
-                    ] as? [String : String]
-                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                    Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+            let followersDocument = self.db.collection("followers").document(userId)
+            let userDisplayName = userModel?.displayName ?? "Someone"
+            let notificationText = "\(userDisplayName) just followed you!"
+            let notificationModel = NotificationModel(userId: userId, text: notificationText, type: "newFollower", followerUserId: currentUserId)
+            let notificationDocument = self.db.collection("notifications").document(notificationModel.id ?? UUID().uuidString)
+            do {
+                let batch = db.batch()
+                try batch.setData(from: notificationModel, forDocument: notificationDocument, merge: true)
+                batch.setData([
+                    "users": FieldValue.arrayUnion([currentUserId])
+                ], forDocument: followersDocument, merge: true)
+                batch.commit() { err in
+                    if let err = err {
+                        print("Error writing followUser batch \(err)")
+                    } else {
+                        print("Batch write for followUser succeeded.")
+                        let eventName = "Follow User - Clicked"
+                        let propertiesDict = [
+                            "followerUserId": currentUserId,
+                            "followingUserId": userId
+                        ] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                    }
                 }
+            }
+            catch {
+                print (error)
             }
         }
     }
