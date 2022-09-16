@@ -193,10 +193,10 @@ class AuthenticationViewModel: ObservableObject {
     func followUser(with userId: String) {
         if let currentUserId = Auth.auth().currentUser?.uid {
             let followersDocument = self.db.collection("followers").document(userId)
-            let notificationDocument = self.db.collection("notifications").document(userId)
             let userDisplayName = userModel?.displayName ?? "Someone"
             let notificationText = "\(userDisplayName) just followed you!"
-            let notificationModel = NotificationModel(text: notificationText, type: "newFollower")
+            let notificationModel = NotificationModel(userId: userId, text: notificationText, type: "newFollower", followerUserId: currentUserId)
+            let notificationDocument = self.db.collection("notifications").document(notificationModel.id ?? UUID().uuidString)
             do {
                 let batch = db.batch()
                 try batch.setData(from: notificationModel, forDocument: notificationDocument, merge: true)

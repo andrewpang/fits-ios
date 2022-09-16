@@ -11,7 +11,10 @@ import FirebaseFirestoreSwift
 import FirebaseFirestore
 
 public struct NotificationModel: Codable {
+    @DocumentID public var id: String? = UUID().uuidString
     @ServerTimestamp var createdAt: Timestamp?
+    var userId: String?
     var text: String
     var type: String?
+    var followerUserId: String?
 }
