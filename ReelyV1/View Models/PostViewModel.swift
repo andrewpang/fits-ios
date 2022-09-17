@@ -93,9 +93,15 @@ class PostViewModel: ObservableObject {
     }
     
     func uploadPostModel(postModel: PostModel, completion: @escaping () -> Void) {
-        let postsCollection = self.db.collection("posts")
+        let postsDocument = self.db.collection("posts").document(postModel.id!)
+        let followersDocument = self.db.collection("followers").document(postModel.author.userId ?? "noId")
         do {
-            let _ = try postsCollection.addDocument(from: postModel) { error in
+            let batch = db.batch()
+            batch.setData([
+                "mostRecentPostTimestamp": FieldValue.serverTimestamp(),
+            ], forDocument: followersDocument, merge: true)
+            try batch.setData(from: postModel, forDocument: postsDocument, merge: true)
+            batch.commit() { error in
                 if let error = error {
                     print("Error adding post: \(error)")
                 } else {
