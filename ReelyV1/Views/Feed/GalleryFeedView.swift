@@ -18,6 +18,7 @@ struct GalleryFeedView: View {
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
+    @State var currentTab: Int = 0
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
@@ -63,8 +64,13 @@ struct GalleryFeedView: View {
                     Text(Constants.appTitle)
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
-                        .padding(.bottom, 4)
-                    WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
+                    CategoryTabBarView(currentTab: self.$currentTab)
+                    TabView(selection: self.$currentTab) {
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0)
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1)
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2)
+                    }
+                    .tabViewStyle(.page(indexDisplayMode: .never))
                 }
             }.navigationBarTitle("")
             .navigationBarHidden(true)
@@ -87,5 +93,62 @@ struct GalleryFeedView: View {
 //              }
 //            }
         }
+    }
+}
+
+struct CategoryTabBarView: View {
+    @Binding var currentTab: Int
+    @Namespace var namespace
+    
+    var tabBarOptions: [String] = ["Following", "For You", "Most Recent"]
+    var body: some View {
+        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 20) {
+                ForEach(Array(zip(self.tabBarOptions.indices,
+                                      self.tabBarOptions)),
+                        id: \.0,
+                        content: {
+                        index, name in
+                            CategoryTabBarItem(currentTab: self.$currentTab,
+                                namespace: namespace.self,
+                                tabBarItemName: name,
+                                tab: index)
+                        
+                        })
+            }.padding(.horizontal, 24)
+        }
+        .frame(height: 40)
+    }
+}
+
+struct CategoryTabBarItem: View {
+    @Binding var currentTab: Int
+    let namespace: Namespace.ID
+    
+    var tabBarItemName: String
+    var tab: Int
+    
+    var body: some View {
+        Button {
+            self.currentTab = tab
+        } label: {
+            VStack(spacing: 4) {
+                Spacer()
+                if currentTab == tab {
+                    Text(tabBarItemName).font(Font.custom(Constants.bodyFont, size: 16))
+                    Color.black
+                        .frame(height: 2)
+                        .matchedGeometryEffect(id: "underline",
+                                               in: namespace,
+                                               properties: .frame)
+                } else {
+                    Text(tabBarItemName).font(Font.custom(Constants.bodyFont, size: 16)).foregroundColor(.gray)
+                    Color.clear.frame(height: 2)
+                }
+                Spacer()
+            }
+            .animation(.spring(), value: self.currentTab)
+        }
+        .buttonStyle(.plain)
     }
 }
