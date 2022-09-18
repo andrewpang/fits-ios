@@ -95,7 +95,13 @@ struct FollowerFeedWaterfallCollectionView: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            parent.homeViewModel.followingPostsData.postModels?.count ?? 0
+            let count = parent.homeViewModel.followingPostsData.postModels?.count ?? 0
+            if (count == 0) {
+                collectionView.setEmptyMessage("Follow more users! There are no posts from people you're following yet :(")
+            } else {
+                collectionView.restore()
+            }
+            return count
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
@@ -170,5 +176,24 @@ struct FollowerFeedWaterfallCollectionView: UIViewControllerRepresentable {
                 }
             }
         }
+    }
+}
+
+extension UICollectionView {
+
+    func setEmptyMessage(_ message: String) {
+        let messageLabel = UILabel(frame: CGRect(x: 0, y: 0, width: self.bounds.size.width - 40, height: self.bounds.size.height))
+        messageLabel.text = message
+        messageLabel.textColor = .black
+        messageLabel.numberOfLines = 0;
+        messageLabel.textAlignment = .center;
+        messageLabel.font = UIFont(name: Constants.bodyFont, size: 18)
+        messageLabel.sizeToFit()
+
+        self.backgroundView = messageLabel;
+    }
+
+    func restore() {
+        self.backgroundView = nil
     }
 }
