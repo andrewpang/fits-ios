@@ -9,7 +9,7 @@ import SwiftUI
 import Amplitude
 import Mixpanel
 
-// WARNING: When updating, check if needs to update WaterfallPromptCollectionView
+// WARNING: When updating, check if needs to update WaterfallPromptCollectionView, WaterfallCollectionRandomFeedView
 struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @EnvironmentObject var tabViewModel: TabViewModel
@@ -53,11 +53,11 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
         //TODO: Look into if there's a more perfomant way to handle this
         uiViewController.collectionView.reloadData()
-        if (homeViewModel.shouldScrollToTop) {
+        if (homeViewModel.shouldScrollToTopMostRecent) {
             uiViewController.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
                                               at: .top,
                                         animated: true)
-            homeViewModel.shouldScrollToTop = false
+            homeViewModel.shouldScrollToTopMostRecent = false
         }
     }
 

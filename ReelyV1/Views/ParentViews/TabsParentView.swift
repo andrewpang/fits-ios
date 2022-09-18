@@ -22,7 +22,9 @@ struct TabsParentView: View {
                 if (lastTabSelection == tabViewModel.tabSelection) {
                     if (lastTabSelection == homeIndex) {
                         if (homeViewModel.shouldPopToRootViewIfFalse == false) {
-                            homeViewModel.shouldScrollToTop = true
+                            homeViewModel.shouldScrollToTopFollowing = true
+                            homeViewModel.shouldScrollToTopMostRecent = true
+                            homeViewModel.shouldScrollToTopForYou = true
                         } else {
                             homeViewModel.shouldPopToRootViewIfFalse = false
                         }

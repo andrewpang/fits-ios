@@ -106,6 +106,7 @@
 		47E6F28028D27F8900CA503C /* FollowerFollowingViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */; };
 		47E6F28228D2940F00CA503C /* FollowingRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28128D2940F00CA503C /* FollowingRowView.swift */; };
 		47E6F28628D3D88400CA503C /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28528D3D88400CA503C /* NotificationModel.swift */; };
+		47E6F28828D7828200CA503C /* WaterfallCollectionRandomFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28728D7828200CA503C /* WaterfallCollectionRandomFeedView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -220,6 +221,7 @@
 		47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFollowingViewModel.swift; sourceTree = "<group>"; };
 		47E6F28128D2940F00CA503C /* FollowingRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowingRowView.swift; sourceTree = "<group>"; };
 		47E6F28528D3D88400CA503C /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
+		47E6F28728D7828200CA503C /* WaterfallCollectionRandomFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WaterfallCollectionRandomFeedView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -331,6 +333,7 @@
 				4736502D28AC5A600056853C /* ImageUICollectionViewCell.swift */,
 				4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */,
 				47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */,
+				47E6F28728D7828200CA503C /* WaterfallCollectionRandomFeedView.swift */,
 			);
 			path = WaterfallLayout;
 			sourceTree = "<group>";
@@ -750,6 +753,7 @@
 				470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */,
 				4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
+				47E6F28828D7828200CA503C /* WaterfallCollectionRandomFeedView.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				471B3A9128C80A8E0040742E /* PostLikersView.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,

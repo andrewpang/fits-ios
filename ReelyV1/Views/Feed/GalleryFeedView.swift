@@ -67,7 +67,7 @@ struct GalleryFeedView: View {
                     CategoryTabBarView(currentTab: self.$currentTab)
                     TabView(selection: self.$currentTab) {
                         WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0)
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1)
+                        WaterfallCollectionRandomFeedView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1)
                         WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
@@ -136,7 +136,7 @@ struct CategoryTabBarItem: View {
                 Spacer()
                 if currentTab == tab {
                     Text(tabBarItemName).font(Font.custom(Constants.bodyFont, size: 16))
-                    Color.black
+                    Color(Constants.darkBackgroundColor)
                         .frame(height: 2)
                         .matchedGeometryEffect(id: "underline",
                                                in: namespace,
