@@ -18,7 +18,7 @@ struct GalleryFeedView: View {
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
-    @State var currentTab: Int = 0
+    @State var currentTab: Int = 1
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
@@ -103,7 +103,7 @@ struct CategoryTabBarView: View {
     var tabBarOptions: [String] = ["Following", "For You", "Most Recent"]
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
+            HStack(spacing: 0) {
                 ForEach(Array(zip(self.tabBarOptions.indices,
                                       self.tabBarOptions)),
                         id: \.0,
@@ -115,7 +115,7 @@ struct CategoryTabBarView: View {
                                 tab: index)
                         
                         })
-            }.padding(.horizontal, 24)
+            }.padding(.horizontal, 8)
         }
         .frame(height: 40)
     }
@@ -146,7 +146,7 @@ struct CategoryTabBarItem: View {
                     Color.clear.frame(height: 2)
                 }
                 Spacer()
-            }
+            }.padding(.horizontal, 8)
             .animation(.spring(), value: self.currentTab)
         }
         .buttonStyle(.plain)
