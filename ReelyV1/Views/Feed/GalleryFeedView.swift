@@ -18,7 +18,7 @@ struct GalleryFeedView: View {
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
-    @State var currentTab: Int = 0
+    @State var currentTab: Int = 1
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
@@ -67,7 +67,7 @@ struct GalleryFeedView: View {
                     CategoryTabBarView(currentTab: self.$currentTab)
                     TabView(selection: self.$currentTab) {
                         WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0)
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1)
+                        WaterfallCollectionRandomFeedView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1)
                         WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2)
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
@@ -103,7 +103,7 @@ struct CategoryTabBarView: View {
     var tabBarOptions: [String] = ["Following", "For You", "Most Recent"]
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
-            HStack(spacing: 20) {
+            HStack(spacing: 0) {
                 ForEach(Array(zip(self.tabBarOptions.indices,
                                       self.tabBarOptions)),
                         id: \.0,
@@ -115,7 +115,7 @@ struct CategoryTabBarView: View {
                                 tab: index)
                         
                         })
-            }.padding(.horizontal, 24)
+            }.padding(.horizontal, 8)
         }
         .frame(height: 40)
     }
@@ -136,7 +136,7 @@ struct CategoryTabBarItem: View {
                 Spacer()
                 if currentTab == tab {
                     Text(tabBarItemName).font(Font.custom(Constants.bodyFont, size: 16))
-                    Color.black
+                    Color(Constants.darkBackgroundColor)
                         .frame(height: 2)
                         .matchedGeometryEffect(id: "underline",
                                                in: namespace,
@@ -146,7 +146,7 @@ struct CategoryTabBarItem: View {
                     Color.clear.frame(height: 2)
                 }
                 Spacer()
-            }
+            }.padding(.horizontal, 8)
             .animation(.spring(), value: self.currentTab)
         }
         .buttonStyle(.plain)

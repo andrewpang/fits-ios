@@ -14,9 +14,12 @@ import FirebaseFirestoreSwift
 class HomeViewModel: ObservableObject {
     
     @Published var postsData = PostsModel()
+    @Published var randomizedPostsData = PostsModel()
     @Published var showIntroPostOverlay = false
     @Published var shouldPopToRootViewIfFalse = false
-    @Published var shouldScrollToTop = false
+    @Published var shouldScrollToTopFollowing = false
+    @Published var shouldScrollToTopForYou = false
+    @Published var shouldScrollToTopMostRecent = false
     @Published var promptPostsData = [PromptPostModel]()
     @Published var postsSeenThisSession = 0
     @Published var postsUserHasLikedList = [String]()
@@ -57,6 +60,7 @@ class HomeViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.postsData = PostsModel(postModels: postList)
+                self.randomizedPostsData = PostsModel(postModels: postList.shuffled())
             }
         }
     }

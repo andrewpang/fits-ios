@@ -1,18 +1,19 @@
 //
-//  WaterfallPromptCollectionView.swift
+//  WaterfallCollectionRandomFeedView.swift
 //  FITs
 //
-//  Created by Andrew Pang on 8/24/22.
+//  Created by Andrew Pang on 9/18/22.
 //
 
 import SwiftUI
 import Amplitude
 import Mixpanel
 
-// WARNING: When updating, check if needs to update WaterfallCollectionViewController, WaterfallCollectionRandomFeedView
-struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
+// WARNING: When updating, check if needs to update WaterfallCollectionViewController, WaterfallPromptCollectionView
+struct WaterfallCollectionRandomFeedView: UIViewControllerRepresentable {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @StateObject var promptDetailViewModel: PromptDetailViewModel
+    @EnvironmentObject var tabViewModel: TabViewModel
+    @ObservedObject var homeViewModel: HomeViewModel
     @Binding var selectedPostDetail: PostDetailViewModel
     
     var uiCollectionViewController: UICollectionViewController
@@ -52,12 +53,12 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
         //TODO: Look into if there's a more perfomant way to handle this
         uiViewController.collectionView.reloadData()
-//        if (homeViewModel.shouldScrollToTop) {
-//            uiViewController.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
-//                                              at: .top,
-//                                        animated: true)
-//            homeViewModel.shouldScrollToTop = false
-//        }
+        if (homeViewModel.shouldScrollToTopForYou) {
+            uiViewController.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
+                                              at: .top,
+                                        animated: true)
+            homeViewModel.shouldScrollToTopForYou = false
+        }
     }
 
     func makeCoordinator() -> Coordinator {
@@ -65,13 +66,13 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
-        var parent: WaterfallPromptCollectionView
+        var parent: WaterfallCollectionRandomFeedView
         var uiCollectionViewController: UICollectionViewController
         var screenWidth = 0.0
         var cardWidth = 0.0
         @Binding var postDetailViewModel: PostDetailViewModel
         
-        init(_ parent: WaterfallPromptCollectionView, uiCollectionViewController: UICollectionViewController, postDetailViewModel: Binding<PostDetailViewModel>) {
+        init(_ parent: WaterfallCollectionRandomFeedView, uiCollectionViewController: UICollectionViewController, postDetailViewModel: Binding<PostDetailViewModel>) {
             self.parent = parent
             self.uiCollectionViewController = uiCollectionViewController
             self.screenWidth = UIScreen.main.bounds.width
@@ -80,7 +81,7 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
-            if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
+            if let post = parent.homeViewModel.randomizedPostsData.postModels?[indexPath.item] {
                 if (post.getThumbnailAspectRatio() > 0.0) {
                     let cardImageHeight = cardWidth * post.getThumbnailAspectRatio()
                     let postTitleHeight = 50.0
@@ -94,14 +95,14 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
         }
 
         func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-            parent.promptDetailViewModel.postsData.postModels?.count ?? 0
+            parent.homeViewModel.randomizedPostsData.postModels?.count ?? 0
         }
 
         func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
             // Create the cell and return the cell
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as! ImageUICollectionViewCell
             // Add image to cell
-            if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
+            if let post = parent.homeViewModel.randomizedPostsData.postModels?[indexPath.item] {
                 if let imageUrls = post.imageUrls, !imageUrls.isEmpty {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: imageUrls.first!, width: CloudinaryHelper.thumbnailWidth)
                     cell.setImageUrl(urlString: cloudinaryCompressedUrl)
@@ -122,16 +123,21 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)
                     cell.setProfileImageUrl(urlString: cloudinaryCompressedUrl)
                 }
-                if parent.promptDetailViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
+                if let prompt = post.prompt, !prompt.promptHasAlreadyEnded() && !parent.homeViewModel.hasUserPostedToPrompt(promptId: prompt.promptId){
+                    cell.setBlurAndAddPromptButton()
+                } else {
+                    cell.removeBlurAndAddPromptButton()
+                }
+                if parent.homeViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
                     cell.showHighlightedApplaudButton()
                     cell.applaudButtonTapAction = {
                         () in
-                        self.parent.promptDetailViewModel.unlikePost(postModel: post, userId: self.parent.authenticationViewModel.userModel?.id)
+                        self.parent.homeViewModel.unlikePost(postModel: post, userId: self.parent.authenticationViewModel.userModel?.id)
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.error)
                         let eventName = "Like Button - Clicked"
-                        let propertiesDict = ["isLike": false as Bool, "source": "promptFeed", "postId": post.id ?? "noId"] as? [String : Any]
-                        let mixpanelDict = ["isLike": false as Bool, "source": "promptFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
+                        let propertiesDict = ["isLike": false as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": false as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
                         Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
@@ -139,24 +145,29 @@ struct WaterfallPromptCollectionView: UIViewControllerRepresentable {
                     cell.showUnhighlighedApplaudButton()
                     cell.applaudButtonTapAction = {
                         () in
-                        self.parent.promptDetailViewModel.likePost(postModel: post, likeModel: LikeModel(id: self.parent.authenticationViewModel.userModel?.id, author: self.parent.authenticationViewModel.getPostAuthorMap()))
+                        self.parent.homeViewModel.likePost(postModel: post, likeModel: LikeModel(id: self.parent.authenticationViewModel.userModel?.id, author: self.parent.authenticationViewModel.getPostAuthorMap()))
                         let generator = UINotificationFeedbackGenerator()
                         generator.notificationOccurred(.success)
                         let eventName = "Like Button - Clicked"
-                        let propertiesDict = ["isLike": true as Bool, "source": "promptFeed", "postId": post.id] as? [String : Any]
-                        let mixpanelDict = ["isLike": true as Bool, "source": "promptFeed", "postId": post.id] as? [String : MixpanelType]
+                        let propertiesDict = ["isLike": true as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": true as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
                         Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
                 }
+                
             }
             return cell
         }
         
         func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-            if let post = parent.promptDetailViewModel.postsData.postModels?[indexPath.item] {
-                postDetailViewModel = PostDetailViewModel(postModel: post)
-                parent.promptDetailViewModel.detailViewIsActive = true
+            if let post = parent.homeViewModel.randomizedPostsData.postModels?[indexPath.item] {
+                if let prompt = post.prompt, !prompt.promptHasAlreadyEnded() && !parent.homeViewModel.hasUserPostedToPrompt(promptId: prompt.promptId){
+                    parent.tabViewModel.showPromptTab()
+                } else {
+                    postDetailViewModel = PostDetailViewModel(postModel: post)
+                    parent.homeViewModel.shouldPopToRootViewIfFalse = true
+                }
             }
         }
     }
