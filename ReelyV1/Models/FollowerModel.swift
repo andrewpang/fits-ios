@@ -11,7 +11,7 @@ import FirebaseFirestore
 
 public struct FollowerModel: Codable {
     @DocumentID public var id: String?
-    var mostRecentPostTime: Timestamp?
+    var mostRecentPostTimestamp: Timestamp?
     var users: [String]?
     var recentPosts: [PostModel]?
 }
