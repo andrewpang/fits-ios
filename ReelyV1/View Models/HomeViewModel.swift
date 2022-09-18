@@ -114,7 +114,9 @@ class HomeViewModel: ObservableObject {
             let followingUserIds = followingList.compactMap { followerModel -> String in
                 followerModel.id ?? "noId"
             }
-            self.fetchFollowingPosts(isAdmin: isAdmin, followingUserIds: followingUserIds)
+            if (!followingUserIds.isEmpty) {
+                self.fetchFollowingPosts(isAdmin: isAdmin, followingUserIds: followingUserIds)
+            }
         }
     }
     

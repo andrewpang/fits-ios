@@ -113,10 +113,11 @@ struct CategoryTabBarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
     
-    var tabBarOptions: [String] = ["Following", "For You", "Most Recent"]
+    var tabBarOptions: [String] = ["Following", "Home", "Most Recent"]
     var body: some View {
-        ScrollView(.horizontal, showsIndicators: false) {
+//        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
+                Spacer()
                 ForEach(Array(zip(self.tabBarOptions.indices,
                                       self.tabBarOptions)),
                         id: \.0,
@@ -128,8 +129,9 @@ struct CategoryTabBarView: View {
                                 tab: index)
                         
                         })
-            }.padding(.horizontal, 8)
-        }
+                Spacer()
+            }.padding(.horizontal, 24)
+//        }
         .frame(height: 40)
     }
 }
