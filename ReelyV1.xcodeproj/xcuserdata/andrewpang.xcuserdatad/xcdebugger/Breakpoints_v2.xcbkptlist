@@ -110,8 +110,8 @@
             filePath = "ReelyV1/View Models/HomeViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "105"
-            endingLineNumber = "105"
+            startingLineNumber = "108"
+            endingLineNumber = "108"
             landmarkName = "fetchFollowingFeed(isAdmin:currentUserId:)"
             landmarkType = "7">
          </BreakpointContent>

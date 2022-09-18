@@ -63,7 +63,10 @@ class HomeViewModel: ObservableObject {
             }
             DispatchQueue.main.async {
                 self.postsData = PostsModel(postModels: postList)
-                self.randomizedPostsData = PostsModel(postModels: postList.shuffled())
+                //Don't randomize everytime there's a new post or update
+                if (self.randomizedPostsData.postModels?.count ?? 0 == 0) {
+                    self.randomizedPostsData = PostsModel(postModels: postList.shuffled())
+                }
             }
         }
     }
