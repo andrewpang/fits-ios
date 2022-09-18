@@ -10,7 +10,7 @@ import Amplitude
 import Mixpanel
 
 // WARNING: When updating, check if needs to update WaterfallCollectionViewController, WaterfallPromptCollectionView
-struct WaterfallCollectionRandomFeedView: UIViewControllerRepresentable {
+struct RandomFeedWaterfallCollectionView: UIViewControllerRepresentable {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @EnvironmentObject var tabViewModel: TabViewModel
     @ObservedObject var homeViewModel: HomeViewModel
@@ -66,13 +66,13 @@ struct WaterfallCollectionRandomFeedView: UIViewControllerRepresentable {
     }
 
     class Coordinator: NSObject, UICollectionViewDelegate, UICollectionViewDataSource, CHTCollectionViewDelegateWaterfallLayout {
-        var parent: WaterfallCollectionRandomFeedView
+        var parent: RandomFeedWaterfallCollectionView
         var uiCollectionViewController: UICollectionViewController
         var screenWidth = 0.0
         var cardWidth = 0.0
         @Binding var postDetailViewModel: PostDetailViewModel
         
-        init(_ parent: WaterfallCollectionRandomFeedView, uiCollectionViewController: UICollectionViewController, postDetailViewModel: Binding<PostDetailViewModel>) {
+        init(_ parent: RandomFeedWaterfallCollectionView, uiCollectionViewController: UICollectionViewController, postDetailViewModel: Binding<PostDetailViewModel>) {
             self.parent = parent
             self.uiCollectionViewController = uiCollectionViewController
             self.screenWidth = UIScreen.main.bounds.width

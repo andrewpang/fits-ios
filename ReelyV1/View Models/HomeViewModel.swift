@@ -15,6 +15,7 @@ class HomeViewModel: ObservableObject {
     
     @Published var postsData = PostsModel()
     @Published var randomizedPostsData = PostsModel()
+    @Published var followingPostsData = PostsModel()
     @Published var showIntroPostOverlay = false
     @Published var shouldPopToRootViewIfFalse = false
     @Published var shouldScrollToTopFollowing = false
@@ -32,6 +33,8 @@ class HomeViewModel: ObservableObject {
     var postsListener: ListenerRegistration?
     var promptPostsListener: ListenerRegistration?
     var likesListener: ListenerRegistration?
+    var followingUsersListener: ListenerRegistration?
+    var followingPostsListener: ListenerRegistration?
     
     func fetchPosts(isAdmin: Bool) {
         if (postsListener != nil) {
@@ -88,8 +91,64 @@ class HomeViewModel: ObservableObject {
         }
     }
     
-    func fetchFollowingPosts(isAdmin: Bool) {
-        //TODO: Figure out how to hide "admin" posts
+    func fetchFollowingFeed(isAdmin: Bool, currentUserId: String) {
+        if (followingUsersListener  != nil && followingPostsListener != nil) {
+            return
+        }
+        
+        let fetchFollowingQuery = db.collection("followers")
+            .whereField("users", arrayContains: currentUserId)
+            .order(by: "mostRecentPostTimestamp", descending: true)
+            .limit(to: 10)
+        
+        followingUsersListener = fetchFollowingQuery.addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            var followingList = [FollowerModel]()
+            followingList = documents.compactMap { querySnapshot -> FollowerModel? in
+                return try? querySnapshot.data(as: FollowerModel.self)
+            }
+            let followingUserIds = followingList.compactMap { followerModel -> String in
+                followerModel.id ?? "noId"
+            }
+            self.fetchFollowingPosts(isAdmin: isAdmin, followingUserIds: followingUserIds)
+        }
+    }
+    
+    private func fetchFollowingPosts(isAdmin: Bool, followingUserIds: [String]) {
+        if (followingPostsListener != nil) {
+            followingPostsListener?.remove()
+        }
+        
+        var fetchPostQuery: Query
+        if (isAdmin) {
+            fetchPostQuery = db.collection("posts")
+                .whereField("author.userId", in: followingUserIds)
+                .order(by: "createdAt", descending: true)
+        } else {
+            fetchPostQuery = db.collection("posts")
+                .whereField("groupId", isEqualTo: Constants.FITGroupId)
+                .whereField("author.userId", in: followingUserIds)
+                .order(by: "createdAt", descending: true)
+        }
+        
+        followingPostsListener = fetchPostQuery.addSnapshotListener { (querySnapshot, error) in
+            guard let documents = querySnapshot?.documents else {
+                print("No documents")
+                return
+            }
+
+            var postList = [PostModel]()
+            postList = documents.compactMap { querySnapshot -> PostModel? in
+                return try? querySnapshot.data(as: PostModel.self)
+            }
+            DispatchQueue.main.async {
+                self.followingPostsData = PostsModel(postModels: postList)
+            }
+        }
     }
     
     func checkIfShouldShowIntroPostOverlay() {

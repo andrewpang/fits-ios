@@ -66,9 +66,25 @@ struct GalleryFeedView: View {
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
                     CategoryTabBarView(currentTab: self.$currentTab)
                     TabView(selection: self.$currentTab) {
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0)
-                        WaterfallCollectionRandomFeedView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1)
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2)
+                        FollowerFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0).onAppear {
+                            self.homeViewModel.fetchFollowingFeed(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false, currentUserId: authenticationViewModel.userModel?.id ?? "noId")
+                            let eventName = "Home Feed Screen - View"
+                            let propertiesDict = ["feed": "Following"] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                        }
+                        RandomFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1).onAppear {
+                            let eventName = "Home Feed Screen - View"
+                            let propertiesDict = ["feed": "Random"] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                        }
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2).onAppear {
+                            let eventName = "Home Feed Screen - View"
+                            let propertiesDict = ["feed": "Most Recent"] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                        }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                 }
@@ -83,9 +99,6 @@ struct GalleryFeedView: View {
             self.homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
             self.homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
             self.homeViewModel.fetchPostLikesForUser(with: authenticationViewModel.userModel?.id ?? "noId")
-            let eventName = "Home Feed Screen - View"
-            Amplitude.instance().logEvent(eventName)
-            Mixpanel.mainInstance().track(event: eventName)
 //            for family in UIFont.familyNames {
 //              print("family:", family)
 //              for font in UIFont.fontNames(forFamilyName: family) {
