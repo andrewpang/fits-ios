@@ -47,6 +47,20 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
         
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        let uiAction = UIAction(handler: { uiAction in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                //TODO: Hook up to refresh
+                refreshControl.endRefreshing()
+            }
+            let eventName = "Home Feed Refresh - Pulled"
+            let propertiesDict = ["feed": "Most Recent"] as? [String : String]
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+        })
+        refreshControl.addAction(uiAction, for: .primaryActionTriggered)
+        
         return uiCollectionViewController
     }
     

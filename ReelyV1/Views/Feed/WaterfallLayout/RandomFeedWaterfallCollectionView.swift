@@ -47,6 +47,20 @@ struct RandomFeedWaterfallCollectionView: UIViewControllerRepresentable {
         let viewNib = UINib(nibName: "ImageUICollectionViewCell", bundle: nil)
         collectionView.register(viewNib, forCellWithReuseIdentifier: "cell")
         
+        let refreshControl = UIRefreshControl()
+        collectionView.refreshControl = refreshControl
+        let uiAction = UIAction(handler: { uiAction in
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                   homeViewModel.refreshRandomFeed()
+                   refreshControl.endRefreshing()
+            }
+            let eventName = "Home Feed Refresh - Pulled"
+            let propertiesDict = ["feed": "Random"] as? [String : String]
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+        })
+        refreshControl.addAction(uiAction, for: .primaryActionTriggered)
+        
         return uiCollectionViewController
     }
     
@@ -170,5 +184,12 @@ struct RandomFeedWaterfallCollectionView: UIViewControllerRepresentable {
                 }
             }
         }
+    }
+}
+
+class MainViewHelper {
+    @objc func refreshFeedData(_ sender: Any) {
+//        homeViewModel.randomizedPostsData.postModels = homeViewModel.postsData.postModels?.shuffled()
+        (sender as? UIRefreshControl)?.endRefreshing()
     }
 }
