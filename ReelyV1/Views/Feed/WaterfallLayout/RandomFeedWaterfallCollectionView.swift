@@ -186,10 +186,3 @@ struct RandomFeedWaterfallCollectionView: UIViewControllerRepresentable {
         }
     }
 }
-
-class MainViewHelper {
-    @objc func refreshFeedData(_ sender: Any) {
-//        homeViewModel.randomizedPostsData.postModels = homeViewModel.postsData.postModels?.shuffled()
-        (sender as? UIRefreshControl)?.endRefreshing()
-    }
-}

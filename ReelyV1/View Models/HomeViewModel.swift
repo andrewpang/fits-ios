@@ -36,12 +36,6 @@ class HomeViewModel: ObservableObject {
     var followingUsersListener: ListenerRegistration?
     var followingPostsListener: ListenerRegistration?
     
-    @objc func refreshRandomFeed() {
-        DispatchQueue.main.async {
-            self.randomizedPostsData.postModels = self.postsData.postModels?.shuffled()
-        }
-    }
-    
     func fetchPosts(isAdmin: Bool) {
         if (postsListener != nil) {
             return
@@ -159,6 +153,12 @@ class HomeViewModel: ObservableObject {
             DispatchQueue.main.async {
                 self.followingPostsData = PostsModel(postModels: postList)
             }
+        }
+    }
+    
+    func refreshRandomFeed() {
+        DispatchQueue.main.async {
+            self.randomizedPostsData.postModels = self.postsData.postModels?.shuffled()
         }
     }
     
