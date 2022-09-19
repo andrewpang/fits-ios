@@ -18,7 +18,6 @@ struct GalleryFeedView: View {
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
-//    @State var currentTab: Int = 1
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
