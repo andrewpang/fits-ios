@@ -28,6 +28,10 @@ class HomeViewModel: ObservableObject {
     
     private var db = Firestore.firestore()
     
+    let followingTab = 0
+    let homeTab = 1
+    let mostRecentTab = 2
+    
     let limitTimesToSeeIntroPostOverlay = 5
     let numberOfPostsSeenToShowOverlay = 5
     
