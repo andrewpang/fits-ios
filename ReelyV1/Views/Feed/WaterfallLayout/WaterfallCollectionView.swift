@@ -67,7 +67,7 @@ struct WaterfallCollectionViewController: UIViewControllerRepresentable {
     func updateUIViewController(_ uiViewController: UICollectionViewController, context: Context) {
         //TODO: Look into if there's a more perfomant way to handle this
         uiViewController.collectionView.reloadData()
-        if (homeViewModel.shouldScrollToTopMostRecent) {
+        if (homeViewModel.shouldScrollToTopMostRecent && homeViewModel.postsData.postModels?.count ?? 0 > 0) {
             uiViewController.collectionView.scrollToItem(at: IndexPath(row: 0, section: 0),
                                               at: .top,
                                         animated: true)
