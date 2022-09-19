@@ -70,7 +70,7 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
     fileprivate func setupExplanationLabel() {
         let normalText = "We sent a 6-digit code to "
         let boldText = UserDefaults.standard.string(forKey: Constants.phoneNumberKey) ?? "your phone number"
-        let italicText = ". (You may have to wait a few seconds)"
+        let italicText = ". (You may have to wait for a verification screen)"
         
         let normalAttrs = [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 18)]
         let boldAttrs = [NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 18)]
@@ -151,7 +151,9 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
                 ] as? [String : Bool]
             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-            self.profileViewModel?.uploadProfilePhotoAndModel()
+            if let isNewUser = result?.additionalUserInfo?.isNewUser, isNewUser == true {
+                self.profileViewModel?.uploadProfilePhotoAndModel()
+            }
             self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)
        }
