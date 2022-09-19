@@ -24,6 +24,7 @@ class HomeViewModel: ObservableObject {
     @Published var promptPostsData = [PromptPostModel]()
     @Published var postsSeenThisSession = 0
     @Published var postsUserHasLikedList = [String]()
+    @Published var currentTab = 1
     
     private var db = Firestore.firestore()
     

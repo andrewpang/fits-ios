@@ -150,7 +150,9 @@ struct AddPostView: View {
                             homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                             homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         } else {
+                            homeViewModel.shouldScrollToTopMostRecent = true
                             tabViewModel.tabSelection = 1
+                            homeViewModel.currentTab = 2
                             homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                             homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         }
