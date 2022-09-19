@@ -151,7 +151,9 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
                 ] as? [String : Bool]
             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-            self.profileViewModel?.uploadProfilePhotoAndModel()
+            if let isNewUser = result?.additionalUserInfo?.isNewUser, isNewUser == true {
+                self.profileViewModel?.uploadProfilePhotoAndModel()
+            }
             self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)
        }
