@@ -18,7 +18,7 @@ struct GalleryFeedView: View {
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
-    @State var currentTab: Int = 1
+//    @State var currentTab: Int = 1
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
@@ -64,8 +64,8 @@ struct GalleryFeedView: View {
                     Text(Constants.appTitle)
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
-                    CategoryTabBarView(currentTab: self.$currentTab)
-                    TabView(selection: self.$currentTab) {
+                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab)
+                    TabView(selection: self.$homeViewModel.currentTab) {
                         FollowerFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0).onAppear {
                             self.homeViewModel.fetchFollowingFeed(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false, currentUserId: authenticationViewModel.userModel?.id ?? "noId")
                             let eventName = "Home Feed Screen - View"
