@@ -165,7 +165,7 @@ struct AddPostView: View {
                                 .font(Font.custom(Constants.bodyFont, size: 16))
                         }.padding(.vertical, 4)
                         .padding(.horizontal, 16)
-                        .background(Color.red)
+                        .background(Color.gray)
                         .foregroundColor(.white)
                         .cornerRadius(10)
                         .opacity(0.75)

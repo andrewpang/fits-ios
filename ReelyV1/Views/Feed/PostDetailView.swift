@@ -300,28 +300,6 @@ struct PostDetailView: View {
                         }
                     }
                 }
-//                .popup(isPresented: $postDetailViewModel.isShowingBookmarkPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: false), position: .bottom, autohideIn: 2) {
-//                    HStack {
-//                        Image(systemName: "checkmark.circle.fill")
-//                            .font(.system(size: 24.0, weight: .light))
-//                            .foregroundColor(.white)
-//                            .padding(.horizontal, 8)
-//                        Text("Bookmarked")
-//                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-//                            .foregroundColor(.white)
-//                        Spacer()
-//                        Text("Organize >")
-//                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-//                            .foregroundColor(.white)
-//                            .padding(.horizontal, 8)
-//                    }
-//                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
-//                    .background(.black)
-//                    .opacity(0.75)
-////                    .foregroundColor(.white)
-//                    .cornerRadius(Constants.buttonCornerRadius)
-//                    .padding(.horizontal, 24)
-//                }
                 .onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 }
@@ -443,7 +421,7 @@ struct PostDetailView: View {
                                         .font(Font.custom(Constants.bodyFont, size: 16))
                                 }.padding(.vertical, 4)
                                 .padding(.horizontal, 16)
-                                .background(Color.blue)
+                                .background(Color.gray)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                                 .opacity(0.75)
