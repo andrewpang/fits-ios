@@ -37,12 +37,6 @@ struct PostDetailView: View {
    
     @FocusState var focusedField: PostDetailFocusField?
     @State var isShowingLoadingIndicator = true
-
-    func postCommentAndDismissKeyboard() {
-        let commentModel = CommentModel(author: authenticationViewModel.getPostAuthorMap(), commentText: postDetailViewModel.commentText.trimmingCharacters(in: .whitespacesAndNewlines))
-        postDetailViewModel.postComment(commentModel: commentModel)
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
     
     func isUsersOwnPost() -> Bool {
         return (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool
@@ -309,63 +303,7 @@ struct PostDetailView: View {
                 .padding(.bottom, 8)
                 if (!isEditMode) {
                     Divider()
-                    HStack {
-                        if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                                .clipShape(Circle())
-                                .padding(.leading, 8)
-                        } else {
-                            Image("portraitPlaceHolder")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                                .clipShape(Circle())
-                                .padding(.leading, 8)
-                        }
-                        if #available(iOS 15.0, *) {
-                            TextField("Add Comment", text: $postDetailViewModel.commentText)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 16)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .focused($focusedField, equals: .commentField)
-                                .submitLabel(.send)
-                                .onSubmit {
-                                    let eventName = "Submit Comment - Clicked"
-                                    let propertiesDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-                                    let mixpanelDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-                                    postCommentAndDismissKeyboard()
-                                }
-                        } else {
-                            // Fallback on earlier versions
-                            TextField("Add Comment", text: $postDetailViewModel.commentText)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .focused($focusedField, equals: .commentField)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 16)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
-                        if (!postDetailViewModel.commentText.isEmpty) {
-                            Button(action: {
-                                let eventName = "Submit Comment - Clicked"
-                                let propertiesDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-                                let mixpanelDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-                                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-                                postCommentAndDismissKeyboard()
-                            }) {
-                                Image(systemName: "arrow.up.circle")
-                                    .font(.system(size: 32.0))
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 8)
-                            }
-                        }
-                    }
+                    CommentBarView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
                 }
             }.navigationBarTitle("", displayMode: .inline)
             .onAppear {
@@ -573,3 +511,76 @@ struct PostDetailView: View {
         }
     }
 }
+
+//struct CommentBarView: View {
+//    
+//    @ObservedObject var postDetailViewModel: PostDetailViewModel
+//    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
+//    @FocusState var focusedField: PostDetailView.PostDetailFocusField
+//    
+//    var body: some View {
+//        HStack {
+//            if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
+//                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
+//                    .clipShape(Circle())
+//                    .padding(.leading, 8)
+//            } else {
+//                Image("portraitPlaceHolder")
+//                    .resizable()
+//                    .scaledToFill()
+//                    .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
+//                    .clipShape(Circle())
+//                    .padding(.leading, 8)
+//            }
+//            if #available(iOS 15.0, *) {
+//                TextField("Add Comment", text: $postDetailViewModel.commentText)
+//                    .font(Font.custom(Constants.bodyFont, size: 16))
+//                    .padding(.horizontal, 8)
+//                    .padding(.vertical, 16)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//                    .focused($focusedField, equals: PostDetailView.PostDetailFocusField.commentField)
+//                    .submitLabel(.send)
+//                    .onSubmit {
+//                        let eventName = "Submit Comment - Clicked"
+//                        let propertiesDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+//                        let mixpanelDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
+//                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+//                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+//                        postCommentAndDismissKeyboard()
+//                    }
+//            } else {
+//                // Fallback on earlier versions
+//                TextField("Add Comment", text: $postDetailViewModel.commentText)
+//                    .font(Font.custom(Constants.bodyFont, size: 16))
+//                    .focused($focusedField, equals: PostDetailView.PostDetailFocusField.commentField)
+//                    .padding(.horizontal, 8)
+//                    .padding(.vertical, 16)
+//                    .textFieldStyle(RoundedBorderTextFieldStyle())
+//            }
+//            if (!postDetailViewModel.commentText.isEmpty) {
+//                Button(action: {
+//                    let eventName = "Submit Comment - Clicked"
+//                    let propertiesDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+//                    let mixpanelDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
+//                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+//                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+//                    postCommentAndDismissKeyboard()
+//                }) {
+//                    Image(systemName: "arrow.up.circle")
+//                        .font(.system(size: 32.0))
+//                        .foregroundColor(.gray)
+//                        .padding(.trailing, 8)
+//                }
+//            }
+//        }
+//    }
+//    
+//    func postCommentAndDismissKeyboard() {
+//        let commentModel = CommentModel(author: authenticationViewModel.getPostAuthorMap(), commentText: postDetailViewModel.commentText.trimmingCharacters(in: .whitespacesAndNewlines))
+//        postDetailViewModel.postComment(commentModel: commentModel)
+//        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
+//    }
+//}
