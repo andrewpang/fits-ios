@@ -125,7 +125,7 @@ struct CommentBarView: View {
         }.padding(.horizontal, 8)
         .confettiCannon(counter: $likeConfettiCounter, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
         .sheet(isPresented: $postDetailViewModel.isShowingBoardsSheet) {
-            Text("Boards")
+            AddToBoardView(postDetailViewModel: postDetailViewModel)
         }
     }
     
