@@ -10,6 +10,7 @@ import Kingfisher
 import Amplitude
 import Mixpanel
 import ConfettiSwiftUI
+import PopupView
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
@@ -295,17 +296,41 @@ struct PostDetailView: View {
                             
                             CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
                                 .padding(.horizontal, 24)
+                                .padding(.bottom, 8)
                         }
                     }
-                }.onTapGesture {
+                }
+//                .popup(isPresented: $postDetailViewModel.isShowingBookmarkPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: false), position: .bottom, autohideIn: 2) {
+//                    HStack {
+//                        Image(systemName: "checkmark.circle.fill")
+//                            .font(.system(size: 24.0, weight: .light))
+//                            .foregroundColor(.white)
+//                            .padding(.horizontal, 8)
+//                        Text("Bookmarked")
+//                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+//                            .foregroundColor(.white)
+//                        Spacer()
+//                        Text("Organize >")
+//                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+//                            .foregroundColor(.white)
+//                            .padding(.horizontal, 8)
+//                    }
+//                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55, maxHeight: 55)
+//                    .background(.black)
+//                    .opacity(0.75)
+////                    .foregroundColor(.white)
+//                    .cornerRadius(Constants.buttonCornerRadius)
+//                    .padding(.horizontal, 24)
+//                }
+                .onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 }
-                .padding(.bottom, 8)
                 if (!isEditMode) {
                     Divider()
                     CommentBarView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
                 }
             }.navigationBarTitle("", displayMode: .inline)
+            
             .onAppear {
                 let propertiesDict = [
                     "postId": postDetailViewModel.postModel.id as Any,
@@ -491,6 +516,38 @@ struct PostDetailView: View {
                     Text("Are you sure you want to delete your post? (You can't undo this)")
                 })
             .navigationBarBackButtonHidden(isEditMode)
+        }.popup(isPresented: $postDetailViewModel.isShowingBookmarkPopup, type: .floater(verticalPadding: 80, useSafeAreaInset: true), position: .bottom, autohideIn: 3, closeOnTap: false) {
+            HStack {
+//                Image(systemName: "checkmark.circle.fill")
+//                    .font(.system(size: 24.0, weight: .light))
+//                    .foregroundColor(.green)
+//                    .padding(.leading, 8)
+                Text("✅")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(.white)
+                    .padding(.leading, 16)
+                Text("Added to Collections")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(.white)
+                Spacer()
+                Button(action: {
+                    
+                }, label: {
+                    HStack(spacing: 4) {
+                        Text("Organize")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                            .foregroundColor(.white)
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 16.0))
+                            .foregroundColor(.white)
+                    }
+                }).padding(.trailing, 16)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+            .background(.black)
+            .opacity(0.85)
+            .cornerRadius(Constants.buttonCornerRadius)
+            .padding(.horizontal, 16)
         }
     }
     

@@ -10,6 +10,7 @@ import Kingfisher
 import Amplitude
 import Mixpanel
 import ConfettiSwiftUI
+import PopupView
 
 struct CommentBarView: View {
     
@@ -18,6 +19,7 @@ struct CommentBarView: View {
     @FocusState var focusedField: PostDetailView.PostDetailFocusField?
     @State var isAnimatingApplaud = false
     @State var isCommentFocused = false
+    @State var isShowingPopup = false
     @State private var likeConfettiCounter: Int = 0
     @State private var confettiCounterTwo: Int = 0
     
@@ -112,6 +114,7 @@ struct CommentBarView: View {
                 }
                 Button(action: {
                     //bookmark post
+                    postDetailViewModel.isShowingBookmarkPopup = true
                 }) {
                     Image(systemName: "bookmark")
                         .font(.system(size: 24.0, weight: .light))

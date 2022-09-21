@@ -18,6 +18,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var isLiked = false
     @Published var likeText = ""
     @Published var isSubmitting = false
+    @Published var isShowingBookmarkPopup = false
     
     @Published var likersList = [LikeModel]()
     
