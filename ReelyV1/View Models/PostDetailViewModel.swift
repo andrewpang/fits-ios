@@ -325,4 +325,104 @@ class PostDetailViewModel: ObservableObject {
             }
         }
     }
+    
+    func bookmarkPost(bookmarkModel: BookmarkModel) {
+        if let postId = bookmarkModel.postId {
+            if let bookmarkerId = bookmarkModel.bookmarkerId {
+                let bookmarksCollection = self.db.collection("bookmarks")
+                let documentId = "\(bookmarkerId)_\(postId)"
+                let bookmarkDocument = bookmarksCollection.document(documentId)
+                let postDocument = self.db.collection("posts").document(postId)
+                do {
+                    let batch = db.batch()
+                    try batch.setData(from: bookmarkModel, forDocument: bookmarkDocument, merge: true)
+                    batch.updateData(["bookmarksCount": FieldValue.increment(Int64(1))], forDocument: postDocument)
+                    batch.commit() { err in
+                        if let err = err {
+                            print("Error writing bookmarkPost batch \(err)")
+                        } else {
+                            print("Batch write for bookmarkPost succeeded.")
+                        }
+                    }
+                }
+                catch {
+                    print (error)
+                }
+            }
+        }
+    }
+    
+    func unbookmarkPost(bookmarkerId: String) {
+        if let postId = postModel.id {
+            let bookmarksCollection = self.db.collection("bookmarks")
+            let documentId = "\(bookmarkerId)_\(postId)"
+            let bookmarkDocument = bookmarksCollection.document(documentId)
+            let postDocument = self.db.collection("posts").document(postId)
+            
+            let batch = db.batch()
+            batch.deleteDocument(bookmarkDocument)
+            batch.updateData(["bookmarksCount": FieldValue.increment(Int64(-1))], forDocument: postDocument)
+            batch.commit() { err in
+                if let err = err {
+                    print("Error writing unbookmarkPost batch \(err)")
+                } else {
+                    print("Batch write for unbookmarkPost succeeded.")
+                }
+            }
+        }
+    }
+    
+    func addBookmarkToBoard(bookmarkModel: BookmarkModel, boardId: String) {
+        if let postId = bookmarkModel.postId {
+            if let bookmarkerId = bookmarkModel.bookmarkerId {
+                let bookmarksCollection = self.db.collection("bookmarks")
+                let documentId = "\(bookmarkerId)_\(postId)"
+                let bookmarkDocument = bookmarksCollection.document(documentId)
+                bookmarkDocument.setData([
+                    "boardIds": FieldValue.arrayUnion([boardId])
+                ], merge: true){ error in
+                    if let error = error {
+                        print("Error adding boardIds to bookmarkModel: \(error)")
+                    } else {
+                        print("Added boardIds to bookmarkModel")
+                    }
+                }
+            }
+        }
+    }
+    
+    func removeBookmarkFromBoard(bookmarkModel: BookmarkModel, boardId: String) {
+        if let postId = bookmarkModel.postId {
+            if let bookmarkerId = bookmarkModel.bookmarkerId {
+                let bookmarksCollection = self.db.collection("bookmarks")
+                let documentId = "\(bookmarkerId)_\(postId)"
+                let bookmarkDocument = bookmarksCollection.document(documentId)
+                bookmarkDocument.setData([
+                    "boardIds": FieldValue.arrayRemove([boardId])
+                ], merge: true){ error in
+                    if let error = error {
+                        print("Error removing boardIds from bookmarkModel: \(error)")
+                    } else {
+                        print("Removed boardId from bookmarkModel")
+                    }
+                }
+            }
+        }
+    }
+    
+    func createNewBookmarkBoard(bookmarkBoardModel: BookmarkBoardModel) {
+        let bookmarkBoardsCollection = self.db.collection("bookmarkBoards")
+        do {
+            let _ = try bookmarkBoardsCollection.addDocument(from: bookmarkBoardModel) { error in
+                if let error = error {
+                    print("Error adding BookmarkBoardModel: \(error)")
+                } else {
+                    print("Added new BookmarkBoardModel")
+                }
+            }
+        }
+        catch {
+            print(error)
+        }
+    }
 }

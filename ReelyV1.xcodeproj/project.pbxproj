@@ -108,6 +108,8 @@
 		47E6F28628D3D88400CA503C /* NotificationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28528D3D88400CA503C /* NotificationModel.swift */; };
 		47E6F28828D7828200CA503C /* RandomFeedWaterfallCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28728D7828200CA503C /* RandomFeedWaterfallCollectionView.swift */; };
 		47E6F28A28D7967100CA503C /* FollowerFeedWaterfallCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28928D7967100CA503C /* FollowerFeedWaterfallCollectionView.swift */; };
+		47E6F28E28DA827800CA503C /* BookmarkBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28D28DA827800CA503C /* BookmarkBoardModel.swift */; };
+		47E6F29028DA843C00CA503C /* BookmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28F28DA843C00CA503C /* BookmarkModel.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -224,6 +226,8 @@
 		47E6F28528D3D88400CA503C /* NotificationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationModel.swift; sourceTree = "<group>"; };
 		47E6F28728D7828200CA503C /* RandomFeedWaterfallCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RandomFeedWaterfallCollectionView.swift; sourceTree = "<group>"; };
 		47E6F28928D7967100CA503C /* FollowerFeedWaterfallCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerFeedWaterfallCollectionView.swift; sourceTree = "<group>"; };
+		47E6F28D28DA827800CA503C /* BookmarkBoardModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkBoardModel.swift; sourceTree = "<group>"; };
+		47E6F28F28DA843C00CA503C /* BookmarkModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkModel.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -373,6 +377,8 @@
 				473C6A4B283C8ED800D4D15E /* PostModel.swift */,
 				470FD76F28B5735C00D70341 /* PostPromptMap.swift */,
 				47C5C1CD28B8319000F84E66 /* PromptPostModel.swift */,
+				47E6F28D28DA827800CA503C /* BookmarkBoardModel.swift */,
+				47E6F28F28DA843C00CA503C /* BookmarkModel.swift */,
 				4761CC062870C642008ED1BF /* PostAuthorMap.swift */,
 				4761CC0A28724E62008ED1BF /* UserModel.swift */,
 				479FE995287554E10030EE4D /* CommentModel.swift */,
@@ -726,6 +732,7 @@
 				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				47F767F7288E082800265633 /* UserProfileView.swift in Sources */,
+				47E6F29028DA843C00CA503C /* BookmarkModel.swift in Sources */,
 				47FC5D88288627F3000B9794 /* PhotoPickerModel.swift in Sources */,
 				470FD77028B5735C00D70341 /* PostPromptMap.swift in Sources */,
 				473C6A42283C89A300D4D15E /* PHImagePicker.swift in Sources */,
@@ -758,6 +765,7 @@
 				4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */,
 				473C6A52283C8F8C00D4D15E /* HomeViewModel.swift in Sources */,
 				47E6F28828D7828200CA503C /* RandomFeedWaterfallCollectionView.swift in Sources */,
+				47E6F28E28DA827800CA503C /* BookmarkBoardModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				471B3A9128C80A8E0040742E /* PostLikersView.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,
