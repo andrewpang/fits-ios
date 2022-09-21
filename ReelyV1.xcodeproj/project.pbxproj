@@ -111,6 +111,7 @@
 		47E6F28E28DA827800CA503C /* BookmarkBoardModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28D28DA827800CA503C /* BookmarkBoardModel.swift */; };
 		47E6F29028DA843C00CA503C /* BookmarkModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F28F28DA843C00CA503C /* BookmarkModel.swift */; };
 		47E6F29228DAC1F300CA503C /* CommentBarView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29128DAC1F300CA503C /* CommentBarView.swift */; };
+		47E6F29528DADB2800CA503C /* PopupView in Frameworks */ = {isa = PBXBuildFile; productRef = 47E6F29428DADB2800CA503C /* PopupView */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -258,6 +259,7 @@
 				4756A8B72874CED9006DA042 /* FirebaseStorage in Frameworks */,
 				4756A8A52874CED9006DA042 /* FirebaseAnalytics in Frameworks */,
 				47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */,
+				47E6F29528DADB2800CA503C /* PopupView in Frameworks */,
 				47498EC72874F3FE00F45B7D /* PhoneNumberKit in Frameworks */,
 				4756A8B32874CED9006DA042 /* FirebaseFunctions in Frameworks */,
 				471035092878C01A00D41E71 /* Amplitude in Frameworks */,
@@ -584,6 +586,7 @@
 				47D0444E28A6F9E40071591D /* Mixpanel */,
 				4755B77728A9C18F00942AAD /* Cloudinary */,
 				47E6F27128D0314E00CA503C /* ConfettiSwiftUI */,
+				47E6F29428DADB2800CA503C /* PopupView */,
 			);
 			productName = ReelyV1;
 			productReference = 47834456283C63520022025E /* FITs.app */;
@@ -667,6 +670,7 @@
 				47D0444D28A6F9E40071591D /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
 				4755B77628A9C18E00942AAD /* XCRemoteSwiftPackageReference "cloudinary_ios" */,
 				47E6F27028D0314E00CA503C /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */,
+				47E6F29328DADB2800CA503C /* XCRemoteSwiftPackageReference "PopupView" */,
 			);
 			productRefGroup = 47834457283C63520022025E /* Products */;
 			projectDirPath = "";
@@ -1211,6 +1215,14 @@
 				minimumVersion = 1.0.0;
 			};
 		};
+		47E6F29328DADB2800CA503C /* XCRemoteSwiftPackageReference "PopupView" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/exyte/PopupView.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 1.0.0;
+			};
+		};
 		47FC5D98288663F8000B9794 /* XCRemoteSwiftPackageReference "WaterfallGrid" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/paololeonardi/WaterfallGrid";
@@ -1316,6 +1328,11 @@
 			isa = XCSwiftPackageProductDependency;
 			package = 47E6F27028D0314E00CA503C /* XCRemoteSwiftPackageReference "ConfettiSwiftUI" */;
 			productName = ConfettiSwiftUI;
+		};
+		47E6F29428DADB2800CA503C /* PopupView */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 47E6F29328DADB2800CA503C /* XCRemoteSwiftPackageReference "PopupView" */;
+			productName = PopupView;
 		};
 		47FC5D99288663F8000B9794 /* WaterfallGrid */ = {
 			isa = XCSwiftPackageProductDependency;
