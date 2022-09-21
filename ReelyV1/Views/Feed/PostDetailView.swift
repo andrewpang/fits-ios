@@ -518,34 +518,30 @@ struct PostDetailView: View {
             .navigationBarBackButtonHidden(isEditMode)
         }.popup(isPresented: $postDetailViewModel.isShowingBookmarkPopup, type: .floater(verticalPadding: 80, useSafeAreaInset: true), position: .bottom, autohideIn: 3, closeOnTap: false) {
             HStack {
-//                Image(systemName: "checkmark.circle.fill")
-//                    .font(.system(size: 24.0, weight: .light))
-//                    .foregroundColor(.green)
-//                    .padding(.leading, 8)
                 Text("✅")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(.white)
                     .padding(.leading, 16)
                 Text("Added to Collections")
                     .font(Font.custom(Constants.buttonFont, size: 16))
-                    .foregroundColor(.white)
+                    .foregroundColor(Color(Constants.backgroundColor))
                 Spacer()
                 Button(action: {
-                    
+                    postDetailViewModel.isShowingBoardsSheet = true
                 }, label: {
                     HStack(spacing: 4) {
-                        Text("Organize")
+                        Text("Manage")
                             .font(Font.custom(Constants.titleFontBold, size: 16))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(Constants.backgroundColor))
                         Image(systemName: "chevron.right")
                             .font(.system(size: 16.0))
-                            .foregroundColor(.white)
+                            .foregroundColor(Color(Constants.backgroundColor))
                     }
                 }).padding(.trailing, 16)
             }
             .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
-            .background(.black)
-            .opacity(0.85)
+            .background(Color(Constants.darkBackgroundColor))
+            .opacity(0.9)
             .cornerRadius(Constants.buttonCornerRadius)
             .padding(.horizontal, 16)
         }
