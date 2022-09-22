@@ -538,7 +538,6 @@ struct PostDetailView: View {
             .background(Color(Constants.darkBackgroundColor))
             .opacity(0.9)
             .cornerRadius(Constants.buttonCornerRadius)
-            
         }
     }
     
