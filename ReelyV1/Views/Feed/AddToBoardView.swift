@@ -10,8 +10,10 @@ import SwiftUI
 struct AddToBoardView: View {
     
     @ObservedObject var postDetailViewModel: PostDetailViewModel
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @Environment(\.presentationMode) var presentationMode
     @State var showCreateNewBoardView = false
+    @State var showUnbookmarkConfirmationDialog = false
     
     var body: some View {
         NavigationView {
@@ -34,10 +36,13 @@ struct AddToBoardView: View {
                             .font(Font.custom(Constants.titleFontBold, size: 24))
                             
                         Spacer()
-                        Image(systemName: "xmark")
-                            .font(.system(size: 18.0))
-                            .foregroundColor(Color(Constants.darkBackgroundColor))
-                            .hidden()
+                        Button(action: {
+                            showUnbookmarkConfirmationDialog = true
+                        }) {
+                            Image(systemName: "trash.fill")
+                                .font(.system(size: 18.0))
+                                .foregroundColor(.red)
+                        }
                     }.padding(24)
                     ScrollView {
                         Text("Hi")
@@ -70,6 +75,17 @@ struct AddToBoardView: View {
                 }
             }.navigationBarTitle("")
             .navigationBarHidden(true)
+            .confirmationDialog("Remove from Collections", isPresented: $showUnbookmarkConfirmationDialog) {
+                Button ("Remove from Collections", role: ButtonRole.destructive) {
+                    if let bookmarkerId = authenticationViewModel.userModel?.id {
+                        postDetailViewModel.unbookmarkPost(bookmarkerId: bookmarkerId)
+                        presentationMode.wrappedValue.dismiss()
+                    }
+                }
+                Button ("Cancel", role: ButtonRole.cancel) {}
+            } message: {
+                Text ("Are you sure you want to remove this post from your collections?")
+            }
         }
     }
 }

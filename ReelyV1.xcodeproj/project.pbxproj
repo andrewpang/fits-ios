@@ -336,6 +336,8 @@
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
 				479FE99928755B930030EE4D /* CommentsView.swift */,
 				479FE99B28755C1F0030EE4D /* CommentRowView.swift */,
+				47E6F29628DBB48B00CA503C /* AddToBoardView.swift */,
+				47E6F29828DBBD0900CA503C /* CreateNewBoardView.swift */,
 			);
 			path = Feed;
 			sourceTree = "<group>";
@@ -399,8 +401,6 @@
 				470FD76B28B5722300D70341 /* PromptModel.swift */,
 				47E6F27328D12F0C00CA503C /* FollowerModel.swift */,
 				47E6F28528D3D88400CA503C /* NotificationModel.swift */,
-				47E6F29628DBB48B00CA503C /* AddToBoardView.swift */,
-				47E6F29828DBBD0900CA503C /* CreateNewBoardView.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";

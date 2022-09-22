@@ -16,6 +16,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var commentsData = CommentsModel()
     @Published var commentText = ""
     @Published var isLiked = false
+    @Published var isBookmarked = false
     @Published var likeText = ""
     @Published var isSubmitting = false
     @Published var isShowingBookmarkPopup = false
@@ -27,6 +28,7 @@ class PostDetailViewModel: ObservableObject {
     
     var commentsListener: ListenerRegistration?
     var likesListener: ListenerRegistration?
+    var bookmarksListener: ListenerRegistration?
     var commentsLikesListeners: [ListenerRegistration]?
     
     @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
@@ -203,6 +205,37 @@ class PostDetailViewModel: ObservableObject {
                     
                     DispatchQueue.main.async {
                         self.likeText = likeString
+                    }
+                }
+            }
+        }
+    }
+    
+    func fetchUserHasBookmarkedPost(userId: String?) {
+        if let bookmarkerId = userId {
+            if let postId = postModel.id {
+                let bookmarksCollection = self.db.collection("bookmarks")
+                let documentId = "\(bookmarkerId)_\(postId)"
+                let bookmarkDocument = bookmarksCollection.document(documentId)
+                
+                bookmarksListener = bookmarkDocument.addSnapshotListener { documentSnapshot, error in
+                    guard let document = documentSnapshot else {
+                        print("Error fetching document: \(error!)")
+                        DispatchQueue.main.async {
+                            self.isBookmarked = false
+                        }
+                        return
+                    }
+                    guard let data = document.data() else {
+                        print("Document data was empty.")
+                        DispatchQueue.main.async {
+                            self.isBookmarked = false
+                        }
+                        return
+                    }
+                    print("Current data: \(data)")
+                    DispatchQueue.main.async {
+                        self.isBookmarked = true
                     }
                 }
             }

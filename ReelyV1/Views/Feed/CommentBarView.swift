@@ -9,7 +9,6 @@ import SwiftUI
 import Kingfisher
 import Amplitude
 import Mixpanel
-import ConfettiSwiftUI
 import PopupView
 
 struct CommentBarView: View {
@@ -18,10 +17,9 @@ struct CommentBarView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @FocusState var focusedField: PostDetailView.PostDetailFocusField?
     @State var isAnimatingApplaud = false
+    @State var isAnimatingBookmark = false
     @State var isCommentFocused = false
     @State var isShowingPopup = false
-    @State private var likeConfettiCounter: Int = 0
-    @State private var confettiCounterTwo: Int = 0
     
     let generator = UINotificationFeedbackGenerator()
     
@@ -100,7 +98,7 @@ struct CommentBarView: View {
                     }
                 } else {
                     Button(action: {
-                        likeConfettiCounter += 1
+                        animateApplaud()
                         generator.notificationOccurred(.success)
                         likePostFirebaseAndAnalytics()
                     }) {
@@ -112,21 +110,53 @@ struct CommentBarView: View {
                             .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
                     }
                 }
-                Button(action: {
-                    //bookmark post
-                    postDetailViewModel.isShowingBookmarkPopup = true
-                }) {
-                    Image(systemName: "bookmark")
-                        .font(.system(size: 24.0, weight: .light))
-                        .foregroundColor(.gray)
-                        .padding(.horizontal, 8)
+                if (postDetailViewModel.isBookmarked) {
+                    Button(action: {
+                        generator.notificationOccurred(.success)
+                        postDetailViewModel.isShowingBoardsSheet = true
+                    }) {
+                        Image(systemName: "bookmark.fill")
+                            .font(.system(size: 24.0, weight: .light))
+                            .foregroundColor(.yellow)
+                            .padding(.horizontal, 8)
+                            .scaleEffect(isAnimatingBookmark ? 1.25 : 1.0)
+                            .animation(.easeInOut(duration: isAnimatingBookmark ? 0.25 : 1.0), value: isAnimatingBookmark)
+                    }
+                } else {
+                    Button(action: {
+                        animateBookmark()
+                        generator.notificationOccurred(.success)
+                        postDetailViewModel.isShowingBookmarkPopup = true
+                        let bookmarkModel = BookmarkModel(bookmarkerId: authenticationViewModel.userModel?.id, postId: postDetailViewModel.postModel.id)
+                        postDetailViewModel.bookmarkPost(bookmarkModel: bookmarkModel)
+                    }) {
+                        Image(systemName: "bookmark")
+                            .font(.system(size: 24.0, weight: .light))
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 8)
+                            .scaleEffect(isAnimatingBookmark ? 1.25 : 1.0)
+                            .animation(.easeInOut(duration: isAnimatingBookmark ? 0.25 : 1.0), value: isAnimatingBookmark)
+                    }
                 }
             }
         }.padding(.horizontal, 8)
-        .confettiCannon(counter: $likeConfettiCounter, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
         .sheet(isPresented: $postDetailViewModel.isShowingBoardsSheet) {
             AddToBoardView(postDetailViewModel: postDetailViewModel)
         }
+    }
+    
+    func animateApplaud() {
+        isAnimatingApplaud = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            self.isAnimatingApplaud = false
+        })
+    }
+    
+    func animateBookmark() {
+        isAnimatingBookmark = true
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.25, execute: {
+            self.isAnimatingBookmark = false
+        })
     }
     
     func likePostFirebaseAndAnalytics() {

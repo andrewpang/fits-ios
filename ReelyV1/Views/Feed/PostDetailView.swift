@@ -327,6 +327,7 @@ struct PostDetailView: View {
                 Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
                 self.postDetailViewModel.fetchComments()
                 self.postDetailViewModel.fetchLikes(userId: authenticationViewModel.userModel?.id)
+                self.postDetailViewModel.fetchUserHasBookmarkedPost(userId: authenticationViewModel.userModel?.id)
             }
             .onDisappear {
                 self.postDetailViewModel.removeListeners()
