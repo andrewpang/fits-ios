@@ -14,7 +14,6 @@ public struct BookmarkBoardModel: Identifiable, Codable, Hashable {
     @ServerTimestamp var createdAt: Timestamp?
     var lastUpdated: Timestamp?
     var creatorId: String?
-    var postedTimestamps: [Timestamp]?
     var title: String?
     var description: String?
     var previewImageUrls: [String]?

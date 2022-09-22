@@ -9,10 +9,9 @@ import SwiftUI
 import Kingfisher
 
 struct CreateNewBoardView: View {
-    
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @State var boardTitle = ""
-    @State var isSubmitting = false
     
     enum FocusField: Hashable {
       case field
@@ -22,28 +21,7 @@ struct CreateNewBoardView: View {
     
     var body: some View {
         VStack(alignment: .leading) {
-            HStack(spacing:0) {
-                KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: postDetailViewModel.postModel.imageUrls?.first ?? "", width: CloudinaryHelper.thumbnailWidth)))
-                    .resizable()
-                    .scaledToFill()
-                    .frame(width: 100, height: 151)
-                    .clipped()
-                    .cornerRadius(Constants.buttonCornerRadius, corners: [.topLeft, .bottomLeft])
-                Divider()
-                    .frame(width: 1, height: 151)
-                    .overlay(.white)
-                VStack(spacing:0){
-                    Rectangle().fill(Color(Constants.onBoardingButtonColor))
-                        .frame(width: 100, height: 75)
-                        .cornerRadius(Constants.buttonCornerRadius, corners: [.topRight])
-                    Divider()
-                        .frame(width: 100, height: 1)
-                        .overlay(.white)
-                    Rectangle().fill(Color(Constants.onBoardingButtonColor))
-                        .frame(width: 100, height: 75)
-                        .cornerRadius(Constants.buttonCornerRadius, corners: [.bottomRight])
-                }
-            }.padding(.vertical, 16)
+            BoardPreviewView(firstImageUrl: postDetailViewModel.postModel.getFirstImageUrl()).padding(.vertical, 16)
             Text("Board Name:")
                 .font(Font.custom(Constants.titleFontBold, size: 18))
             Text("Required (Max. 30 Characters)")
@@ -51,7 +29,7 @@ struct CreateNewBoardView: View {
                 .foregroundColor(.gray)
             TextField("Title", text: $boardTitle)
                 .font(Font.custom(Constants.titleFont, size: 18))
-                .disabled(isSubmitting)
+                .disabled(postDetailViewModel.isSubmittingCreateBoard)
                 .textFieldStyle(RoundedBorderTextFieldStyle())
                 .onReceive(boardTitle.publisher.collect()) {
                     let s = String($0.prefix(Constants.postTitleCharacterLimit))
@@ -66,7 +44,18 @@ struct CreateNewBoardView: View {
                     }
                 }
             Button(action: {
-                isSubmitting = true
+                postDetailViewModel.isSubmittingCreateBoard = true
+                let bookmarkBoardModel = BookmarkBoardModel(creatorId: authenticationViewModel.userModel?.id, title: boardTitle)
+                postDetailViewModel.createNewBookmarkBoard(bookmarkBoardModel: bookmarkBoardModel) { bookmarkBoardId in
+                    if let postId = postDetailViewModel.postModel.id {
+                        if let bookmarkerId = authenticationViewModel.userModel?.id {
+                            postDetailViewModel.addBookmarkToBoard(postId: postId, bookmarkerId: bookmarkerId, boardId: bookmarkBoardId)
+                        }
+                    }
+                    postDetailViewModel.isShowingBoardsSheet = false
+                    postDetailViewModel.isShowingBookmarkPopup = false
+                    postDetailViewModel.isShowingSavedToBoardPopup = true
+                }
             }) {
                 if (self.boardTitle.isEmpty) {
                     HStack {
@@ -82,7 +71,7 @@ struct CreateNewBoardView: View {
                     .padding(.horizontal, 40)
                 } else {
                     HStack {
-                        if (isSubmitting) {
+                        if (postDetailViewModel.isSubmittingCreateBoard) {
                             Text("Loading...")
                                 .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                                 .foregroundColor(Color(Constants.backgroundColor))
@@ -101,7 +90,7 @@ struct CreateNewBoardView: View {
                     .cornerRadius(Constants.buttonCornerRadius)
                     .padding(.horizontal, 40)
                 }
-            }.disabled(self.boardTitle.isEmpty || self.isSubmitting == true)
+            }.disabled(self.boardTitle.isEmpty || postDetailViewModel.isSubmittingCreateBoard == true)
             .padding(.vertical, 8)
             Spacer()
         }

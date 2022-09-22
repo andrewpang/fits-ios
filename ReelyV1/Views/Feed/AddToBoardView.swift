@@ -11,9 +11,8 @@ struct AddToBoardView: View {
     
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @Environment(\.presentationMode) var presentationMode
     @State var showCreateNewBoardView = false
-    @State var showUnbookmarkConfirmationDialog = false
+    @State var showUnbookmarkAlert = false
     
     var body: some View {
         NavigationView {
@@ -25,7 +24,7 @@ struct AddToBoardView: View {
                     }
                     HStack {
                         Button(action: {
-                            presentationMode.wrappedValue.dismiss()
+                            postDetailViewModel.isShowingBoardsSheet = false
                         }, label: {
                             Image(systemName: "xmark")
                                 .font(.system(size: 18.0))
@@ -37,9 +36,9 @@ struct AddToBoardView: View {
                             
                         Spacer()
                         Button(action: {
-                            showUnbookmarkConfirmationDialog = true
+                            showUnbookmarkAlert = true
                         }) {
-                            Image(systemName: "trash.fill")
+                            Image(systemName: "bookmark.slash.fill")
                                 .font(.system(size: 18.0))
                                 .foregroundColor(.red)
                         }
@@ -75,17 +74,17 @@ struct AddToBoardView: View {
                 }
             }.navigationBarTitle("")
             .navigationBarHidden(true)
-            .confirmationDialog("Remove from Collections", isPresented: $showUnbookmarkConfirmationDialog) {
-                Button ("Remove from Collections", role: ButtonRole.destructive) {
-                    if let bookmarkerId = authenticationViewModel.userModel?.id {
-                        postDetailViewModel.unbookmarkPost(bookmarkerId: bookmarkerId)
-                        presentationMode.wrappedValue.dismiss()
-                    }
-                }
-                Button ("Cancel", role: ButtonRole.cancel) {}
-            } message: {
-                Text ("Are you sure you want to remove this post from your collections?")
-            }
+            .alert("Remove from Collections", isPresented: $showUnbookmarkAlert, actions: {
+                  Button("Cancel", role: .cancel, action: {})
+                  Button("Remove", role: .destructive, action: {
+                      if let bookmarkerId = authenticationViewModel.userModel?.id {
+                          postDetailViewModel.unbookmarkPost(bookmarkerId: bookmarkerId)
+                          postDetailViewModel.isShowingBoardsSheet = false
+                      }
+                  })
+                }, message: {
+                    Text("Are you sure you want to remove this post from your collections?")
+                })
         }
     }
 }

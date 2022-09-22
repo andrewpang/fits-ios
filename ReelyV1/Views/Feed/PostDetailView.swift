@@ -428,7 +428,7 @@ struct PostDetailView: View {
                                 .opacity(0.75)
                             } else {
                                 HStack {
-                                    if (postDetailViewModel.isSubmitting) {
+                                    if (postDetailViewModel.isSubmittingEditPost) {
                                         Text("Loading...")
                                             .font(Font.custom(Constants.bodyFont, size: 16))
                                     } else {
@@ -442,7 +442,7 @@ struct PostDetailView: View {
                                 .cornerRadius(10)
                             }
                         }
-                        .disabled(self.postDetailViewModel.isSubmitting || editPostTitle.isEmpty || editPostBody.isEmpty)
+                        .disabled(self.postDetailViewModel.isSubmittingEditPost || editPostTitle.isEmpty || editPostBody.isEmpty)
                     } else {
                         Button(action: {
                             showConfirmationDialog = true
@@ -523,6 +523,21 @@ struct PostDetailView: View {
             .opacity(0.9)
             .cornerRadius(Constants.buttonCornerRadius)
             .padding(.horizontal, 16)
+        }
+        .popup(isPresented: $postDetailViewModel.isShowingSavedToBoardPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: true), position: .top, autohideIn: 2) {
+            HStack {
+                Text("📌")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(.white)
+                Text("Saved to Board")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(Color(Constants.backgroundColor))
+            }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 16)
+            .background(Color(Constants.darkBackgroundColor))
+            .opacity(0.9)
+            .cornerRadius(Constants.buttonCornerRadius)
         }
     }
     
