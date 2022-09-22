@@ -147,12 +147,19 @@ class CheckSMSViewController: UIViewController, UITextFieldDelegate {
                 self.confirmNumberButton.isUserInteractionEnabled = true
                 return
             }
-            let propertiesDict = ["wasSignupSuccessful": true,
-                ] as? [String : Bool]
-            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             if let isNewUser = result?.additionalUserInfo?.isNewUser, isNewUser == true {
                 self.profileViewModel?.uploadProfilePhotoAndModel()
+                let propertiesDict = ["wasSignupSuccessful": true,
+                    ] as? [String : Bool]
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                let signedUpEventName = "New User - Signed Up"
+                Amplitude.instance().logEvent(signedUpEventName)
+                Mixpanel.mainInstance().track(event: signedUpEventName)
+            } else {
+                let signedInEventName = "Existing User - Signed In"
+                Amplitude.instance().logEvent(signedInEventName)
+                Mixpanel.mainInstance().track(event: signedInEventName)
             }
             self.authenticationViewModel?.state = .signedIn
             self.dismiss(animated: true)
