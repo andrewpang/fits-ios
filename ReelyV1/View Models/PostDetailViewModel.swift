@@ -18,9 +18,11 @@ class PostDetailViewModel: ObservableObject {
     @Published var isLiked = false
     @Published var isBookmarked = false
     @Published var likeText = ""
-    @Published var isSubmitting = false
+    @Published var isSubmittingEditPost = false
+    @Published var isSubmittingCreateBoard = false
     @Published var isShowingBookmarkPopup = false
     @Published var isShowingBoardsSheet = false
+    @Published var isShowingSavedToBoardPopup = false
     
     @Published var likersList = [LikeModel]()
     
@@ -266,7 +268,7 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func editPost(title: String, body: String) {
-        self.isSubmitting = true
+        self.isSubmittingEditPost = true
         if let postId = postModel.id {
             let postDocument = self.db.collection("posts").document(postId)
             postDocument.updateData([
@@ -276,10 +278,10 @@ class PostDetailViewModel: ObservableObject {
             ]) { err in
                 if let err = err {
                     print("Error updating document: \(err)")
-                    self.isSubmitting = false
+                    self.isSubmittingEditPost = false
                 } else {
                     print("Document successfully updated")
-                    self.isSubmitting = false
+                    self.isSubmittingEditPost = false
                     //Passing PostModel in without listener, so easier to just set on client for now
                     self.postModel.title = title
                     self.postModel.body = body
@@ -407,23 +409,19 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func addBookmarkToBoard(bookmarkModel: BookmarkModel, boardId: String) {
-        if let postId = bookmarkModel.postId {
-            if let bookmarkerId = bookmarkModel.bookmarkerId {
-                let bookmarksCollection = self.db.collection("bookmarks")
-                let documentId = "\(bookmarkerId)_\(postId)"
-                let bookmarkDocument = bookmarksCollection.document(documentId)
-                bookmarkDocument.setData([
-                    "boardIds": FieldValue.arrayUnion([boardId])
-                ], merge: true){ error in
-                    if let error = error {
-                        print("Error adding boardIds to bookmarkModel: \(error)")
-                    } else {
-                        print("Added boardIds to bookmarkModel")
-                    }
-                }
+    func addBookmarkToBoard(postId: String, bookmarkerId: String, boardId: String) {
+        let bookmarksCollection = self.db.collection("bookmarks")
+        let documentId = "\(bookmarkerId)_\(postId)"
+        let bookmarkDocument = bookmarksCollection.document(documentId)
+        bookmarkDocument.setData([
+            "boardIds": FieldValue.arrayUnion([boardId])
+        ], merge: true){ error in
+            if let error = error {
+                print("Error adding boardIds to bookmarkModel: \(error)")
+            } else {
+                print("Added boardIds to bookmarkModel")
             }
-        }
+        }    
     }
     
     func removeBookmarkFromBoard(bookmarkModel: BookmarkModel, boardId: String) {
@@ -445,19 +443,24 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func createNewBookmarkBoard(bookmarkBoardModel: BookmarkBoardModel) {
+    func createNewBookmarkBoard(bookmarkBoardModel: BookmarkBoardModel, completion: @escaping (_ bookmarkBoardId: String) -> Void) {
         let bookmarkBoardsCollection = self.db.collection("bookmarkBoards")
         do {
-            let _ = try bookmarkBoardsCollection.addDocument(from: bookmarkBoardModel) { error in
+            var ref: DocumentReference? = nil
+            ref = try bookmarkBoardsCollection.addDocument(from: bookmarkBoardModel) { error in
                 if let error = error {
                     print("Error adding BookmarkBoardModel: \(error)")
+                    self.isSubmittingCreateBoard = false
                 } else {
                     print("Added new BookmarkBoardModel")
+                    completion(ref!.documentID)
+                    self.isSubmittingCreateBoard = false
                 }
             }
         }
         catch {
             print(error)
+            self.isSubmittingCreateBoard = false
         }
     }
 }

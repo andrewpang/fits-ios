@@ -41,4 +41,11 @@ public struct PostModel: Identifiable, Codable, Hashable {
         }
         return 0.0
     }
+    
+    func getFirstImageUrl() -> String {
+        if let imageUrls = imageUrls, !imageUrls.isEmpty {
+            return imageUrls.first ?? ""
+        }
+        return imageUrl ?? ""
+    }
 }

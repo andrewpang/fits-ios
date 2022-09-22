@@ -11,7 +11,6 @@ struct AddToBoardView: View {
     
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
-    @Environment(\.presentationMode) var presentationMode
     @State var showCreateNewBoardView = false
     @State var showUnbookmarkAlert = false
     
@@ -25,7 +24,7 @@ struct AddToBoardView: View {
                     }
                     HStack {
                         Button(action: {
-                            presentationMode.wrappedValue.dismiss()
+                            postDetailViewModel.isShowingBoardsSheet = false
                         }, label: {
                             Image(systemName: "xmark")
                                 .font(.system(size: 18.0))
@@ -80,7 +79,7 @@ struct AddToBoardView: View {
                   Button("Remove", role: .destructive, action: {
                       if let bookmarkerId = authenticationViewModel.userModel?.id {
                           postDetailViewModel.unbookmarkPost(bookmarkerId: bookmarkerId)
-                          presentationMode.wrappedValue.dismiss()
+                          postDetailViewModel.isShowingBoardsSheet = false
                       }
                   })
                 }, message: {
