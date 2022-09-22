@@ -10,6 +10,7 @@ import Kingfisher
 import Amplitude
 import Mixpanel
 import ConfettiSwiftUI
+import PopupView
 
 struct PostDetailView: View {
     @ObservedObject var postDetailViewModel: PostDetailViewModel
@@ -37,12 +38,6 @@ struct PostDetailView: View {
    
     @FocusState var focusedField: PostDetailFocusField?
     @State var isShowingLoadingIndicator = true
-
-    func postCommentAndDismissKeyboard() {
-        let commentModel = CommentModel(author: authenticationViewModel.getPostAuthorMap(), commentText: postDetailViewModel.commentText.trimmingCharacters(in: .whitespacesAndNewlines))
-        postDetailViewModel.postComment(commentModel: commentModel)
-        UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
-    }
     
     func isUsersOwnPost() -> Bool {
         return (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool
@@ -301,73 +296,19 @@ struct PostDetailView: View {
                             
                             CommentsView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
                                 .padding(.horizontal, 24)
+                                .padding(.bottom, 8)
                         }
                     }
-                }.onTapGesture {
+                }
+                .onTapGesture {
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to:nil, from:nil, for:nil)
                 }
-                .padding(.bottom, 8)
                 if (!isEditMode) {
                     Divider()
-                    HStack {
-                        if let profilePicImageUrl = authenticationViewModel.userModel?.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-                            KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)))
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                                .clipShape(Circle())
-                                .padding(.leading, 8)
-                        } else {
-                            Image("portraitPlaceHolder")
-                                .resizable()
-                                .scaledToFill()
-                                .frame(width: Constants.commentsProfilePicSize, height:  Constants.commentsProfilePicSize)
-                                .clipShape(Circle())
-                                .padding(.leading, 8)
-                        }
-                        if #available(iOS 15.0, *) {
-                            TextField("Add Comment", text: $postDetailViewModel.commentText)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 16)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                                .focused($focusedField, equals: .commentField)
-                                .submitLabel(.send)
-                                .onSubmit {
-                                    let eventName = "Submit Comment - Clicked"
-                                    let propertiesDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-                                    let mixpanelDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-                                    Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                    Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-                                    postCommentAndDismissKeyboard()
-                                }
-                        } else {
-                            // Fallback on earlier versions
-                            TextField("Add Comment", text: $postDetailViewModel.commentText)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .focused($focusedField, equals: .commentField)
-                                .padding(.horizontal, 8)
-                                .padding(.vertical, 16)
-                                .textFieldStyle(RoundedBorderTextFieldStyle())
-                        }
-                        if (!postDetailViewModel.commentText.isEmpty) {
-                            Button(action: {
-                                let eventName = "Submit Comment - Clicked"
-                                let propertiesDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-                                let mixpanelDict = ["commentText": postDetailViewModel.commentText, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-                                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                                Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-                                postCommentAndDismissKeyboard()
-                            }) {
-                                Image(systemName: "arrow.up.circle")
-                                    .font(.system(size: 32.0))
-                                    .foregroundColor(.gray)
-                                    .padding(.trailing, 8)
-                            }
-                        }
-                    }
+                    CommentBarView(postDetailViewModel: postDetailViewModel, focusedField: _focusedField)
                 }
             }.navigationBarTitle("", displayMode: .inline)
+            
             .onAppear {
                 let propertiesDict = [
                     "postId": postDetailViewModel.postModel.id as Any,
@@ -386,6 +327,7 @@ struct PostDetailView: View {
                 Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
                 self.postDetailViewModel.fetchComments()
                 self.postDetailViewModel.fetchLikes(userId: authenticationViewModel.userModel?.id)
+                self.postDetailViewModel.fetchUserHasBookmarkedPost(userId: authenticationViewModel.userModel?.id)
             }
             .onDisappear {
                 self.postDetailViewModel.removeListeners()
@@ -480,7 +422,7 @@ struct PostDetailView: View {
                                         .font(Font.custom(Constants.bodyFont, size: 16))
                                 }.padding(.vertical, 4)
                                 .padding(.horizontal, 16)
-                                .background(Color.blue)
+                                .background(Color.gray)
                                 .foregroundColor(.white)
                                 .cornerRadius(10)
                                 .opacity(0.75)
@@ -553,6 +495,34 @@ struct PostDetailView: View {
                     Text("Are you sure you want to delete your post? (You can't undo this)")
                 })
             .navigationBarBackButtonHidden(isEditMode)
+        }.popup(isPresented: $postDetailViewModel.isShowingBookmarkPopup, type: .floater(verticalPadding: 80, useSafeAreaInset: true), position: .bottom, autohideIn: 3, closeOnTap: false) {
+            HStack {
+                Text("✅")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(.white)
+                    .padding(.leading, 16)
+                Text("Added to Collections")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(Color(Constants.backgroundColor))
+                Spacer()
+                Button(action: {
+                    postDetailViewModel.isShowingBoardsSheet = true
+                }, label: {
+                    HStack(spacing: 4) {
+                        Text("Manage")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                            .foregroundColor(Color(Constants.backgroundColor))
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 16.0))
+                            .foregroundColor(Color(Constants.backgroundColor))
+                    }
+                }).padding(.trailing, 16)
+            }
+            .frame(minWidth: 0, maxWidth: .infinity, minHeight: 50, maxHeight: 50)
+            .background(Color(Constants.darkBackgroundColor))
+            .opacity(0.9)
+            .cornerRadius(Constants.buttonCornerRadius)
+            .padding(.horizontal, 16)
         }
     }
     
