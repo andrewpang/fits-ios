@@ -66,20 +66,43 @@ struct CreateNewBoardView: View {
                     }
                 }
             Button(action: {
-                
+                isSubmitting = true
             }) {
-                HStack {
-                    Text("Create")
-                        .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                        .foregroundColor(Color(Constants.backgroundColor))
-                        .padding(.vertical, 16)
-                        .padding(.horizontal, 24)
+                if (self.boardTitle.isEmpty) {
+                    HStack {
+                        Text("Create Board")
+                            .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                            .foregroundColor(Color(Constants.backgroundColor))
+                            .padding(.vertical, 16)
+                            .padding(.horizontal, 24)
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
+                    .background(.gray)
+                    .cornerRadius(Constants.buttonCornerRadius)
+                    .padding(.horizontal, 40)
+                } else {
+                    HStack {
+                        if (isSubmitting) {
+                            Text("Loading...")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 24)
+                        } else {
+                            Text("Create Board")
+                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
+                                .foregroundColor(Color(Constants.backgroundColor))
+                                .padding(.vertical, 16)
+                                .padding(.horizontal, 24)
+                        }
+                    }
+                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
+                    .background(Color(Constants.darkBackgroundColor))
+                    .cornerRadius(Constants.buttonCornerRadius)
+                    .padding(.horizontal, 40)
                 }
-                .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
-                .background(Color(Constants.darkBackgroundColor))
-                .cornerRadius(Constants.buttonCornerRadius)
-                .padding(.horizontal, 40)
-            }.padding(.vertical, 8)
+            }.disabled(self.boardTitle.isEmpty || self.isSubmitting == true)
+            .padding(.vertical, 8)
             Spacer()
         }
         .navigationBarTitle("Create Board", displayMode: .inline)
