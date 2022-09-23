@@ -152,7 +152,7 @@ struct AddPostView: View {
                         } else {
                             homeViewModel.shouldScrollToTopMostRecent = true
                             tabViewModel.tabSelection = 1
-                            homeViewModel.currentTab = homeViewModel.homeTab //TODO (REE-328): Change when adding most recent
+                            homeViewModel.currentTab = homeViewModel.mostRecentTab
                             homeViewModel.fetchPosts(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false)
                             homeViewModel.fetchPromptPostsForUser(with: authenticationViewModel.userModel?.id ?? "")
                         }
