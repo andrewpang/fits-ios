@@ -21,93 +21,91 @@ struct AddToBoardView: View {
     
     var body: some View {
         NavigationView {
-            ZStack {
-                Color(Constants.backgroundColor).ignoresSafeArea()
-                VStack {
-                    NavigationLink(destination: CreateNewBoardView(postDetailViewModel: postDetailViewModel), isActive: $showCreateNewBoardView) {
-                        EmptyView()
+            VStack {
+                NavigationLink(destination: CreateNewBoardView(postDetailViewModel: postDetailViewModel), isActive: $showCreateNewBoardView) {
+                    EmptyView()
+                }
+                HStack {
+                    Button(action: {
+                        postDetailViewModel.isShowingBoardsSheet = false
+                    }, label: {
+                        Image(systemName: "xmark")
+                            .font(.system(size: 18.0))
+                            .foregroundColor(Color(Constants.darkBackgroundColor))
+                    })
+                    Spacer()
+                    Text("Save to board")
+                        .font(Font.custom(Constants.titleFontBold, size: 24))
+                        
+                    Spacer()
+                    Button(action: {
+                        generator.notificationOccurred(.warning)
+                        showUnbookmarkAlert = true
+                    }) {
+                        Image(systemName: "bookmark.slash.fill")
+                            .font(.system(size: 18.0))
+                            .foregroundColor(.red)
                     }
-                    HStack {
-                        Button(action: {
-                            postDetailViewModel.isShowingBoardsSheet = false
-                        }, label: {
-                            Image(systemName: "xmark")
-                                .font(.system(size: 18.0))
-                                .foregroundColor(Color(Constants.darkBackgroundColor))
-                        })
-                        Spacer()
-                        Text("Save to board")
-                            .font(Font.custom(Constants.titleFontBold, size: 24))
-                            
-                        Spacer()
-                        Button(action: {
-                            generator.notificationOccurred(.warning)
-                            showUnbookmarkAlert = true
-                        }) {
-                            Image(systemName: "bookmark.slash.fill")
-                                .font(.system(size: 18.0))
-                                .foregroundColor(.red)
-                        }
-                    }.padding(24)
-                    if let bookmarkBoardsList = postDetailViewModel.usersBookmarkBoardsList, !bookmarkBoardsList.isEmpty {
-                        ScrollView {
-                            LazyVStack(spacing: 8) {
-                                ForEach(bookmarkBoardsList, id: \.id) { bookmarkBoardModel in
-                                    Button(action: {
-                                        if let boardId = bookmarkBoardModel.id {
-                                            if let postId = postDetailViewModel.postModel.id {
-                                                if let bookmarkerId = authenticationViewModel.userModel?.id {
-                                                    if let boardIds = postDetailViewModel.bookmarkData.boardIds, boardIds.contains(boardId) {
-                                                        generator.notificationOccurred(.warning)
-                                                        selectedBookmarkBoard = bookmarkBoardModel
-                                                        showRemoveFromBoardAlert = true
-                                                    } else {
-                                                        generator.notificationOccurred(.success)
-                                                        postDetailViewModel.addBookmarkToBoard(postId: postId, previewImageUrl: postDetailViewModel.postModel.getFirstImageUrl(), bookmarkerId: bookmarkerId, boardId: boardId)
-                                                        postDetailViewModel.isShowingBoardsSheet = false
-                                                        postDetailViewModel.isShowingSavedToBoardPopup = true
-                                                    }
+                }.padding(24)
+                if let bookmarkBoardsList = postDetailViewModel.usersBookmarkBoardsList, !bookmarkBoardsList.isEmpty {
+                    ScrollView {
+                        LazyVStack(spacing: 8) {
+                            ForEach(bookmarkBoardsList, id: \.id) { bookmarkBoardModel in
+                                Button(action: {
+                                    if let boardId = bookmarkBoardModel.id {
+                                        if let postId = postDetailViewModel.postModel.id {
+                                            if let bookmarkerId = authenticationViewModel.userModel?.id {
+                                                if let boardIds = postDetailViewModel.bookmarkData.boardIds, boardIds.contains(boardId) {
+                                                    generator.notificationOccurred(.warning)
+                                                    selectedBookmarkBoard = bookmarkBoardModel
+                                                    showRemoveFromBoardAlert = true
+                                                } else {
+                                                    generator.notificationOccurred(.success)
+                                                    postDetailViewModel.addBookmarkToBoard(postId: postId, previewImageUrl: postDetailViewModel.postModel.getFirstImageUrl(), bookmarkerId: bookmarkerId, boardId: boardId)
+                                                    postDetailViewModel.isShowingBoardsSheet = false
+                                                    postDetailViewModel.isShowingSavedToBoardPopup = true
                                                 }
                                             }
                                         }
-                                    }, label: {
-                                        if let boardIds = postDetailViewModel.bookmarkData.boardIds, boardIds.contains(bookmarkBoardModel.id ?? "noId") {
-                                            AddToBoardRowView(bookmarkBoardModel: bookmarkBoardModel, alreadyAddedToBoard: true)
-                                        } else {
-                                            AddToBoardRowView(bookmarkBoardModel: bookmarkBoardModel, alreadyAddedToBoard: false)
-                                        }
-                                    })
-                                }
+                                    }
+                                }, label: {
+                                    if let boardIds = postDetailViewModel.bookmarkData.boardIds, boardIds.contains(bookmarkBoardModel.id ?? "noId") {
+                                        AddToBoardRowView(bookmarkBoardModel: bookmarkBoardModel, alreadyAddedToBoard: true)
+                                    } else {
+                                        AddToBoardRowView(bookmarkBoardModel: bookmarkBoardModel, alreadyAddedToBoard: false)
+                                    }
+                                })
                             }
                         }
-                    } else {
-                        Spacer()
-                        Text("You haven't created any boards yet :(")
-                            .font(Font.custom(Constants.bodyFont, size: 18))
-                            .padding(.horizontal, 8)
-                            .foregroundColor(Color(Constants.darkBackgroundColor))
                     }
+                } else {
                     Spacer()
-                    Divider()
-                        .frame(height: 1)
-                        .overlay(Color(Constants.darkBackgroundColor))
-                    Button(action: {
-                        showCreateNewBoardView = true
-                    }, label: {
-                        HStack {
-                            Image(systemName: "plus.circle")
-                                .font(.system(size: 32.0, weight: .light))
-                                .foregroundColor(Color(Constants.darkBackgroundColor))
-                            Text("Create new board")
-                                .font(Font.custom(Constants.bodyFont, size: 18))
-                            Spacer()
-                            Image(systemName: "chevron.right")
-                                .font(.system(size: 16.0, weight: .light))
-                                .foregroundColor(Color(Constants.darkBackgroundColor))
-                        }.padding(.horizontal, 24)
-                        .contentShape(Rectangle())
-                    }).buttonStyle(PlainButtonStyle())
+                    Text("You haven't created any boards yet :(")
+                        .font(Font.custom(Constants.bodyFont, size: 18))
+                        .padding(.horizontal, 8)
+                        .foregroundColor(Color(Constants.darkBackgroundColor))
                 }
+                Spacer()
+                Divider()
+                    .frame(height: 1)
+                    .overlay(Color(Constants.darkBackgroundColor))
+                Button(action: {
+                    showCreateNewBoardView = true
+                }, label: {
+                    HStack {
+                        Image(systemName: "plus.circle")
+                            .font(.system(size: 32.0, weight: .light))
+                            .foregroundColor(Color(Constants.darkBackgroundColor))
+                        Text("Create new board")
+                            .font(Font.custom(Constants.bodyFont, size: 18))
+                        Spacer()
+                        Image(systemName: "chevron.right")
+                            .font(.system(size: 16.0, weight: .light))
+                            .foregroundColor(Color(Constants.darkBackgroundColor))
+                    }.padding(.horizontal, 24)
+                    .contentShape(Rectangle())
+                }).buttonStyle(PlainButtonStyle())
+
             }.navigationBarTitle("")
             .navigationBarHidden(true)
             .alert("Remove from Collections", isPresented: $showUnbookmarkAlert, actions: {
