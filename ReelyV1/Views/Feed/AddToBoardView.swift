@@ -13,6 +13,11 @@ struct AddToBoardView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @State var showCreateNewBoardView = false
     @State var showUnbookmarkAlert = false
+    @State var showRemoveFromBoardAlert = false
+    @State var removedFromBoardPopup = false
+    @State var selectedBookmarkBoard = BookmarkBoardModel()
+    
+    let generator = UINotificationFeedbackGenerator()
     
     var body: some View {
         NavigationView {
@@ -36,6 +41,7 @@ struct AddToBoardView: View {
                             
                         Spacer()
                         Button(action: {
+                            generator.notificationOccurred(.warning)
                             showUnbookmarkAlert = true
                         }) {
                             Image(systemName: "bookmark.slash.fill")
@@ -43,13 +49,45 @@ struct AddToBoardView: View {
                                 .foregroundColor(.red)
                         }
                     }.padding(24)
+//                    .padding(.horizontal, 24)
+//                        .padding(.top, 24)
+//                        
+//                    Text("This post is already in your collections, but you can also add it to a board")
+//                        .font(Font.custom(Constants.bodyFont, size: 14))
+//                        .multilineTextAlignment(.center)
+//                        .padding(.horizontal, 40)
+//                        .padding(.bottom, 8)
                     ScrollView {
-                        Text("Hi")
-                        Text("Hi")
-                        Text("Hi")
-                        Text("Hi")
-                        Text("Hi")
-                        Text("Hi")
+                        LazyVStack {
+                            if let bookmarkBoardsList = postDetailViewModel.usersBookmarkBoardsList, !bookmarkBoardsList.isEmpty {
+                                ForEach(bookmarkBoardsList, id: \.id) { bookmarkBoardModel in
+                                    Button(action: {
+                                        if let boardId = bookmarkBoardModel.id {
+                                            if let postId = postDetailViewModel.postModel.id {
+                                                if let bookmarkerId = authenticationViewModel.userModel?.id {
+                                                    if let boardIds = postDetailViewModel.bookmarkData.boardIds, boardIds.contains(boardId) {
+                                                        generator.notificationOccurred(.warning)
+                                                        selectedBookmarkBoard = bookmarkBoardModel
+                                                        showRemoveFromBoardAlert = true
+                                                    } else {
+                                                        generator.notificationOccurred(.success)
+                                                        postDetailViewModel.addBookmarkToBoard(postId: postId, bookmarkerId: bookmarkerId, boardId: boardId)
+                                                        postDetailViewModel.isShowingBoardsSheet = false
+                                                        postDetailViewModel.isShowingSavedToBoardPopup = true
+                                                    }
+                                                }
+                                            }
+                                        }
+                                    }, label: {
+                                        if let boardIds = postDetailViewModel.bookmarkData.boardIds, boardIds.contains(bookmarkBoardModel.id ?? "noId") {
+                                            AddToBoardRowView(bookmarkBoardModel: bookmarkBoardModel, alreadyAddedToBoard: true)
+                                        } else {
+                                            AddToBoardRowView(bookmarkBoardModel: bookmarkBoardModel, alreadyAddedToBoard: false)
+                                        }
+                                    })
+                                }
+                            }
+                        }
                     }
                     Spacer()
                     Divider()
@@ -80,11 +118,42 @@ struct AddToBoardView: View {
                       if let bookmarkerId = authenticationViewModel.userModel?.id {
                           postDetailViewModel.unbookmarkPost(bookmarkerId: bookmarkerId)
                           postDetailViewModel.isShowingBoardsSheet = false
+                          postDetailViewModel.isShowingRemovedFromCollectionsPopup = true
                       }
                   })
                 }, message: {
                     Text("Are you sure you want to remove this post from your collections?")
                 })
+            .alert("Remove from Board", isPresented: $showRemoveFromBoardAlert, actions: {
+                  Button("Cancel", role: .cancel, action: {})
+                  Button("Remove", role: .destructive, action: {
+                      if let postId = postDetailViewModel.postModel.id {
+                          if let bookmarkerId = authenticationViewModel.userModel?.id {
+                              if let bookmarkBoardId = selectedBookmarkBoard.id {
+                                  postDetailViewModel.removeBookmarkFromBoard(postId: postId, bookmarkerId: bookmarkerId, boardId: bookmarkBoardId)
+                                  removedFromBoardPopup = true
+                              }
+                          }
+                      }
+                  })
+                }, message: {
+                    Text("Are you sure you want to remove this post from this board?")
+                })
+            .popup(isPresented: $removedFromBoardPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: true), position: .top, autohideIn: 2) {
+                HStack {
+                    Text("🙅‍♀️")
+                        .font(Font.custom(Constants.buttonFont, size: 16))
+                        .foregroundColor(.white)
+                    Text("Removed from board")
+                        .font(Font.custom(Constants.buttonFont, size: 16))
+                        .foregroundColor(Color(Constants.backgroundColor))
+                }
+                .padding(.horizontal, 24)
+                .padding(.vertical, 16)
+                .background(Color(Constants.darkBackgroundColor))
+                .opacity(0.9)
+                .cornerRadius(Constants.buttonCornerRadius)
+            }
             .onAppear {
                 postDetailViewModel.fetchBookmarkBoardsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
             }

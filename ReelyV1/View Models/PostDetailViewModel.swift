@@ -23,9 +23,11 @@ class PostDetailViewModel: ObservableObject {
     @Published var isShowingBookmarkPopup = false
     @Published var isShowingBoardsSheet = false
     @Published var isShowingSavedToBoardPopup = false
+    @Published var isShowingRemovedFromCollectionsPopup = false
     
     @Published var likersList = [LikeModel]()
-    @Published var bookmarkBoardsList = [BookmarkBoardModel]()
+    @Published var usersBookmarkBoardsList = [BookmarkBoardModel]()
+    @Published var bookmarkData = BookmarkModel()
     
     private var db = Firestore.firestore()
     
@@ -238,8 +240,17 @@ class PostDetailViewModel: ObservableObject {
                         return
                     }
                     print("Current data: \(data)")
+                    guard let bookmarkData = try? document.data(as: BookmarkModel.self) else {
+                        print("Couldn't parse user data to BookmarkModel")
+                        DispatchQueue.main.async {
+                            self.isBookmarked = false
+                        }
+                        return
+                    }
+                    
                     DispatchQueue.main.async {
                         self.isBookmarked = true
+                        self.bookmarkData = bookmarkData
                     }
                 }
             }
@@ -433,21 +444,17 @@ class PostDetailViewModel: ObservableObject {
         }    
     }
     
-    func removeBookmarkFromBoard(bookmarkModel: BookmarkModel, boardId: String) {
-        if let postId = bookmarkModel.postId {
-            if let bookmarkerId = bookmarkModel.bookmarkerId {
-                let bookmarksCollection = self.db.collection("bookmarks")
-                let documentId = "\(bookmarkerId)_\(postId)"
-                let bookmarkDocument = bookmarksCollection.document(documentId)
-                bookmarkDocument.setData([
-                    "boardIds": FieldValue.arrayRemove([boardId])
-                ], merge: true){ error in
-                    if let error = error {
-                        print("Error removing boardIds from bookmarkModel: \(error)")
-                    } else {
-                        print("Removed boardId from bookmarkModel")
-                    }
-                }
+    func removeBookmarkFromBoard(postId: String, bookmarkerId: String, boardId: String) {
+        let bookmarksCollection = self.db.collection("bookmarks")
+        let documentId = "\(bookmarkerId)_\(postId)"
+        let bookmarkDocument = bookmarksCollection.document(documentId)
+        bookmarkDocument.setData([
+            "boardIds": FieldValue.arrayRemove([boardId])
+        ], merge: true){ error in
+            if let error = error {
+                print("Error removing boardIds from bookmarkModel: \(error)")
+            } else {
+                print("Removed boardId from bookmarkModel")
             }
         }
     }
@@ -488,7 +495,7 @@ class PostDetailViewModel: ObservableObject {
                     return try? querySnapshot.data(as: BookmarkBoardModel.self)
                 }
                 DispatchQueue.main.async {
-                    self.bookmarkBoardsList = bookmarkBoardsList
+                    self.usersBookmarkBoardsList = bookmarkBoardsList
                 }
             }
     }

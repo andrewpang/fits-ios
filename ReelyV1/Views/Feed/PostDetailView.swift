@@ -539,6 +539,21 @@ struct PostDetailView: View {
             .opacity(0.9)
             .cornerRadius(Constants.buttonCornerRadius)
         }
+        .popup(isPresented: $postDetailViewModel.isShowingRemovedFromCollectionsPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: true), position: .top, autohideIn: 2) {
+            HStack {
+                Text("🙅‍♀️")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(.white)
+                Text("Removed from collections")
+                    .font(Font.custom(Constants.buttonFont, size: 16))
+                    .foregroundColor(Color(Constants.backgroundColor))
+            }
+            .padding(.horizontal, 24)
+            .padding(.vertical, 16)
+            .background(Color(Constants.darkBackgroundColor))
+            .opacity(0.9)
+            .cornerRadius(Constants.buttonCornerRadius)
+        }
     }
     
     func openMail(postId: String?) {
