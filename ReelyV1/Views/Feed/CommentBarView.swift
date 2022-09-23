@@ -79,65 +79,65 @@ struct CommentBarView: View {
                         .foregroundColor(.gray)
                 }
             } else if (!isCommentFocused) {
-//                if (postDetailViewModel.isLiked) {
-//                    Button(action: {
-//                        generator.notificationOccurred(.error)
-//                        postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
-//                        let eventName = "Like Button - Clicked"
-//                        let propertiesDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
-//                        let mixpanelDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
-//                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-//                    }) {
-//                        Image(systemName: "hands.clap.fill")
-//                            .font(.system(size: 24.0, weight: .light))
-//                            .foregroundColor(Color("FITColor"))
-//                            .padding(.horizontal, 8)
-//                            .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
-//                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
-//                    }
-//                } else {
-//                    Button(action: {
-//                        animateApplaud()
-//                        generator.notificationOccurred(.success)
-//                        likePostFirebaseAndAnalytics()
-//                    }) {
-//                        Image(systemName: "hands.clap")
-//                            .font(.system(size: 24.0, weight: .light))
-//                            .foregroundColor(.gray)
-//                            .padding(.horizontal, 8)
-//                            .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
-//                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
-//                    }
-//                }
-//                if (postDetailViewModel.isBookmarked) {
-//                    Button(action: {
-//                        generator.notificationOccurred(.success)
-//                        postDetailViewModel.isShowingBoardsSheet = true
-//                    }) {
-//                        Image(systemName: "bookmark.fill")
-//                            .font(.system(size: 24.0, weight: .light))
-//                            .foregroundColor(.yellow)
-//                            .padding(.horizontal, 8)
-//                            .scaleEffect(isAnimatingBookmark ? 1.25 : 1.0)
-//                            .animation(.easeInOut(duration: isAnimatingBookmark ? 0.25 : 1.0), value: isAnimatingBookmark)
-//                    }
-//                } else {
-//                    Button(action: {
-//                        animateBookmark()
-//                        generator.notificationOccurred(.success)
-//                        postDetailViewModel.isShowingBookmarkPopup = true
-//                        let bookmarkModel = BookmarkModel(bookmarkerId: authenticationViewModel.userModel?.id, postId: postDetailViewModel.postModel.id)
-//                        postDetailViewModel.bookmarkPost(bookmarkModel: bookmarkModel)
-//                    }) {
-//                        Image(systemName: "bookmark")
-//                            .font(.system(size: 24.0, weight: .light))
-//                            .foregroundColor(.gray)
-//                            .padding(.horizontal, 8)
-//                            .scaleEffect(isAnimatingBookmark ? 1.25 : 1.0)
-//                            .animation(.easeInOut(duration: isAnimatingBookmark ? 0.25 : 1.0), value: isAnimatingBookmark)
-//                    }
-//                }
+                if (postDetailViewModel.isLiked) {
+                    Button(action: {
+                        generator.notificationOccurred(.error)
+                        postDetailViewModel.unlikePost(userId: authenticationViewModel.userModel?.id)
+                        let eventName = "Like Button - Clicked"
+                        let propertiesDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": false as Bool, "source": "postDetail", "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                    }) {
+                        Image(systemName: "hands.clap.fill")
+                            .font(.system(size: 24.0, weight: .light))
+                            .foregroundColor(Color("FITColor"))
+                            .padding(.horizontal, 8)
+                            .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
+                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
+                    }
+                } else {
+                    Button(action: {
+                        animateApplaud()
+                        generator.notificationOccurred(.success)
+                        likePostFirebaseAndAnalytics()
+                    }) {
+                        Image(systemName: "hands.clap")
+                            .font(.system(size: 24.0, weight: .light))
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 8)
+                            .scaleEffect(isAnimatingApplaud ? 1.25 : 1.0)
+                            .animation(.easeInOut(duration: isAnimatingApplaud ? 0.25 : 1.0), value: isAnimatingApplaud)
+                    }
+                }
+                if (postDetailViewModel.isBookmarked) {
+                    Button(action: {
+                        generator.notificationOccurred(.success)
+                        postDetailViewModel.isShowingBoardsSheet = true
+                    }) {
+                        Image(systemName: "bookmark.fill")
+                            .font(.system(size: 24.0, weight: .light))
+                            .foregroundColor(.yellow)
+                            .padding(.horizontal, 8)
+                            .scaleEffect(isAnimatingBookmark ? 1.25 : 1.0)
+                            .animation(.easeInOut(duration: isAnimatingBookmark ? 0.25 : 1.0), value: isAnimatingBookmark)
+                    }
+                } else {
+                    Button(action: {
+                        animateBookmark()
+                        generator.notificationOccurred(.success)
+                        postDetailViewModel.isShowingBookmarkPopup = true
+                        let bookmarkModel = BookmarkModel(bookmarkerId: authenticationViewModel.userModel?.id, postId: postDetailViewModel.postModel.id)
+                        postDetailViewModel.bookmarkPost(bookmarkModel: bookmarkModel)
+                    }) {
+                        Image(systemName: "bookmark")
+                            .font(.system(size: 24.0, weight: .light))
+                            .foregroundColor(.gray)
+                            .padding(.horizontal, 8)
+                            .scaleEffect(isAnimatingBookmark ? 1.25 : 1.0)
+                            .animation(.easeInOut(duration: isAnimatingBookmark ? 0.25 : 1.0), value: isAnimatingBookmark)
+                    }
+                }
             }
         }.padding(.horizontal, 8)
         .sheet(isPresented: $postDetailViewModel.isShowingBoardsSheet) {
