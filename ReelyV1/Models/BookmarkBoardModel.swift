@@ -12,7 +12,7 @@ import FirebaseFirestore
 public struct BookmarkBoardModel: Identifiable, Codable, Hashable {
     @DocumentID public var id: String? = UUID().uuidString
     @ServerTimestamp var createdAt: Timestamp?
-    var lastUpdated: Timestamp?
+    @ServerTimestamp var lastUpdated: Timestamp?
     var creatorId: String?
     var title: String?
     var description: String?

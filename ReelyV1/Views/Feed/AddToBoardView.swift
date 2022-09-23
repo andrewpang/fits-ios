@@ -85,6 +85,9 @@ struct AddToBoardView: View {
                 }, message: {
                     Text("Are you sure you want to remove this post from your collections?")
                 })
+            .onAppear {
+                postDetailViewModel.fetchBookmarkBoardsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
+            }
         }
     }
 }

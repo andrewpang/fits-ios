@@ -25,6 +25,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var isShowingSavedToBoardPopup = false
     
     @Published var likersList = [LikeModel]()
+    @Published var bookmarkBoardsList = [BookmarkBoardModel]()
     
     private var db = Firestore.firestore()
     
@@ -32,6 +33,7 @@ class PostDetailViewModel: ObservableObject {
     var likesListener: ListenerRegistration?
     var bookmarksListener: ListenerRegistration?
     var commentsLikesListeners: [ListenerRegistration]?
+    var bookmarkBoardsListener: ListenerRegistration?
     
     @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
     
@@ -413,13 +415,20 @@ class PostDetailViewModel: ObservableObject {
         let bookmarksCollection = self.db.collection("bookmarks")
         let documentId = "\(bookmarkerId)_\(postId)"
         let bookmarkDocument = bookmarksCollection.document(documentId)
-        bookmarkDocument.setData([
+        let bookmarkBoardDocument = self.db.collection("bookmarkBoards").document(boardId)
+        
+        let batch = db.batch()
+        batch.updateData([
+            "lastUpdated": FieldValue.serverTimestamp()
+        ], forDocument: bookmarkBoardDocument)
+        batch.setData([
             "boardIds": FieldValue.arrayUnion([boardId])
-        ], merge: true){ error in
+        ], forDocument: bookmarkDocument, merge: true)
+        batch.commit() { error in
             if let error = error {
-                print("Error adding boardIds to bookmarkModel: \(error)")
+                print("Error writing addBookmarkToBoard batch: \(error)")
             } else {
-                print("Added boardIds to bookmarkModel")
+                print("Batch write for addBookmarkToBoard succeeded.")
             }
         }    
     }
@@ -462,5 +471,25 @@ class PostDetailViewModel: ObservableObject {
             print(error)
             self.isSubmittingCreateBoard = false
         }
+    }
+    
+    func fetchBookmarkBoardsForUser(with userId: String) {
+        bookmarkBoardsListener = db.collection("bookmarkBoards")
+            .whereField("creatorId", isEqualTo: userId)
+            .order(by: "lastUpdated", descending: true)
+            .addSnapshotListener { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+
+                var bookmarkBoardsList = [BookmarkBoardModel]()
+                bookmarkBoardsList = documents.compactMap { querySnapshot -> BookmarkBoardModel? in
+                    return try? querySnapshot.data(as: BookmarkBoardModel.self)
+                }
+                DispatchQueue.main.async {
+                    self.bookmarkBoardsList = bookmarkBoardsList
+                }
+            }
     }
 }
