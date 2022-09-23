@@ -49,17 +49,9 @@ struct AddToBoardView: View {
                                 .foregroundColor(.red)
                         }
                     }.padding(24)
-//                    .padding(.horizontal, 24)
-//                        .padding(.top, 24)
-//                        
-//                    Text("This post is already in your collections, but you can also add it to a board")
-//                        .font(Font.custom(Constants.bodyFont, size: 14))
-//                        .multilineTextAlignment(.center)
-//                        .padding(.horizontal, 40)
-//                        .padding(.bottom, 8)
-                    ScrollView {
-                        LazyVStack {
-                            if let bookmarkBoardsList = postDetailViewModel.usersBookmarkBoardsList, !bookmarkBoardsList.isEmpty {
+                    if let bookmarkBoardsList = postDetailViewModel.usersBookmarkBoardsList, !bookmarkBoardsList.isEmpty {
+                        ScrollView {
+                            LazyVStack(spacing: 8) {
                                 ForEach(bookmarkBoardsList, id: \.id) { bookmarkBoardModel in
                                     Button(action: {
                                         if let boardId = bookmarkBoardModel.id {
@@ -88,6 +80,12 @@ struct AddToBoardView: View {
                                 }
                             }
                         }
+                    } else {
+                        Spacer()
+                        Text("You haven't created any boards yet :(")
+                            .font(Font.custom(Constants.bodyFont, size: 18))
+                            .padding(.horizontal, 8)
+                            .foregroundColor(Color(Constants.darkBackgroundColor))
                     }
                     Spacer()
                     Divider()
