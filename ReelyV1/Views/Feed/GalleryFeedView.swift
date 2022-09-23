@@ -129,7 +129,7 @@ struct CategoryTabBarView: View {
                         
                         })
                 Spacer()
-            }.padding(.horizontal, 24)
+            }.padding(.horizontal, 8)
 //        }
         .frame(height: 40)
     }
