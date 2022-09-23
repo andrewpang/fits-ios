@@ -16,5 +16,5 @@ public struct BookmarkBoardModel: Identifiable, Codable, Hashable {
     var creatorId: String?
     var title: String?
     var description: String?
-    var previewImageUrls: [String]?
+    var previewImageUrl: String?
 }

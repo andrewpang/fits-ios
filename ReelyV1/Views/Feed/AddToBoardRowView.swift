@@ -6,6 +6,7 @@
 //
 
 import SwiftUI
+import Kingfisher
 
 struct AddToBoardRowView: View {
     
@@ -15,19 +16,21 @@ struct AddToBoardRowView: View {
     var body: some View {
         VStack {
             HStack {
-//                if let profilePicImageUrl = likeModel.author.profilePicImageUrl, !profilePicImageUrl.isEmpty {
-//                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.thumbnailWidth)))
-//                        .resizable()
-//                        .scaledToFill()
-//                        .frame(width: Constants.likesListProfilePicSize, height:  Constants.likesListProfilePicSize)
-//                        .clipShape(Circle())
-//                } else {
-//                    Image("portraitPlaceHolder")
-//                        .resizable()
-//                        .scaledToFill()
-//                        .frame(width: Constants.likesListProfilePicSize, height:  Constants.likesListProfilePicSize)
-//                        .clipShape(Circle())
-//                }
+                if let previewImageUrl = bookmarkBoardModel.previewImageUrl {
+                    KFImage(URL(string: CloudinaryHelper.getCompressedUrl(url: previewImageUrl, width: CloudinaryHelper.thumbnailWidth)))
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: Constants.likesListProfilePicSize, height:  Constants.likesListProfilePicSize)
+                        .cornerRadius(Constants.buttonCornerRadius)
+                        .clipped()
+                } else {
+                    Image("placeHolder")
+                        .resizable()
+                        .scaledToFill()
+                        .frame(width: Constants.likesListProfilePicSize, height:  Constants.likesListProfilePicSize)
+                        .cornerRadius(Constants.promptImageCornerRadius)
+                        .clipped()
+                }
                 Text(bookmarkBoardModel.title ?? "Board")
                     .font(Font.custom(Constants.bodyFont, size: 18))
                     .padding(.horizontal, 8)
@@ -43,9 +46,9 @@ struct AddToBoardRowView: View {
                         .foregroundColor(Color(Constants.darkBackgroundColor))
                 }
             }.padding(.horizontal, 24)
-            Divider()
-                .frame(height: 1)
-                .overlay(Color(Constants.darkBackgroundColor))
+//            Divider()
+//                .frame(height: 1)
+//                .overlay(Color(Constants.darkBackgroundColor))
         }
     }
 }

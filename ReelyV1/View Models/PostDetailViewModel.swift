@@ -33,8 +33,8 @@ class PostDetailViewModel: ObservableObject {
     
     var commentsListener: ListenerRegistration?
     var likesListener: ListenerRegistration?
-    var bookmarksListener: ListenerRegistration?
     var commentsLikesListeners: [ListenerRegistration]?
+    var bookmarksListener: ListenerRegistration?
     var bookmarkBoardsListener: ListenerRegistration?
     
     @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
@@ -265,6 +265,8 @@ class PostDetailViewModel: ObservableObject {
                 listener.remove()
             }
         }
+        bookmarksListener?.remove()
+        bookmarkBoardsListener?.remove()
     }
     
     func deletePost() {
@@ -422,7 +424,7 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func addBookmarkToBoard(postId: String, bookmarkerId: String, boardId: String) {
+    func addBookmarkToBoard(postId: String, previewImageUrl: String, bookmarkerId: String, boardId: String) {
         let bookmarksCollection = self.db.collection("bookmarks")
         let documentId = "\(bookmarkerId)_\(postId)"
         let bookmarkDocument = bookmarksCollection.document(documentId)
@@ -430,7 +432,8 @@ class PostDetailViewModel: ObservableObject {
         
         let batch = db.batch()
         batch.updateData([
-            "lastUpdated": FieldValue.serverTimestamp()
+            "lastUpdated": FieldValue.serverTimestamp(),
+            "previewImageUrl": previewImageUrl
         ], forDocument: bookmarkBoardDocument)
         batch.setData([
             "boardIds": FieldValue.arrayUnion([boardId])
@@ -481,6 +484,10 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchBookmarkBoardsForUser(with userId: String) {
+        if (bookmarkBoardsListener != nil) {
+            return
+        }
+        
         bookmarkBoardsListener = db.collection("bookmarkBoards")
             .whereField("creatorId", isEqualTo: userId)
             .order(by: "lastUpdated", descending: true)

@@ -71,7 +71,7 @@ struct AddToBoardView: View {
                                                         showRemoveFromBoardAlert = true
                                                     } else {
                                                         generator.notificationOccurred(.success)
-                                                        postDetailViewModel.addBookmarkToBoard(postId: postId, bookmarkerId: bookmarkerId, boardId: boardId)
+                                                        postDetailViewModel.addBookmarkToBoard(postId: postId, previewImageUrl: postDetailViewModel.postModel.getFirstImageUrl(), bookmarkerId: bookmarkerId, boardId: boardId)
                                                         postDetailViewModel.isShowingBoardsSheet = false
                                                         postDetailViewModel.isShowingSavedToBoardPopup = true
                                                     }

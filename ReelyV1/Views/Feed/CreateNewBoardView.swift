@@ -45,11 +45,11 @@ struct CreateNewBoardView: View {
                 }
             Button(action: {
                 postDetailViewModel.isSubmittingCreateBoard = true
-                let bookmarkBoardModel = BookmarkBoardModel(creatorId: authenticationViewModel.userModel?.id, title: boardTitle)
+                let bookmarkBoardModel = BookmarkBoardModel(creatorId: authenticationViewModel.userModel?.id, title: boardTitle, previewImageUrl: postDetailViewModel.postModel.getFirstImageUrl())
                 postDetailViewModel.createNewBookmarkBoard(bookmarkBoardModel: bookmarkBoardModel) { bookmarkBoardId in
                     if let postId = postDetailViewModel.postModel.id {
                         if let bookmarkerId = authenticationViewModel.userModel?.id {
-                            postDetailViewModel.addBookmarkToBoard(postId: postId, bookmarkerId: bookmarkerId, boardId: bookmarkBoardId)
+                            postDetailViewModel.addBookmarkToBoard(postId: postId, previewImageUrl: postDetailViewModel.postModel.getFirstImageUrl(), bookmarkerId: bookmarkerId, boardId: bookmarkBoardId)
                         }
                     }
                     postDetailViewModel.isShowingBoardsSheet = false
