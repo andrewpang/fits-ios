@@ -72,15 +72,13 @@ struct GalleryFeedView: View {
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
-                        //TODO (REE-328): Uncomment when adding most recent
-//                        RandomFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1).onAppear {
-//                            let eventName = "Home Feed Screen - View"
-//                            let propertiesDict = ["feed": "Random"] as? [String : String]
-//                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-//                        }
-                        //TODO (REE-328): Change "tag" when adding most recent
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1).onAppear {
+                        RandomFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(1).onAppear {
+                            let eventName = "Home Feed Screen - View"
+                            let propertiesDict = ["feed": "Random"] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                        }
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2).onAppear {
                             let eventName = "Home Feed Screen - View"
                             let propertiesDict = ["feed": "Most Recent"] as? [String : String]
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
@@ -114,9 +112,7 @@ struct CategoryTabBarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
     
-    //TODO (REE-328): Change when adding most recent
-//    var tabBarOptions: [String] = ["Following", "Home", "Most Recent"]
-    var tabBarOptions: [String] = ["Following", "Home"]
+    var tabBarOptions: [String] = ["Following", "Home", "Most Recent"]
     var body: some View {
 //        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
