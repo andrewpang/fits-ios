@@ -44,21 +44,29 @@ struct MyProfileView: View {
                     Spacer()
                 }.padding(.horizontal, 16)
                 .padding(.vertical, 8)
-                Divider().padding(.vertical, 8)
-                MyProfileInfoView(authenticationViewModel: authenticationViewModel)
-                Divider().padding(.vertical, 8)
-                FeedbackButton()
+                Divider()
+                    .frame(height: 1)
+                    .overlay(Color(Constants.darkBackgroundColor))
+                    .padding(.vertical, 8)
+                MyProfileInfoView(userProfileViewModel: userProfileViewModel, authenticationViewModel: authenticationViewModel)
+                Divider()
+                    .frame(height: 1)
+                    .overlay(Color(Constants.darkBackgroundColor))
                     .padding(.vertical, 8)
                 
-                HStack {
-                    Text("My Posts")
-                        .font(Font.custom(Constants.titleFont, size: 24))
-                    Spacer()
-                    Text("Post Streak: \(userProfileViewModel.postStreak) 🪄")
-                        .font(Font.custom(Constants.titleFont, size: 16))
-                }.padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                ProfilePostsFeedView(userProfileViewModel: userProfileViewModel)
+//                FeedbackButton()
+//                    .padding(.vertical, 8)
+                ProfileCategoryTabBarView(currentTab: self.$userProfileViewModel.currentTab)
+//                TabView(selection: self.$userProfileViewModel.currentTab) {
+//                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel).tag(0)
+//                    CollectionsProfileFeedView(userProfileViewModel: userProfileViewModel).tag(1)
+//                }.tabViewStyle(.page(indexDisplayMode: .never))
+                if (userProfileViewModel.currentTab == 0) {
+                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel)
+                } else {
+                    CollectionsProfileFeedView(userProfileViewModel: userProfileViewModel)
+                }
+                
             }.sheet(isPresented: $showPicker) {
                 UIImagePicker(selectedImage: $selectedImage, isPresented: $showPicker, sourceType: sourceType)
             }.onChange(of: selectedImage) { _ in
@@ -114,6 +122,7 @@ struct MyProfileView: View {
             let eventName = "My Profile Screen - View"
             Amplitude.instance().logEvent(eventName)
             Mixpanel.mainInstance().track(event: eventName)
+            userProfileViewModel.userModel = authenticationViewModel.userModel
         }.sheet(isPresented: $isEditMode, content: {
             EditProfileView()
         })
@@ -171,6 +180,7 @@ struct MyProfilePictureView: View {
 
 struct MyProfileInfoView: View {
     
+    @ObservedObject var userProfileViewModel: UserProfileViewModel
     @ObservedObject var authenticationViewModel: AuthenticationViewModel
     
     var body: some View {
@@ -206,6 +216,9 @@ struct MyProfileInfoView: View {
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .multilineTextAlignment(.center)
             }
+            Text("Post Streak: \(userProfileViewModel.postStreak) 🪄")
+                .font(Font.custom(Constants.bodyFont, size: 16))
+                .multilineTextAlignment(.center)
         }.padding(.vertical, 4)
         .padding(.horizontal, 24)
     }
@@ -294,6 +307,33 @@ struct FollowingButton: View {
                     .stroke(Color(Constants.darkBackgroundColor), lineWidth: 1)
             )
         }.isDetailLink(false)
+    }
+}
+
+struct ProfileCategoryTabBarView: View {
+    @Binding var currentTab: Int
+    @Namespace var namespace
+    
+    var tabBarOptions: [String] = ["Posts", "Collections"]
+    var body: some View {
+//        ScrollView(.horizontal, showsIndicators: false) {
+            HStack(spacing: 0) {
+                Spacer()
+                ForEach(Array(zip(self.tabBarOptions.indices,
+                                      self.tabBarOptions)),
+                        id: \.0,
+                        content: {
+                        index, name in
+                            CategoryTabBarItem(currentTab: self.$currentTab,
+                                namespace: namespace.self,
+                                tabBarItemName: name,
+                                tab: index)
+                        
+                        })
+                Spacer()
+            }.padding(.horizontal, 8)
+//        }
+        .frame(height: 40)
     }
 }
 

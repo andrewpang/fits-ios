@@ -116,6 +116,8 @@
 		47E6F29928DBBD0900CA503C /* CreateNewBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29828DBBD0900CA503C /* CreateNewBoardView.swift */; };
 		47E6F29B28DCFC0000CA503C /* BoardPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29A28DCFC0000CA503C /* BoardPreviewView.swift */; };
 		47E6F29D28DE42A800CA503C /* AddToBoardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29C28DE42A800CA503C /* AddToBoardRowView.swift */; };
+		47E6F29F28DE74BB00CA503C /* CategoryTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */; };
+		47E6F2A128DE7B0300CA503C /* CollectionsProfileFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F2A028DE7B0300CA503C /* CollectionsProfileFeedView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -239,6 +241,8 @@
 		47E6F29828DBBD0900CA503C /* CreateNewBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBoardView.swift; sourceTree = "<group>"; };
 		47E6F29A28DCFC0000CA503C /* BoardPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreviewView.swift; sourceTree = "<group>"; };
 		47E6F29C28DE42A800CA503C /* AddToBoardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBoardRowView.swift; sourceTree = "<group>"; };
+		47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabBarItem.swift; sourceTree = "<group>"; };
+		47E6F2A028DE7B0300CA503C /* CollectionsProfileFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsProfileFeedView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -333,6 +337,7 @@
 			children = (
 				4736503528ADE2380056853C /* WaterfallLayout */,
 				473C69E7283C768700D4D15E /* GalleryFeedView.swift */,
+				47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */,
 				47283BB92842C7690016D124 /* PostDetailView.swift */,
 				47E6F29128DAC1F300CA503C /* CommentBarView.swift */,
 				471B3A9028C80A8E0040742E /* PostLikersView.swift */,
@@ -537,6 +542,7 @@
 				47E6F27D28D27BC500CA503C /* FollowerRowView.swift */,
 				47E6F28128D2940F00CA503C /* FollowingRowView.swift */,
 				47E6F27928D2769D00CA503C /* FollowerListView.swift */,
+				47E6F2A028DE7B0300CA503C /* CollectionsProfileFeedView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -783,6 +789,7 @@
 				47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
+				47E6F2A128DE7B0300CA503C /* CollectionsProfileFeedView.swift in Sources */,
 				470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */,
 				4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */,
 				47E6F29928DBBD0900CA503C /* CreateNewBoardView.swift in Sources */,
@@ -812,6 +819,7 @@
 				471E5F0D28C167270095B987 /* CommentLikeModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				471B3A9328C80CF00040742E /* PostLikerRowView.swift in Sources */,
+				47E6F29F28DE74BB00CA503C /* CategoryTabBarItem.swift in Sources */,
 				47D2F51C28B6C8C50071B246 /* PromptDetailView.swift in Sources */,
 				471E5F0F28C6AF770095B987 /* CommentLikesModel.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
