@@ -10,6 +10,7 @@ import FirebaseFirestore
 import FirebaseFirestoreSwift
 
 public struct BookmarkModel: Codable {
+    @DocumentID public var id: String?
     @ServerTimestamp var createdAt: Timestamp?
     var bookmarkerId: String?
     var postId: String?

@@ -14,6 +14,7 @@ import FirebaseAuth
 class BookmarkBoardViewModel: ObservableObject {
     
     @Published var bookmarkBoardModel: BookmarkBoardModel
+    @Published var bookmarksList = [BookmarkModel]()
     @Published var postIdsList = [String]()
     @Published var postsData = PostsModel(postModels: [PostModel]())
     @Published var creatorName = ""
@@ -70,6 +71,7 @@ class BookmarkBoardViewModel: ObservableObject {
                     return try? querySnapshot.data(as: BookmarkModel.self)
                 }
                 DispatchQueue.main.async {
+                    self.bookmarksList = bookmarksList
                     self.postIdsList = bookmarksList.compactMap { bookmarkModel -> String in
                         return bookmarkModel.postId ?? "noId"
                     }
@@ -107,6 +109,41 @@ class BookmarkBoardViewModel: ObservableObject {
                 } else {
                     print("Document does not exist")
                 }
+            }
+        }
+    }
+    
+    func deleteBookmarkBoard() {
+        if let bookmarkBoardId = bookmarkBoardModel.id {
+            let bookmarkBoardDocument = self.db.collection("bookmarkBoards").document(bookmarkBoardId)
+            bookmarkBoardDocument.delete() { err in
+                if let err = err {
+                    print("Error removing document: \(err)")
+                } else {
+                    print("Document successfully removed!")
+                    for bookmark in self.bookmarksList {
+                        if let bookmarkerId = bookmark.bookmarkerId {
+                            if let postId = bookmark.postId {
+                                self.removeBookmarkFromBoard(postId: postId, bookmarkerId: bookmarkerId, boardId: bookmarkBoardId)
+                            }
+                        }
+                    }
+                }
+            }
+        }
+    }
+            
+    func removeBookmarkFromBoard(postId: String, bookmarkerId: String, boardId: String) {
+        let bookmarksCollection = self.db.collection("bookmarks")
+        let documentId = "\(bookmarkerId)_\(postId)"
+        let bookmarkDocument = bookmarksCollection.document(documentId)
+        bookmarkDocument.setData([
+            "boardIds": FieldValue.arrayRemove([boardId])
+        ], merge: true){ error in
+            if let error = error {
+                print("Error removing boardIds from bookmarkModel: \(error)")
+            } else {
+                print("Removed boardId from bookmarkModel")
             }
         }
     }
