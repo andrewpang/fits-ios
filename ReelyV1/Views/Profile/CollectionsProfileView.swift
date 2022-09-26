@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct CollectionsProfileFeedView: View {
+struct CollectionsProfileView: View {
     @ObservedObject var userProfileViewModel: UserProfileViewModel
     @State var bookmarkBoardViewModel = BookmarkBoardViewModel(bookmarkBoardModel: BookmarkBoardModel()) //Initial default value
     @State var showCollectionFeedView = false

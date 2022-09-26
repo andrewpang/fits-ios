@@ -31,13 +31,13 @@ struct CollectionsProfileRowView: View {
                         .clipped()
                 }
                 Text(bookmarkBoardModel.title ?? "Board")
-                    .font(Font.custom(Constants.titleFontBold, size: 18))
+                    .font(Font.custom(Constants.bodyFont, size: 16))
                     .padding(.horizontal, 8)
                     .foregroundColor(Color(Constants.darkBackgroundColor))
                 Spacer()
-                Image(systemName: "checkmark.circle.fill")
-                    .font(.system(size: 24, weight: .light))
-                    .foregroundColor(.green)
+                Image(systemName: "chevron.right")
+                    .font(.system(size: 16, weight: .light))
+                    .foregroundColor(.gray)
             }.padding(.horizontal, 24)
         }
     }

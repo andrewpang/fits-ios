@@ -64,7 +64,7 @@ struct MyProfileView: View {
                 if (userProfileViewModel.currentTab == 0) {
                     ProfilePostsFeedView(userProfileViewModel: userProfileViewModel)
                 } else {
-                    CollectionsProfileFeedView(userProfileViewModel: userProfileViewModel)
+                    CollectionsProfileView(userProfileViewModel: userProfileViewModel)
                 }
                 
             }.sheet(isPresented: $showPicker) {

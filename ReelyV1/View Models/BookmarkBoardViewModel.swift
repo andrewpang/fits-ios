@@ -16,6 +16,9 @@ class BookmarkBoardViewModel: ObservableObject {
     @Published var bookmarkBoardModel: BookmarkBoardModel
     @Published var postIdsList = [String]()
     @Published var postsData = PostsModel(postModels: [PostModel]())
+    @Published var creatorName = ""
+    @Published var shouldScrollToTop = false
+    @Published var shouldPopToRootViewIfFalse = false
     
     var bookmarksListener: ListenerRegistration?
     var postsListener: ListenerRegistration?
@@ -24,6 +27,29 @@ class BookmarkBoardViewModel: ObservableObject {
     
     init(bookmarkBoardModel: BookmarkBoardModel) {
         self.bookmarkBoardModel = bookmarkBoardModel
+    }
+    
+    func fetchCreatorName() {
+        if let creatorId = bookmarkBoardModel.creatorId {
+            db.collection("users").document(creatorId).getDocument { (document, error) in
+                if let document = document, document.exists {
+                    guard let data = document.data() else {
+                       print("Document data was empty.")
+                       return
+                    }
+                    print("Current data: \(data)")
+                    guard let userData = try? document.data(as: UserModel.self) else {
+                        print("Couldn't parse user data to UserModel")
+                        return
+                    }
+                    DispatchQueue.main.async {
+                        self.creatorName = userData.displayName ?? ""
+                    }
+                } else {
+                    print("Document does not exist")
+                }
+            }
+        }
     }
     
     func fetchPostsForBookmarkBoard() {
