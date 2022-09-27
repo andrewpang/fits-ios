@@ -195,7 +195,7 @@ class AuthenticationViewModel: ObservableObject {
             let followersDocument = self.db.collection("followers").document(userId)
             let userDisplayName = userModel?.displayName ?? "Someone"
             let notificationText = "\(userDisplayName) just followed you!"
-            let notificationModel = NotificationModel(userId: userId, text: notificationText, type: "newFollower", followerUserId: currentUserId)
+            let notificationModel = NotificationModel(userId: userId, text: notificationText, type: "newFollower", interactorUserId: currentUserId)
             let notificationDocument = self.db.collection("notifications").document(notificationModel.id ?? UUID().uuidString)
             do {
                 let batch = db.batch()

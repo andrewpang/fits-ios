@@ -127,8 +127,12 @@ struct CommentBarView: View {
                         animateBookmark()
                         generator.notificationOccurred(.success)
                         postDetailViewModel.isShowingBookmarkPopup = true
-                        let bookmarkModel = BookmarkModel(bookmarkerId: authenticationViewModel.userModel?.id, postId: postDetailViewModel.postModel.id)
-                        postDetailViewModel.bookmarkPost(bookmarkModel: bookmarkModel)
+                        if let userModel = authenticationViewModel.userModel {
+                            if let postAuthorUserId = postDetailViewModel.postModel.author.userId {
+                                let bookmarkModel = BookmarkModel(bookmarkerId: userModel.id, postId: postDetailViewModel.postModel.id)
+                                postDetailViewModel.bookmarkPost(bookmarkModel: bookmarkModel, bookmarkerDisplayName: userModel.displayName, postTitle: postDetailViewModel.postModel.title, postAuthorUserId: postAuthorUserId)
+                            }
+                        }
                     }) {
                         Image(systemName: "bookmark")
                             .font(.system(size: 24.0, weight: .light))
