@@ -26,19 +26,21 @@ struct UserProfileView: View {
                     .font(Font.custom(Constants.titleFontBold, size: 40)).padding(.top, 4)
 
                 ProfilePictureView(userProfileViewModel: userProfileViewModel)
-                Divider().padding(.vertical, 8)
-                ProfileInfoView(userProfileViewModel: userProfileViewModel)
-                Divider().padding(.vertical, 8)
+                Divider()
+                    .frame(height: 1)
+                    .overlay(Color(Constants.darkBackgroundColor))
                     .padding(.vertical, 8)
-                HStack {
-                    Text("Posts")
-                        .font(Font.custom(Constants.titleFont, size: 24))
-                    Spacer()
-                    Text("Post Streak: \(userProfileViewModel.postStreak) 🪄")
-                        .font(Font.custom(Constants.titleFont, size: 16))
-                }.padding(.horizontal, 16)
-                .padding(.vertical, 8)
-                ProfilePostsFeedView(userProfileViewModel: userProfileViewModel, profileUserId: userId)
+                ProfileInfoView(userProfileViewModel: userProfileViewModel)
+                Divider()
+                    .frame(height: 1)
+                    .overlay(Color(Constants.darkBackgroundColor))
+                    .padding(.vertical, 8)
+                ProfileCategoryTabBarView(currentTab: self.$userProfileViewModel.currentTab)
+                if (userProfileViewModel.currentTab == 0) {
+                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel, profileUserId: userId)
+                } else {
+                    CollectionsProfileView(userProfileViewModel: userProfileViewModel)
+                }
             }
         }.onAppear {
             userProfileViewModel.fetchUserModel(for: userId)
@@ -178,6 +180,10 @@ struct ProfileInfoView: View {
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .multilineTextAlignment(.center)
             }
+            
+            Text("Post Streak: \(userProfileViewModel.postStreak) 🪄")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .multilineTextAlignment(.center)
         }.padding(.vertical, 4)
         .padding(.horizontal, 24)
     }

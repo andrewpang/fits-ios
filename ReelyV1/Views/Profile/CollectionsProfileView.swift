@@ -8,9 +8,14 @@
 import SwiftUI
 
 struct CollectionsProfileView: View {
+    @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
     @ObservedObject var userProfileViewModel: UserProfileViewModel
     @State var bookmarkBoardViewModel = BookmarkBoardViewModel(bookmarkBoardModel: BookmarkBoardModel()) //Initial default value
     @State var showCollectionFeedView = false
+    
+    func isUsersOwnProfile() -> Bool {
+        return (userProfileViewModel.userModel?.id == authenticationViewModel.userModel?.id) as Bool
+    }
     
     var body: some View {
         VStack {
@@ -48,10 +53,17 @@ struct CollectionsProfileView: View {
                     }.padding(.bottom, 16)
                 }
             } else {
-                Text("You have no posts saved to your collections yet!")
-                    .padding(.horizontal, 40)
-                    .padding(.vertical, 40)
-                    .multilineTextAlignment(.center)
+                if (isUsersOwnProfile()) {
+                    Text("You have no posts saved to your collections yet!")
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 40)
+                        .multilineTextAlignment(.center)
+                } else {
+                    Text("This user has no posts saved to their collections yet!")
+                        .padding(.horizontal, 40)
+                        .padding(.vertical, 40)
+                        .multilineTextAlignment(.center)
+                }
             }
         }.onAppear {
             userProfileViewModel.fetchBookmarkBoardsForUser(with: userProfileViewModel.userModel?.id ?? "noId")
