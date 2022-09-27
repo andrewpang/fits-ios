@@ -66,12 +66,7 @@ struct CollectionFeedView: View {
         }
         .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
             if (isUsersOwnCollection()) {
-//                Button ("Edit Post") {
-////                    editPostTitle = postDetailViewModel.postModel.title
-////                    editPostBody = postDetailViewModel.postModel.body
-////                    isEditMode = true
-////                    focusedField = .editPostTitleField
-//                }
+                //TODO: Edit Post
                 Button ("Delete Collection", role: ButtonRole.destructive) {
                     showingDeleteAlert = true
                 }
@@ -98,8 +93,9 @@ struct CollectionFeedView: View {
                 Text("Are you sure you want to delete this collection? (You can't undo this)")
             })
         .onAppear {
-            self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: authenticationViewModel.userModel?.id ?? "noId")
+            self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: bookmarkBoardViewModel.bookmarkBoardModel.creatorId ?? "noId")
             self.bookmarkBoardViewModel.fetchCreatorName()
+            self.bookmarkBoardViewModel.fetchPostLikesForUser(with: authenticationViewModel.userModel?.id ?? "noId")
         }
     }
 }

@@ -136,34 +136,32 @@ struct BoardWaterfallCollectionView: UIViewControllerRepresentable {
                     let cloudinaryCompressedUrl = CloudinaryHelper.getCompressedUrl(url: profilePicImageUrl, width: CloudinaryHelper.profileThumbnailWidth)
                     cell.setProfileImageUrl(urlString: cloudinaryCompressedUrl)
                 }
-//                if parent.homeViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
-//                    cell.showHighlightedApplaudButton()
-//                    cell.applaudButtonTapAction = {
-//                        () in
-//                        self.parent.homeViewModel.unlikePost(postModel: post, userId: self.parent.authenticationViewModel.userModel?.id)
-//                        let generator = UINotificationFeedbackGenerator()
-//                        generator.notificationOccurred(.error)
-//                        let eventName = "Like Button - Clicked"
-//                        let propertiesDict = ["isLike": false as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : Any]
-//                        let mixpanelDict = ["isLike": false as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
-//                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-//                    }
-//                } else {
-//                    cell.showUnhighlighedApplaudButton()
-//                    cell.applaudButtonTapAction = {
-//                        () in
-//                        self.parent.homeViewModel.likePost(postModel: post, likeModel: LikeModel(id: self.parent.authenticationViewModel.userModel?.id, author: self.parent.authenticationViewModel.getPostAuthorMap()))
-//                        let generator = UINotificationFeedbackGenerator()
-//                        generator.notificationOccurred(.success)
-//                        let eventName = "Like Button - Clicked"
-//                        let propertiesDict = ["isLike": true as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : Any]
-//                        let mixpanelDict = ["isLike": true as Bool, "source": "homeFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
-//                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
-//                    }
-//                }
-                
+                if parent.bookmarkBoardViewModel.hasUserLikedPost(postId: post.id ?? "noId") {
+                    cell.showHighlightedApplaudButton()
+                    cell.applaudButtonTapAction = {
+                        () in
+                        self.parent.bookmarkBoardViewModel.unlikePost(postModel: post, userId: self.parent.authenticationViewModel.userModel?.id)
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.error)
+                        let eventName = "Like Button - Clicked"
+                        let propertiesDict = ["isLike": false as Bool, "source": "boardFeed", "postId": post.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": false as Bool, "source": "boardFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                    }
+                } else {
+                    cell.showUnhighlighedApplaudButton()
+                    cell.applaudButtonTapAction = {
+                        () in
+                        self.parent.bookmarkBoardViewModel.likePost(postModel: post, likeModel: LikeModel(id: self.parent.authenticationViewModel.userModel?.id, author: self.parent.authenticationViewModel.getPostAuthorMap()))
+                        let generator = UINotificationFeedbackGenerator()
+                        generator.notificationOccurred(.success)
+                        let eventName = "Like Button - Clicked"
+                        let propertiesDict = ["isLike": true as Bool, "source": "boardFeed", "postId": post.id ?? "noId"] as? [String : Any]
+                        let mixpanelDict = ["isLike": true as Bool, "source": "boardFeed: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
+                    }
+                }
             }
             return cell
         }
