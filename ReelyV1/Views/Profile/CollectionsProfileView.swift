@@ -48,7 +48,10 @@ struct CollectionsProfileView: View {
                     }.padding(.bottom, 16)
                 }
             } else {
-                Text("No collections")
+                Text("You have no posts saved to your collections yet!")
+                    .padding(.horizontal, 40)
+                    .padding(.vertical, 40)
+                    .multilineTextAlignment(.center)
             }
         }.onAppear {
             userProfileViewModel.fetchBookmarkBoardsForUser(with: userProfileViewModel.userModel?.id ?? "noId")
