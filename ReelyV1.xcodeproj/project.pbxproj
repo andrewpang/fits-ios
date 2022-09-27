@@ -128,7 +128,6 @@
 		47F767F9288E094A00265633 /* UserProfileViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F8288E094A00265633 /* UserProfileViewModel.swift */; };
 		47FADD0628E3BD8D00F51FB6 /* PostLikerBookmarkerParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FADD0528E3BD8D00F51FB6 /* PostLikerBookmarkerParentView.swift */; };
 		47FADD0828E3BE9F00F51FB6 /* PostBookmarkersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FADD0728E3BE9F00F51FB6 /* PostBookmarkersView.swift */; };
-		47FADD0A28E3BF9600F51FB6 /* PostBookmarkerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FADD0928E3BF9600F51FB6 /* PostBookmarkerRowView.swift */; };
 		47FC5D86288116B9000B9794 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D85288116B9000B9794 /* Secrets.swift */; };
 		47FC5D88288627F3000B9794 /* PhotoPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */; };
 		47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 47FC5D99288663F8000B9794 /* WaterfallGrid */; };
@@ -260,7 +259,6 @@
 		47F767F8288E094A00265633 /* UserProfileViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileViewModel.swift; sourceTree = "<group>"; };
 		47FADD0528E3BD8D00F51FB6 /* PostLikerBookmarkerParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikerBookmarkerParentView.swift; sourceTree = "<group>"; };
 		47FADD0728E3BE9F00F51FB6 /* PostBookmarkersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBookmarkersView.swift; sourceTree = "<group>"; };
-		47FADD0928E3BF9600F51FB6 /* PostBookmarkerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostBookmarkerRowView.swift; sourceTree = "<group>"; };
 		47FC5D85288116B9000B9794 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerModel.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -357,7 +355,6 @@
 				471B3A9028C80A8E0040742E /* PostLikersView.swift */,
 				47FADD0728E3BE9F00F51FB6 /* PostBookmarkersView.swift */,
 				471B3A9228C80CF00040742E /* PostLikerRowView.swift */,
-				47FADD0928E3BF9600F51FB6 /* PostBookmarkerRowView.swift */,
 				47FADD0528E3BD8D00F51FB6 /* PostLikerBookmarkerParentView.swift */,
 				47283BB72842C65F0016D124 /* PostCardView.swift */,
 				479FE99928755B930030EE4D /* CommentsView.swift */,
@@ -833,7 +830,6 @@
 				478131692846C95700106B57 /* LoadingSplashScreenView.swift in Sources */,
 				479FE996287554E10030EE4D /* CommentModel.swift in Sources */,
 				473C69FE283C821400D4D15E /* AddPostView.swift in Sources */,
-				47FADD0A28E3BF9600F51FB6 /* PostBookmarkerRowView.swift in Sources */,
 				476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */,
 				4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,

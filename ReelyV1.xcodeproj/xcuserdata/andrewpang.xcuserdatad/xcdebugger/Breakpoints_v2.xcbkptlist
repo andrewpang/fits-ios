@@ -30,8 +30,8 @@
             filePath = "ReelyV1/View Models/PostDetailViewModel.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "313"
-            endingLineNumber = "313"
+            startingLineNumber = "331"
+            endingLineNumber = "331"
             landmarkName = "likeComment(commentLikeModel:)"
             landmarkType = "7">
             <Locations>
@@ -96,7 +96,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "158"
             endingLineNumber = "158"
-            landmarkName = "isSameDay(date1:date2:)"
+            landmarkName = "getPostStreak()"
             landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>

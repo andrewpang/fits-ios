@@ -15,12 +15,12 @@ struct PostBookmarkersView: View {
     var body: some View {
         ScrollView {
             LazyVStack {
-                if let bookmarkers = postDetailViewModel.bookmarkersList, !bookmarkers.isEmpty {
-                    ForEach(bookmarkers, id: \.id) { bookmarker in
-                        NavigationLink(destination: UserProfileView(userId: bookmarker.id!)) {
-                            PostBookmarkerRowView(userModel: bookmarker)
+                if let bookmarks = postDetailViewModel.bookmarksList, !bookmarks.isEmpty {
+                    ForEach(bookmarks, id: \.id) { bookmark in
+                        NavigationLink(destination: UserProfileView(userId: bookmark.bookmarkerId!)) {
+                            FollowerRowView(userId: bookmark.bookmarkerId!)
                         }.isDetailLink(false)
-                        .disabled(bookmarker.id?.isEmpty ?? true)
+                        .disabled(bookmark.bookmarkerId?.isEmpty ?? true)
                     }
                 }
             }

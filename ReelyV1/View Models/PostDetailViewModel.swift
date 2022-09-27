@@ -26,9 +26,9 @@ class PostDetailViewModel: ObservableObject {
     @Published var isShowingRemovedFromCollectionsPopup = false
     
     @Published var likersList = [LikeModel]()
-    @Published var bookmarkersList = [UserModel]()
     @Published var usersBookmarkBoardsList = [BookmarkBoardModel]()
     @Published var bookmarkData = BookmarkModel()
+    @Published var bookmarksList = [BookmarkModel]()
     
     private var db = Firestore.firestore()
     
@@ -186,6 +186,24 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchBookmarkers() {
+        if let postId = postModel.id {
+            bookmarksListener = db.collection("bookmarks")
+                .whereField("postId", isEqualTo: postId)
+                .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+                    guard let documents = querySnapshot?.documents else {
+                        print("No documents")
+                        return
+                    }
+
+                    var bookmarksList = [BookmarkModel]()
+                    bookmarksList = documents.compactMap { querySnapshot -> BookmarkModel? in
+                        return try? querySnapshot.data(as: BookmarkModel.self)
+                    }
+                    DispatchQueue.main.async {
+                        self.bookmarksList = bookmarksList
+                    }
+                }
+        }
     }
     
     func fetchRecentLikers(userId: String?) {
