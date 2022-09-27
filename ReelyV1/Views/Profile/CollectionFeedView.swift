@@ -71,11 +71,11 @@ struct CollectionFeedView: View {
                     showingDeleteAlert = true
                 }
             }
-//            else {
-//                Button ("Report Collection", role: ButtonRole.destructive) {
-////                    openMail(postId: postDetailViewModel.postModel.id)
-//                }
-//            }
+            else {
+                Button ("Report Collection", role: ButtonRole.destructive) {
+                    openMail(bookmarkBoardId: bookmarkBoardViewModel.bookmarkBoardModel.id)
+                }
+            }
             Button ("Cancel", role: ButtonRole.cancel) {}
         } message: {
 //                Text ("Choose a picture from your photo library, or take one now!")
@@ -96,6 +96,23 @@ struct CollectionFeedView: View {
             self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: bookmarkBoardViewModel.bookmarkBoardModel.creatorId ?? "noId")
             self.bookmarkBoardViewModel.fetchCreatorName()
             self.bookmarkBoardViewModel.fetchPostLikesForUser(with: authenticationViewModel.userModel?.id ?? "noId")
+        }
+    }
+    
+    func openMail(bookmarkBoardId: String?) {
+        let email = "feedback@fitsatfit.com"
+        let subject = "Report%20Board:%20\(bookmarkBoardId ?? "no ID")"
+        let body = "Please%20let%20us%20know%20why%20you%20want%20to%20report%20this%20board.%20"
+        let urlString = "mailto:\(email)?subject=\(subject)&body=\(body)"
+        
+        if let url = URL(string: urlString) {
+            if UIApplication.shared.canOpenURL(url) {
+                UIApplication.shared.open(url, options: [:], completionHandler: nil)
+            } else {
+                // Not handling if they don't have email app
+            }
+        } else {
+            // Not handling if they don't have email app
         }
     }
 }
