@@ -17,4 +17,5 @@ public struct NotificationModel: Codable {
     var text: String
     var type: String?
     var interactorUserId: String? //Used for follower, bookmarker, liker, etc.
+    var postId: String?
 }

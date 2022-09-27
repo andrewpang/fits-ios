@@ -388,7 +388,7 @@ class PostDetailViewModel: ObservableObject {
                 let displayName = bookmarkerDisplayName ?? "Someone"
 
                 let notificationText = "\(displayName) just bookmarked your post: \(postTitle)!"
-                let notificationModel = NotificationModel(userId: postAuthorUserId, text: notificationText, type: "newBookmark", interactorUserId: bookmarkModel.bookmarkerId)
+                let notificationModel = NotificationModel(userId: postAuthorUserId, text: notificationText, type: "newBookmark", interactorUserId: bookmarkModel.bookmarkerId, postId: bookmarkModel.postId)
                 let notificationDocument = self.db.collection("notifications").document(notificationModel.id ?? UUID().uuidString)
                 do {
                     let batch = db.batch()
