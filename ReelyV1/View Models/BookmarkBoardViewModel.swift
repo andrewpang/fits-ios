@@ -21,6 +21,7 @@ class BookmarkBoardViewModel: ObservableObject {
     @Published var shouldScrollToTop = false
     @Published var shouldPopToRootViewIfFalse = false
     @Published var postsUserHasLikedList = [String]()
+    @Published var showAllPosts = false
     
     var bookmarksListener: ListenerRegistration?
     
@@ -62,7 +63,7 @@ class BookmarkBoardViewModel: ObservableObject {
             bookmarksListener?.remove() //Refetch
         }
         
-        if let bookmarkBoardTitle = bookmarkBoardModel.title, !bookmarkBoardTitle.isEmpty {
+        if (!showAllPosts) {
             bookmarksListener = db.collection("bookmarks")
                 .whereField("boardIds", arrayContains: bookmarkBoardModel.id ?? "noId")
                 .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in

@@ -23,11 +23,12 @@ struct CollectionsProfileView: View {
                 EmptyView()
             }
             .isDetailLink(false)
-            if (!userProfileViewModel.usersBookmarkBoardsList.isEmpty) {
+            if (!(userProfileViewModel.postsData.postModels?.isEmpty ?? true)) {
                 ScrollView {
                     LazyVStack(spacing: 8) {
                         Button(action: {
-                            self.bookmarkBoardViewModel = BookmarkBoardViewModel()
+                            self.bookmarkBoardViewModel = BookmarkBoardViewModel(bookmarkBoardModel: BookmarkBoardModel(creatorId: userProfileViewModel.userModel?.id, title: "All Saved Posts")) //TODO: Refactor, this is hacky
+                            self.bookmarkBoardViewModel.showAllPosts = true
                             self.showCollectionFeedView = true
                         }, label: {
                             HStack {
@@ -66,6 +67,7 @@ struct CollectionsProfileView: View {
                 }
             }
         }.onAppear {
+            userProfileViewModel.fetchPostsForUser(for: userProfileViewModel.userModel?.id ?? "noId")
             userProfileViewModel.fetchBookmarkBoardsForUser(with: userProfileViewModel.userModel?.id ?? "noId")
         }
     }
