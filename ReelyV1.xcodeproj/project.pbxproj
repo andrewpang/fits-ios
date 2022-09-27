@@ -90,6 +90,10 @@
 		47A29793287FD6E100761026 /* LikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A29792287FD6E100761026 /* LikeModel.swift */; };
 		47A697312841915D001102C1 /* PostParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A697302841915D001102C1 /* PostParentView.swift */; };
 		47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */; };
+		47BE065928E24447006822A2 /* CollectionsProfileRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE065828E24447006822A2 /* CollectionsProfileRowView.swift */; };
+		47BE065B28E24579006822A2 /* CollectionFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE065A28E24579006822A2 /* CollectionFeedView.swift */; };
+		47BE065D28E24668006822A2 /* BookmarkBoardViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE065C28E24668006822A2 /* BookmarkBoardViewModel.swift */; };
+		47BE065F28E251EB006822A2 /* BoardWaterfallCollectionView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47BE065E28E251EB006822A2 /* BoardWaterfallCollectionView.swift */; };
 		47C5C1CE28B8319000F84E66 /* PromptPostModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47C5C1CD28B8319000F84E66 /* PromptPostModel.swift */; };
 		47D0444F28A6F9E40071591D /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = 47D0444E28A6F9E40071591D /* Mixpanel */; };
 		47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47D112E4287CD8BC005E424F /* ProfileParentView.swift */; };
@@ -116,6 +120,8 @@
 		47E6F29928DBBD0900CA503C /* CreateNewBoardView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29828DBBD0900CA503C /* CreateNewBoardView.swift */; };
 		47E6F29B28DCFC0000CA503C /* BoardPreviewView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29A28DCFC0000CA503C /* BoardPreviewView.swift */; };
 		47E6F29D28DE42A800CA503C /* AddToBoardRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29C28DE42A800CA503C /* AddToBoardRowView.swift */; };
+		47E6F29F28DE74BB00CA503C /* CategoryTabBarItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */; };
+		47E6F2A128DE7B0300CA503C /* CollectionsProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47E6F2A028DE7B0300CA503C /* CollectionsProfileView.swift */; };
 		47EC5857286AB077007A12F4 /* CheckSMSViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */; };
 		47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */; };
 		47F767F7288E082800265633 /* UserProfileView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47F767F6288E082800265633 /* UserProfileView.swift */; };
@@ -216,6 +222,10 @@
 		47A697302841915D001102C1 /* PostParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostParentView.swift; sourceTree = "<group>"; };
 		47A9DE87286A808200DF76CE /* ReelyV1.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ReelyV1.entitlements; sourceTree = "<group>"; };
 		47A9DE88286A847C00DF76CE /* SMSConfirmationView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SMSConfirmationView.swift; sourceTree = "<group>"; };
+		47BE065828E24447006822A2 /* CollectionsProfileRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsProfileRowView.swift; sourceTree = "<group>"; };
+		47BE065A28E24579006822A2 /* CollectionFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionFeedView.swift; sourceTree = "<group>"; };
+		47BE065C28E24668006822A2 /* BookmarkBoardViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BookmarkBoardViewModel.swift; sourceTree = "<group>"; };
+		47BE065E28E251EB006822A2 /* BoardWaterfallCollectionView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardWaterfallCollectionView.swift; sourceTree = "<group>"; };
 		47C5C1CD28B8319000F84E66 /* PromptPostModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptPostModel.swift; sourceTree = "<group>"; };
 		47D112E4287CD8BC005E424F /* ProfileParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileParentView.swift; sourceTree = "<group>"; };
 		47D112E6287E1714005E424F /* FirstPostOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstPostOverlayView.swift; sourceTree = "<group>"; };
@@ -239,6 +249,8 @@
 		47E6F29828DBBD0900CA503C /* CreateNewBoardView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateNewBoardView.swift; sourceTree = "<group>"; };
 		47E6F29A28DCFC0000CA503C /* BoardPreviewView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BoardPreviewView.swift; sourceTree = "<group>"; };
 		47E6F29C28DE42A800CA503C /* AddToBoardRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddToBoardRowView.swift; sourceTree = "<group>"; };
+		47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryTabBarItem.swift; sourceTree = "<group>"; };
+		47E6F2A028DE7B0300CA503C /* CollectionsProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionsProfileView.swift; sourceTree = "<group>"; };
 		47EC5856286AB077007A12F4 /* CheckSMSViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckSMSViewController.swift; sourceTree = "<group>"; };
 		47F767F2288A072B00265633 /* ProfilePostsFeedView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePostsFeedView.swift; sourceTree = "<group>"; };
 		47F767F6288E082800265633 /* UserProfileView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileView.swift; sourceTree = "<group>"; };
@@ -333,6 +345,7 @@
 			children = (
 				4736503528ADE2380056853C /* WaterfallLayout */,
 				473C69E7283C768700D4D15E /* GalleryFeedView.swift */,
+				47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */,
 				47283BB92842C7690016D124 /* PostDetailView.swift */,
 				47E6F29128DAC1F300CA503C /* CommentBarView.swift */,
 				471B3A9028C80A8E0040742E /* PostLikersView.swift */,
@@ -357,6 +370,7 @@
 				4736502E28AC5A600056853C /* ImageUICollectionViewCell.xib */,
 				47D2F51D28B6DBB40071B246 /* WaterfallPromptCollectionView.swift */,
 				47E6F28728D7828200CA503C /* RandomFeedWaterfallCollectionView.swift */,
+				47BE065E28E251EB006822A2 /* BoardWaterfallCollectionView.swift */,
 				47E6F28928D7967100CA503C /* FollowerFeedWaterfallCollectionView.swift */,
 			);
 			path = WaterfallLayout;
@@ -424,6 +438,7 @@
 				47D2F51F28B6E1B70071B246 /* PromptDetailViewModel.swift */,
 				470FD77128B574ED00D70341 /* PromptsViewModel.swift */,
 				47E6F27F28D27F8900CA503C /* FollowerFollowingViewModel.swift */,
+				47BE065C28E24668006822A2 /* BookmarkBoardViewModel.swift */,
 			);
 			path = "View Models";
 			sourceTree = "<group>";
@@ -537,6 +552,9 @@
 				47E6F27D28D27BC500CA503C /* FollowerRowView.swift */,
 				47E6F28128D2940F00CA503C /* FollowingRowView.swift */,
 				47E6F27928D2769D00CA503C /* FollowerListView.swift */,
+				47E6F2A028DE7B0300CA503C /* CollectionsProfileView.swift */,
+				47BE065A28E24579006822A2 /* CollectionFeedView.swift */,
+				47BE065828E24447006822A2 /* CollectionsProfileRowView.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -763,6 +781,7 @@
 				47D112E7287E1714005E424F /* FirstPostOverlayView.swift in Sources */,
 				47D112E5287CD8BC005E424F /* ProfileParentView.swift in Sources */,
 				473C6A47283C8EB800D4D15E /* PostsModel.swift in Sources */,
+				47BE065B28E24579006822A2 /* CollectionFeedView.swift in Sources */,
 				47E6F29728DBB48B00CA503C /* AddToBoardView.swift in Sources */,
 				47A9DE89286A847C00DF76CE /* SMSConfirmationView.swift in Sources */,
 				47A697312841915D001102C1 /* PostParentView.swift in Sources */,
@@ -774,6 +793,7 @@
 				479FE9942875524B0030EE4D /* PostDetailViewModel.swift in Sources */,
 				473C69E8283C768700D4D15E /* GalleryFeedView.swift in Sources */,
 				470FD76828B5717B00D70341 /* PromptsParentView.swift in Sources */,
+				47BE065D28E24668006822A2 /* BookmarkBoardViewModel.swift in Sources */,
 				4761CC052870BDE0008ED1BF /* PostViewModel.swift in Sources */,
 				479FE9B32877F7E40030EE4D /* WelcomeVideoPlayerView.swift in Sources */,
 				476B6FD9286C18E00060589F /* SetNameOnboardingView.swift in Sources */,
@@ -783,6 +803,7 @@
 				47F767F3288A072B00265633 /* ProfilePostsFeedView.swift in Sources */,
 				4761CC03286FBE68008ED1BF /* UIImagePicker.swift in Sources */,
 				4736EEF92867A85C0033C49E /* SignupSMSViewController.swift in Sources */,
+				47E6F2A128DE7B0300CA503C /* CollectionsProfileView.swift in Sources */,
 				470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */,
 				4755B75428A9892600942AAD /* WaterfallCollectionView.swift in Sources */,
 				47E6F29928DBBD0900CA503C /* CreateNewBoardView.swift in Sources */,
@@ -792,6 +813,7 @@
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				471B3A9128C80A8E0040742E /* PostLikersView.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,
+				47BE065928E24447006822A2 /* CollectionsProfileRowView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
 				47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */,
 				47E6F28028D27F8900CA503C /* FollowerFollowingViewModel.swift in Sources */,
@@ -812,8 +834,10 @@
 				471E5F0D28C167270095B987 /* CommentLikeModel.swift in Sources */,
 				4783445E283C63520022025E /* ContentView.swift in Sources */,
 				471B3A9328C80CF00040742E /* PostLikerRowView.swift in Sources */,
+				47E6F29F28DE74BB00CA503C /* CategoryTabBarItem.swift in Sources */,
 				47D2F51C28B6C8C50071B246 /* PromptDetailView.swift in Sources */,
 				471E5F0F28C6AF770095B987 /* CommentLikesModel.swift in Sources */,
+				47BE065F28E251EB006822A2 /* BoardWaterfallCollectionView.swift in Sources */,
 				473C6A4C283C8ED800D4D15E /* PostModel.swift in Sources */,
 				4736EEFB2867A9310033C49E /* Constants.swift in Sources */,
 				47D2F51E28B6DBB40071B246 /* WaterfallPromptCollectionView.swift in Sources */,
