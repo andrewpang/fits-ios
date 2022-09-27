@@ -18,10 +18,12 @@ class UserProfileViewModel: ObservableObject {
     @Published var confettiCounter = 0
     @Published var currentTab = 0
     @Published var usersBookmarkBoardsList = [BookmarkBoardModel]()
+    @Published var bookmarksList = [BookmarkModel]()
     
     var profileListener: ListenerRegistration?
     var postsListener: ListenerRegistration?
     var bookmarkBoardsListener: ListenerRegistration?
+    var bookmarksListener: ListenerRegistration?
     
     private var db = Firestore.firestore()
     
@@ -96,6 +98,29 @@ class UserProfileViewModel: ObservableObject {
                     }
                 }
         }
+    }
+    
+    func fetchBookmarkForUser(with userId: String) {
+        if (bookmarksListener != nil) {
+            return
+        }
+        
+        bookmarksListener = db.collection("bookmarks")
+            .whereField("bookmarkerId", isEqualTo: userId)
+            .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+                guard let documents = querySnapshot?.documents else {
+                    print("No documents")
+                    return
+                }
+
+                var bookmarksList = [BookmarkModel]()
+                bookmarksList = documents.compactMap { querySnapshot -> BookmarkModel? in
+                    return try? querySnapshot.data(as: BookmarkModel.self)
+                }
+                DispatchQueue.main.async {
+                    self.bookmarksList = bookmarksList
+                }
+            }
     }
     
     func fetchBookmarkBoardsForUser(with userId: String) {
@@ -189,6 +214,7 @@ class UserProfileViewModel: ObservableObject {
         profileListener?.remove()
         postsListener?.remove()
         bookmarkBoardsListener?.remove()
+        bookmarksListener?.remove()
     }
 }
 

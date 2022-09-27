@@ -23,7 +23,7 @@ struct CollectionsProfileView: View {
                 EmptyView()
             }
             .isDetailLink(false)
-            if (!(userProfileViewModel.postsData.postModels?.isEmpty ?? true)) {
+            if (!userProfileViewModel.bookmarksList.isEmpty) {
                 ScrollView {
                     LazyVStack(spacing: 8) {
                         Button(action: {
@@ -67,7 +67,7 @@ struct CollectionsProfileView: View {
                 }
             }
         }.onAppear {
-            userProfileViewModel.fetchPostsForUser(for: userProfileViewModel.userModel?.id ?? "noId")
+            userProfileViewModel.fetchBookmarkForUser(with: userProfileViewModel.userModel?.id ?? "noId")
             userProfileViewModel.fetchBookmarkBoardsForUser(with: userProfileViewModel.userModel?.id ?? "noId")
         }
     }
