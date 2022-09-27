@@ -21,6 +21,22 @@ struct CollectionsProfileView: View {
             if (!userProfileViewModel.usersBookmarkBoardsList.isEmpty) {
                 ScrollView {
                     LazyVStack(spacing: 8) {
+                        Button(action: {
+                            self.bookmarkBoardViewModel = BookmarkBoardViewModel()
+                            self.showCollectionFeedView = true
+                        }, label: {
+                            HStack {
+                                Text("All Saved Posts")
+                                    .font(Font.custom(Constants.bodyFont, size: 18))
+                                    .padding(.horizontal, 8)
+                                    .foregroundColor(Color(Constants.darkBackgroundColor))
+                                Spacer()
+                                Image(systemName: "chevron.right")
+                                    .font(.system(size: 16, weight: .light))
+                                    .foregroundColor(.gray)
+                            }.padding(.horizontal, 24)
+                            .padding(.vertical, 16)
+                        })
                         ForEach(userProfileViewModel.usersBookmarkBoardsList, id: \.id) { bookmarkBoardModel in
                             Button(action: {
                                 self.bookmarkBoardViewModel = BookmarkBoardViewModel(bookmarkBoardModel: bookmarkBoardModel)
@@ -29,7 +45,7 @@ struct CollectionsProfileView: View {
                                 CollectionsProfileRowView(bookmarkBoardModel: bookmarkBoardModel)
                             })
                         }
-                    }
+                    }.padding(.bottom, 16)
                 }
             } else {
                 Text("No collections")

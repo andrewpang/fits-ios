@@ -22,12 +22,15 @@ class BookmarkBoardViewModel: ObservableObject {
     @Published var shouldPopToRootViewIfFalse = false
     
     var bookmarksListener: ListenerRegistration?
-    var postsListener: ListenerRegistration?
     
     private var db = Firestore.firestore()
     
     init(bookmarkBoardModel: BookmarkBoardModel) {
         self.bookmarkBoardModel = bookmarkBoardModel
+    }
+    
+    init() {
+        self.bookmarkBoardModel = BookmarkBoardModel()
     }
     
     func fetchCreatorName() {
@@ -53,37 +56,57 @@ class BookmarkBoardViewModel: ObservableObject {
         }
     }
     
-    func fetchPostsForBookmarkBoard() {
+    func fetchPostsForBookmarkBoard(with userId: String) {
         if (bookmarksListener != nil) {
-            return
+            bookmarksListener?.remove() //Refetch
         }
-
-        bookmarksListener = db.collection("bookmarks")
-            .whereField("boardIds", arrayContains: bookmarkBoardModel.id ?? "noId")
-            .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
-                guard let documents = querySnapshot?.documents else {
-                    print("No documents")
-                    return
-                }
-
-                var bookmarksList = [BookmarkModel]()
-                bookmarksList = documents.compactMap { querySnapshot -> BookmarkModel? in
-                    return try? querySnapshot.data(as: BookmarkModel.self)
-                }
-                DispatchQueue.main.async {
-                    self.bookmarksList = bookmarksList
-                    self.postIdsList = bookmarksList.compactMap { bookmarkModel -> String in
-                        return bookmarkModel.postId ?? "noId"
+        
+        if let bookmarkBoardTitle = bookmarkBoardModel.title, !bookmarkBoardTitle.isEmpty {
+            bookmarksListener = db.collection("bookmarks")
+                .whereField("boardIds", arrayContains: bookmarkBoardModel.id ?? "noId")
+                .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+                    guard let documents = querySnapshot?.documents else {
+                        print("No documents")
+                        return
                     }
-                    self.fetchPostModels()
+
+                    var bookmarksList = [BookmarkModel]()
+                    bookmarksList = documents.compactMap { querySnapshot -> BookmarkModel? in
+                        return try? querySnapshot.data(as: BookmarkModel.self)
+                    }
+                    DispatchQueue.main.async {
+                        self.bookmarksList = bookmarksList
+                        self.postIdsList = bookmarksList.compactMap { bookmarkModel -> String in
+                            return bookmarkModel.postId ?? "noId"
+                        }
+                        self.fetchPostModels()
+                    }
                 }
-            }
+        } else {
+            bookmarksListener = db.collection("bookmarks")
+                .whereField("bookmarkerId", isEqualTo: userId)
+                .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
+                    guard let documents = querySnapshot?.documents else {
+                        print("No documents")
+                        return
+                    }
+
+                    var bookmarksList = [BookmarkModel]()
+                    bookmarksList = documents.compactMap { querySnapshot -> BookmarkModel? in
+                        return try? querySnapshot.data(as: BookmarkModel.self)
+                    }
+                    DispatchQueue.main.async {
+                        self.bookmarksList = bookmarksList
+                        self.postIdsList = bookmarksList.compactMap { bookmarkModel -> String in
+                            return bookmarkModel.postId ?? "noId"
+                        }
+                        self.fetchPostModels()
+                    }
+                }
+        }
     }
     
     func fetchPostModels() {
-        if (postsListener != nil) {
-            return
-        }
         var postsDownloaded = 0
         var postsList: [Any] = Array(repeating: "", count: postIdsList.count)
         

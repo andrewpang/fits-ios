@@ -49,6 +49,7 @@ struct BoardWaterfallCollectionView: UIViewControllerRepresentable {
         let refreshControl = UIRefreshControl()
         collectionView.refreshControl = refreshControl
         let uiAction = UIAction(handler: { uiAction in
+            bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: authenticationViewModel.userModel?.id ?? "noId")
             DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
                    refreshControl.endRefreshing()
             }

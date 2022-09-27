@@ -28,12 +28,15 @@ struct CollectionFeedView: View {
             .isDetailLink(false)
             Color(Constants.backgroundColor).ignoresSafeArea()
             VStack(spacing: 0) {
-                Text(bookmarkBoardViewModel.bookmarkBoardModel.title ?? "Board")
-                    .font(Font.custom(Constants.titleFontItalicized, size: 32))
+                if let boardTitle = bookmarkBoardViewModel.bookmarkBoardModel.title, !boardTitle.isEmpty {
+                    Text(boardTitle)
+                        .font(Font.custom(Constants.titleFontItalicized, size: 32))
+                }
                 if (!bookmarkBoardViewModel.creatorName.isEmpty) {
                     Text("Created by: \(bookmarkBoardViewModel.creatorName)")
                         .font(Font.custom(Constants.bodyFont, size: 16))
                         .multilineTextAlignment(.center)
+                        .padding(.bottom, 16)
                 }
                 if let postModels = bookmarkBoardViewModel.postsData.postModels {
                     BoardWaterfallCollectionView(bookmarkBoardViewModel: bookmarkBoardViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).onAppear {
@@ -41,7 +44,7 @@ struct CollectionFeedView: View {
 //                        let propertiesDict = ["feed": "Random"] as? [String : String]
 //                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
 //                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                    }.padding(.top, 16)
+                    }
                 } else {
                     Spacer()
                     Text("There's no posts in this collection :(")
@@ -63,23 +66,24 @@ struct CollectionFeedView: View {
         }
         .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
             if (isUsersOwnCollection()) {
-                Button ("Edit Post") {
-//                    editPostTitle = postDetailViewModel.postModel.title
-//                    editPostBody = postDetailViewModel.postModel.body
-//                    isEditMode = true
-//                    focusedField = .editPostTitleField
-                }
+//                Button ("Edit Post") {
+////                    editPostTitle = postDetailViewModel.postModel.title
+////                    editPostBody = postDetailViewModel.postModel.body
+////                    isEditMode = true
+////                    focusedField = .editPostTitleField
+//                }
                 Button ("Delete Collection", role: ButtonRole.destructive) {
                     showingDeleteAlert = true
                 }
-            } else {
-                Button ("Report Collection", role: ButtonRole.destructive) {
-//                    openMail(postId: postDetailViewModel.postModel.id)
-                }
             }
+//            else {
+//                Button ("Report Collection", role: ButtonRole.destructive) {
+////                    openMail(postId: postDetailViewModel.postModel.id)
+//                }
+//            }
             Button ("Cancel", role: ButtonRole.cancel) {}
         } message: {
-                Text ("Choose a picture from your photo library, or take one now!")
+//                Text ("Choose a picture from your photo library, or take one now!")
         }.alert("Delete Collection", isPresented: $showingDeleteAlert, actions: {
               Button("No", role: .cancel, action: {})
               Button("Delete", role: .destructive, action: {
@@ -94,7 +98,7 @@ struct CollectionFeedView: View {
                 Text("Are you sure you want to delete this collection? (You can't undo this)")
             })
         .onAppear {
-            self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard()
+            self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: authenticationViewModel.userModel?.id ?? "noId")
             self.bookmarkBoardViewModel.fetchCreatorName()
         }
     }
