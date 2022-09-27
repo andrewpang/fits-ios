@@ -26,6 +26,7 @@ class PostDetailViewModel: ObservableObject {
     @Published var isShowingRemovedFromCollectionsPopup = false
     
     @Published var likersList = [LikeModel]()
+    @Published var bookmarkersList = [UserModel]()
     @Published var usersBookmarkBoardsList = [BookmarkBoardModel]()
     @Published var bookmarkData = BookmarkModel()
     
@@ -182,6 +183,9 @@ class PostDetailViewModel: ObservableObject {
                 }
             }
         }
+    }
+    
+    func fetchBookmarkers() {
     }
     
     func fetchRecentLikers(userId: String?) {
