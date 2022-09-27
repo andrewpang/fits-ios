@@ -378,16 +378,22 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func bookmarkPost(bookmarkModel: BookmarkModel) {
+    func bookmarkPost(bookmarkModel: BookmarkModel, bookmarkerDisplayName: String?, postTitle: String, postAuthorUserId: String) {
         if let postId = bookmarkModel.postId {
             if let bookmarkerId = bookmarkModel.bookmarkerId {
                 let bookmarksCollection = self.db.collection("bookmarks")
                 let documentId = "\(bookmarkerId)_\(postId)"
                 let bookmarkDocument = bookmarksCollection.document(documentId)
                 let postDocument = self.db.collection("posts").document(postId)
+                let displayName = bookmarkerDisplayName ?? "Someone"
+
+                let notificationText = "\(displayName) just bookmarked your post: \(postTitle)!"
+                let notificationModel = NotificationModel(userId: postAuthorUserId, text: notificationText, type: "newBookmark", interactorUserId: bookmarkModel.bookmarkerId)
+                let notificationDocument = self.db.collection("notifications").document(notificationModel.id ?? UUID().uuidString)
                 do {
                     let batch = db.batch()
                     try batch.setData(from: bookmarkModel, forDocument: bookmarkDocument, merge: true)
+                    try batch.setData(from: notificationModel, forDocument: notificationDocument, merge: true)
                     batch.updateData(["bookmarksCount": FieldValue.increment(Int64(1))], forDocument: postDocument)
                     batch.commit() { err in
                         if let err = err {
