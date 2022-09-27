@@ -158,7 +158,8 @@ struct BoardWaterfallCollectionView: UIViewControllerRepresentable {
                         generator.notificationOccurred(.success)
                         let eventName = "Like Button - Clicked"
                         let propertiesDict = ["isLike": true as Bool, "source": "boardFeed", "postId": post.id ?? "noId"] as? [String : Any]
-                        let mixpanelDict = ["isLike": true as Bool, "source": "boardFeed: propertiesDict)
+                        let mixpanelDict = ["isLike": true as Bool, "source": "boardFeed", "postId": post.id ?? "noId"] as? [String : MixpanelType]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                         Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
                     }
                 }
