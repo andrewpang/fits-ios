@@ -431,7 +431,7 @@ class PostDetailViewModel: ObservableObject {
                         } else {
                             print("Batch write for bookmarkPost succeeded.")
                             let eventName = "Bookmarked Post - Completed"
-                            let propertiesDict = ["postId": bookmarkModel.postId, "postAuthorUserId": postAuthorUserId] as? [String : String]
+                            let propertiesDict = ["postId": bookmarkModel.postId, "bookmarkerId": bookmarkModel.bookmarkerId, "postAuthorUserId": postAuthorUserId] as? [String : String]
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
@@ -483,6 +483,10 @@ class PostDetailViewModel: ObservableObject {
                 print("Error writing addBookmarkToBoard batch: \(error)")
             } else {
                 print("Batch write for addBookmarkToBoard succeeded.")
+                let eventName = "Bookmark Added To Board - Completed"
+                let propertiesDict = ["postId": postId, "bookmarkerId": bookmarkerId, "boardId": boardId] as? [String : String]
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
         }    
     }
@@ -514,6 +518,9 @@ class PostDetailViewModel: ObservableObject {
                     print("Added new BookmarkBoardModel")
                     completion(ref!.documentID)
                     self.isSubmittingCreateBoard = false
+                    let eventName = "Created New Board - Completed"
+                    Amplitude.instance().logEvent(eventName)
+                    Mixpanel.mainInstance().track(event: eventName)
                 }
             }
         }
