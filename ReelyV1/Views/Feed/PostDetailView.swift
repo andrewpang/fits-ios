@@ -24,8 +24,8 @@ struct PostDetailView: View {
     @State var isAnimatingApplaud = false
     @State private var confettiCounterOne: Int = 0
     @State private var confettiCounterTwo: Int = 0
-    @State var goToApplaudersPage = false
-    @State var goToBookmarkersPage = false
+    @State var goToApplaudsPage = false
+    @State var goToSavesPage = false
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -275,9 +275,9 @@ struct PostDetailView: View {
                             if (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
                                     Spacer()
-                                    NavigationLink(destination: PostLikerBookmarkerParentView(postDetailViewModel: postDetailViewModel), isActive: $goToApplaudersPage) {
+                                    NavigationLink(destination: PostLikerBookmarkerParentView(postDetailViewModel: postDetailViewModel), isActive: $goToApplaudsPage) {
                                         HStack {
-                                            Text("View Applauders/Bookmarkers")
+                                            Text("View Applauds/Saves")
                                                 .font(Font.custom(Constants.buttonFont, size: 16))
                                                 .foregroundColor(Color(Constants.backgroundColor))
                                                 .padding(.vertical, 12)
@@ -288,7 +288,7 @@ struct PostDetailView: View {
                                     }.isDetailLink(false)
                                     .padding(.vertical, 8)
                                     .padding(.horizontal, 24)
-                                    NavigationLink(destination: PostLikerBookmarkerParentView(postDetailViewModel: postDetailViewModel, selectedTab: PostLikerBookmarkerParentView.bookmarkerTabIndex), isActive: $goToBookmarkersPage) {
+                                    NavigationLink(destination: PostLikerBookmarkerParentView(postDetailViewModel: postDetailViewModel, selectedTab: PostLikerBookmarkerParentView.bookmarkerTabIndex), isActive: $goToSavesPage) {
                                         EmptyView()
                                     }.isDetailLink(false)
                                     Spacer()
@@ -469,11 +469,11 @@ struct PostDetailView: View {
             }
             .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
                 if (isUsersOwnPost()) {
-                    Button ("View Applauders") {
-                        self.goToApplaudersPage = true
+                    Button ("View Applauds") {
+                        self.goToApplaudsPage = true
                     }
-                    Button ("View Bookmarkers") {
-                        self.goToBookmarkersPage = true
+                    Button ("View Saves") {
+                        self.goToSavesPage = true
                     }
                     Button ("Edit Post") {
                         editPostTitle = postDetailViewModel.postModel.title
@@ -540,7 +540,7 @@ struct PostDetailView: View {
                 Text("📌")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(.white)
-                Text("Saved to Board")
+                Text("Saved to Collection")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(Color(Constants.backgroundColor))
             }
@@ -555,7 +555,7 @@ struct PostDetailView: View {
                 Text("🙅‍♀️")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(.white)
-                Text("Removed from collections")
+                Text("Removed from Collections")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(Color(Constants.backgroundColor))
             }

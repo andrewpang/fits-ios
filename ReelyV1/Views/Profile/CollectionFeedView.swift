@@ -76,7 +76,7 @@ struct CollectionFeedView: View {
             Button ("Cancel", role: ButtonRole.cancel) {}
         } message: {
 //                Text ("Choose a picture from your photo library, or take one now!")
-        }.alert("Delete Board", isPresented: $showingDeleteAlert, actions: {
+        }.alert("Delete Collection", isPresented: $showingDeleteAlert, actions: {
               Button("No", role: .cancel, action: {})
               Button("Delete", role: .destructive, action: {
                   self.bookmarkBoardViewModel.deleteBookmarkBoard()
@@ -87,7 +87,7 @@ struct CollectionFeedView: View {
                   Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
               })
             }, message: {
-                Text("Are you sure you want to delete this board? (You can't undo this, but the posts will still be saved to your collections)")
+                Text("Are you sure you want to delete this collection? (You can't undo this)")
             })
         .onAppear {
             self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: bookmarkBoardViewModel.bookmarkBoardModel.creatorId ?? "noId")

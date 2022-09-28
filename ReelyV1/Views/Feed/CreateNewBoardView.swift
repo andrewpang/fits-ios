@@ -22,7 +22,7 @@ struct CreateNewBoardView: View {
     var body: some View {
         VStack(alignment: .leading) {
             BoardPreviewView(firstImageUrl: postDetailViewModel.postModel.getFirstImageUrl()).padding(.vertical, 16)
-            Text("Board Name:")
+            Text("Collection Name:")
                 .font(Font.custom(Constants.titleFontBold, size: 18))
             Text("Required (Max. 30 Characters)")
                 .font(Font.custom(Constants.bodyFont, size: 16))
@@ -59,7 +59,7 @@ struct CreateNewBoardView: View {
             }) {
                 if (self.boardTitle.isEmpty) {
                     HStack {
-                        Text("Create Board")
+                        Text("Create Collection")
                             .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                             .foregroundColor(Color(Constants.backgroundColor))
                             .padding(.vertical, 16)
@@ -78,7 +78,7 @@ struct CreateNewBoardView: View {
                                 .padding(.vertical, 16)
                                 .padding(.horizontal, 24)
                         } else {
-                            Text("Create Board")
+                            Text("Create Collection")
                                 .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
                                 .foregroundColor(Color(Constants.backgroundColor))
                                 .padding(.vertical, 16)
@@ -94,7 +94,7 @@ struct CreateNewBoardView: View {
             .padding(.vertical, 8)
             Spacer()
         }
-        .navigationBarTitle("Create Board", displayMode: .inline)
+        .navigationBarTitle("Create Collection", displayMode: .inline)
         .padding(.horizontal, 24)
 //        .toolbar {
 //            ToolbarItemGroup(placement: .navigationBarTrailing) {

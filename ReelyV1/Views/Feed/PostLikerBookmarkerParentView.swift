@@ -17,8 +17,8 @@ struct PostLikerBookmarkerParentView: View {
     var body: some View {
         VStack {
             Picker("", selection: $selectedTab) {
-                Text("Applauders").font(Font.custom(Constants.bodyFont, size: 16)).tag(FollowerFollowingParentView.followersTabIndex)
-                Text("Bookmarkers").font(Font.custom(Constants.bodyFont, size: 16)).tag(FollowerFollowingParentView.followingTabIndex)
+                Text("Applauds").font(Font.custom(Constants.bodyFont, size: 16)).tag(FollowerFollowingParentView.followersTabIndex)
+                Text("Saves").font(Font.custom(Constants.bodyFont, size: 16)).tag(FollowerFollowingParentView.followingTabIndex)
             }
             .pickerStyle(SegmentedPickerStyle())
             .padding(.horizontal, 24)
@@ -26,7 +26,7 @@ struct PostLikerBookmarkerParentView: View {
             Spacer()
             switch (selectedTab) {
                 case PostLikerBookmarkerParentView.likerTabIndex: PostLikersView(postDetailViewModel: postDetailViewModel)
-                case PostLikerBookmarkerParentView.bookmarkerTabIndex: PostBookmarkersView(postDetailViewModel: postDetailViewModel)
+                case PostLikerBookmarkerParentView.bookmarkerTabIndex: PostSavesView(postDetailViewModel: postDetailViewModel)
                 default: PostLikersView(postDetailViewModel: postDetailViewModel)
             }
         }

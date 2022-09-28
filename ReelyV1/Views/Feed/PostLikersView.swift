@@ -25,7 +25,7 @@ struct PostLikersView: View {
                     }
                 }
             }
-        }.navigationBarTitle("Applauders", displayMode: .inline)
+        }.navigationBarTitle("Applauds", displayMode: .inline)
         .onAppear {
             postDetailViewModel.fetchLikers()
             let propertiesDict = [
