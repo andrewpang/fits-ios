@@ -24,6 +24,8 @@ struct PostDetailView: View {
     @State var isAnimatingApplaud = false
     @State private var confettiCounterOne: Int = 0
     @State private var confettiCounterTwo: Int = 0
+    @State var goToApplaudersPage = false
+    @State var goToBookmarkersPage = false
     
     @Environment(\.presentationMode) var presentationMode
     
@@ -273,9 +275,9 @@ struct PostDetailView: View {
                             if (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
                                 HStack {
                                     Spacer()
-                                    NavigationLink(destination: PostLikersView(postDetailViewModel: postDetailViewModel)) {
+                                    NavigationLink(destination: PostLikerBookmarkerParentView(postDetailViewModel: postDetailViewModel), isActive: $goToApplaudersPage) {
                                         HStack {
-                                            Text("View Applauders")
+                                            Text("View Applauders/Bookmarkers")
                                                 .font(Font.custom(Constants.buttonFont, size: 16))
                                                 .foregroundColor(Color(Constants.backgroundColor))
                                                 .padding(.vertical, 12)
@@ -286,6 +288,9 @@ struct PostDetailView: View {
                                     }.isDetailLink(false)
                                     .padding(.vertical, 8)
                                     .padding(.horizontal, 24)
+                                    NavigationLink(destination: PostLikerBookmarkerParentView(postDetailViewModel: postDetailViewModel, selectedTab: PostLikerBookmarkerParentView.bookmarkerTabIndex), isActive: $goToBookmarkersPage) {
+                                        EmptyView()
+                                    }.isDetailLink(false)
                                     Spacer()
                                 }
                             }
@@ -464,6 +469,12 @@ struct PostDetailView: View {
             }
             .confirmationDialog("Select a Photo", isPresented: $showConfirmationDialog) {
                 if (isUsersOwnPost()) {
+                    Button ("View Applauders") {
+                        self.goToApplaudersPage = true
+                    }
+                    Button ("View Bookmarkers") {
+                        self.goToBookmarkersPage = true
+                    }
                     Button ("Edit Post") {
                         editPostTitle = postDetailViewModel.postModel.title
                         editPostBody = postDetailViewModel.postModel.body
