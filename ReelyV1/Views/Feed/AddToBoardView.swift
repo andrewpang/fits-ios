@@ -36,9 +36,8 @@ struct AddToBoardView: View {
                             .foregroundColor(Color(Constants.darkBackgroundColor))
                     })
                     Spacer()
-                    Text("Save to board")
+                    Text("Save to Collection")
                         .font(Font.custom(Constants.titleFontBold, size: 24))
-                        
                     Spacer()
                     Button(action: {
                         generator.notificationOccurred(.warning)
@@ -48,7 +47,13 @@ struct AddToBoardView: View {
                             .font(.system(size: 18.0))
                             .foregroundColor(.red)
                     }
-                }.padding(24)
+                }.padding(.horizontal, 24)
+                .padding(.top, 24)
+                Text("This post is already saved, but you can also add it to different collections")
+                    .font(Font.custom(Constants.bodyFont, size: 14))
+                    .multilineTextAlignment(.center)
+                    .padding(.horizontal, 24)
+                    .padding(.vertical, 1)
                 if let bookmarkBoardsList = postDetailViewModel.usersBookmarkBoardsList, !bookmarkBoardsList.isEmpty {
                     ScrollView {
                         LazyVStack(spacing: 8) {
@@ -82,7 +87,7 @@ struct AddToBoardView: View {
                     }
                 } else {
                     Spacer()
-                    Text("You haven't created any boards yet :(")
+                    Text("You haven't created any collections yet :(")
                         .font(Font.custom(Constants.bodyFont, size: 18))
                         .padding(.horizontal, 8)
                         .foregroundColor(Color(Constants.darkBackgroundColor))
@@ -98,7 +103,7 @@ struct AddToBoardView: View {
                         Image(systemName: "plus.circle")
                             .font(.system(size: 32.0, weight: .light))
                             .foregroundColor(Color(Constants.darkBackgroundColor))
-                        Text("Create new board")
+                        Text("Create new collection")
                             .font(Font.custom(Constants.bodyFont, size: 18))
                         Spacer()
                         Image(systemName: "chevron.right")
@@ -120,9 +125,9 @@ struct AddToBoardView: View {
                       }
                   })
                 }, message: {
-                    Text("Are you sure you want to remove this post from your collections?")
+                    Text("Are you sure you want to remove this post from all your collections?")
                 })
-            .alert("Remove from Board", isPresented: $showRemoveFromBoardAlert, actions: {
+            .alert("Remove from Collection", isPresented: $showRemoveFromBoardAlert, actions: {
                   Button("Cancel", role: .cancel, action: {})
                   Button("Remove", role: .destructive, action: {
                       if let postId = postDetailViewModel.postModel.id {
@@ -135,14 +140,14 @@ struct AddToBoardView: View {
                       }
                   })
                 }, message: {
-                    Text("Are you sure you want to remove this post from this board?")
+                    Text("Are you sure you want to remove this post from this collection?")
                 })
             .popup(isPresented: $removedFromBoardPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: true), position: .top, autohideIn: 2) {
                 HStack {
                     Text("🙅‍♀️")
                         .font(Font.custom(Constants.buttonFont, size: 16))
                         .foregroundColor(.white)
-                    Text("Removed from board")
+                    Text("Removed from collection")
                         .font(Font.custom(Constants.buttonFont, size: 16))
                         .foregroundColor(Color(Constants.backgroundColor))
                 }
@@ -154,7 +159,7 @@ struct AddToBoardView: View {
             }
             .onAppear {
                 postDetailViewModel.fetchBookmarkBoardsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
-                let eventName = "Add To Board - View"
+                let eventName = "Add To Collection - View"
                 let propertiesDict = ["postId": postDetailViewModel.postModel.id] as? [String : String]
                 Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                 Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)

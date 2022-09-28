@@ -9,7 +9,7 @@ import SwiftUI
 import Amplitude
 import Mixpanel
 
-struct PostBookmarkersView: View {
+struct PostSavesView: View {
     
     @ObservedObject var postDetailViewModel: PostDetailViewModel
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
@@ -26,7 +26,7 @@ struct PostBookmarkersView: View {
                     }
                 }
             }
-        }.navigationBarTitle("Bookmarkers", displayMode: .inline)
+        }.navigationBarTitle("Saves", displayMode: .inline)
         .onAppear {
             postDetailViewModel.fetchBookmarkers()
             let propertiesDict = [
@@ -39,7 +39,7 @@ struct PostBookmarkersView: View {
                 "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
                 "isUsersOwnPost": isUsersOwnPost(),
             ] as? [String : MixpanelType]
-            let eventName = "Post Bookmarkers Screen - View"
+            let eventName = "Post Saves Screen - View"
             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
         }

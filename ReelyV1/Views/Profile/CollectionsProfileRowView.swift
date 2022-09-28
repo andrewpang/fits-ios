@@ -30,7 +30,7 @@ struct CollectionsProfileRowView: View {
                         .cornerRadius(Constants.promptImageCornerRadius)
                         .clipped()
                 }
-                Text(bookmarkBoardModel.title ?? "Board")
+                Text(bookmarkBoardModel.title ?? "Collection")
                     .font(Font.custom(Constants.bodyFont, size: 16))
                     .padding(.horizontal, 8)
                     .foregroundColor(Color(Constants.darkBackgroundColor))
