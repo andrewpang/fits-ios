@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Amplitude
+import Mixpanel
 
 struct CollectionFeedView: View {
     @EnvironmentObject var authenticationViewModel: AuthenticationViewModel
@@ -39,12 +41,7 @@ struct CollectionFeedView: View {
                         .padding(.bottom, 16)
                 }
                 if let postModels = bookmarkBoardViewModel.postsData.postModels {
-                    BoardWaterfallCollectionView(bookmarkBoardViewModel: bookmarkBoardViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).onAppear {
-//                        let eventName = "Home Feed Screen - View"
-//                        let propertiesDict = ["feed": "Random"] as? [String : String]
-//                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                    }
+                    BoardWaterfallCollectionView(bookmarkBoardViewModel: bookmarkBoardViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
                 } else {
                     Spacer()
                     Text("There's no posts in this collection :(")
@@ -84,10 +81,10 @@ struct CollectionFeedView: View {
               Button("Delete", role: .destructive, action: {
                   self.bookmarkBoardViewModel.deleteBookmarkBoard()
                   self.presentationMode.wrappedValue.dismiss()
-//                  let eventName = "Delete Post - Clicked"
-//                  let propertiesDict = ["userId": authenticationViewModel.userModel?.id, "postId": postDetailViewModel.postModel.id ?? "noId"] as? [String : String]
-//                  Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//                  Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                  let eventName = "Delete Board - Clicked"
+                  let propertiesDict = ["userId": authenticationViewModel.userModel?.id, "boardId": bookmarkBoardViewModel.bookmarkBoardModel.id ?? "noId"] as? [String : String]
+                  Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                  Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
               })
             }, message: {
                 Text("Are you sure you want to delete this board? (You can't undo this, but the posts will still be saved to your collections)")

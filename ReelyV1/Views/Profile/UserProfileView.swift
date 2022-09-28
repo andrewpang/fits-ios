@@ -37,9 +37,20 @@ struct UserProfileView: View {
                     .padding(.vertical, 8)
                 ProfileCategoryTabBarView(currentTab: self.$userProfileViewModel.currentTab)
                 if (userProfileViewModel.currentTab == 0) {
-                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel, profileUserId: userId)
+                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel, profileUserId: userId).onAppear {
+                        let eventName = "Profile Post Tab - View"
+                        let propertiesDict = ["isUsersOwnProfile": false] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                    }
+                    
                 } else {
-                    CollectionsProfileView(userProfileViewModel: userProfileViewModel)
+                    CollectionsProfileView(userProfileViewModel: userProfileViewModel).onAppear {
+                        let eventName = "Profile Collections Tab - View"
+                        let propertiesDict = ["isUsersOwnProfile": false] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                    }
                 }
             }
         }.onAppear {
