@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Amplitude
+import Mixpanel
 
 struct AddToBoardView: View {
     
@@ -152,6 +154,10 @@ struct AddToBoardView: View {
             }
             .onAppear {
                 postDetailViewModel.fetchBookmarkBoardsForUser(with: authenticationViewModel.userModel?.id ?? "noId")
+                let eventName = "Add To Board - View"
+                let propertiesDict = ["postId": postDetailViewModel.postModel.id] as? [String : String]
+                Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
             }
         }
     }
