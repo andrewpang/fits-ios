@@ -62,9 +62,19 @@ struct MyProfileView: View {
 //                    CollectionsProfileFeedView(userProfileViewModel: userProfileViewModel).tag(1)
 //                }.tabViewStyle(.page(indexDisplayMode: .never))
                 if (userProfileViewModel.currentTab == 0) {
-                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel)
+                    ProfilePostsFeedView(userProfileViewModel: userProfileViewModel).onAppear {
+                        let eventName = "Profile Post Tab - View"
+                        let propertiesDict = ["isUsersOwnProfile": true] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                    }
                 } else {
-                    CollectionsProfileView(userProfileViewModel: userProfileViewModel)
+                    CollectionsProfileView(userProfileViewModel: userProfileViewModel).onAppear {
+                        let eventName = "Profile Collections Tab - View"
+                        let propertiesDict = ["isUsersOwnProfile": true] as? [String : String]
+                        Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                        Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                    }
                 }
                 
             }.sheet(isPresented: $showPicker) {
