@@ -36,6 +36,7 @@ class PostDetailViewModel: ObservableObject {
     var likesListener: ListenerRegistration?
     var commentsLikesListeners: [ListenerRegistration]?
     var bookmarksListener: ListenerRegistration?
+    var bookmarkersListener: ListenerRegistration?
     var bookmarkBoardsListener: ListenerRegistration?
     
     @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
@@ -186,8 +187,12 @@ class PostDetailViewModel: ObservableObject {
     }
     
     func fetchBookmarkers() {
+        if (bookmarkersListener != nil) {
+            return
+        }
+        
         if let postId = postModel.id {
-            bookmarksListener = db.collection("bookmarks")
+            bookmarkersListener = db.collection("bookmarks")
                 .whereField("postId", isEqualTo: postId)
                 .order(by: "createdAt", descending: true).addSnapshotListener { (querySnapshot, error) in
                     guard let documents = querySnapshot?.documents else {
@@ -288,6 +293,7 @@ class PostDetailViewModel: ObservableObject {
             }
         }
         bookmarksListener?.remove()
+        bookmarkersListener?.remove()
         bookmarkBoardsListener?.remove()
     }
     
