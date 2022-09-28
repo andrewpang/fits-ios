@@ -93,6 +93,11 @@ struct CollectionFeedView: View {
             self.bookmarkBoardViewModel.fetchPostsForBookmarkBoard(with: bookmarkBoardViewModel.bookmarkBoardModel.creatorId ?? "noId")
             self.bookmarkBoardViewModel.fetchCreatorName()
             self.bookmarkBoardViewModel.fetchPostLikesForUser(with: authenticationViewModel.userModel?.id ?? "noId")
+            let eventName = "Collection Feed - View"
+            let propertiesDict = ["isUsersOwnProfile": isUsersOwnCollection(), "boardId": bookmarkBoardViewModel.bookmarkBoardModel.id ?? "noId", "creatorId": bookmarkBoardViewModel.bookmarkBoardModel.creatorId ?? "noId"] as? [String : Any]
+            let mixpanelDict = ["isUsersOwnProfile": isUsersOwnCollection(), "boardId": bookmarkBoardViewModel.bookmarkBoardModel.id ?? "noId", "creatorId": bookmarkBoardViewModel.bookmarkBoardModel.creatorId ?? "noId"]  as? [String : MixpanelType]
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: mixpanelDict)
         }
     }
     

@@ -9,6 +9,8 @@ import Foundation
 import FirebaseCore
 import FirebaseFirestore
 import FirebaseAuth
+import Amplitude
+import Mixpanel
 
 class PostDetailViewModel: ObservableObject {
     
@@ -428,6 +430,10 @@ class PostDetailViewModel: ObservableObject {
                             print("Error writing bookmarkPost batch \(err)")
                         } else {
                             print("Batch write for bookmarkPost succeeded.")
+                            let eventName = "Bookmarked Post - Completed"
+                            let propertiesDict = ["postId": bookmarkModel.postId, "postAuthorUserId": postAuthorUserId] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
                     }
                 }
