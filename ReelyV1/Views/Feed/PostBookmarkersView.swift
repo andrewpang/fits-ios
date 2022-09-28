@@ -6,6 +6,8 @@
 //
 
 import SwiftUI
+import Amplitude
+import Mixpanel
 
 struct PostBookmarkersView: View {
     
@@ -27,19 +29,23 @@ struct PostBookmarkersView: View {
         }.navigationBarTitle("Bookmarkers", displayMode: .inline)
         .onAppear {
             postDetailViewModel.fetchBookmarkers()
-//            let propertiesDict = [
-//                "postId": postDetailViewModel.postModel.id as Any,
-//                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-//                "isUsersOwnPost": isUsersOwnPost(),
-//            ] as? [String : Any]
-//            let propertiesDictMixPanel = [
-//                "postId": postDetailViewModel.postModel.id as Any,
-//                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
-//                "isUsersOwnPost": isUsersOwnPost(),
-//            ] as? [String : MixpanelType]
-//            let eventName = "Post Likers Screen - View"
-//            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-//            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
+            let propertiesDict = [
+                "postId": postDetailViewModel.postModel.id as Any,
+                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                "isUsersOwnPost": isUsersOwnPost(),
+            ] as? [String : Any]
+            let propertiesDictMixPanel = [
+                "postId": postDetailViewModel.postModel.id as Any,
+                "postAuthorId": postDetailViewModel.postModel.author.userId as Any,
+                "isUsersOwnPost": isUsersOwnPost(),
+            ] as? [String : MixpanelType]
+            let eventName = "Post Bookmarkers Screen - View"
+            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDictMixPanel)
         }
+    }
+    
+    func isUsersOwnPost() -> Bool {
+        return (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) as Bool
     }
 }
