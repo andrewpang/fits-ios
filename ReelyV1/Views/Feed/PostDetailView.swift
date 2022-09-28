@@ -555,7 +555,7 @@ struct PostDetailView: View {
                 Text("🙅‍♀️")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(.white)
-                Text("Removed from collections")
+                Text("Removed from Collections")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(Color(Constants.backgroundColor))
             }
