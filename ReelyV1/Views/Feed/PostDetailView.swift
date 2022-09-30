@@ -537,9 +537,9 @@ struct PostDetailView: View {
         }
         .popup(isPresented: $postDetailViewModel.isShowingSavedToBoardPopup, type: .floater(verticalPadding: 16, useSafeAreaInset: true), position: .top, autohideIn: 2) {
             HStack {
-                Text("📌")
-                    .font(Font.custom(Constants.buttonFont, size: 16))
-                    .foregroundColor(.white)
+                Image(systemName: "bookmark.fill")
+                    .font(.system(size: 18.0, weight: .light))
+                    .foregroundColor(.yellow)
                 Text("Saved to Collection")
                     .font(Font.custom(Constants.buttonFont, size: 16))
                     .foregroundColor(Color(Constants.backgroundColor))
