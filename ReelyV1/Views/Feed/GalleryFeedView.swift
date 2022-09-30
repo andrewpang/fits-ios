@@ -137,11 +137,13 @@ struct CategoryTabBarView: View {
                         id: \.0,
                         content: {
                         index, name in
-                            CategoryTabBarItem(currentTab: self.$currentTab,
+                            CategoryTabBarItem(
+                                currentTab: self.$currentTab,
                                 selectedCategoryTag: self.$selectedCategoryTag,
                                 namespace: namespace.self,
                                 tabBarItemName: name,
-                                tab: index)
+                                tab: index
+                            ).padding(.horizontal, 4)
                         
                         })
                 Spacer()
