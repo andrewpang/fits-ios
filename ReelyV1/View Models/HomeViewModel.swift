@@ -37,7 +37,7 @@ class HomeViewModel: ObservableObject {
     let limitTimesToSeeIntroPostOverlay = 5
     let numberOfPostsSeenToShowOverlay = 5
 
-    let limitTimesToSeeFeaturedFeedOverlay = 30
+    let limitTimesToSeeFeaturedFeedOverlay = 3
     
     var postsListener: ListenerRegistration?
     var promptPostsListener: ListenerRegistration?
