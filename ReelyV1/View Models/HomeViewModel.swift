@@ -167,6 +167,15 @@ class HomeViewModel: ObservableObject {
         }
     }
     
+    func getPostModelsWithCategoryTag(tag: String) -> [PostModel]? {
+        postsData.postModels?.filter { postModel in
+            if let tags = postModel.tags {
+                return tags.contains(tag)
+            }
+            return false
+        }
+    }
+    
     func checkIfShouldShowIntroPostOverlay() {
         let numberOfTimesSeenIntroPostOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenIntroPostOverlay")
         guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay || postsSeenThisSession != numberOfPostsSeenToShowOverlay) else {

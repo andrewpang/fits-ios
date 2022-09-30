@@ -323,6 +323,7 @@ struct FollowingButton: View {
 struct ProfileCategoryTabBarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
+    @State var selectedCategoryTag = "" //Not needed on Profile at the moment
     
     var tabBarOptions: [String] = ["Posts", "Collections"]
     var body: some View {
@@ -335,9 +336,10 @@ struct ProfileCategoryTabBarView: View {
                         content: {
                         index, name in
                             CategoryTabBarItem(currentTab: self.$currentTab,
-                                namespace: namespace.self,
-                                tabBarItemName: name,
-                                tab: index)
+                                               selectedCategoryTag: self.$selectedCategoryTag,
+                                               namespace: namespace.self,
+                                               tabBarItemName: name,
+                                               tab: index)
                         
                         })
                 Spacer()

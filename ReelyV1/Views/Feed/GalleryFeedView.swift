@@ -18,6 +18,7 @@ struct GalleryFeedView: View {
     @State var showNotificationPermissionModal = false
     @State var fcmToken = ""
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
+    @State var selectedCategoryTag = ""
     
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
@@ -63,7 +64,7 @@ struct GalleryFeedView: View {
                     Text(Constants.appTitle)
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
-                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab)
+                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab, selectedCategoryTag: self.$selectedCategoryTag)
                     TabView(selection: self.$homeViewModel.currentTab) {
                         FollowerFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0).onAppear {
                             self.homeViewModel.fetchFollowingFeed(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false, currentUserId: authenticationViewModel.userModel?.id ?? "noId")
@@ -78,7 +79,13 @@ struct GalleryFeedView: View {
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2).onAppear {
+                        CategoryWaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, selectedCategoryTag: $selectedCategoryTag, uiCollectionViewController: UICollectionViewController()).tag(2).onAppear {
+                            let eventName = "Home Feed Screen - View"
+                            let propertiesDict = ["feed": selectedCategoryTag] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                        }
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(3).onAppear {
                             let eventName = "Home Feed Screen - View"
                             let propertiesDict = ["feed": "Most Recent"] as? [String : String]
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
@@ -111,10 +118,11 @@ struct GalleryFeedView: View {
 struct CategoryTabBarView: View {
     @Binding var currentTab: Int
     @Namespace var namespace
+    @Binding var selectedCategoryTag: String
     
-    var tabBarOptions: [String] = ["Following", "Home", "Most Recent"]
+    var tabBarOptions: [String] = ["Following", "Home", "Featured", "Most Recent"]
     var body: some View {
-//        ScrollView(.horizontal, showsIndicators: false) {
+        ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
                 Spacer()
                 ForEach(Array(zip(self.tabBarOptions.indices,
@@ -123,14 +131,15 @@ struct CategoryTabBarView: View {
                         content: {
                         index, name in
                             CategoryTabBarItem(currentTab: self.$currentTab,
+                                selectedCategoryTag: self.$selectedCategoryTag,
                                 namespace: namespace.self,
                                 tabBarItemName: name,
                                 tab: index)
                         
                         })
                 Spacer()
-            }.padding(.horizontal, 8)
-//        }
+            }
+        }
         .frame(height: 40)
     }
 }
