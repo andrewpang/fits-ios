@@ -144,7 +144,6 @@ struct CategoryTabBarView: View {
                                 tabBarItemName: name,
                                 tab: index
                             ).padding(.horizontal, 4)
-                        
                         })
                 Spacer()
             }
