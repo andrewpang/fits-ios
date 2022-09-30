@@ -64,6 +64,9 @@ struct TabsParentView: View {
             if (homeViewModel.showIntroPostOverlay) {
                 FirstPostOverlayView(homeViewModel: homeViewModel)
             }
+            if (homeViewModel.showFeaturedFeedOverlay) {
+                FeaturedFeedOverlayView(homeViewModel: homeViewModel)
+            }
         }
         .environmentObject(tabViewModel)
     }

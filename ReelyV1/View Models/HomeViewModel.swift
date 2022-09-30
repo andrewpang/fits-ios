@@ -17,12 +17,14 @@ class HomeViewModel: ObservableObject {
     @Published var randomizedPostsData = PostsModel()
     @Published var followingPostsData = PostsModel()
     @Published var showIntroPostOverlay = false
+    @Published var showFeaturedFeedOverlay = false
     @Published var shouldPopToRootViewIfFalse = false
     @Published var shouldScrollToTopFollowing = false
     @Published var shouldScrollToTopForYou = false
     @Published var shouldScrollToTopMostRecent = false
     @Published var promptPostsData = [PromptPostModel]()
     @Published var postsSeenThisSession = 0
+    @Published var featuredFeedSeenThisSession = 0
     @Published var postsUserHasLikedList = [String]()
     @Published var currentTab = 1
     
@@ -34,6 +36,8 @@ class HomeViewModel: ObservableObject {
     
     let limitTimesToSeeIntroPostOverlay = 5
     let numberOfPostsSeenToShowOverlay = 5
+
+    let limitTimesToSeeFeaturedFeedOverlay = 3
     
     var postsListener: ListenerRegistration?
     var promptPostsListener: ListenerRegistration?
@@ -181,6 +185,15 @@ class HomeViewModel: ObservableObject {
         guard (UserDefaults.standard.bool(forKey: "hasPostedIntroPost") == true || numberOfTimesSeenIntroPostOverlay > limitTimesToSeeIntroPostOverlay || postsSeenThisSession != numberOfPostsSeenToShowOverlay) else {
             self.showIntroPostOverlay = true
             UserDefaults.standard.set(numberOfTimesSeenIntroPostOverlay + 1, forKey: "numberOfTimesSeenIntroPostOverlay")
+            return
+        }
+    }
+    
+    func checkIfShouldShowFeaturedFeedOverlay() {
+        let numberOfTimesSeenFeaturedFeedOverlay = UserDefaults.standard.integer(forKey: "numberOfTimesSeenFeaturedFeedOverlay")
+        guard (numberOfTimesSeenFeaturedFeedOverlay > limitTimesToSeeFeaturedFeedOverlay || featuredFeedSeenThisSession != 1) else {
+            self.showFeaturedFeedOverlay = true
+            UserDefaults.standard.set(numberOfTimesSeenFeaturedFeedOverlay + 1, forKey: "numberOfTimesSeenFeaturedFeedOverlay")
             return
         }
     }

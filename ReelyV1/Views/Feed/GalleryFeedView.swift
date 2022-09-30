@@ -84,6 +84,8 @@ struct GalleryFeedView: View {
                             let propertiesDict = ["feed": selectedCategoryTag] as? [String : String]
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                            self.homeViewModel.featuredFeedSeenThisSession += 1
+                            self.homeViewModel.checkIfShouldShowFeaturedFeedOverlay()
                         }
                         WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(3).onAppear {
                             let eventName = "Home Feed Screen - View"
