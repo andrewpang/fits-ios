@@ -9,6 +9,7 @@ import SwiftUI
 
 struct CategoryTabBarItem: View {
     @Binding var currentTab: Int
+    @Binding var selectedCategoryTag: String
     let namespace: Namespace.ID
     
     var tabBarItemName: String
@@ -17,6 +18,7 @@ struct CategoryTabBarItem: View {
     var body: some View {
         Button {
             self.currentTab = tab
+            self.selectedCategoryTag = tabBarItemName.lowercased()
         } label: {
             VStack(spacing: 4) {
                 Spacer()

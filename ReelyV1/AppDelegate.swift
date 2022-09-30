@@ -11,6 +11,7 @@ import FirebaseCore
 import FirebaseMessaging
 import Amplitude
 import Mixpanel
+import FirebaseInstallations
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -28,6 +29,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         // Mixpanel
         Mixpanel.initialize(token: Secrets.MixpanelAPIKey)
+        
+        Installations.installations().installationID { identifier, error in
+          guard let installationID = identifier else {
+              print("Error getting installation ID: \(error!)")
+              return
+          }
+          
+          print("Firebase installations ID = \(installationID)")
+        }
         
         return true
     }
