@@ -20,6 +20,8 @@ struct GalleryFeedView: View {
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
     @State var selectedCategoryTag = ""
     
+    var tabBarOptions: [String] = ["Following", "Home", "Featured", "Most Recent"]
+    
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
         UNUserNotificationCenter.current().delegate = UIApplication.shared as? UNUserNotificationCenterDelegate
@@ -64,8 +66,10 @@ struct GalleryFeedView: View {
                     Text(Constants.appTitle)
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
-                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab, selectedCategoryTag: self.$selectedCategoryTag)
-                    TabView(selection: self.$homeViewModel.currentTab) {
+                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab, selectedCategoryTag: self.$selectedCategoryTag, tabBarOptions: tabBarOptions)
+                    TabView(selection: self.$homeViewModel.currentTab.onUpdate {
+                        self.selectedCategoryTag = self.tabBarOptions[homeViewModel.currentTab].lowercased()
+                    }) {
                         FollowerFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0).onAppear {
                             self.homeViewModel.fetchFollowingFeed(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false, currentUserId: authenticationViewModel.userModel?.id ?? "noId")
                             let eventName = "Home Feed Screen - View"
@@ -122,7 +126,8 @@ struct CategoryTabBarView: View {
     @Namespace var namespace
     @Binding var selectedCategoryTag: String
     
-    var tabBarOptions: [String] = ["Following", "Home", "Featured", "Most Recent"]
+    var tabBarOptions: [String]
+
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 0) {
