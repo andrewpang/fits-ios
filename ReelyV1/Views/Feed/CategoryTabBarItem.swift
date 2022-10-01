@@ -16,10 +16,10 @@ struct CategoryTabBarItem: View {
     var tab: Int
     
     var body: some View {
-        Button {
-            self.currentTab = tab
-            self.selectedCategoryTag = tabBarItemName.lowercased()
-        } label: {
+//        Button {
+//            self.currentTab = tab
+//            self.selectedCategoryTag = tabBarItemName.lowercased()
+//        } label: {
             VStack(spacing: 4) {
                 Spacer()
                 if currentTab == tab {
@@ -34,9 +34,13 @@ struct CategoryTabBarItem: View {
                     Color.clear.frame(height: 2)
                 }
                 Spacer()
-            }.padding(.horizontal, 8)
+            }.padding(.horizontal, 12)
             .animation(.spring(), value: self.currentTab)
-        }
-        .buttonStyle(.plain)
+            .onTapGesture {
+                self.currentTab = tab
+                self.selectedCategoryTag = tabBarItemName.lowercased()
+            }
+//        }
+//        .buttonStyle(.plain)
     }
 }

@@ -70,5 +70,5 @@ struct Constants {
     static let welcomeScreenVideoUrl = "https://firebasestorage.googleapis.com/v0/b/reelyv1.appspot.com/o/appImages%2FFITs_Welcome_Compressed.mp4?alt=media&token=48a0987d-95c9-4bf4-b3d2-cc9e46ef3367"
     static let firstPostGifUrl = "https://firebasestorage.googleapis.com/v0/b/reelyv1.appspot.com/o/appImages%2FFITs_Onboarding_Compressed.gif?alt=media&token=7662f9b4-0024-44e8-ab44-13aed500b5b0"
     
-    static let featuredPostGifUrl = "https://media.giphy.com/media/KDKEMEQvCFsUpbckhT/giphy.gif"
+    static let featuredPostImageUrl = "https://firebasestorage.googleapis.com/v0/b/reelyv1.appspot.com/o/appImages%2Fjuicy-photographer-shoots-a-girl-against-a-landscape-background.png?alt=media&token=17da96d6-b873-4e34-ac71-3230db9c3fb9"
 }
