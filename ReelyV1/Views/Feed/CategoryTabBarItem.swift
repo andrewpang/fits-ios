@@ -16,10 +16,6 @@ struct CategoryTabBarItem: View {
     var tab: Int
     
     var body: some View {
-//        Button {
-//            self.currentTab = tab
-//            self.selectedCategoryTag = tabBarItemName.lowercased()
-//        } label: {
             VStack(spacing: 4) {
                 Spacer()
                 if currentTab == tab {
@@ -40,7 +36,5 @@ struct CategoryTabBarItem: View {
                 self.currentTab = tab
                 self.selectedCategoryTag = tabBarItemName.lowercased()
             }
-//        }
-//        .buttonStyle(.plain)
     }
 }
