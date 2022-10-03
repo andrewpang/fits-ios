@@ -143,10 +143,11 @@ struct CategoryTabBarView: View {
                                 namespace: namespace.self,
                                 tabBarItemName: name,
                                 tab: index
-                            ).padding(.horizontal, 4)
+                            )
                         })
                 Spacer()
             }
+        }.onTapGesture { // Hacky fix for nested clicks to work
         }
         .frame(height: 40)
     }
