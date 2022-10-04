@@ -163,5 +163,6 @@ class PostViewModel: ObservableObject {
         postBody = ""
         postTags = nil
         postImage = nil
+        postRating = nil
     }
 }
