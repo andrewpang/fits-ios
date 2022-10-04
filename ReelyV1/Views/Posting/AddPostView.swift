@@ -69,15 +69,10 @@ struct AddPostView: View {
                             .font(Font.custom(Constants.bodyFont, size: 16))
                             .foregroundColor(.gray)
                     } else if (postViewModel.postType == "productreview") {
-                        HStack {
-                            Text("Post Title:")
-                                .font(Font.custom(Constants.titleFontBold, size: 16))
-                            Button(action: {
-                                //
-                            }, label: {
-                                Image(systemName: "questionmark.circle").font(.system(size: 12)).foregroundColor(.gray)
-                            })
-                        }
+                        Text("Post Title:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                        Text("Suggested: Item Name + Brand")
+                            .font(Font.custom(Constants.bodyFont, size: 12))
                     } else {
                         Text("Post Title:")
                             .font(Font.custom(Constants.titleFontBold, size: 16))

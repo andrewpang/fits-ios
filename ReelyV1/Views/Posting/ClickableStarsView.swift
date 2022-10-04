@@ -13,17 +13,6 @@ struct ClickableStarsView: View {
     private static let STAR_SIZE: CGFloat = 24
 
     @Binding var rating: Int?
-    
-//    init() {
-////        fullCount = Int(rating)
-////        emptyCount = Int(ClickableStarsView.MAX_RATING - rating)
-//    }
-//
-//    init(rating: Int) {
-//        self.rating = rating
-//        fullCount = Int(rating)
-//        emptyCount = Int(ClickableStarsView.MAX_RATING - rating)
-//    }
 
     var body: some View {
         HStack {

@@ -18,7 +18,6 @@
 		4711858928E7929000DEA5E4 /* FeaturedFeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858828E7929000DEA5E4 /* FeaturedFeedOverlayView.swift */; };
 		4711858B28ECB1CF00DEA5E4 /* TabBarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858A28ECB1CF00DEA5E4 /* TabBarConstants.swift */; };
 		4711858D28ECB84C00DEA5E4 /* StarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858C28ECB84C00DEA5E4 /* StarsView.swift */; };
-		4711858F28ECB89600DEA5E4 /* StarShape.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858E28ECB89600DEA5E4 /* StarShape.swift */; };
 		4711859128ECBD5E00DEA5E4 /* ClickableStarsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711859028ECBD5E00DEA5E4 /* ClickableStarsView.swift */; };
 		471B3A9128C80A8E0040742E /* PostLikersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B3A9028C80A8E0040742E /* PostLikersView.swift */; };
 		471B3A9328C80CF00040742E /* PostLikerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B3A9228C80CF00040742E /* PostLikerRowView.swift */; };
@@ -167,7 +166,6 @@
 		4711858828E7929000DEA5E4 /* FeaturedFeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedFeedOverlayView.swift; sourceTree = "<group>"; };
 		4711858A28ECB1CF00DEA5E4 /* TabBarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConstants.swift; sourceTree = "<group>"; };
 		4711858C28ECB84C00DEA5E4 /* StarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarsView.swift; sourceTree = "<group>"; };
-		4711858E28ECB89600DEA5E4 /* StarShape.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StarShape.swift; sourceTree = "<group>"; };
 		4711859028ECBD5E00DEA5E4 /* ClickableStarsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ClickableStarsView.swift; sourceTree = "<group>"; };
 		471B3A9028C80A8E0040742E /* PostLikersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikersView.swift; sourceTree = "<group>"; };
 		471B3A9228C80CF00040742E /* PostLikerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikerRowView.swift; sourceTree = "<group>"; };
@@ -354,7 +352,6 @@
 				47A697302841915D001102C1 /* PostParentView.swift */,
 				4711858C28ECB84C00DEA5E4 /* StarsView.swift */,
 				4711859028ECBD5E00DEA5E4 /* ClickableStarsView.swift */,
-				4711858E28ECB89600DEA5E4 /* StarShape.swift */,
 			);
 			path = Posting;
 			sourceTree = "<group>";
@@ -853,7 +850,6 @@
 				4711859128ECBD5E00DEA5E4 /* ClickableStarsView.swift in Sources */,
 				476B6FDB286C21720060589F /* ProfileViewModel.swift in Sources */,
 				4761CBF9286E6DFA008ED1BF /* WelcomeView.swift in Sources */,
-				4711858F28ECB89600DEA5E4 /* StarShape.swift in Sources */,
 				47283BB82842C65F0016D124 /* PostCardView.swift in Sources */,
 				47E6F29228DAC1F300CA503C /* CommentBarView.swift in Sources */,
 				479FE99E287625F90030EE4D /* TokenModel.swift in Sources */,
