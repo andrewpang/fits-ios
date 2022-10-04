@@ -216,38 +216,69 @@ struct PostDetailView: View {
                                 }.padding(.bottom, 16)
                                 .padding(.horizontal, 16)
                                 .background(Color(Constants.darkBackgroundColor))
+                                
+                                HStack {
+                                    Spacer()
+                                    Text(postDetailViewModel.postModel.title)
+                                        .font(Font.custom(Constants.titleFontBold, size: 20))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }.padding(.top, 16)
+                                .padding(.horizontal, 24)
                             }
                             else if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
                                 HStack {
                                     Spacer()
-                                    Text("Product Review")
+                                    Text("Product Review:")
                                         .font(Font.custom(Constants.titleFontItalicized, size: 16))
                                         .foregroundColor(Color(Constants.backgroundColor))
                                         .multilineTextAlignment(.center)
                                     Spacer()
-                                }.padding(.vertical, 16)
+                                }.padding(.top, 16)
                                 .padding(.horizontal, 16)
                                 .background(Color(Constants.darkBackgroundColor))
-                            }
-                            
-                            HStack {
-                                Spacer()
-                                Text(postDetailViewModel.postModel.title)
-                                    .font(Font.custom(Constants.titleFontBold, size: 20))
-                                    .multilineTextAlignment(.center)
-                                Spacer()
-                            }.padding(.top, 16)
-                            .padding(.horizontal, 24)
-                            
-                            if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
+                                HStack {
+                                    Spacer()
+                                    Text(postDetailViewModel.postModel.title)
+                                        .font(Font.custom(Constants.titleFont, size: 18))
+                                        .foregroundColor(Color(Constants.backgroundColor))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }
+                                .padding(.horizontal, 16)
+                                .background(Color(Constants.darkBackgroundColor))
                                 if let reviewRating = postDetailViewModel.postModel.reviewRating {
                                     HStack {
                                         Spacer()
                                         StarsView(rating: Float(reviewRating))
                                         Spacer()
-                                    }.padding(.vertical, 8)
+                                    }
+                                    .background(Color(Constants.darkBackgroundColor))
                                 }
+                                Divider()
+                                    .frame(height: 16)
+                                    .overlay(Color(Constants.darkBackgroundColor))
+                                    .padding(.bottom, 8)
+                            } else {
+                                HStack {
+                                    Spacer()
+                                    Text(postDetailViewModel.postModel.title)
+                                        .font(Font.custom(Constants.titleFontBold, size: 20))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }.padding(.top, 16)
+                                .padding(.horizontal, 24)
                             }
+                            
+//                            if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
+//                                if let reviewRating = postDetailViewModel.postModel.reviewRating {
+//                                    HStack {
+//                                        Spacer()
+//                                        StarsView(rating: Float(reviewRating))
+//                                        Spacer()
+//                                    }.padding(.vertical, 8)
+//                                }
+//                            }
                             
                             Text(postDetailViewModel.postModel.body)
                                 .font(Font.custom(Constants.bodyFont, size: 16))
