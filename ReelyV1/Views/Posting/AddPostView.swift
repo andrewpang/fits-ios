@@ -68,6 +68,16 @@ struct AddPostView: View {
                         Text(" (think of this as a headline)")
                             .font(Font.custom(Constants.bodyFont, size: 16))
                             .foregroundColor(.gray)
+                    } else if (postViewModel.postType == "productreview") {
+                        HStack {
+                            Text("Post Title:")
+                                .font(Font.custom(Constants.titleFontBold, size: 16))
+                            Button(action: {
+                                //
+                            }, label: {
+                                Image(systemName: "questionmark.circle").font(.system(size: 12)).foregroundColor(.gray)
+                            })
+                        }
                     } else {
                         Text("Post Title:")
                             .font(Font.custom(Constants.titleFontBold, size: 16))
@@ -87,12 +97,23 @@ struct AddPostView: View {
                             }
                           }
                 }
+                if (postViewModel.postType == "productreview") {
+                    Text("Rating:")
+                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                    Text("Required")
+                        .font(Font.custom(Constants.bodyFont, size: 12))
+                        .foregroundColor(.gray)
+                    ClickableStarsView(rating: $postViewModel.postRating).padding(.bottom, 4)
+                }
                 if (postViewModel.postType == "intro") {
                     Text("Note:")
                         .font(Font.custom(Constants.titleFontBold, size: 16)) +
                     Text(" (see recommended details below)")
                         .font(Font.custom(Constants.bodyFont, size: 16))
                         .foregroundColor(.gray)
+                } else if (postViewModel.postType == "productreview") {
+                    Text("Review:")
+                        .font(Font.custom(Constants.titleFontBold, size: 16))
                 } else {
                     Text("Note:")
                         .font(Font.custom(Constants.titleFontBold, size: 16))
@@ -159,7 +180,7 @@ struct AddPostView: View {
                     }
                     UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                 }) {
-                    if (self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty) {
+                    if (shouldDisablePostButton()) {
                         HStack {
                            Text("Post")
                                 .font(Font.custom(Constants.bodyFont, size: 16))
@@ -185,7 +206,7 @@ struct AddPostView: View {
                         .cornerRadius(10)
                     }
                 }
-                .disabled(self.postViewModel.isSubmitting || self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty)
+                .disabled(shouldDisablePostButton())
             }
         }
         .onAppear {
@@ -198,6 +219,13 @@ struct AddPostView: View {
             mediaItems.deleteAll()
             self.postViewModel.isSubmitting = false
         }
+    }
+    
+    func shouldDisablePostButton() -> Bool {
+        if (postViewModel.postType == "productreview" && self.postViewModel.postRating == nil) {
+            return true
+        }
+        return self.postViewModel.isSubmitting || self.postViewModel.postTitle.isEmpty || self.postViewModel.postBody.isEmpty
     }
 }
 

@@ -22,6 +22,7 @@ class PostViewModel: ObservableObject {
     @Published var postBody: String = ""
     @Published var postTags: [String]?
     @Published var postImage: UIImage?
+    @Published var postRating: Int?
     
     @Published var postType: String = "ootd"
     var recommendedDetails: String {
@@ -80,8 +81,12 @@ class PostViewModel: ObservableObject {
                 postImageUrls[index] = downloadURL
                 imagesDownloaded += 1
                 if (imagesDownloaded == mediaItems.items.count) {
-//                    TODO(REE-158): remove imageUrl once no one is on 1.1 build 8 or before
-                    let postModel = PostModel(author: postAuthorMap, imageUrl: postImageUrls[0], imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
+                    var postModel: PostModel
+                    if let postRating = self.postRating {
+                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt, reviewRating: Double(postRating))
+                    } else {
+                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
+                    }
                     self.uploadPostModel(postModel: postModel, completion: completion)
                     if let prompt = prompt {
                         self.uploadPromptPostModel(userId: postAuthorMap.userId, promptId: prompt.promptId)

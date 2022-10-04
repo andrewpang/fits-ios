@@ -24,6 +24,7 @@ public struct PostModel: Identifiable, Codable, Hashable {
     var thumbnailWidth: Double?
     var prompt: PostPromptMap?
     var lastUpdated: Timestamp?
+    var reviewRating: Double? 
     
     mutating func incrementLikesCount(number: Int) {
         if (likesCount != nil) {
