@@ -61,7 +61,7 @@ struct PostCategoriesView: View {
                         showPermissionsAlert = true
                         postViewModel.resetData()
                         showConfirmationDialog = true
-                        postViewModel.postType = "productReview"
+                        postViewModel.postType = "productreview"
                     }, label: {
                         VStack {
                             Text("Product Review")

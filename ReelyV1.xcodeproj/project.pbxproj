@@ -16,6 +16,7 @@
 		471035092878C01A00D41E71 /* Amplitude in Frameworks */ = {isa = PBXBuildFile; productRef = 471035082878C01A00D41E71 /* Amplitude */; };
 		4711858728E789AA00DEA5E4 /* CategoryWaterfallCollectionViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858628E789AA00DEA5E4 /* CategoryWaterfallCollectionViewController.swift */; };
 		4711858928E7929000DEA5E4 /* FeaturedFeedOverlayView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858828E7929000DEA5E4 /* FeaturedFeedOverlayView.swift */; };
+		4711858B28ECB1CF00DEA5E4 /* TabBarConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4711858A28ECB1CF00DEA5E4 /* TabBarConstants.swift */; };
 		471B3A9128C80A8E0040742E /* PostLikersView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B3A9028C80A8E0040742E /* PostLikersView.swift */; };
 		471B3A9328C80CF00040742E /* PostLikerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471B3A9228C80CF00040742E /* PostLikerRowView.swift */; };
 		471E5F0D28C167270095B987 /* CommentLikeModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 471E5F0C28C167270095B987 /* CommentLikeModel.swift */; };
@@ -161,6 +162,7 @@
 		470FD77528B582B700D70341 /* PromptRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptRowView.swift; sourceTree = "<group>"; };
 		4711858628E789AA00DEA5E4 /* CategoryWaterfallCollectionViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryWaterfallCollectionViewController.swift; sourceTree = "<group>"; };
 		4711858828E7929000DEA5E4 /* FeaturedFeedOverlayView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedFeedOverlayView.swift; sourceTree = "<group>"; };
+		4711858A28ECB1CF00DEA5E4 /* TabBarConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabBarConstants.swift; sourceTree = "<group>"; };
 		471B3A9028C80A8E0040742E /* PostLikersView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikersView.swift; sourceTree = "<group>"; };
 		471B3A9228C80CF00040742E /* PostLikerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostLikerRowView.swift; sourceTree = "<group>"; };
 		471E5F0C28C167270095B987 /* CommentLikeModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommentLikeModel.swift; sourceTree = "<group>"; };
@@ -354,6 +356,7 @@
 				4736503528ADE2380056853C /* WaterfallLayout */,
 				473C69E7283C768700D4D15E /* GalleryFeedView.swift */,
 				47E6F29E28DE74BB00CA503C /* CategoryTabBarItem.swift */,
+				4711858A28ECB1CF00DEA5E4 /* TabBarConstants.swift */,
 				47283BB92842C7690016D124 /* PostDetailView.swift */,
 				47E6F29128DAC1F300CA503C /* CommentBarView.swift */,
 				471B3A9028C80A8E0040742E /* PostLikersView.swift */,
@@ -827,6 +830,7 @@
 				47E6F28E28DA827800CA503C /* BookmarkBoardModel.swift in Sources */,
 				4736EEFD2867A9EB0033C49E /* SignUpControllerWrapper.swift in Sources */,
 				471B3A9128C80A8E0040742E /* PostLikersView.swift in Sources */,
+				4711858B28ECB1CF00DEA5E4 /* TabBarConstants.swift in Sources */,
 				472D80A0286D6D74008D1BB5 /* EditProfileView.swift in Sources */,
 				47BE065928E24447006822A2 /* CollectionsProfileRowView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,

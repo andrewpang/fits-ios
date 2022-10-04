@@ -20,8 +20,6 @@ struct GalleryFeedView: View {
     @State var postDetailViewModel: PostDetailViewModel = PostDetailViewModel(postModel: PostModel(author: PostAuthorMap(), imageUrl: "", title: "", body: "")) //Initial default value
     @State var selectedCategoryTag = ""
     
-    var tabBarOptions: [String] = ["Following", "Home", "Featured", "Most Recent"]
-    
     func requestNotificationPermissions() {
         Messaging.messaging().delegate = UIApplication.shared as? MessagingDelegate
         UNUserNotificationCenter.current().delegate = UIApplication.shared as? UNUserNotificationCenterDelegate
@@ -66,9 +64,11 @@ struct GalleryFeedView: View {
                     Text(Constants.appTitle)
                         .tracking(4)
                         .font(Font.custom(Constants.titleFontItalicized, size: 32))
-                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab, selectedCategoryTag: self.$selectedCategoryTag, tabBarOptions: tabBarOptions)
+                    CategoryTabBarView(currentTab: self.$homeViewModel.currentTab, selectedCategoryTag: self.$selectedCategoryTag, tabBarOptions: TabBarConstants.tabBarTitles)
                     TabView(selection: self.$homeViewModel.currentTab.onUpdate {
-                        self.selectedCategoryTag = self.tabBarOptions[homeViewModel.currentTab].lowercased()
+                        let currentTabTitle = TabBarConstants.tabBarTitles[homeViewModel.currentTab]
+                        let mapping = TabBarConstants.titleToTagMapping[currentTabTitle]
+                        self.selectedCategoryTag = mapping ?? "error"
                     }) {
                         FollowerFeedWaterfallCollectionView(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(0).onAppear {
                             self.homeViewModel.fetchFollowingFeed(isAdmin: authenticationViewModel.userModel?.groups?.contains(Constants.adminGroupId) ?? false, currentUserId: authenticationViewModel.userModel?.id ?? "noId")
@@ -83,7 +83,13 @@ struct GalleryFeedView: View {
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }
-                        CategoryWaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, selectedCategoryTag: $selectedCategoryTag, uiCollectionViewController: UICollectionViewController()).tag(2).onAppear {
+                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(2).onAppear {
+                            let eventName = "Home Feed Screen - View"
+                            let propertiesDict = ["feed": "Most Recent"] as? [String : String]
+                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+                        }
+                        CategoryWaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, selectedCategoryTag: $selectedCategoryTag, uiCollectionViewController: UICollectionViewController()).tag(3).onAppear {
                             let eventName = "Home Feed Screen - View"
                             let propertiesDict = ["feed": selectedCategoryTag] as? [String : String]
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
@@ -91,9 +97,9 @@ struct GalleryFeedView: View {
                             self.homeViewModel.featuredFeedSeenThisSession += 1
                             self.homeViewModel.checkIfShouldShowFeaturedFeedOverlay()
                         }
-                        WaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController()).tag(3).onAppear {
+                        CategoryWaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, selectedCategoryTag: $selectedCategoryTag, uiCollectionViewController: UICollectionViewController()).tag(4).onAppear {
                             let eventName = "Home Feed Screen - View"
-                            let propertiesDict = ["feed": "Most Recent"] as? [String : String]
+                            let propertiesDict = ["feed": selectedCategoryTag] as? [String : String]
                             Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
                             Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
                         }

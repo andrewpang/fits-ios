@@ -30,11 +30,11 @@ struct CategoryTabBarItem: View {
                     Color.clear.frame(height: 2)
                 }
                 Spacer()
-            }.padding(.horizontal, 12)
+            }.padding(.horizontal, 10)
             .animation(.spring(), value: self.currentTab)
             .onTapGesture {
                 self.currentTab = tab
-                self.selectedCategoryTag = tabBarItemName.lowercased()
+                self.selectedCategoryTag = TabBarConstants.titleToTagMapping[tabBarItemName] ?? "error"
             }
     }
 }
