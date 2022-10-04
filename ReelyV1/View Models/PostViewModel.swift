@@ -28,7 +28,7 @@ class PostViewModel: ObservableObject {
         get {
             if (postType == "ootd") {
                 return Constants.ootdRecommendedDetails
-            } else if (postType == "productReview") {
+            } else if (postType == "productreview") {
                 return Constants.productReviewRecommendedDetails
             } else if (postType == "intro") {
                 return Constants.introRecommendedDetails
