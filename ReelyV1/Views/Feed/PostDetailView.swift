@@ -157,9 +157,28 @@ struct PostDetailView: View {
                                 .padding(.vertical, 8)
                                 .padding(.horizontal, 24)
                             
-                            Text("Note:")
-                                .font(Font.custom(Constants.titleFontBold, size: 16))
-                                .padding(.horizontal, 24)
+                            if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
+                                if let reviewRating = postDetailViewModel.postModel.reviewRating {
+                                    Text("Rating:")
+                                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                                        .padding(.horizontal, 24)
+                                    Text("Required")
+                                        .font(Font.custom(Constants.bodyFont, size: 12))
+                                        .foregroundColor(.gray)
+                                        .padding(.horizontal, 24)
+                                    ClickableStarsView(rating: $postDetailViewModel.postModel.reviewRating)
+                                        .padding(.bottom, 4)
+                                        .padding(.horizontal, 24)
+                                }
+                                Text("Review:")
+                                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                                    .padding(.horizontal, 24)
+                            } else {
+                                Text("Note:")
+                                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                                    .padding(.horizontal, 24)
+                            }
+                            
                             Text("Required (Max. 500 Characters)")
                                 .font(Font.custom(Constants.bodyFont, size: 12))
                                 .foregroundColor(.gray)
@@ -198,6 +217,18 @@ struct PostDetailView: View {
                                 .padding(.horizontal, 16)
                                 .background(Color(Constants.darkBackgroundColor))
                             }
+                            else if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
+                                HStack {
+                                    Spacer()
+                                    Text("Product Review")
+                                        .font(Font.custom(Constants.titleFontItalicized, size: 16))
+                                        .foregroundColor(Color(Constants.backgroundColor))
+                                        .multilineTextAlignment(.center)
+                                    Spacer()
+                                }.padding(.vertical, 16)
+                                .padding(.horizontal, 16)
+                                .background(Color(Constants.darkBackgroundColor))
+                            }
                             
                             HStack {
                                 Spacer()
@@ -207,6 +238,16 @@ struct PostDetailView: View {
                                 Spacer()
                             }.padding(.top, 16)
                             .padding(.horizontal, 24)
+                            
+                            if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
+                                if let reviewRating = postDetailViewModel.postModel.reviewRating {
+                                    HStack {
+                                        Spacer()
+                                        StarsView(rating: Float(reviewRating))
+                                        Spacer()
+                                    }.padding(.vertical, 8)
+                                }
+                            }
                             
                             Text(postDetailViewModel.postModel.body)
                                 .font(Font.custom(Constants.bodyFont, size: 16))
@@ -413,7 +454,11 @@ struct PostDetailView: View {
                 ToolbarItemGroup(placement: .navigationBarTrailing) {
                     if (isEditMode) {
                         Button(action: {
-                            postDetailViewModel.editPost(title: editPostTitle, body: editPostBody)
+                            if let reviewRating = postDetailViewModel.postModel.reviewRating {
+                                postDetailViewModel.editPost(title: editPostTitle, body: editPostBody, reviewRating: reviewRating)
+                            } else {
+                                postDetailViewModel.editPost(title: editPostTitle, body: editPostBody)
+                            }
                             isEditMode = false
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
                             let eventName = "Edit Post - Clicked"

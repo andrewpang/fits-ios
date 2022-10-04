@@ -83,7 +83,7 @@ class PostViewModel: ObservableObject {
                 if (imagesDownloaded == mediaItems.items.count) {
                     var postModel: PostModel
                     if let postRating = self.postRating {
-                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt, reviewRating: Double(postRating))
+                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt, reviewRating: postRating)
                     } else {
                         postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
                     }

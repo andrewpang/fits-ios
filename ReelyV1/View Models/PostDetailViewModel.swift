@@ -335,6 +335,30 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
+    func editPost(title: String, body: String, reviewRating: Int) {
+        self.isSubmittingEditPost = true
+        if let postId = postModel.id {
+            let postDocument = self.db.collection("posts").document(postId)
+            postDocument.updateData([
+                "title": title,
+                "body": body,
+                "reviewRating": reviewRating,
+                "lastUpdated": FieldValue.serverTimestamp(),
+            ]) { err in
+                if let err = err {
+                    print("Error updating document: \(err)")
+                    self.isSubmittingEditPost = false
+                } else {
+                    print("Document successfully updated")
+                    self.isSubmittingEditPost = false
+                    //Passing PostModel in without listener, so easier to just set on client for now
+                    self.postModel.title = title
+                    self.postModel.body = body
+                }
+            }
+        }
+    }
+    
     func likeComment(commentLikeModel: CommentLikeModel) {
         if let postId = postModel.id {
             if let userId = commentLikeModel.author.userId {

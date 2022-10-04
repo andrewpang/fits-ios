@@ -10,7 +10,7 @@ import SwiftUI
 struct StarsView: View {
     private static let MAX_RATING: Float = 5 // Defines upper limit of the rating
     private static let COLOR = Color.yellow // The color of the stars
-    private static let STAR_SIZE: CGFloat = 28
+    private static let STAR_SIZE: CGFloat = 18
 
     let rating: Float
     private let fullCount: Int

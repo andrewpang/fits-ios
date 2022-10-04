@@ -10,7 +10,7 @@ import SwiftUI
 struct ClickableStarsView: View {
     private static let MAX_RATING: Int = 5 // Defines upper limit of the rating
     private static let COLOR = Color.yellow // The color of the stars
-    private static let STAR_SIZE: CGFloat = 28
+    private static let STAR_SIZE: CGFloat = 24
 
     @Binding var rating: Int?
     
