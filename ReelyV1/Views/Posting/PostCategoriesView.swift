@@ -33,51 +33,65 @@ struct PostCategoriesView: View {
                     
                     Text("What do you want to share with the FIT(s) Community?")
                         .font(Font.custom(Constants.titleFontBold, size: 24))
-                        .padding(.vertical, 32)
-                    
-                    Button(action: {
-//                        showPermissionsAlert = true
-                        postViewModel.resetData()
-                        showConfirmationDialog = true
-                        postViewModel.postType = "ootd"
-                    }, label: {
-                        VStack {
-                            Text("Fit Pic (OOTD)")
-                                .font(Font.custom(Constants.titleFontBold, size: 24))
-                                .foregroundColor(.black)
-                            Text("Show off your creativity and post your daily looks!")
-                                .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
-                        .background(Color.white)
-                        .cornerRadius(Constants.buttonCornerRadius)
-                    })
-                    
-                    Button(action: {
-                        showPermissionsAlert = true
-                        postViewModel.resetData()
-                        showConfirmationDialog = true
-                        postViewModel.postType = "productreview"
-                    }, label: {
-                        VStack {
-                            Text("Product Review")
-                                .font(Font.custom(Constants.titleFontBold, size: 24))
-                                .foregroundColor(.black)
-                            Text("Bought something new? Tell us about it!")
-                                .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
-                                .foregroundColor(.gray)
-                        }
-                        .padding(.vertical, 8)
-                        .padding(.horizontal, 24)
-                        .frame(maxWidth: .infinity, minHeight: 100, maxHeight: 100)
-                        .background(Color.white)
-                        .cornerRadius(Constants.buttonCornerRadius)
-                    })
+                        .padding(.top, 32)
+                        .padding(.bottom, 16)
+                    HStack {
+                        Button(action: {
+    //                        showPermissionsAlert = true
+                            postViewModel.resetData()
+                            showConfirmationDialog = true
+                            postViewModel.postType = "ootd"
+                        }, label: {
+                            VStack {
+                                Text("📸")
+                                    .font(Font.system(size: 80))
+                                Text("Fit Pic (OOTD)")
+                                    .multilineTextAlignment(.center)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .font(Font.custom(Constants.titleFontBold, size: 24))
+                                    .foregroundColor(.black)
+                                Text("Show off your creativity and post your daily looks!")
+                                    .multilineTextAlignment(.center)
+                                    .font(Font.custom(Constants.bodyFont, size: 14))
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(16)
+                            .frame(maxWidth: .infinity, minHeight: 260)
+                            .background(Color.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: Constants.buttonCornerRadius)
+                                    .stroke(Color.black, lineWidth: 1)
+                            )
+                        })
+                        
+                        Button(action: {
+                            showPermissionsAlert = true
+                            postViewModel.resetData()
+                            showConfirmationDialog = true
+                            postViewModel.postType = "productreview"
+                        }, label: {
+                            VStack {
+                                Text("📝")
+                                    .font(Font.system(size: 80))
+                                Text("Product Review")
+                                    .multilineTextAlignment(.center)
+                                    .fixedSize(horizontal: false, vertical: true)
+                                    .font(Font.custom(Constants.titleFontBold, size: 24))
+                                    .foregroundColor(.black)
+                                Text("Share a review of any pieces in your closet!")
+                                    .multilineTextAlignment(.center)
+                                    .font(Font.custom(Constants.bodyFont, size: 14))
+                                    .foregroundColor(.gray)
+                            }
+                            .padding(16)
+                            .frame(maxWidth: .infinity, minHeight: 260)
+                            .background(Color.white)
+                            .overlay(
+                                RoundedRectangle(cornerRadius: Constants.buttonCornerRadius)
+                                    .stroke(Color.black, lineWidth: 1)
+                            )
+                        })
+                    }
                     
                     Text("Coming Soon...")
                         .font(Font.custom(Constants.bodyFont, size: 16))
@@ -91,7 +105,7 @@ struct PostCategoriesView: View {
                                 .foregroundColor(.black)
                             Text("Post questions or discussions")
                                 .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .font(Font.custom(Constants.bodyFont, size: 12))
                                 .foregroundColor(.gray)
                         }
                         .padding(.vertical, 8)
@@ -107,7 +121,7 @@ struct PostCategoriesView: View {
                                 .foregroundColor(.black)
                             Text("Snap looks you’re spotting around town")
                                 .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .font(Font.custom(Constants.bodyFont, size: 12))
                                 .foregroundColor(.gray)
                         }
                         .padding(.vertical, 8)
@@ -123,7 +137,7 @@ struct PostCategoriesView: View {
                                 .foregroundColor(.black)
                             Text("Post two outfits and let the community decide!")
                                 .multilineTextAlignment(.center)
-                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .font(Font.custom(Constants.bodyFont, size: 12))
                                 .foregroundColor(.gray)
                         }
                         .padding(.vertical, 8)
