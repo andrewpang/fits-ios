@@ -110,8 +110,8 @@
             filePath = "ReelyV1/Views/Posting/AddPostView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "221"
-            endingLineNumber = "221"
+            startingLineNumber = "240"
+            endingLineNumber = "240"
             landmarkName = "shouldDisablePostButton()"
             landmarkType = "7">
          </BreakpointContent>
@@ -126,8 +126,8 @@
             filePath = "ReelyV1/Views/Posting/AddPostView.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "220"
-            endingLineNumber = "220"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
             landmarkName = "shouldDisablePostButton()"
             landmarkType = "7">
          </BreakpointContent>
