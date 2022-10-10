@@ -25,7 +25,7 @@ class PostViewModel: ObservableObject {
     @Published var postRating: Int?
     
     @Published var postType: String = "ootd"
-    let hardcodedTags: [String] = ["casual", "streetwear", "designer", "grunge", "y2k", "80s", "90s", "cottagecore"]
+    static let hardcodedTags: [String] = ["casual", "streetwear", "designer", "grunge", "y2k", "80s", "90s", "cottagecore"]
     
     var recommendedDetails: String {
         get {

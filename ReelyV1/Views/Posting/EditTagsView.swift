@@ -1,22 +1,22 @@
 //
-//  TagsView.swift
+//  EditTagsView.swift
 //  FITs
 //
-//  Created by Andrew Pang on 10/7/22.
+//  Created by Andrew Pang on 10/10/22.
 //
 
 import SwiftUI
 
-struct AddTagsView: View {
+struct EditTagsView: View {
     
-    @ObservedObject var postViewModel: PostViewModel
+    @Binding var editPostTags: [String]
     
     var body: some View {
         ScrollView(.horizontal, showsIndicators: false) {
             HStack(spacing: 8) {
                 Spacer()
                 ForEach(PostViewModel.hardcodedTags, id: \.self) { tagTitle in
-                    AddTagView(title: tagTitle, isSelected: false, postViewModel: postViewModel)
+                    EditTagView(title: tagTitle, editPostTags: $editPostTags)
                 }
                 Spacer()
             }
@@ -26,10 +26,10 @@ struct AddTagsView: View {
     }
 }
 
-struct AddTagView: View {
+struct EditTagView: View {
     let title: String
-    @State var isSelected: Bool
-    @ObservedObject var postViewModel: PostViewModel
+    @State var isSelected: Bool = false
+    @Binding var editPostTags: [String]
     
     var body: some View {
         HStack {
@@ -48,10 +48,17 @@ struct AddTagView: View {
         .onTapGesture {
             isSelected.toggle()
             if (isSelected) {
-                postViewModel.postTags?.append(title)
+                editPostTags.append(title)
             } else {
-                postViewModel.postTags?.removeAll(where: { $0 == title })
+                editPostTags.removeAll(where: { $0 == title })
+            }
+        }.onAppear {
+            if (editPostTags.contains(title)) {
+                isSelected = true
+            } else {
+                isSelected = false
             }
         }
     }
 }
+

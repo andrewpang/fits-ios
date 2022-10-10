@@ -21,6 +21,7 @@ struct PostDetailView: View {
     @State var showingDeleteAlert = false
     @State var editPostTitle = ""
     @State var editPostBody = ""
+    @State var editPostTags: [String] = []
     @State var isAnimatingApplaud = false
     @State private var confettiCounterOne: Int = 0
     @State private var confettiCounterTwo: Int = 0
@@ -194,6 +195,18 @@ struct PostDetailView: View {
                             .frame(minHeight: 100)
                             .padding(.horizontal, 24)
                             .padding(.vertical, 8)
+                            
+                            Group {
+                                Text("Tags:")
+                                    .font(Font.custom(Constants.titleFontBold, size: 16))
+                                    .padding(.horizontal)
+                                Text("Optional (More tags coming soon)")
+                                    .font(Font.custom(Constants.bodyFont, size: 12))
+                                    .padding(.horizontal)
+                                    .foregroundColor(.gray)
+                                EditTagsView(editPostTags: $editPostTags)
+                                    .padding(.bottom, 24)
+                            }
                         } else {
                             if let promptTitle = postDetailViewModel.postModel.prompt?.title {
                                 HStack {
@@ -477,9 +490,9 @@ struct PostDetailView: View {
                     if (isEditMode) {
                         Button(action: {
                             if let reviewRating = postDetailViewModel.postModel.reviewRating {
-                                postDetailViewModel.editPost(title: editPostTitle, body: editPostBody, reviewRating: reviewRating)
+                                postDetailViewModel.editPost(title: editPostTitle, body: editPostBody, tags: editPostTags, reviewRating: reviewRating)
                             } else {
-                                postDetailViewModel.editPost(title: editPostTitle, body: editPostBody)
+                                postDetailViewModel.editPost(title: editPostTitle, body: editPostBody, tags: editPostTags)
                             }
                             isEditMode = false
                             UIApplication.shared.sendAction(#selector(UIResponder.resignFirstResponder), to: nil, from: nil, for: nil)
@@ -545,6 +558,11 @@ struct PostDetailView: View {
                     Button ("Edit Post") {
                         editPostTitle = postDetailViewModel.postModel.title
                         editPostBody = postDetailViewModel.postModel.body
+                        if let tags = postDetailViewModel.postModel.tags {
+                            editPostTags = tags
+                        } else {
+                            editPostTags = [String]()
+                        }
                         isEditMode = true
                         focusedField = .editPostTitleField
                     }

@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		470E34EB28F496BA003185FF /* PostTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E34EA28F496BA003185FF /* PostTagsView.swift */; };
+		470E34ED28F4A229003185FF /* EditTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E34EC28F4A229003185FF /* EditTagsView.swift */; };
 		470FD76828B5717B00D70341 /* PromptsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76728B5717B00D70341 /* PromptsParentView.swift */; };
 		470FD76C28B5722300D70341 /* PromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76B28B5722300D70341 /* PromptModel.swift */; };
 		470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76D28B5723600D70341 /* PromptsModel.swift */; };
@@ -159,6 +160,7 @@
 
 /* Begin PBXFileReference section */
 		470E34EA28F496BA003185FF /* PostTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsView.swift; sourceTree = "<group>"; };
+		470E34EC28F4A229003185FF /* EditTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagsView.swift; sourceTree = "<group>"; };
 		470FD76728B5717B00D70341 /* PromptsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsParentView.swift; sourceTree = "<group>"; };
 		470FD76B28B5722300D70341 /* PromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptModel.swift; sourceTree = "<group>"; };
 		470FD76D28B5723600D70341 /* PromptsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsModel.swift; sourceTree = "<group>"; };
@@ -357,6 +359,7 @@
 				4711858C28ECB84C00DEA5E4 /* StarsView.swift */,
 				4711859028ECBD5E00DEA5E4 /* ClickableStarsView.swift */,
 				47FFEE6E28F0CE20006404E3 /* AddTagsView.swift */,
+				470E34EC28F4A229003185FF /* EditTagsView.swift */,
 				470E34EA28F496BA003185FF /* PostTagsView.swift */,
 			);
 			path = Posting;
@@ -795,6 +798,7 @@
 				47FADD0828E3BE9F00F51FB6 /* PostSavesView.swift in Sources */,
 				47C5C1CE28B8319000F84E66 /* PromptPostModel.swift in Sources */,
 				47E6F27C28D279CF00CA503C /* FollowingListView.swift in Sources */,
+				470E34ED28F4A229003185FF /* EditTagsView.swift in Sources */,
 				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				47F767F7288E082800265633 /* UserProfileView.swift in Sources */,
