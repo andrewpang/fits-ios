@@ -102,7 +102,7 @@ struct AddPostView: View {
                         .font(Font.custom(Constants.bodyFont, size: 12))
                         .padding(.horizontal)
                         .foregroundColor(.gray)
-                    TagsView()
+                    TagsView(postViewModel: postViewModel)
                 }
                 
                 Group {
