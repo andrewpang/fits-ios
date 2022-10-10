@@ -43,6 +43,8 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
     
+    let postTypeTags: [String] = ["productReview", "productreview", "ootd", "intro", "featured", "prompt"]
+    
     init(postModel: PostModel) {
         self.postModel = postModel
     }

@@ -270,16 +270,6 @@ struct PostDetailView: View {
                                 .padding(.horizontal, 24)
                             }
                             
-//                            if let postTags = postDetailViewModel.postModel.tags, postTags.contains("productreview") {
-//                                if let reviewRating = postDetailViewModel.postModel.reviewRating {
-//                                    HStack {
-//                                        Spacer()
-//                                        StarsView(rating: Float(reviewRating))
-//                                        Spacer()
-//                                    }.padding(.vertical, 8)
-//                                }
-//                            }
-                            
                             Text(postDetailViewModel.postModel.body)
                                 .font(Font.custom(Constants.bodyFont, size: 16))
                                 .padding(.horizontal, 24)
@@ -287,6 +277,7 @@ struct PostDetailView: View {
                         }
      
                         if (!isEditMode) {
+                            PostTagsView(postDetailViewModel: postDetailViewModel).padding(.vertical, 8)
                             HStack {
         //                        Spacer()
                                 if (postDetailViewModel.isLiked) {

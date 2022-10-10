@@ -7,7 +7,7 @@
 
 import SwiftUI
 
-struct TagsView: View {
+struct AddTagsView: View {
     
     @ObservedObject var postViewModel: PostViewModel
     
@@ -16,7 +16,7 @@ struct TagsView: View {
             HStack(spacing: 8) {
                 Spacer()
                 ForEach(postViewModel.hardcodedTags, id: \.self) { tagTitle in
-                    TagView(title: tagTitle, isSelected: false, postViewModel: postViewModel)
+                    AddTagView(title: tagTitle, isSelected: false, postViewModel: postViewModel)
                 }
                 Spacer()
             }
@@ -26,7 +26,7 @@ struct TagsView: View {
     }
 }
 
-struct TagView: View {
+struct AddTagView: View {
     let title: String
     @State var isSelected: Bool
     @ObservedObject var postViewModel: PostViewModel
