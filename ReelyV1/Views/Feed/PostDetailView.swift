@@ -205,6 +205,7 @@ struct PostDetailView: View {
                                     .padding(.horizontal)
                                     .foregroundColor(.gray)
                                 EditTagsView(editPostTags: $editPostTags)
+                                    .padding(.top, 8)
                                     .padding(.bottom, 24)
                             }
                         } else {
