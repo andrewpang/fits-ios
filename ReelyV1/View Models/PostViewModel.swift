@@ -25,6 +25,8 @@ class PostViewModel: ObservableObject {
     @Published var postRating: Int?
     
     @Published var postType: String = "ootd"
+    static let hardcodedTags: [String] = ["vintage", "streetwear", "grunge", "y2k", "minimalistic", "nightout", "workfit", "preppy", "bohemian", "cottagecore"]
+    
     var recommendedDetails: String {
         get {
             if (postType == "ootd") {

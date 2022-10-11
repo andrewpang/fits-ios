@@ -43,6 +43,8 @@ class PostDetailViewModel: ObservableObject {
     
     @Published var commentIdToCommentLikesDictionary: [String: CommentLikesModel] = [:]
     
+    let postTypeTags: [String] = ["productReview", "productreview", "ootd", "intro", "featured", "prompt"]
+    
     init(postModel: PostModel) {
         self.postModel = postModel
     }
@@ -312,13 +314,14 @@ class PostDetailViewModel: ObservableObject {
         }
     }
     
-    func editPost(title: String, body: String) {
+    func editPost(title: String, body: String, tags: [String]) {
         self.isSubmittingEditPost = true
         if let postId = postModel.id {
             let postDocument = self.db.collection("posts").document(postId)
             postDocument.updateData([
                 "title": title,
                 "body": body,
+                "tags": tags,
                 "lastUpdated": FieldValue.serverTimestamp(),
             ]) { err in
                 if let err = err {
@@ -330,18 +333,20 @@ class PostDetailViewModel: ObservableObject {
                     //Passing PostModel in without listener, so easier to just set on client for now
                     self.postModel.title = title
                     self.postModel.body = body
+                    self.postModel.tags = tags
                 }
             }
         }
     }
     
-    func editPost(title: String, body: String, reviewRating: Int) {
+    func editPost(title: String, body: String, tags: [String], reviewRating: Int) {
         self.isSubmittingEditPost = true
         if let postId = postModel.id {
             let postDocument = self.db.collection("posts").document(postId)
             postDocument.updateData([
                 "title": title,
                 "body": body,
+                "tags": tags,
                 "reviewRating": reviewRating,
                 "lastUpdated": FieldValue.serverTimestamp(),
             ]) { err in
@@ -354,6 +359,8 @@ class PostDetailViewModel: ObservableObject {
                     //Passing PostModel in without listener, so easier to just set on client for now
                     self.postModel.title = title
                     self.postModel.body = body
+                    self.postModel.reviewRating = reviewRating
+                    self.postModel.tags = tags
                 }
             }
         }

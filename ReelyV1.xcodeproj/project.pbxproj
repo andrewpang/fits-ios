@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		470E34EB28F496BA003185FF /* PostTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E34EA28F496BA003185FF /* PostTagsView.swift */; };
+		470E34ED28F4A229003185FF /* EditTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470E34EC28F4A229003185FF /* EditTagsView.swift */; };
 		470FD76828B5717B00D70341 /* PromptsParentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76728B5717B00D70341 /* PromptsParentView.swift */; };
 		470FD76C28B5722300D70341 /* PromptModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76B28B5722300D70341 /* PromptModel.swift */; };
 		470FD76E28B5723600D70341 /* PromptsModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 470FD76D28B5723600D70341 /* PromptsModel.swift */; };
@@ -136,6 +138,7 @@
 		47FC5D86288116B9000B9794 /* Secrets.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D85288116B9000B9794 /* Secrets.swift */; };
 		47FC5D88288627F3000B9794 /* PhotoPickerModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */; };
 		47FC5D9A288663F8000B9794 /* WaterfallGrid in Frameworks */ = {isa = PBXBuildFile; productRef = 47FC5D99288663F8000B9794 /* WaterfallGrid */; };
+		47FFEE6F28F0CE20006404E3 /* AddTagsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 47FFEE6E28F0CE20006404E3 /* AddTagsView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -156,6 +159,8 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		470E34EA28F496BA003185FF /* PostTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostTagsView.swift; sourceTree = "<group>"; };
+		470E34EC28F4A229003185FF /* EditTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTagsView.swift; sourceTree = "<group>"; };
 		470FD76728B5717B00D70341 /* PromptsParentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsParentView.swift; sourceTree = "<group>"; };
 		470FD76B28B5722300D70341 /* PromptModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptModel.swift; sourceTree = "<group>"; };
 		470FD76D28B5723600D70341 /* PromptsModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PromptsModel.swift; sourceTree = "<group>"; };
@@ -271,6 +276,7 @@
 		47FADD0728E3BE9F00F51FB6 /* PostSavesView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostSavesView.swift; sourceTree = "<group>"; };
 		47FC5D85288116B9000B9794 /* Secrets.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secrets.swift; sourceTree = "<group>"; };
 		47FC5D87288627F3000B9794 /* PhotoPickerModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoPickerModel.swift; sourceTree = "<group>"; };
+		47FFEE6E28F0CE20006404E3 /* AddTagsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddTagsView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -352,6 +358,9 @@
 				47A697302841915D001102C1 /* PostParentView.swift */,
 				4711858C28ECB84C00DEA5E4 /* StarsView.swift */,
 				4711859028ECBD5E00DEA5E4 /* ClickableStarsView.swift */,
+				47FFEE6E28F0CE20006404E3 /* AddTagsView.swift */,
+				470E34EC28F4A229003185FF /* EditTagsView.swift */,
+				470E34EA28F496BA003185FF /* PostTagsView.swift */,
 			);
 			path = Posting;
 			sourceTree = "<group>";
@@ -776,6 +785,7 @@
 				47FC5D86288116B9000B9794 /* Secrets.swift in Sources */,
 				47E6F28A28D7967100CA503C /* FollowerFeedWaterfallCollectionView.swift in Sources */,
 				4736502F28AC5A600056853C /* ImageUICollectionViewCell.swift in Sources */,
+				470E34EB28F496BA003185FF /* PostTagsView.swift in Sources */,
 				47834461283C63520022025E /* ReelyV1.xcdatamodeld in Sources */,
 				4761CC072870C642008ED1BF /* PostAuthorMap.swift in Sources */,
 				47E6F28228D2940F00CA503C /* FollowingRowView.swift in Sources */,
@@ -788,6 +798,7 @@
 				47FADD0828E3BE9F00F51FB6 /* PostSavesView.swift in Sources */,
 				47C5C1CE28B8319000F84E66 /* PromptPostModel.swift in Sources */,
 				47E6F27C28D279CF00CA503C /* FollowingListView.swift in Sources */,
+				470E34ED28F4A229003185FF /* EditTagsView.swift in Sources */,
 				479FE9A2287776D70030EE4D /* ProfilePictureOnboardingView.swift in Sources */,
 				47283BBC2843E47A0016D124 /* AuthenticationViewModel.swift in Sources */,
 				47F767F7288E082800265633 /* UserProfileView.swift in Sources */,
@@ -841,6 +852,7 @@
 				47BE065928E24447006822A2 /* CollectionsProfileRowView.swift in Sources */,
 				479FE99C28755C1F0030EE4D /* CommentRowView.swift in Sources */,
 				47D2F52028B6E1B70071B246 /* PromptDetailViewModel.swift in Sources */,
+				47FFEE6F28F0CE20006404E3 /* AddTagsView.swift in Sources */,
 				47E6F28028D27F8900CA503C /* FollowerFollowingViewModel.swift in Sources */,
 				470FD76C28B5722300D70341 /* PromptModel.swift in Sources */,
 				47E6F27428D12F0C00CA503C /* FollowerModel.swift in Sources */,
@@ -1039,7 +1051,7 @@
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
@@ -1067,7 +1079,7 @@
 				CODE_SIGN_ENTITLEMENTS = ReelyV1/ReelyV1.entitlements;
 				CODE_SIGN_IDENTITY = "Apple Development";
 				CODE_SIGN_STYLE = Automatic;
-				CURRENT_PROJECT_VERSION = 30;
+				CURRENT_PROJECT_VERSION = 31;
 				DEVELOPMENT_ASSET_PATHS = "\"ReelyV1/Preview Content\"";
 				DEVELOPMENT_TEAM = 2PEMTWNRBN;
 				ENABLE_PREVIEWS = YES;

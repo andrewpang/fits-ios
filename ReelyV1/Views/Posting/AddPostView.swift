@@ -35,6 +35,7 @@ struct AddPostView: View {
                                 .multilineTextAlignment(.center)
                             Spacer()
                         }.padding(.bottom, 8)
+                        .padding(.horizontal)
                     }
                 }
                 Group {
@@ -91,52 +92,70 @@ struct AddPostView: View {
                                 postViewModel.postTitle = s
                             }
                           }
-                }
-                if (postViewModel.postType == "productreview") {
-                    Text("Rating:")
+                }.padding(.horizontal)
+                
+                Group {
+                    Text("Tags:")
                         .font(Font.custom(Constants.titleFontBold, size: 16))
-                    Text("Required")
+                        .padding(.horizontal)
+                    Text("Optional (More tags coming soon)")
                         .font(Font.custom(Constants.bodyFont, size: 12))
+                        .padding(.horizontal)
                         .foregroundColor(.gray)
-                    ClickableStarsView(rating: $postViewModel.postRating).padding(.bottom, 4)
-                }
-                if (postViewModel.postType == "intro") {
-                    Text("Note:")
-                        .font(Font.custom(Constants.titleFontBold, size: 16)) +
-                    Text(" (see recommended details below)")
-                        .font(Font.custom(Constants.bodyFont, size: 16))
-                        .foregroundColor(.gray)
-                } else if (postViewModel.postType == "productreview") {
-                    Text("Review:")
-                        .font(Font.custom(Constants.titleFontBold, size: 16))
-                } else {
-                    Text("Note:")
-                        .font(Font.custom(Constants.titleFontBold, size: 16))
+                    AddTagsView(postViewModel: postViewModel)
                 }
                 
-                Text("Required (Max. 500 Characters)")
-                    .font(Font.custom(Constants.bodyFont, size: 12))
-                    .foregroundColor(.gray)
-                ZStack {
-                    TextEditor(text: $postViewModel.postBody)
+                Group {
+                    if (postViewModel.postType == "productreview") {
+                        Text("Rating:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                        Text("Required")
+                            .font(Font.custom(Constants.bodyFont, size: 12))
+                            .foregroundColor(.gray)
+                        ClickableStarsView(rating: $postViewModel.postRating).padding(.bottom, 4)
+                    }
+                    if (postViewModel.postType == "intro") {
+                        Text("Note:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16)) +
+                        Text(" (see recommended details below)")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .foregroundColor(.gray)
+                    } else if (postViewModel.postType == "productreview") {
+                        Text("Review:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                    } else {
+                        Text("Note:")
+                            .font(Font.custom(Constants.titleFontBold, size: 16))
+                    }
+                }.padding(.horizontal)
+                
+                Group {
+                    Text("Required (Max. 500 Characters)")
+                        .font(Font.custom(Constants.bodyFont, size: 12))
+                        .foregroundColor(.gray)
+                    ZStack {
+                        TextEditor(text: $postViewModel.postBody)
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .disabled(postViewModel.isSubmitting)
+                        Text(postViewModel.postBody).opacity(0).padding(.all, 8)
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                    }
+                    .overlay(RoundedRectangle(cornerRadius: 8)
+                    .stroke(Color.gray).opacity(0.3))
+                    .frame(minHeight: 100)
+    //                TextEditor(text: $postViewModel.postBody)
+    //                    .font(Font.custom(Constants.bodyFont, size: 16))
+    //                    .overlay(RoundedRectangle(cornerRadius: 8)
+    //                        .stroke(Color.gray).opacity(0.3))
+    //                    .frame(minHeight: 150)
+                    Text("Recommended Details:")
+                        .font(Font.custom(Constants.bodyFont, size: 18))
+                    Text(postViewModel.recommendedDetails)
                         .font(Font.custom(Constants.bodyFont, size: 16))
-                        .disabled(postViewModel.isSubmitting)
-                    Text(postViewModel.postBody).opacity(0).padding(.all, 8)
-                        .font(Font.custom(Constants.bodyFont, size: 16))
-                }
-                .overlay(RoundedRectangle(cornerRadius: 8)
-                .stroke(Color.gray).opacity(0.3))
-                .frame(minHeight: 100)
-//                TextEditor(text: $postViewModel.postBody)
-//                    .font(Font.custom(Constants.bodyFont, size: 16))
-//                    .overlay(RoundedRectangle(cornerRadius: 8)
-//                        .stroke(Color.gray).opacity(0.3))
-//                    .frame(minHeight: 150)
-                Text("Recommended Details:")
-                    .font(Font.custom(Constants.bodyFont, size: 18))
-                Text(postViewModel.recommendedDetails)
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-            }.padding()
+                        .foregroundColor(.gray)
+                        .padding(.bottom, 40)
+                }.padding(.horizontal)
+            }
         }
         .navigationBarTitle("", displayMode: .inline)
         .onTapGesture {
