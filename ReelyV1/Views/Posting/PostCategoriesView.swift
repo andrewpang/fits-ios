@@ -58,6 +58,7 @@ struct PostCategoriesView: View {
                             .padding(16)
                             .frame(maxWidth: .infinity, minHeight: 260)
                             .background(Color.white)
+                            .cornerRadius(Constants.buttonCornerRadius)
                             .overlay(
                                 RoundedRectangle(cornerRadius: Constants.buttonCornerRadius)
                                     .stroke(Color.black, lineWidth: 1)
@@ -86,6 +87,7 @@ struct PostCategoriesView: View {
                             .padding(16)
                             .frame(maxWidth: .infinity, minHeight: 260)
                             .background(Color.white)
+                            .cornerRadius(Constants.buttonCornerRadius)
                             .overlay(
                                 RoundedRectangle(cornerRadius: Constants.buttonCornerRadius)
                                     .stroke(Color.black, lineWidth: 1)
