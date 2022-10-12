@@ -32,12 +32,22 @@ public struct PromptModel: Identifiable, Codable, Hashable {
         return true
     }
     
-    func getFormattedDateString() -> String? {
+    func getFormattedEndDateString() -> String? {
         if let endTime = endTime {
             let dateFormatter = DateFormatter()
             dateFormatter.dateFormat = "MMM d"
             let endTimeString = dateFormatter.string(from: endTime.dateValue())
             return endTimeString
+        }
+        return nil
+    }
+    
+    func getFormattedStartDateString() -> String? {
+        if let startTime = startTime {
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "MMM d"
+            let startTimeString = dateFormatter.string(from: startTime.dateValue())
+            return startTimeString
         }
         return nil
     }

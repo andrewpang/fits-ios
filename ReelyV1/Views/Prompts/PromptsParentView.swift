@@ -29,7 +29,10 @@ struct PromptsParentView: View {
                     EmptyView()
                 }
                 .isDetailLink(false)
-                NavigationLink(destination: PromptDetailView(promptDetailViewModel: PromptDetailViewModel(promptModel: selectedPromptModel, promptPostModel: promptsViewModel.promptIdToPostPromptMapDictionary[selectedPromptModel.id ?? "noID"]), homeViewModel: homeViewModel), isActive: $promptsViewModel.shouldPopToRootViewIfFalse) {
+                NavigationLink(destination:
+                                PromptDetailView(promptDetailViewModel: PromptDetailViewModel(promptModel: selectedPromptModel, promptPostModel: promptsViewModel.promptIdToPostPromptMapDictionary[selectedPromptModel.id ?? "noID"]), homeViewModel: homeViewModel)
+                                        .accentColor(Color(Constants.backgroundColor)),
+                               isActive: $promptsViewModel.shouldPopToRootViewIfFalse) {
                     EmptyView()
                 }
                 .isDetailLink(false)
