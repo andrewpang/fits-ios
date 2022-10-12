@@ -34,74 +34,71 @@ struct PromptDetailView: View {
             VStack(spacing: 0) {
                 HStack {
                     Spacer()
+                    Text("Fit Check")
+                        .font(Font.custom(Constants.titleFontItalicized, size: 18))
+                        .multilineTextAlignment(.center)
+                    Spacer()
+                }
+                .padding(.horizontal, 8)
+                HStack {
+                    Spacer()
                     Text(promptDetailViewModel.promptModel.title ?? "Prompt")
-                        .font(Font.custom(Constants.titleFontBold, size: 24))
+                        .font(Font.custom(Constants.titleFontBold, size: 18))
                         .multilineTextAlignment(.center)
                     Spacer()
                 }
                 .padding(.horizontal, 8)
                 
-                if let endTimeString = promptDetailViewModel.promptModel.getFormattedDateString() {
-                    Text("Ends: \(endTimeString)")
-                        .font(Font.custom(Constants.bodyFont, size: 16))
-                        .multilineTextAlignment(.center)
-                        .padding(.top, 4)
-                        .padding(.horizontal, 16)
+                if let endTimeString = promptDetailViewModel.promptModel.getFormattedEndDateString() {
+                    if (promptDetailViewModel.promptModel.promptHasAlreadyEnded()) {
+                        if let startTimeString = promptDetailViewModel.promptModel.getFormattedStartDateString() {
+                            Text("\(startTimeString) - \(endTimeString)")
+                                .font(Font.custom(Constants.bodyFont, size: 16))
+                                .multilineTextAlignment(.center)
+                                .foregroundColor(.gray)
+                                .padding(.top, 4)
+                                .padding(.bottom, 16)
+                                .padding(.horizontal, 16)
+                        }
+                    } else {
+                        Text("Add new posts until: \(endTimeString)")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                            .padding(.top, 4)
+                            .padding(.horizontal, 16)
+                    }
                 }
 
-                Button(action: {
-                    postViewModel.resetData()
-                    showConfirmationDialog = true
-                    postViewModel.postType = Constants.postTypePrompt
-                }) {
-                    HStack {
-                        if (promptDetailViewModel.promptModel.promptHasAlreadyEnded()) {
-                            Text("This fit check has already ended")
-                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                                .foregroundColor(Color(Constants.backgroundColor))
-                                .padding(.vertical, 16)
-                                .padding(.horizontal, 24)
-                        } else if (promptDetailViewModel.userHasPostedInLastDay()) {
-                            Text("Wait until tomorrow to post again")
-                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                                .foregroundColor(Color(Constants.backgroundColor))
-                                .padding(.vertical, 16)
-                                .padding(.horizontal, 24)
-                        } else {
-                            Text("Contribute your fit")
-                                .font(Font.custom(Constants.buttonFont, size: Constants.buttonFontSize))
-                                .foregroundColor(Color(Constants.backgroundColor))
-                                .padding(.vertical, 16)
-                                .padding(.horizontal, 24)
+                if (!promptDetailViewModel.promptModel.promptHasAlreadyEnded()) {
+                    Button(action: {
+                        postViewModel.resetData()
+                        showConfirmationDialog = true
+                        postViewModel.postType = Constants.postTypePrompt
+                    }) {
+                        HStack {
+                            if (promptDetailViewModel.userHasPostedInLastDay()) {
+                                Text("Wait until tomorrow to post again")
+                                    .font(Font.custom(Constants.buttonFont, size: 16))
+                                    .foregroundColor(Color(Constants.backgroundColor))
+                                    .padding(.vertical, 16)
+                                    .padding(.horizontal, 24)
+                            } else {
+                                Text("Contribute your fit")
+                                    .font(Font.custom(Constants.buttonFont, size: 16))
+                                    .foregroundColor(Color(Constants.backgroundColor))
+                                    .padding(.vertical, 16)
+                                    .padding(.horizontal, 24)
+                            }
                         }
-                    }
-                    .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
-                    .background(Color("FITColor"))
-                    .cornerRadius(Constants.buttonCornerRadius)
-                    .padding(.horizontal, 60)
-                }.disabled(promptDetailViewModel.promptModel.promptHasAlreadyEnded() || promptDetailViewModel.userHasPostedInLastDay())
-                .padding(16)
+                        .frame(minWidth: 0, maxWidth: .infinity, minHeight: 55)
+                        .background(Color("FITColor"))
+                        .cornerRadius(Constants.buttonCornerRadius)
+                        .padding(.horizontal, 60)
+                    }.disabled(promptDetailViewModel.promptModel.promptHasAlreadyEnded() || promptDetailViewModel.userHasPostedInLastDay())
+                    .padding(16)
+                }
                 
-                Text("*You can post once a day until the prompt ends")
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-                    .foregroundColor(.gray)
-                    .multilineTextAlignment(.center)
-                .padding(.horizontal, 8)
-                
-                HStack {
-                    Text("Posts:")
-                        .font(Font.custom(Constants.titleFontBold, size: 24))
-                    Spacer()
-                }.padding(.horizontal, 8)
-                .padding(.vertical, 8)
-               
-//                if let postModels = promptDetailViewModel.postsData.postModels, !postModels.isEmpty {
-//                    //
-//                } else {
-//                    Text("There's no posts yet, be the first to post!")
-//                        .font(Font.custom(Constants.bodyFont, size: 24))
-//                        .padding(.vertical, 40)
-//                }
                 WaterfallPromptCollectionView(promptDetailViewModel: promptDetailViewModel, selectedPostDetail: $postDetailViewModel, uiCollectionViewController: UICollectionViewController())
             }
         }.navigationBarTitle("", displayMode: .inline)

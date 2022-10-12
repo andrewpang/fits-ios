@@ -17,18 +17,29 @@ struct PromptRowView: View {
     var body: some View {
         VStack(spacing: 0) {
             Text(promptModel.title ?? "")
-                .font(Font.custom(Constants.titleFontBold, size: 24))
+                .font(Font.custom(Constants.titleFontBold, size: 18))
                 .multilineTextAlignment(.center)
                 .foregroundColor(Color(Constants.backgroundColor))
-                .padding(.top, 24)
-                .padding(.horizontal, 16)
-            if let endTimeString = promptModel.getFormattedDateString() {
-                Text("Ends: \(endTimeString)")
-                    .font(Font.custom(Constants.bodyFont, size: 16))
-                    .multilineTextAlignment(.center)
-                    .foregroundColor(.gray)
-                    .padding(.vertical, 4)
-                    .padding(.horizontal, 16)
+                .padding(.top, 16)
+                .padding(.horizontal, 32)
+            if let endTimeString = promptModel.getFormattedEndDateString() {
+                if (promptModel.promptHasAlreadyEnded()) {
+                    if let startTimeString = promptModel.getFormattedStartDateString() {
+                        Text("\(startTimeString) - \(endTimeString)")
+                            .font(Font.custom(Constants.bodyFont, size: 16))
+                            .multilineTextAlignment(.center)
+                            .foregroundColor(.gray)
+                            .padding(.vertical, 4)
+                            .padding(.horizontal, 16)
+                    }
+                } else {
+                    Text("Add new posts until: \(endTimeString)")
+                        .font(Font.custom(Constants.bodyFont, size: 16))
+                        .multilineTextAlignment(.center)
+                        .foregroundColor(.gray)
+                        .padding(.vertical, 4)
+                        .padding(.horizontal, 16)
+                }
             }
             ZStack {
                 HStack(spacing: Constants.promptImageSpacing) {
