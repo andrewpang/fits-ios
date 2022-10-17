@@ -287,7 +287,7 @@ struct PostDetailView: View {
                             Text(postDetailViewModel.postModel.body.trimmingLeadingAndTrailingSpaces())
                                 .font(Font.custom(Constants.bodyFont, size: 16))
                                 .padding(.horizontal, 24)
-                                .padding(.vertical, 4)
+                                .padding(.vertical, 8)
                         }
      
                         if (!isEditMode) {
@@ -347,7 +347,6 @@ struct PostDetailView: View {
                                 }
                                 Spacer()
                             }.padding(.horizontal, 24)
-                            .padding(.vertical, 4)
                             .confettiCannon(counter: $confettiCounterTwo, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
                             
                             if (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {
