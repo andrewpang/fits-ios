@@ -85,9 +85,9 @@ class PostViewModel: ObservableObject {
                 if (imagesDownloaded == mediaItems.items.count) {
                     var postModel: PostModel
                     if let postRating = self.postRating {
-                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt, reviewRating: postRating)
+                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody.trimmingLeadingAndTrailingSpaces(),  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt, reviewRating: postRating)
                     } else {
-                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody,  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
+                        postModel = PostModel(author: postAuthorMap, imageUrls: postImageUrls, title: self.postTitle, body: self.postBody.trimmingLeadingAndTrailingSpaces(),  likesCount: 0, tags: self.postTags, groupId: groupId, thumbnailHeight: thumbnailHeight, thumbnailWidth: thumbnailWidth, prompt: prompt)
                     }
                     self.uploadPostModel(postModel: postModel, completion: completion)
                     if let prompt = prompt {

@@ -284,14 +284,14 @@ struct PostDetailView: View {
                                 .padding(.horizontal, 24)
                             }
                             
-                            Text(postDetailViewModel.postModel.body)
+                            Text(postDetailViewModel.postModel.body.trimmingLeadingAndTrailingSpaces())
                                 .font(Font.custom(Constants.bodyFont, size: 16))
                                 .padding(.horizontal, 24)
-                                .padding(.vertical, 8)
+                                .padding(.vertical, 4)
                         }
      
                         if (!isEditMode) {
-                            PostTagsView(postDetailViewModel: postDetailViewModel).padding(.vertical, 8)
+                            PostTagsView(postDetailViewModel: postDetailViewModel)
                             HStack {
         //                        Spacer()
                                 if (postDetailViewModel.isLiked) {
@@ -347,6 +347,7 @@ struct PostDetailView: View {
                                 }
                                 Spacer()
                             }.padding(.horizontal, 24)
+                            .padding(.vertical, 4)
                             .confettiCannon(counter: $confettiCounterTwo, num: 30, confettis: [.text("👏"), .text("💙"), .text("🔥"), .text("🎉"), .text("👏🏿")], confettiSize: 30)
                             
                             if (postDetailViewModel.postModel.author.userId == authenticationViewModel.userModel?.id) {

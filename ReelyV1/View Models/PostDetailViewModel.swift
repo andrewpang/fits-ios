@@ -320,7 +320,7 @@ class PostDetailViewModel: ObservableObject {
             let postDocument = self.db.collection("posts").document(postId)
             postDocument.updateData([
                 "title": title,
-                "body": body,
+                "body": body.trimmingLeadingAndTrailingSpaces(),
                 "tags": tags,
                 "lastUpdated": FieldValue.serverTimestamp(),
             ]) { err in
@@ -345,7 +345,7 @@ class PostDetailViewModel: ObservableObject {
             let postDocument = self.db.collection("posts").document(postId)
             postDocument.updateData([
                 "title": title,
-                "body": body,
+                "body": body.trimmingLeadingAndTrailingSpaces(),
                 "tags": tags,
                 "reviewRating": reviewRating,
                 "lastUpdated": FieldValue.serverTimestamp(),
