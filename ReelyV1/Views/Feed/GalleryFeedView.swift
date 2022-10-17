@@ -97,12 +97,12 @@ struct GalleryFeedView: View {
                             self.homeViewModel.featuredFeedSeenThisSession += 1
                             self.homeViewModel.checkIfShouldShowFeaturedFeedOverlay()
                         }
-                        CategoryWaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, selectedCategoryTag: $selectedCategoryTag, uiCollectionViewController: UICollectionViewController()).tag(4).onAppear {
-                            let eventName = "Home Feed Screen - View"
-                            let propertiesDict = ["feed": selectedCategoryTag] as? [String : String]
-                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
-                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
-                        }
+//                        CategoryWaterfallCollectionViewController(homeViewModel: homeViewModel, selectedPostDetail: $postDetailViewModel, selectedCategoryTag: $selectedCategoryTag, uiCollectionViewController: UICollectionViewController()).tag(4).onAppear {
+//                            let eventName = "Home Feed Screen - View"
+//                            let propertiesDict = ["feed": selectedCategoryTag] as? [String : String]
+//                            Amplitude.instance().logEvent(eventName, withEventProperties: propertiesDict)
+//                            Mixpanel.mainInstance().track(event: eventName, properties: propertiesDict)
+//                        }
                     }
                     .tabViewStyle(.page(indexDisplayMode: .never))
                 }

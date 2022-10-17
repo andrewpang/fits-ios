@@ -50,3 +50,9 @@ public struct PostModel: Identifiable, Codable, Hashable {
         return imageUrl ?? ""
     }
 }
+
+extension String {
+   func trimmingLeadingAndTrailingSpaces(using characterSet: CharacterSet = .whitespacesAndNewlines) -> String {
+       return trimmingCharacters(in: characterSet)
+   }
+}
